@@ -1,9 +1,10 @@
 package com.duke.protobuf.server
 
 import com.duke.proto.data.NetMessage
-import com.duke.protobuf.server.handler.ExtremeWorldLengthFieldPrepender
-import com.duke.protobuf.server.handler.ExtremeWorldProtobufDecoder
-import com.duke.protobuf.server.handler.ProtobufServerHandler
+import com.duke.protobuf.server.netty.ExtremeWorldLengthFieldPrepender
+import com.duke.protobuf.server.netty.ExtremeWorldMessageDistributor
+import com.duke.protobuf.server.netty.ExtremeWorldProtobufDecoder
+import com.duke.protobuf.server.netty.ProtobufServerHandler
 import io.netty.channel.Channel
 import io.netty.channel.ChannelInitializer
 import io.netty.handler.codec.protobuf.ProtobufDecoder
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Component
 class ProtobufServerChannelInitializer: ChannelInitializer<Channel>() {
     @Autowired
     private lateinit var protobufServerHandler: ProtobufServerHandler
+    @Autowired
+    private lateinit var distributor: ExtremeWorldMessageDistributor
 
     override fun initChannel(ch: Channel) {
         val pipeline = ch.pipeline()
@@ -23,6 +26,7 @@ class ProtobufServerChannelInitializer: ChannelInitializer<Channel>() {
         pipeline.addLast("decoder", ProtobufDecoder(NetMessage.getDefaultInstance()))
         pipeline.addLast(ExtremeWorldLengthFieldPrepender())
         pipeline.addLast("encoder", ProtobufEncoder())
-        pipeline.addLast(protobufServerHandler)
+//        pipeline.addLast(protobufServerHandler)
+        pipeline.addLast(distributor)
     }
 }

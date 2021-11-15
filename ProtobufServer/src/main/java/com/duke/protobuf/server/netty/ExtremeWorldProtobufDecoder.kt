@@ -1,4 +1,4 @@
-package com.duke.protobuf.server.handler
+package com.duke.protobuf.server.netty
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
