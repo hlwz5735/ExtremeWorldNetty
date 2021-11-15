@@ -13,14 +13,15 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <netty.version>4.1.69.Final</netty.version>
-        <kotlin.version>1.6.0-RC</kotlin.version>
+        <netty.version>4.1.70.Final</netty.version>
+        <kotlin.version>1.5.10</kotlin.version>
     </properties>
 
     <modules>
         <module>ProtobufData</module>
         <module>ProtobufServer</module>
         <module>ProtobufClient</module>
+        <module>ProtobufCommon</module>
     </modules>
 
     <dependencies>

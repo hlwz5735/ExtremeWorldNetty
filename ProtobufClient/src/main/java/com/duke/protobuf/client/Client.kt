@@ -1,6 +1,8 @@
 package com.duke.protobuf.client
 
 import com.duke.proto.data.NetMessage
+import com.duke.protobuf.server.netty.ExtremeWorldLengthFieldAppender
+import com.duke.protobuf.server.netty.ExtremeWorldProtobufDecoder
 import io.netty.bootstrap.Bootstrap
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelOption
@@ -21,8 +23,10 @@ class Client(private val host: String, private val port: Int) {
                 .handler(object : ChannelInitializer<SocketChannel>() {
                     override fun initChannel(ch: SocketChannel) {
                         ch.pipeline()
-                            .addLast("encoder", ProtobufEncoder())
+                            .addLast(ExtremeWorldProtobufDecoder())
                             .addLast("decoder", ProtobufDecoder(NetMessage.getDefaultInstance()))
+                            .addLast(ExtremeWorldLengthFieldAppender())
+                            .addLast("encoder", ProtobufEncoder())
                             .addLast(ClientHandler())
                     }
                 })
@@ -43,12 +47,12 @@ fun main(args: Array<String>) {
     val HOST = "localhost"
     val PORT = 8888
 
-    var host = HOST;
-    var port = PORT;
+    var host = HOST
+    var port = PORT
     if (args.size >= 2) {
         host = args[0]
         port = args[1].toInt()
     }
 
-    Client(host, port).start();
+    Client(host, port).start()
 }

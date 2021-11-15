@@ -29,11 +29,13 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         requests
             .mapNotNull { req ->
                 val handlerMapping = handlerMap[req::class.java]
-                handlerMapping?.method?.invoke(req)
+                handlerMapping?.method?.invoke(handlerMapping.instance, req)
             }
             .forEach { respData ->
-                val setter = NetMessageResponse::class.java.methods.find { method ->
-                    method.name.startsWith("set") && method.returnType.equals(respData::class.java)
+                val setter = NetMessageResponse.Builder::class.java.methods.find { method ->
+                    method.name.startsWith("set")
+                            && method.parameterCount == 1
+                            && method.parameterTypes[0].equals(respData::class.java)
                 }
                 setter?.invoke(response, respData)
             }
@@ -46,55 +48,50 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
     }
 
     private fun extractRequests(msg: NetMessage): List<Any> {
-        val list = LinkedList<Any>()
         if (msg.request == null) {
-            return list
+            return emptyList()
         }
-
-        val request = msg.request
-
-        request::class.java.methods.forEach {
-            if (it.name.startsWith("has")) {
-                if (it.invoke(request) == true) {
-                    val field = it.name.substring(3)
-                    val fv = it.invoke("get$field")
-                    if (fv != null) {
-                        list.add(fv)
-                    }
-                }
-            }
-        }
-
-        return list
+        return msg.request.allFields.values.toList()
     }
 
     override fun setApplicationContext(ctx: ApplicationContext) {
         val beanMap = ctx.getBeansWithAnnotation(MessageFacade::class.java)
-        beanMap.entries
+        beanMap.values
             .flatMap(this::extractHandler)
+            .forEach {
+                handlerMap[it.targetClass] = it
+            }
     }
 
     private fun extractHandler(obj: Any): List<HandlerMapping> {
-        val map = HashMap<String, Method>()
+        val map = HashMap<String, HandlerMapping>()
 
-        var clazz = obj.javaClass
+        var clazz = obj::class.java
         while (clazz != Object::class.java) {
             clazz.methods.forEach {
                 if (it.isAnnotationPresent(MessageHandler::class.java) && !map.containsKey(it.name)) {
-                    map[it.name] = it
+                    val annotation = it.getAnnotation(MessageHandler::class.java)
+                    map[it.name] = HandlerMapping(obj, it, annotation.messageClass.java)
                 }
             }
 
             clazz = clazz.superclass
         }
 
-        return map
-            .values
-            .map { HandlerMapping(obj, it) }
+        return map.values.toList()
+    }
+
+    override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
+        cause.printStackTrace()
+        ctx.close()
     }
 }
 
 class HandlerMapping(
+    /** Spring Bean 实例 */
     val instance: Any,
-    val method: Method
+    /** 处理器方法 */
+    val method: Method,
+    /** 目标请求类 */
+    val targetClass: Class<*>
 )
