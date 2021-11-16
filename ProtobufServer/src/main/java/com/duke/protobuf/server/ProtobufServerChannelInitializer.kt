@@ -1,6 +1,6 @@
 package com.duke.protobuf.server
 
-import com.duke.proto.data.NetMessage
+import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.server.netty.ExtremeWorldLengthFieldAppender
 import com.duke.protobuf.server.netty.ExtremeWorldMessageDistributor
 import com.duke.protobuf.server.netty.ExtremeWorldProtobufDecoder
@@ -21,8 +21,12 @@ class ProtobufServerChannelInitializer: ChannelInitializer<Channel>() {
     @Autowired
     private lateinit var distributor: ExtremeWorldMessageDistributor
 
-    /*线程数量不宜设置过高,线程切换非常耗时*/
-    val eventExecutorGroup: EventExecutorGroup = DefaultEventExecutorGroup(
+    /**
+     * 业务线程池
+     *
+     * 注：线程数量不宜设置过高,线程切换非常耗时
+     */
+    private val eventExecutorGroup: EventExecutorGroup = DefaultEventExecutorGroup(
         Runtime.getRuntime().availableProcessors() * 2,
         ThreadFactory { r: Runnable ->
             val thread = Thread(r)

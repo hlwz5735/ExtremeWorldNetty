@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.facade
 
-import com.duke.proto.data.*
+import com.duke.protobuf.data.*
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import org.springframework.stereotype.Component

@@ -1,7 +1,7 @@
 package com.duke.protobuf.server.netty
 
-import com.duke.proto.data.NetMessage
-import com.duke.proto.data.NetMessageResponse
+import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.NetMessageResponse
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import io.netty.channel.ChannelHandler
@@ -24,12 +24,10 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
     /**
      * 处理器主体
      *
-     * <p>步骤：</p>
-     * <ol>
-     *     <li>从请求体中取出所有请求类型。</li>
-     *     <li>针对每个请求对象，从扫描得到的请求列表中获取处理器。如果能得到则进行下一步的处理。</li>
-     *     <li>收集所有得到的响应，聚合形成响应体并返回。</li>
-     * </ol>
+     * 步骤：
+     * 1. 从请求体中取出所有请求类型。
+     * 2. 针对每个请求对象，从扫描得到的请求列表中获取处理器。如果能得到则进行下一步的处理。
+     * 3. 收集所有得到的响应，聚合形成响应体并返回。
      */
     override fun channelRead0(ctx: ChannelHandlerContext, msg: NetMessage) {
         val requests = extractRequests(msg)

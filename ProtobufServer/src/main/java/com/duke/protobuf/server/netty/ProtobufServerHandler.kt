@@ -1,9 +1,9 @@
 package com.duke.protobuf.server.netty
 
-import com.duke.proto.data.NetMessage
-import com.duke.proto.data.NetMessageResponse
-import com.duke.proto.data.RESULT
-import com.duke.proto.data.UserLoginResponse
+import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.NetMessageResponse
+import com.duke.protobuf.data.RESULT
+import com.duke.protobuf.data.UserLoginResponse
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler

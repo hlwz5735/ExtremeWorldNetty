@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.duke.proto.data;
+package com.duke.protobuf.data;
 
 //option csharp_namespace = "SkillBridge.Message";
 option cc_enable_arenas = true;

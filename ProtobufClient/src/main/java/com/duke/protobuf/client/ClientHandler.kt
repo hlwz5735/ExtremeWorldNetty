@@ -1,8 +1,8 @@
 package com.duke.protobuf.client
 
-import com.duke.proto.data.NetMessage
-import com.duke.proto.data.NetMessageRequest
-import com.duke.proto.data.UserLoginRequest
+import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.NetMessageRequest
+import com.duke.protobuf.data.UserLoginRequest
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 

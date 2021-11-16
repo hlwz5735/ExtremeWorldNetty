@@ -1,9 +1,9 @@
 package com.duke.protobuf.server.util
 
-import com.duke.proto.data.NetMessage
-import com.duke.proto.data.NetMessageRequest
-import com.duke.proto.data.NetMessageResponse
-import com.duke.proto.data.UserLoginResponse
+import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.NetMessageRequest
+import com.duke.protobuf.data.NetMessageResponse
+import com.duke.protobuf.data.UserLoginResponse
 
 object MessageUtil {
     fun genRequestMessage(): NetMessage {
