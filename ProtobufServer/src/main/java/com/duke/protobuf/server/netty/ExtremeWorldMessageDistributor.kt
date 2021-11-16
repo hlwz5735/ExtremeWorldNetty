@@ -21,6 +21,16 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
 
     private val handlerMap = ConcurrentHashMap<Class<*>, HandlerMapping>()
 
+    /**
+     * 处理器主体
+     *
+     * <p>步骤：</p>
+     * <ol>
+     *     <li>从请求体中取出所有请求类型。</li>
+     *     <li>针对每个请求对象，从扫描得到的请求列表中获取处理器。如果能得到则进行下一步的处理。</li>
+     *     <li>收集所有得到的响应，聚合形成响应体并返回。</li>
+     * </ol>
+     */
     override fun channelRead0(ctx: ChannelHandlerContext, msg: NetMessage) {
         val requests = extractRequests(msg)
 
@@ -31,20 +41,24 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
                 val handlerMapping = handlerMap[req::class.java]
                 handlerMapping?.method?.invoke(handlerMapping.instance, req)
             }
-            .forEach { respData ->
-                val setter = NetMessageResponse.Builder::class.java.methods.find { method ->
-                    method.name.startsWith("set")
-                            && method.parameterCount == 1
-                            && method.parameterTypes[0].equals(respData::class.java)
-                }
-                setter?.invoke(response, respData)
-            }
+            // 针对所有正常处理的请求响应体，查找setter并调用以设置值
+            .forEach { respData -> findSetterAndSetField(respData, response) }
 
         val responseMsg = NetMessage.newBuilder()
             .setResponse(response.build())
             .build()
 
         ctx.writeAndFlush(responseMsg)
+    }
+
+    private fun findSetterAndSetField(respData: Any, response: NetMessageResponse.Builder?) {
+        // 这里每次设置值都要进行一次查找，可以考虑按类型将Setter缓存下来
+        val setter = NetMessageResponse.Builder::class.java.methods.find { method ->
+            method.name.startsWith("set")
+                    && method.parameterCount == 1
+                    && method.parameterTypes[0].equals(respData::class.java)
+        }
+        setter?.invoke(response, respData)
     }
 
     private fun extractRequests(msg: NetMessage): List<Any> {
