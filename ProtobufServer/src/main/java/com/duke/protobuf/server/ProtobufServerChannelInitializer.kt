@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.util.concurrent.ThreadFactory
 
-
 @Component
 class ProtobufServerChannelInitializer: ChannelInitializer<Channel>() {
     @Autowired
@@ -30,7 +29,7 @@ class ProtobufServerChannelInitializer: ChannelInitializer<Channel>() {
         Runtime.getRuntime().availableProcessors() * 2,
         ThreadFactory { r: Runnable ->
             val thread = Thread(r)
-            thread.name = "custom-handler-exec-" + r.hashCode()
+            thread.name = "msghandler-" + r.hashCode()
             thread
         },
         100000,

@@ -7,6 +7,7 @@ import com.duke.protobuf.server.annotation.MessageHandler
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
+import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.stereotype.Component
@@ -18,8 +19,13 @@ import kotlin.collections.HashMap
 @Component
 @ChannelHandler.Sharable
 class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>(), ApplicationContextAware {
-
+    /** 请求对象类型-请求处理器对象映射表 */
     private val handlerMap = ConcurrentHashMap<Class<*>, HandlerMapping>()
+
+    override fun channelActive(ctx: ChannelHandlerContext?) {
+        super.channelActive(ctx)
+        logger.debug("新用户连接加入……")
+    }
 
     /**
      * 处理器主体
@@ -66,15 +72,6 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         return msg.request.allFields.values.toList()
     }
 
-    override fun setApplicationContext(ctx: ApplicationContext) {
-        val beanMap = ctx.getBeansWithAnnotation(MessageFacade::class.java)
-        beanMap.values
-            .flatMap(this::extractHandler)
-            .forEach {
-                handlerMap[it.targetClass] = it
-            }
-    }
-
     private fun extractHandler(obj: Any): List<HandlerMapping> {
         val map = HashMap<String, HandlerMapping>()
 
@@ -97,6 +94,22 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         cause.printStackTrace()
         ctx.close()
     }
+
+    override fun handlerRemoved(ctx: ChannelHandlerContext?) {
+        super.handlerRemoved(ctx)
+        logger.debug("用户连接关闭。")
+    }
+
+    override fun setApplicationContext(ctx: ApplicationContext) {
+        val beanMap = ctx.getBeansWithAnnotation(MessageFacade::class.java)
+        beanMap.values
+            .flatMap(this::extractHandler)
+            .forEach {
+                handlerMap[it.targetClass] = it
+            }
+    }
+
+    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
 }
 
 class HandlerMapping(

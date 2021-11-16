@@ -16,8 +16,6 @@ class ProtobufServer {
     private val workerGroup = NioEventLoopGroup()
     private var channel: Channel? = null
 
-    private val log = LoggerFactory.getLogger(this.javaClass)
-
     @Autowired
     private lateinit var channelInitializer: ProtobufServerChannelInitializer
 
@@ -33,7 +31,7 @@ class ProtobufServer {
         val future = b.bind(address)
         future.syncUninterruptibly()
         channel = future.channel()
-        log.info("服务器启动成功，等待客户端接入……")
+        logger.info("服务器启动成功，等待客户端接入……")
         return future
     }
 
@@ -42,4 +40,6 @@ class ProtobufServer {
         workerGroup.shutdownGracefully()
         bossGroup.shutdownGracefully()
     }
+
+    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
 }
