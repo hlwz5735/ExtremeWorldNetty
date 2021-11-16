@@ -3,9 +3,11 @@ package com.duke.protobuf.server
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.ApplicationContext
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import java.net.InetSocketAddress
 
 @SpringBootApplication
+@EnableJpaRepositories
 open class ProtobufServerApplication {}
 
 fun main(args: Array<String>) {

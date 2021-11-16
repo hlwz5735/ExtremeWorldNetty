@@ -44,11 +44,11 @@ class Client(private val host: String, private val port: Int) {
 }
 
 fun main(args: Array<String>) {
-    val HOST = "localhost"
-    val PORT = 8888
+    val aHost = "localhost"
+    val aPort = 8888
 
-    var host = HOST
-    var port = PORT
+    var host = aHost
+    var port = aPort
     if (args.size >= 2) {
         host = args[0]
         port = args[1].toInt()

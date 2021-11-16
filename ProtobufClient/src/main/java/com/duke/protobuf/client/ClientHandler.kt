@@ -2,6 +2,7 @@ package com.duke.protobuf.client
 
 import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.data.NetMessageRequest
+import com.duke.protobuf.data.RESULT
 import com.duke.protobuf.data.UserLoginRequest
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
@@ -25,6 +26,11 @@ class ClientHandler : ChannelInboundHandlerAdapter() {
 
     override fun channelRead(ctx: ChannelHandlerContext?, msg: Any?) {
         val responseMsg = msg as NetMessage
-        println("接收到的消息： $responseMsg")
+        val response = responseMsg.response.userLogin
+        if (response.result == RESULT.SUCCESS) {
+            println("请求成功！")
+        } else {
+            println("请求失败： ${response.errormsg}")
+        }
     }
 }
