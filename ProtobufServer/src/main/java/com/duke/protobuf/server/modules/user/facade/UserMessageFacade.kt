@@ -31,5 +31,22 @@ class UserMessageFacade(private val service: UserService) {
         }
     }
 
+    @MessageHandler(UserRegisterRequest::class)
+    fun onRegister(request: UserRegisterRequest): UserRegisterResponse {
+        logger.info("用户注册请求: 用户名：${request.user}，密码：${request.passward}")
+        val result = this.service.registerUser(request.user, request.passward)
+        return if (result.first == true) {
+            UserRegisterResponse.newBuilder()
+                .setResult(RESULT.SUCCESS)
+                .setErrormsg("NONE")
+                .build()
+        } else {
+            UserRegisterResponse.newBuilder()
+                .setErrormsg(result.second)
+                .setResult(RESULT.FAILED)
+                .build()
+        }
+    }
+
     companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
 }
