@@ -1,4 +1,4 @@
-package com.duke.protobuf.server.netty
+package com.duke.protobuf.netty
 
 import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.data.NetMessageResponse

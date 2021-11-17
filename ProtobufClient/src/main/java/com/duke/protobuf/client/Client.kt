@@ -1,8 +1,8 @@
 package com.duke.protobuf.client
 
 import com.duke.protobuf.data.NetMessage
-import com.duke.protobuf.server.netty.ExtremeWorldLengthFieldAppender
-import com.duke.protobuf.server.netty.ExtremeWorldProtobufDecoder
+import com.duke.protobuf.netty.ExtremeWorldLengthFieldAppender
+import com.duke.protobuf.netty.ExtremeWorldProtobufDecoder
 import io.netty.bootstrap.Bootstrap
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelOption

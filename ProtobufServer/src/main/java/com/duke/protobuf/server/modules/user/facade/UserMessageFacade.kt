@@ -17,14 +17,15 @@ class UserMessageFacade(private val service: UserService) {
     fun onUserLogin(request: UserLoginRequest): UserLoginResponse {
         logger.info("用户登录请求: 用户名：${request.user}，密码：${request.passward}")
 
-        return if (this.service.checkLogin(request.user, request.passward)) {
+        val result = this.service.checkLogin(request.user, request.passward)
+        return if (result.first == true) {
             UserLoginResponse.newBuilder()
                 .setErrormsg("None")
                 .setResult(RESULT.SUCCESS)
                 .build()
         } else {
             UserLoginResponse.newBuilder()
-                .setErrormsg("用户不存在或密码错误！")
+                .setErrormsg(result.second)
                 .setResult(RESULT.FAILED)
                 .build()
         }
