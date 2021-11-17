@@ -4,6 +4,7 @@ import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.modules.user.dbentity.TPlayer
 import com.duke.protobuf.server.modules.user.dbentity.TUser
+import com.duke.protobuf.server.modules.user.repo.PlayerRepository
 import com.duke.protobuf.server.modules.user.repo.UserRepository
 import com.duke.protobuf.server.net.pojo.OnlineUser
 import com.duke.protobuf.structure.DTuple
@@ -16,7 +17,10 @@ import java.time.LocalDateTime
 typealias User = TUser
 
 @Service
-class UserService(private val repo: UserRepository) {
+class UserService(
+    private val repo: UserRepository,
+    private val playerRepo: PlayerRepository
+) {
     /**
      * 处理用户登录逻辑
      */
@@ -46,14 +50,17 @@ class UserService(private val repo: UserRepository) {
             return DTuple(false, "用户名已存在。")
         }
 
+
         val newUser = User(
             username = username,
             password = password,
             registerTime = LocalDateTime.now(),
-            player = TPlayer()
         )
+        val newPlayer = TPlayer(user = newUser)
 
         repo.save(newUser)
+        playerRepo.save(newPlayer)
+
         return DTuple(true)
     }
 
