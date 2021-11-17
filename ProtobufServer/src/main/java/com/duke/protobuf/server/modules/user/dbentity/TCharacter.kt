@@ -1,5 +1,6 @@
 package com.duke.protobuf.server.modules.user.dbentity
 
+import com.duke.protobuf.data.CHARACTER_CLASS
 import org.hibernate.Hibernate
 import javax.persistence.*
 
@@ -12,7 +13,8 @@ data class TCharacter (
     var tid: Int? = null,
     var name: String? = null,
     @Column(name = "class")
-    var clazz: Int? = null,
+    @Enumerated(EnumType.ORDINAL)
+    var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,
     var mapId: Int = 1,
     var mapPosX: Int? = null,
     var mapPosY: Int? = null,

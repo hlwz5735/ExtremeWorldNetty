@@ -3,26 +3,38 @@ package com.duke.protobuf.server.modules.user.facade
 import com.duke.protobuf.data.*
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
-import com.duke.protobuf.server.modules.user.dbentity.TUser
 import com.duke.protobuf.server.modules.user.service.UserService
+import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-
-typealias User = TUser
 
 @Component
 @MessageFacade
 class UserMessageFacade(private val service: UserService) {
     @MessageHandler(UserLoginRequest::class)
-    fun onUserLogin(request: UserLoginRequest): UserLoginResponse {
+    fun onUserLogin(request: UserLoginRequest, channel: Channel): UserLoginResponse {
         logger.info("用户登录请求: 用户名：${request.user}，密码：${request.passward}")
 
-        val result = this.service.checkLogin(request.user, request.passward)
-        return if (result.first == true) {
-            UserLoginResponse.newBuilder()
+        val result = this.service.onLogin(request.user, request.passward, channel)
+        val user = result.first
+
+        return if (user != null) {
+            val builder = UserLoginResponse.newBuilder()
                 .setErrormsg("None")
                 .setResult(RESULT.SUCCESS)
-                .build()
+            builder.userinfoBuilder
+                .setId(user.id!!)
+                .setPlayer(builder.userinfoBuilder.playerBuilder
+                    .setId(user.player!!.id!!)
+                    .addAllCharacters(user.player!!.characters.map {
+                        NCharacterInfo.newBuilder()
+                            .setId(it.id!!)
+                            .setName(it.name)
+                            .setClass_(it.clazz)
+                            .build()
+                    })
+                    .build())
+            builder.build()
         } else {
             UserLoginResponse.newBuilder()
                 .setErrormsg(result.second)

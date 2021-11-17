@@ -4,6 +4,7 @@ import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.data.NetMessageResponse
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
+import com.duke.protobuf.server.net.pojo.OnlineUser
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
@@ -16,7 +17,6 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.HashMap
 
-@Component
 @ChannelHandler.Sharable
 class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>(), ApplicationContextAware {
     /** 请求对象类型-请求处理器对象映射表 */
@@ -43,7 +43,16 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         requests
             .mapNotNull { req ->
                 val handlerMapping = handlerMap[req::class.java]
-                handlerMapping?.method?.invoke(handlerMapping.instance, req)
+                if (handlerMapping != null) {
+                    // TODO 这里直接拿参数个数作为判断依据，后续可以实现更加优雅的参数绑定逻辑（参考MVC）
+                    if (handlerMapping.method.parameterCount == 1) {
+                        handlerMapping.method.invoke(handlerMapping.instance, req)
+                    } else {
+                        handlerMapping.method.invoke(handlerMapping.instance, req, ctx.channel())
+                    }
+                } else {
+                    null
+                }
             }
             // 针对所有正常处理的请求响应体，查找setter并调用以设置值
             .forEach { respData -> findSetterAndSetField(respData, response) }
@@ -95,11 +104,14 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         ctx.close()
     }
 
-    override fun handlerRemoved(ctx: ChannelHandlerContext?) {
-        super.handlerRemoved(ctx)
+    override fun channelInactive(ctx: ChannelHandlerContext?) {
+        super.channelInactive(ctx)
         logger.debug("用户连接关闭。")
     }
 
+    /**
+     * Spring 上下文初始化完毕后执行，初始化路由信息
+     */
     override fun setApplicationContext(ctx: ApplicationContext) {
         val beanMap = ctx.getBeansWithAnnotation(MessageFacade::class.java)
         beanMap.values

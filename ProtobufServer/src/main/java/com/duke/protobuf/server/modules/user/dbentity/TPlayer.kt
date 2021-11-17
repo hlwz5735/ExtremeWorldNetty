@@ -13,7 +13,7 @@ data class TPlayer (
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     var user: TUser? = null,
     @OneToMany(mappedBy = "player")
-    var characters: List<TCharacter> = emptyList()
+    var characters: MutableList<TCharacter> = ArrayList()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
