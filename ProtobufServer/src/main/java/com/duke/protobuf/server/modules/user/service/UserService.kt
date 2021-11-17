@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
-typealias User = TUser
-
 @Service
 class UserService(
     private val repo: UserRepository,
@@ -51,7 +49,7 @@ class UserService(
         }
 
 
-        val newUser = User(
+        val newUser = TUser(
             username = username,
             password = password,
             registerTime = LocalDateTime.now(),

@@ -1,0 +1,59 @@
+{
+  "1": {
+    "TID": 1,
+    "Name": "战士",
+    "Type": "Normal",
+    "Class": "WARRIOR",
+    "Resource": "Character/Warrior",
+    "Description": "谁敢挡我？！",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "2": {
+    "TID": 2,
+    "Name": "法师",
+    "Type": "Normal",
+    "Class": "WIZARD",
+    "Resource": "Character/Wizard",
+    "Description": "操纵元素魔法的地灵族法师，灵活地运用万物中所蕴含的风地水火四大元素的力量进行战斗，也可以为自己和盟友提供额外的魔法增益。",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "3": {
+    "TID": 3,
+    "Name": "弓箭手",
+    "Type": "Normal",
+    "Class": "ARCHER",
+    "Resource": "Character/Archer",
+    "Description": "使用弓箭攻击敌人的精灵族女战士，灵活、优雅。",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1001": {
+    "TID": 1001,
+    "Name": "恶鬼",
+    "Type": "Normal",
+    "Class": "WARRIOR",
+    "Resource": "Monster/M1001",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1002": {
+    "TID": 1002,
+    "Name": "-",
+    "Type": "Normal",
+    "Class": "WIZARD",
+    "Resource": "Monster/M1002",
+    "InitLevel": 1,
+    "Speed": 300
+  },
+  "1003": {
+    "TID": 1003,
+    "Name": "-",
+    "Type": "Normal",
+    "Class": "ARCHER",
+    "Resource": "Monster/M1003",
+    "InitLevel": 1,
+    "Speed": 300
+  }
+}

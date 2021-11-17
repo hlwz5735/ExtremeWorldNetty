@@ -21,7 +21,9 @@ open class BaseGameCharacter(
 
     fun toNetCharacterInfo(): NCharacterInfo {
         return NCharacterInfo.newBuilder()
+            .setId(id)
             .setType(type)
+            .setClass_(this.clazz)
             .setLevel(level)
             .setTid(tid)
             .setName(this.name.ifEmpty { this.define.name })

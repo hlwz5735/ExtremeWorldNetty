@@ -13,7 +13,7 @@ class OnlineUserManager {
         this.onlineUsers.clear()
     }
 
-    fun getById(id: Int): OnlineUser? {
+    operator fun get(id: Int): OnlineUser? {
         return this.onlineUsers[id]
     }
 

@@ -1,0 +1,42 @@
+{
+  "1": {
+    "id": 1,
+    "name": "奥特兰",
+    "type": "Normal",
+    "subType": "Normal",
+    "pkMode": false,
+    "resource": "MainCity",
+    "minimap": "aotelan.png",
+    "description": "一个平静的小城市。"
+  },
+  "2": {
+    "id": 2,
+    "name": "落日森林1",
+    "type": "Normal",
+    "subType": "Normal",
+    "pkMode": false,
+    "resource": "Map01",
+    "minimap": "luorisenlin.png",
+    "description": "野外1"
+  },
+  "3": {
+    "id": 3,
+    "name": "落日森林2",
+    "type": "Normal",
+    "subType": "Normal",
+    "pkMode": false,
+    "resource": "Map02",
+    "minimap": "luorisenlin.png",
+    "description": "野外2"
+  },
+  "4": {
+    "id": 4,
+    "name": "落日余晖",
+    "type": "Normal",
+    "subType": "Normal",
+    "pkMode": false,
+    "resource": "Map03",
+    "minimap": "luoriyuhui.png",
+    "description": "魔物出没的地方，很危险。"
+  }
+}
