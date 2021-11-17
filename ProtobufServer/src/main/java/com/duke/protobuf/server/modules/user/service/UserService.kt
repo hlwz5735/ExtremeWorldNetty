@@ -11,10 +11,10 @@ typealias User = TUser
 class UserService(private val repo: UserRepository) {
     fun checkLogin(username: String, password: String): DTuple<Boolean, String?> {
         val user = repo.getByUsername(username)
-        if (user == null) {
-            return DTuple(false, "用户不存在")
+        return if (user == null) {
+            DTuple(false, "用户不存在")
         } else {
-            return DTuple(user.password == password)
+            DTuple(user.password == password)
         }
     }
 }
