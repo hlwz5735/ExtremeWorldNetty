@@ -4,6 +4,7 @@ import com.duke.protobuf.data.CHARACTER_CLASS
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.user.dbentity.TCharacter
 import com.duke.protobuf.server.modules.user.repo.CharacterRepository
+import com.duke.protobuf.server.modules.user.repo.UserRepository
 import com.duke.protobuf.server.net.pojo.OnlineUser
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,7 +15,7 @@ class CharacterService(
 ) {
     @Transactional
     fun createCharacter(session: NettySession<OnlineUser>, name: String, clazz: CHARACTER_CLASS) {
-        val user = session.user.tableData
+        val player = session.user.tableData.player!!
 
         val character = TCharacter(
             tid = clazz.ordinal,
@@ -24,9 +25,12 @@ class CharacterService(
             mapPosX = 5000,
             mapPosY = 4000,
             mapPosZ = 820,
-            player = user.player
+            player = player
         )
 
         repo.save(character)
+
+        val characters = repo.findByPlayerId(player.id)
+        player.characters = characters
     }
 }

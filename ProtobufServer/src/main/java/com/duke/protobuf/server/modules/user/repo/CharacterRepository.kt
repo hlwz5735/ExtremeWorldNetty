@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CharacterRepository: JpaRepository<TCharacter, Int> {
+    fun findByPlayerId(id: Int?): MutableList<TCharacter>
 }
