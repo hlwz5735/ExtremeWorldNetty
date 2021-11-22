@@ -1,11 +1,12 @@
 package com.duke.protobuf.server.modules.map.model
 
 import com.duke.protobuf.data.MapCharacterEnterResponse
+import com.duke.protobuf.data.MapCharacterLeaveResponse
 import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.datadefine.MapDefine
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
-import com.duke.protobuf.server.net.pojo.OnlineUser
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 
@@ -19,7 +20,7 @@ class GameMap(
     val id get() = define.id
 
     internal fun playerEnter(character: PlayerCharacter, session: NettySession<OnlineUser>) {
-        logger.info("playerEnter: Map:{0} characterId:{1}", this.id, character.id)
+        logger.info("playerEnter: Map:{} characterId:{}", this.id, character.id)
         character.mapId = this.id
 
         // 向其他玩家角色发送角色进入的消息
@@ -29,7 +30,7 @@ class GameMap(
             .addCharacters(character.toNetCharacterInfo())
             .build()
         this.characterMap.values.forEach {
-            it.session.channel.writeAndFlush(buildResponseMessage(responseForOther))
+            it.session.channel.writeAndFlush(buildCharEnterResponse(responseForOther))
         }
 
         this.characterMap[character.id] = CharacterWithSession(session, character)
@@ -37,22 +38,43 @@ class GameMap(
             .map { it.character.toNetCharacterInfo() }
             .toList()
 
-        val response = MapCharacterEnterResponse.newBuilder()
+        val response = buildCharEnterResponse(MapCharacterEnterResponse.newBuilder()
             .setMapId(this.id)
             .addAllCharacters(characterList)
-            .build()
+            .build())
 
-        session.channel.writeAndFlush(buildResponseMessage(response))
+        session.channel.writeAndFlush(response)
+    }
+
+    private fun buildCharEnterResponse(obj: MapCharacterEnterResponse): NetMessage {
+        val builder = NetMessage.newBuilder()
+        builder.responseBuilder.mapCharacterEnter = obj
+        return builder.build()
+    }
+
+    fun playerLeave(character: PlayerCharacter) {
+        logger.info("playerLeave: Map:{} characterId:{}", this.id, character.id)
+        character.mapId = null
+
+        this.characterMap.remove(character.id)
+
+        val response = buildCharLeaveResponse(MapCharacterLeaveResponse.newBuilder()
+            .setCharacterId(character.id)
+            .build())
+
+        this.characterMap.values.forEach {
+            it.session.channel.writeAndFlush(response)
+        }
+    }
+
+    private fun buildCharLeaveResponse(obj: MapCharacterLeaveResponse): NetMessage {
+        val builder = NetMessage.newBuilder()
+        builder.responseBuilder.mapCharacterLeave = obj
+        return builder.build()
     }
 
     internal fun update() {
 
-    }
-
-    private fun buildResponseMessage(obj: MapCharacterEnterResponse): NetMessage {
-        val builder = NetMessage.newBuilder()
-        builder.responseBuilder.mapCharacterEnter = obj
-        return builder.build()
     }
 
     inner class CharacterWithSession (

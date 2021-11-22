@@ -5,10 +5,11 @@ import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.user.dbentity.TCharacter
 
 class PlayerCharacter(
-    type: CHARACTER_TYPE = CHARACTER_TYPE.UNRECOGNIZED,
-    var tableData: TCharacter
+    var tableData: TCharacter,
+    type: CHARACTER_TYPE = CHARACTER_TYPE.Player
 ) : BaseGameCharacter(
-    tableData.id!!,
+    entityId = 0,
+    dbId = tableData.id!!,
     type,
     tableData.tid!!,
     1, // tableData.level

@@ -4,7 +4,7 @@ import com.duke.protobuf.data.NEntity
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 
 open class GameEntity(
-    val id: Int = 0,
+    var id: Int = 0,
     var position: Vector3Int,
     var direction: Vector3Int,
     var speed: Int = 0

@@ -1,6 +1,6 @@
-package com.duke.protobuf.server.net
+package com.duke.protobuf.server.modules.game
 
-import com.duke.protobuf.server.net.pojo.OnlineUser
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 

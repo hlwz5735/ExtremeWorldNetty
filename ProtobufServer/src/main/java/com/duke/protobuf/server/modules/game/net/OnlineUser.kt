@@ -1,4 +1,4 @@
-package com.duke.protobuf.server.net.pojo
+package com.duke.protobuf.server.modules.game.net
 
 import com.duke.protobuf.netty.SessionUser
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter

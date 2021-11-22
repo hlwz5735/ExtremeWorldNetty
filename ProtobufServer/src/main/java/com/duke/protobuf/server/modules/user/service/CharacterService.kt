@@ -4,8 +4,7 @@ import com.duke.protobuf.data.CHARACTER_CLASS
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.user.dbentity.TCharacter
 import com.duke.protobuf.server.modules.user.repo.CharacterRepository
-import com.duke.protobuf.server.modules.user.repo.UserRepository
-import com.duke.protobuf.server.net.pojo.OnlineUser
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

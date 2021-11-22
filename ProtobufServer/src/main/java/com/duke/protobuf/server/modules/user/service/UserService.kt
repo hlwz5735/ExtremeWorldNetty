@@ -6,7 +6,7 @@ import com.duke.protobuf.server.modules.user.dbentity.TPlayer
 import com.duke.protobuf.server.modules.user.dbentity.TUser
 import com.duke.protobuf.server.modules.user.repo.PlayerRepository
 import com.duke.protobuf.server.modules.user.repo.UserRepository
-import com.duke.protobuf.server.net.pojo.OnlineUser
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.structure.DTuple
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory

@@ -8,8 +8,8 @@ import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.map.service.MapService
 import com.duke.protobuf.server.modules.user.service.CharacterService
 import com.duke.protobuf.server.modules.user.service.UserService
-import com.duke.protobuf.server.net.OnlineUserManager
-import com.duke.protobuf.server.net.pojo.OnlineUser
+import com.duke.protobuf.server.modules.game.OnlineUserManager
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -35,16 +35,18 @@ class UserMessageFacade(
                 .setResult(RESULT.SUCCESS)
             builder.userinfoBuilder
                 .setId(user.id!!)
-                .setPlayer(builder.userinfoBuilder.playerBuilder
-                    .setId(user.player!!.id!!)
-                    .addAllCharacters(user.player!!.characters.map {
-                        NCharacterInfo.newBuilder()
-                            .setId(it.id!!)
-                            .setName(it.name)
-                            .setClass_(it.clazz)
-                            .build()
-                    })
-                    .build())
+                .setPlayer(
+                    builder.userinfoBuilder.playerBuilder
+                        .setId(user.player!!.id!!)
+                        .addAllCharacters(user.player!!.characters.map {
+                            NCharacterInfo.newBuilder()
+                                .setId(it.id!!)
+                                .setName(it.name)
+                                .setClass_(it.clazz)
+                                .build()
+                        })
+                        .build()
+                )
             builder.build()
         } else {
             UserLoginResponse.newBuilder()
@@ -86,6 +88,15 @@ class UserMessageFacade(
             UserCreateCharacterResponse.newBuilder()
                 .setResult(RESULT.SUCCESS)
                 .setErrormsg("NONE")
+                .addAllCharacters(
+                    session.user.tableData.player?.characters?.map {
+                        NCharacterInfo.newBuilder()
+                            .setId(it.id ?: 0)
+                            .setName(it.name)
+                            .setClass_(it.clazz)
+                            .setTid(it.tid ?: 0)
+                            .build()
+                    } ?: ArrayList<NCharacterInfo>())
                 .build()
         } catch (e: Exception) {
             logger.error("创建角色时发生异常！", e)
@@ -102,8 +113,8 @@ class UserMessageFacade(
      */
     @MessageHandler(UserGameEnterRequest::class)
     fun onEnterGame(request: UserGameEnterRequest, channel: Channel): UserGameEnterResponse {
-        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel) ?:
-            return UserGameEnterResponse.newBuilder()
+        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
+            ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("用户会话不存在。")
                 .build()
@@ -122,12 +133,13 @@ class UserMessageFacade(
                 .build()
 
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(CHARACTER_TYPE.Player, currentCharacter)
+        val playerCharacter = PlayerCharacter(currentCharacter)
         session.user.character = playerCharacter
+
         onlineUserManager.add(session.user)
 
         // 将玩家角色设置进入所在地图
-        mapService.newCharacterEnter(playerCharacter.mapId, session)
+        mapService.characterEnter(playerCharacter.mapId!!, session)
 
         return UserGameEnterResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
@@ -135,5 +147,40 @@ class UserMessageFacade(
             .build()
     }
 
-    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
+    /**
+     * 用户离开游戏的请求处理
+     */
+    @MessageHandler(UserGameLeaveRequest::class)
+    fun onLeaveGame(request: UserGameLeaveRequest, channel: Channel): UserGameLeaveResponse {
+        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
+            ?: return UserGameLeaveResponse.newBuilder()
+                .setResult(RESULT.FAILED)
+                .setErrormsg("用户会话不存在。")
+                .build()
+
+        val character = session.user.character
+            ?: return UserGameLeaveResponse.newBuilder()
+                .setResult(RESULT.FAILED)
+                .setErrormsg("用户登录角色信息不存在。")
+                .build()
+
+        val mapId = character.mapId
+            ?: return UserGameLeaveResponse.newBuilder()
+                .setResult(RESULT.FAILED)
+                .setErrormsg("无法找到角色所在的地图信息。")
+                .build()
+
+        mapService.characterLeave(mapId, character)
+
+        onlineUserManager.removeById(session.user.id)
+
+        return UserGameLeaveResponse.newBuilder()
+            .setResult(RESULT.SUCCESS)
+            .setErrormsg("NONE")
+            .build()
+    }
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(this::class.java)
+    }
 }
