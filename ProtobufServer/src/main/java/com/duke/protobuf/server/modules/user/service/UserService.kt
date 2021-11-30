@@ -62,5 +62,5 @@ class UserService(
         return DTuple(true)
     }
 
-    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
+    companion object { private val logger = LoggerFactory.getLogger(UserService::class.java) }
 }

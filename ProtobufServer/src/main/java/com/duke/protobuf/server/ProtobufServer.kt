@@ -41,5 +41,5 @@ class ProtobufServer {
         bossGroup.shutdownGracefully()
     }
 
-    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
+    companion object { private val logger = LoggerFactory.getLogger(ProtobufServer::class.java) }
 }

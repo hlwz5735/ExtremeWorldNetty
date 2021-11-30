@@ -83,6 +83,6 @@ class GameMap(
     )
 
     companion object {
-        private val logger = LoggerFactory.getLogger(this::class.java)
+        private val logger = LoggerFactory.getLogger(GameMap::class.java)
     }
 }

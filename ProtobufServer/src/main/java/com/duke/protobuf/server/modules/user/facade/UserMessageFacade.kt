@@ -181,6 +181,6 @@ class UserMessageFacade(
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(this::class.java)
+        private val logger = LoggerFactory.getLogger(UserMessageFacade::class.java)
     }
 }

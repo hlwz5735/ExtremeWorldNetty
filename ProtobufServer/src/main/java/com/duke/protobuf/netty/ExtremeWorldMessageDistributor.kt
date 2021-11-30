@@ -118,7 +118,7 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
             }
     }
 
-    companion object { private val logger = LoggerFactory.getLogger(this::class.java) }
+    companion object { private val logger = LoggerFactory.getLogger(ExtremeWorldMessageDistributor::class.java) }
 }
 
 class HandlerMapping(
