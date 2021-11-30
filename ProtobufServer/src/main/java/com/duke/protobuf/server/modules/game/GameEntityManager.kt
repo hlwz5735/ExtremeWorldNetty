@@ -11,7 +11,9 @@ class GameEntityManager {
     /** 序号生成器 */
     private val idx = AtomicInteger()
 
+    /** 游戏实体对象列表 */
     val entityList = CopyOnWriteArrayList<GameEntity>()
+    /** 按地图分组的游戏实体对象列表键值对 */
     val entityGroupByMap = ConcurrentHashMap<Int, MutableList<GameEntity>>(64)
 
     fun addToMap(mapId: Int, entity: GameEntity) {

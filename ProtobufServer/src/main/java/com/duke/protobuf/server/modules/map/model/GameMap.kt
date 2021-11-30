@@ -1,17 +1,18 @@
 package com.duke.protobuf.server.modules.map.model
 
-import com.duke.protobuf.data.MapCharacterEnterResponse
-import com.duke.protobuf.data.MapCharacterLeaveResponse
-import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.*
 import com.duke.protobuf.netty.NettySession
+import com.duke.protobuf.server.modules.game.GameEntityManager
 import com.duke.protobuf.server.modules.game.datadefine.MapDefine
+import com.duke.protobuf.server.modules.game.entity.GameEntity
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 
 class GameMap(
-    internal val define: MapDefine
+    internal val define: MapDefine,
+    private val gameEntityManager: GameEntityManager
 ) {
 
     /** 当前地图中的角色列表，键为角色的ID */
@@ -20,6 +21,9 @@ class GameMap(
     val id get() = define.id
 
     internal fun playerEnter(character: PlayerCharacter, session: NettySession<OnlineUser>) {
+        // 在正式发出数据前，给实体ID赋值
+        this.gameEntityManager.addToMap(this.id, character)
+
         logger.info("playerEnter: Map:{} characterId:{}", this.id, character.id)
         character.mapId = this.id
 
@@ -54,6 +58,8 @@ class GameMap(
 
     fun playerLeave(character: PlayerCharacter) {
         logger.info("playerLeave: Map:{} characterId:{}", this.id, character.id)
+        this.gameEntityManager.removeFromMap(this.id, character)
+
         character.mapId = null
 
         this.characterMap.remove(character.id)
@@ -74,7 +80,45 @@ class GameMap(
     }
 
     internal fun update() {
+        throw NotImplementedError()
+    }
 
+    /**
+     * 更新地图内的实体信息
+     */
+    fun updateEntity(gameEntity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
+        val entityId = gameEntity.id
+
+        val responseForOther = buildMapEntitySyncResponse(
+            MapEntitySyncResponse
+                .newBuilder()
+                .addEntitySyncs(
+                    NEntitySync
+                        .newBuilder()
+                        .setId(gameEntity.id)
+                        .setEvent(entityEvent)
+                        .setEntity(gameEntity.toNetEntity())
+                        .build()
+                )
+                .build()
+        )
+
+        this.characterMap.values.forEach {
+            val character = it.character
+            if (character.id == entityId) {
+                character.position = gameEntity.position
+                character.direction = gameEntity.direction
+                character.speed = gameEntity.speed
+            } else {
+                it.session.channel.writeAndFlush(responseForOther)
+            }
+        }
+    }
+
+    private fun buildMapEntitySyncResponse(obj: MapEntitySyncResponse): NetMessage {
+        val builder = NetMessage.newBuilder()
+        builder.responseBuilder.mapEntitySync = obj
+        return builder.build()
     }
 
     inner class CharacterWithSession (
