@@ -1,8 +1,10 @@
 # ExtremeWorldNetty
 
-使用 Kotlin + Netty + Spring 实现的《极世界》Unity培训项目的服务端。
+使用 Kotlin + Netty + Spring 实现的服务端。
 
 课程上的技术选型和代码架构设计实在令人难以接受，故考虑使用 Kotlin + Netty 以一个更加清爽和易懂的设计来重写。
+
+所有代码均为本人原创，保留所有著作权。仅供参考，任何人不得牟利。
 
 主要目标：
 * 可以跨平台开发和运行，不局限于 Windows 平台；
