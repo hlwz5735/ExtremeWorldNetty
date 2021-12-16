@@ -174,6 +174,8 @@ class UserMessageFacade(
 
         onlineUserManager.removeById(session.user.id)
 
+        session.user.character = null
+
         return UserGameLeaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
             .setErrormsg("NONE")

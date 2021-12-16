@@ -62,8 +62,6 @@ class GameMap(
 
         character.mapId = null
 
-        this.characterMap.remove(character.id)
-
         val response = buildCharLeaveResponse(MapCharacterLeaveResponse.newBuilder()
             .setCharacterId(character.id)
             .build())
@@ -71,6 +69,7 @@ class GameMap(
         this.characterMap.values.forEach {
             it.session.channel.writeAndFlush(response)
         }
+        this.characterMap.remove(character.id)
     }
 
     private fun buildCharLeaveResponse(obj: MapCharacterLeaveResponse): NetMessage {
