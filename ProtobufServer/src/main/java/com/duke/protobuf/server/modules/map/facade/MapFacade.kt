@@ -23,7 +23,7 @@ class MapFacade(
         val character = SessionUtil.getSessionByChannel<OnlineUser>(channel)?.user?.character ?: return
         val mapId = character.mapId ?: return
 
-        logger.info("地图游戏实体对象更新请求：角色id：{}，实体id：{}，事件：{}，地图id：{}",
+        logger.debug("地图游戏实体对象更新请求：角色id：{}，实体id：{}，事件：{}，地图id：{}",
             character.id, sync.id, sync.event, mapId)
 
         // 从网络数据构建游戏实体对象并进行同步

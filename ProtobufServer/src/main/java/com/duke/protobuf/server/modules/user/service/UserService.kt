@@ -1,12 +1,17 @@
 package com.duke.protobuf.server.modules.user.service
 
+import com.duke.protobuf.data.RESULT
+import com.duke.protobuf.data.UserGameLeaveResponse
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.netty.SessionUtil
+import com.duke.protobuf.server.modules.game.OnlineUserManager
+import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.user.dbentity.TPlayer
 import com.duke.protobuf.server.modules.user.dbentity.TUser
 import com.duke.protobuf.server.modules.user.repo.PlayerRepository
 import com.duke.protobuf.server.modules.user.repo.UserRepository
 import com.duke.protobuf.server.modules.game.net.OnlineUser
+import com.duke.protobuf.server.modules.map.service.MapService
 import com.duke.protobuf.structure.DTuple
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
@@ -17,7 +22,9 @@ import java.time.LocalDateTime
 @Service
 class UserService(
     private val repo: UserRepository,
-    private val playerRepo: PlayerRepository
+    private val playerRepo: PlayerRepository,
+    private val mapService: MapService,
+    private val onlineUserManager: OnlineUserManager,
 ) {
     /**
      * 处理用户登录逻辑
@@ -60,6 +67,20 @@ class UserService(
         playerRepo.save(newPlayer)
 
         return DTuple(true)
+    }
+
+    /**
+     * 用户离开游戏
+     */
+    fun userLeave(session: NettySession<OnlineUser>) {
+        val character = session.user.character ?: return
+        val mapId = character.mapId ?: return
+
+        logger.info("位于地图 {} 的角色 {}-{} 离开游戏。", mapId, character.id, character.name)
+
+        mapService.characterLeave(mapId, character)
+        onlineUserManager.removeById(session.user.id)
+        session.user.character = null
     }
 
     companion object { private val logger = LoggerFactory.getLogger(UserService::class.java) }

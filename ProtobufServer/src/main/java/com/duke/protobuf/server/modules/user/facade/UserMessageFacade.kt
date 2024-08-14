@@ -20,7 +20,8 @@ class UserMessageFacade(
     private val service: UserService,
     private val characterService: CharacterService,
     private val onlineUserManager: OnlineUserManager,
-    private val mapService: MapService
+    private val mapService: MapService,
+    private val userService: UserService
 ) {
     @MessageHandler(UserLoginRequest::class)
     fun onUserLogin(request: UserLoginRequest, channel: Channel): UserLoginResponse {
@@ -164,17 +165,14 @@ class UserMessageFacade(
                 .setErrormsg("用户登录角色信息不存在。")
                 .build()
 
-        val mapId = character.mapId
-            ?: return UserGameLeaveResponse.newBuilder()
+        if (character.mapId == null) {
+            return UserGameLeaveResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("无法找到角色所在的地图信息。")
                 .build()
+        }
 
-        mapService.characterLeave(mapId, character)
-
-        onlineUserManager.removeById(session.user.id)
-
-        session.user.character = null
+        userService.userLeave(session)
 
         return UserGameLeaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)

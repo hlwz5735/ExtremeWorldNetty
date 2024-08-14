@@ -4,10 +4,13 @@ import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.data.NetMessageResponse
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
+import com.duke.protobuf.server.modules.game.net.OnlineUser
+import com.duke.protobuf.server.modules.user.service.UserService
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import java.lang.reflect.Method
@@ -16,6 +19,9 @@ import kotlin.collections.HashMap
 
 @ChannelHandler.Sharable
 class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>(), ApplicationContextAware {
+    @Autowired
+    private lateinit var userService: UserService;
+
     /** 请求对象类型-请求处理器对象映射表 */
     private val handlerMap = ConcurrentHashMap<Class<*>, HandlerMapping>()
 
@@ -102,6 +108,11 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
     }
 
     override fun channelInactive(ctx: ChannelHandlerContext?) {
+        do {
+            val channel = ctx?.channel() ?: break
+            val session = SessionUtil.getSessionByChannel<OnlineUser>(channel) ?: break
+            userService.userLeave(session)
+        } while (false)
         super.channelInactive(ctx)
         logger.debug("用户连接关闭。")
     }
