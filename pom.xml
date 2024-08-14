@@ -14,7 +14,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <netty.version>4.1.70.Final</netty.version>
-        <kotlin.version>1.5.10</kotlin.version>
+        <kotlin.version>1.6.21</kotlin.version>
     </properties>
 
     <modules>

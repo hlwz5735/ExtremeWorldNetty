@@ -4,6 +4,7 @@ import com.duke.protobuf.data.NEntitySync
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.DataDefineManager
 import com.duke.protobuf.server.modules.game.GameEntityManager
+import com.duke.protobuf.server.modules.game.datadefine.TeleporterDefine
 import com.duke.protobuf.server.modules.game.entity.GameEntity
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
@@ -48,6 +49,29 @@ class MapService(
 
     fun updateEntity(mapId: Int, entity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
         this.mapDic[mapId]?.updateEntity(entity, entityEvent)
+    }
+
+    /**
+     * 根据传送点ID传送角色到指定位置
+     */
+    fun teleportCharacter(character: PlayerCharacter, teleportId: Int, session: NettySession<OnlineUser>) {
+        if (!dataDefineManager.teleporterDic.containsKey(teleportId)) {
+            logger.warn("ID为{}的传送点信息不存在！", teleportId)
+            return
+        }
+        val sourceTeleporter: TeleporterDefine = dataDefineManager.teleporterDic[teleportId]!!
+        if (sourceTeleporter.linkTo == 0 || !dataDefineManager.teleporterDic.containsKey(sourceTeleporter.linkTo)) {
+            logger.warn("从传送点{}到传送点{}的传送点记录不存在！", sourceTeleporter.id, sourceTeleporter.linkTo)
+            return
+        }
+        val targetTeleporter = dataDefineManager.teleporterDic[sourceTeleporter.linkTo]!!
+
+        val sourceMap = mapDic[sourceTeleporter.mapId]!!
+        sourceMap.playerLeave(character)
+        character.position = targetTeleporter.position!!
+        character.direction = targetTeleporter.direction!!
+        val targetMap = mapDic[targetTeleporter.mapId]!!
+        targetMap.playerEnter(character, session)
     }
 
     companion object {

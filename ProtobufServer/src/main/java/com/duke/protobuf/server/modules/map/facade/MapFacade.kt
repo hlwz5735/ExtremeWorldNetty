@@ -1,7 +1,6 @@
 package com.duke.protobuf.server.modules.map.facade
 
-import com.duke.protobuf.data.MapEntitySyncRequest
-import com.duke.protobuf.data.MapEntitySyncResponse
+import com.duke.protobuf.data.*
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
@@ -30,6 +29,17 @@ class MapFacade(
         // 从网络数据构建游戏实体对象并进行同步
         val entity = GameEntity(sync.entity)
         this.service.updateEntity(mapId, entity, sync.event)
+    }
+
+    @MessageHandler(MapTeleportRequest::class)
+    fun onMapTeleport(request: MapTeleportRequest, channel: Channel) {
+        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)!!
+        val teleportId = request.teleporterId ?: return
+        val character = SessionUtil.getSessionByChannel<OnlineUser>(channel)?.user?.character ?: return
+
+        logger.info("地图传送请求：角色id：{}，传送点id：{}", character.id, teleportId)
+
+        this.service.teleportCharacter(character, teleportId, session)
     }
 
     companion object { private val logger = LoggerFactory.getLogger(MapFacade::class.java) }

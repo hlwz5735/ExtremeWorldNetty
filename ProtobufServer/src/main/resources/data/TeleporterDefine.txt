@@ -1,46 +1,122 @@
 {
   "1": {
-    "ID": 1,
-    "Name": "主城->野外",
-    "LinkTo": 6,
-    "MapID": 1
+    "id": 1,
+    "name": "主城->野外",
+    "mapId": 1,
+    "linkTo": 6,
+    "descript": null,
+    "position": {
+      "x": 522,
+      "y": 2610,
+      "z": 1110
+    },
+    "direction": {
+      "x": 0,
+      "y": 100,
+      "z": 0
+    }
   },
   "2": {
-    "ID": 2,
-    "Name": "主城->副本",
-    "LinkTo": 8,
-    "MapID": 1
+    "id": 2,
+    "name": "主城->副本",
+    "mapId": 1,
+    "linkTo": 8,
+    "descript": null,
+    "position": {
+      "x": 7478,
+      "y": 2610,
+      "z": 1110
+    },
+    "direction": {
+      "x": 0,
+      "y": 100,
+      "z": 0
+    }
   },
   "3": {
-    "ID": 3,
-    "Name": "主城传入点1",
-    "MapID": 1
+    "id": 3,
+    "name": "主城传入点1",
+    "mapId": 1,
+    "linkTo": 0,
+    "descript": null,
+    "position": {
+      "x": 1044,
+      "y": 2582,
+      "z": 836
+    },
+    "direction": {
+      "x": 100,
+      "y": 0,
+      "z": 0
+    }
   },
   "4": {
-    "ID": 4,
-    "Name": "出城传入点2",
-    "MapID": 1
+    "id": 4,
+    "name": "出城传入点2",
+    "mapId": 1,
+    "linkTo": 0,
+    "descript": null,
+    "position": {
+      "x": 6950,
+      "y": 2582,
+      "z": 836
+    },
+    "direction": {
+      "x": -100,
+      "y": 0,
+      "z": 0
+    }
   },
   "5": {
-    "ID": 5,
-    "Name": "野外->主城",
-    "LinkTo": 3,
-    "MapID": 2
+    "id": 5,
+    "name": "野外->主城",
+    "mapId": 2,
+    "linkTo": 3,
+    "descript": null,
+    "position": {
+      "x": 2190,
+      "y": 3991,
+      "z": 442
+    },
+    "direction": {
+      "x": 0,
+      "y": 0,
+      "z": 100
+    }
   },
   "6": {
-    "ID": 6,
-    "Name": "野外传入点",
-    "MapID": 2
+    "id": 6,
+    "name": "野外传入点",
+    "mapId": 2,
+    "linkTo": 0,
+    "descript": null,
+    "position": {
+      "x": 2732,
+      "y": 3998,
+      "z": 64
+    },
+    "direction": {
+      "x": 100,
+      "y": 0,
+      "z": 0
+    }
   },
   "7": {
-    "ID": 7,
-    "Name": "副本->主城",
-    "LinkTo": 4,
-    "MapID": 4
+    "id": 7,
+    "name": "副本->主城",
+    "mapId": 4,
+    "linkTo": 4,
+    "descript": null,
+    "position": null,
+    "direction": null
   },
   "8": {
-    "ID": 8,
-    "Name": "副本传入点",
-    "MapID": 4
+    "id": 8,
+    "name": "副本传入点",
+    "mapId": 4,
+    "linkTo": 0,
+    "descript": null,
+    "position": null,
+    "direction": null
   }
 }
