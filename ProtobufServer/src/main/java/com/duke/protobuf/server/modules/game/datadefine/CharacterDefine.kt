@@ -8,6 +8,8 @@ data class CharacterDefine(
     /** 角色定义的名字 */
     val name: String,
 
+    val type: String,
+
     /** 角色的职业 */
     val clazz: CHARACTER_CLASS,
 
@@ -15,7 +17,9 @@ data class CharacterDefine(
     val resource: String,
 
     /** 角色定义的描述 */
-    val description: String,
+    val description: String?,
+
+    val initLevel: Int,
 
     /** 速度属性 */
     val speed: Int = 0

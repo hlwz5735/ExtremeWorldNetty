@@ -7,7 +7,7 @@ data class TeleporterDefine(
     val name: String,
     val mapId: Int,
     val linkTo: Int,
-    val descript: String?,
+    val description: String?,
     val position: Vector3Int?,
     val direction: Vector3Int?,
 )

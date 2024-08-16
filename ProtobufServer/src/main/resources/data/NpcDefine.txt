@@ -1,0 +1,31 @@
+{
+  "1": {
+    "id": 1,
+    "name": "莉莉丝",
+    "type": "Task",
+    "description": "任务NPC"
+  },
+  "2": {
+    "id": 2,
+    "name": "多丽丝",
+    "type": "Functional",
+    "function": "InvokeShop",
+    "param": 1,
+    "description": "杂货商人"
+  },
+  "3": {
+    "id": 3,
+    "name": "埃布尔",
+    "type": "Functional",
+    "function": "InvokeInstance",
+    "description": "副本NPC"
+  },
+  "4": {
+    "id": 4,
+    "name": "奥德里奇",
+    "type": "Functional",
+    "function": "InvokeShop",
+    "param": 2,
+    "description": "装备NPC"
+  }
+}

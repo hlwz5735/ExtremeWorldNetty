@@ -4,7 +4,7 @@
     "name": "主城->野外",
     "mapId": 1,
     "linkTo": 6,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 522,
       "y": 2610,
@@ -21,7 +21,7 @@
     "name": "主城->副本",
     "mapId": 1,
     "linkTo": 8,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 7478,
       "y": 2610,
@@ -38,7 +38,7 @@
     "name": "主城传入点1",
     "mapId": 1,
     "linkTo": 0,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 1044,
       "y": 2582,
@@ -55,7 +55,7 @@
     "name": "出城传入点2",
     "mapId": 1,
     "linkTo": 0,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 6950,
       "y": 2582,
@@ -72,7 +72,7 @@
     "name": "野外->主城",
     "mapId": 2,
     "linkTo": 3,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 2190,
       "y": 3991,
@@ -89,7 +89,7 @@
     "name": "野外传入点",
     "mapId": 2,
     "linkTo": 0,
-    "descript": null,
+    "description": null,
     "position": {
       "x": 2732,
       "y": 3998,
@@ -106,7 +106,7 @@
     "name": "副本->主城",
     "mapId": 4,
     "linkTo": 4,
-    "descript": null,
+    "description": null,
     "position": null,
     "direction": null
   },
@@ -115,7 +115,7 @@
     "name": "副本传入点",
     "mapId": 4,
     "linkTo": 0,
-    "descript": null,
+    "description": null,
     "position": null,
     "direction": null
   }

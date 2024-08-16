@@ -55,7 +55,6 @@ class UserService(
             return DTuple(false, "用户名已存在。")
         }
 
-
         val newUser = TUser(
             username = username,
             password = password,
