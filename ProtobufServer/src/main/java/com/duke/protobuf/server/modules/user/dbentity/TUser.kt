@@ -24,7 +24,7 @@ data class TUser (
         return id != null && id == other.id
     }
 
-    override fun hashCode(): Int = javaClass.hashCode()
+    override fun hashCode(): Int = id.hashCode()
 
     @Override
     override fun toString(): String {

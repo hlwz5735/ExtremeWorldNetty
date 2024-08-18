@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.user.dbentity
 
 import com.duke.protobuf.data.CHARACTER_CLASS
+import com.duke.protobuf.server.modules.item.dbentity.TCharacterItem
 import org.hibernate.Hibernate
 import javax.persistence.*
 
@@ -12,16 +13,21 @@ data class TCharacter (
     var id: Int? = null,
     var tid: Int? = null,
     var name: String? = null,
-    @Column(name = "class")
+    @Column(name = "CLASS")
     @Enumerated(EnumType.ORDINAL)
     var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,
     var mapId: Int = 1,
+    @Column(name = "MAP_POS_X")
     var mapPosX: Int? = null,
+    @Column(name = "MAP_POS_Y")
     var mapPosY: Int? = null,
+    @Column(name = "MAP_POS_Z")
     var mapPosZ: Int? = null,
     @ManyToOne
-    @JoinColumn(name = "player_id", referencedColumnName = "id")
-    var player: TPlayer? = null
+    @JoinColumn(name = "PLAYER_ID", referencedColumnName = "ID")
+    var player: TPlayer? = null,
+    @OneToMany(mappedBy = "owner")
+    var items: List<TCharacterItem> = emptyList()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,7 +37,7 @@ data class TCharacter (
         return id != null && id == other.id
     }
 
-    override fun hashCode(): Int = javaClass.hashCode()
+    override fun hashCode(): Int = id.hashCode()
 
     @Override
     override fun toString(): String {

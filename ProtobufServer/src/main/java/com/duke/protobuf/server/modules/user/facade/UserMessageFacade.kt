@@ -10,6 +10,8 @@ import com.duke.protobuf.server.modules.user.service.CharacterService
 import com.duke.protobuf.server.modules.user.service.UserService
 import com.duke.protobuf.server.modules.game.OnlineUserManager
 import com.duke.protobuf.server.modules.game.net.OnlineUser
+import com.duke.protobuf.server.modules.item.service.ItemService
+import com.duke.protobuf.server.modules.user.manager.ItemManager
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -19,9 +21,9 @@ import org.springframework.stereotype.Component
 class UserMessageFacade(
     private val service: UserService,
     private val characterService: CharacterService,
-    private val onlineUserManager: OnlineUserManager,
+    private val itemService: ItemService,
     private val mapService: MapService,
-    private val userService: UserService
+    private val onlineUserManager: OnlineUserManager,
 ) {
     @MessageHandler(UserLoginRequest::class)
     fun onUserLogin(request: UserLoginRequest, channel: Channel): UserLoginResponse {
@@ -127,14 +129,18 @@ class UserMessageFacade(
                 .setErrormsg("指定的角色不存在或超出范围限制。")
                 .build()
         }
-        val currentCharacter = session.user.tableData.player?.characters?.get(request.characterIdx)
+        var sessionChar = session.user.tableData.player?.characters?.get(request.characterIdx)
             ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("指定的角色不存在或超出范围限制。")
                 .build()
-
+        val currentCharacter = characterService.getById(sessionChar.id!!)
+            ?: return UserGameEnterResponse.newBuilder()
+                .setResult(RESULT.FAILED)
+                .setErrormsg("指定的角色在数据库中不存在！")
+                .build()
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(currentCharacter)
+        val playerCharacter = PlayerCharacter(currentCharacter, itemService)
         session.user.character = playerCharacter
 
         onlineUserManager.add(session.user)
@@ -145,6 +151,7 @@ class UserMessageFacade(
         return UserGameEnterResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
             .setErrormsg("NONE")
+            .setCharacter(playerCharacter.toNetCharacterInfo())
             .build()
     }
 
@@ -172,7 +179,7 @@ class UserMessageFacade(
                 .build()
         }
 
-        userService.userLeave(session)
+        service.userLeave(session)
 
         return UserGameLeaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)

@@ -63,8 +63,11 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         val responseMsg = NetMessage.newBuilder()
             .setResponse(response.build())
             .build()
-
-        ctx.writeAndFlush(responseMsg)
+        try {
+            ctx.writeAndFlush(responseMsg)
+        } catch (ex: Throwable) {
+            logger.error("写出数据时发生了异常！", ex)
+        }
     }
 
     private fun findSetterAndSetField(respData: Any, response: NetMessageResponse.Builder?) {

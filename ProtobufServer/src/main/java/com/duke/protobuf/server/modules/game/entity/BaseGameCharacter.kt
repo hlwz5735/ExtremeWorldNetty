@@ -20,7 +20,7 @@ open class BaseGameCharacter(
 ) : GameEntity(entityId, pos, dir) {
     lateinit var define: CharacterDefine
 
-    fun toNetCharacterInfo(): NCharacterInfo {
+    open fun toNetCharacterInfo(): NCharacterInfo {
         return NCharacterInfo.newBuilder()
             // 本身的ID设为数据库ID
             .setId(dbId)

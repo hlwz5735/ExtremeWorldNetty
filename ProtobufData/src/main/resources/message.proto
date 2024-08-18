@@ -38,6 +38,20 @@ enum CHARACTER_STATE
     MOVE = 1;
 }
 
+enum ITEM_TYPE {
+    // 常规道具
+    NORMAL = 0;
+    // 材料道具
+    MATERIAL = 1;
+    // 任务道具
+    TASK = 2;
+}
+
+message NItemInfo {
+    int32 id = 1;
+    int32 count = 2;
+}
+
 message NUserInfo {
     int32 id = 1;
     NPlayerInfo player = 2;
@@ -57,6 +71,8 @@ message NCharacterInfo {
     int32 level = 6;
     int32 mapId = 7;
     NEntity entity = 8;
+
+    repeated NItemInfo items = 10;
 }
 
 message NVector3
@@ -103,12 +119,12 @@ message NEntitySync {
 //
 ////////////////////////////////////////////////////////////////
 
-message NetMessage{
+message NetMessage {
     NetMessageRequest Request = 1;
     NetMessageResponse Response = 2;
 }
 
-message NetMessageRequest{
+message NetMessageRequest {
     UserRegisterRequest userRegister = 1;
     UserLoginRequest userLogin = 2;
     UserCreateCharacterRequest createChar = 3;
@@ -121,7 +137,7 @@ message NetMessageRequest{
     MapTeleportRequest mapTeleport = 9;
 }
 
-message NetMessageResponse{
+message NetMessageResponse {
     UserRegisterResponse userRegister = 1;
     UserLoginResponse userLogin = 2;
     UserCreateCharacterResponse createChar = 3;
@@ -180,6 +196,8 @@ message UserGameEnterRequest
 message UserGameEnterResponse {
     RESULT result = 1;
     string errormsg = 2;
+
+    NCharacterInfo character = 3;
 }
 
 message UserGameLeaveRequest

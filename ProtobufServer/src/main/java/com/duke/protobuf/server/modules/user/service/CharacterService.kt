@@ -2,9 +2,10 @@ package com.duke.protobuf.server.modules.user.service
 
 import com.duke.protobuf.data.CHARACTER_CLASS
 import com.duke.protobuf.netty.NettySession
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.user.dbentity.TCharacter
 import com.duke.protobuf.server.modules.user.repo.CharacterRepository
-import com.duke.protobuf.server.modules.game.net.OnlineUser
+import org.hibernate.Hibernate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -31,5 +32,13 @@ class CharacterService(
 
         val characters = repo.findByPlayerId(player.id)
         player.characters = characters
+    }
+
+    @Transactional(readOnly = true)
+    fun getById(id: Int): TCharacter? {
+        return repo.findById(id).map {
+            Hibernate.initialize(it.items)
+            it
+        }.orElseGet(null)
     }
 }
