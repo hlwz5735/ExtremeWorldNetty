@@ -4,6 +4,8 @@ import com.duke.protobuf.data.CHARACTER_CLASS
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
+import com.duke.protobuf.server.modules.character.dbentity.TCharacterBag
+import com.duke.protobuf.server.modules.character.repo.CharacterBagRepository
 import com.duke.protobuf.server.modules.character.repo.CharacterRepository
 import org.hibernate.Hibernate
 import org.springframework.stereotype.Service
@@ -11,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CharacterService(
-    private val repo: CharacterRepository
+    private val repo: CharacterRepository,
+    private val bagRepo: CharacterBagRepository,
+    private val bagService: BagService,
 ) {
     @Transactional
     fun createCharacter(session: NettySession<OnlineUser>, name: String, clazz: CHARACTER_CLASS) {
@@ -27,8 +31,9 @@ class CharacterService(
             mapPosZ = 820,
             player = player
         )
-
         repo.save(character)
+
+        bagService.createBagForCharacter(character.id!!)
 
         val characters = repo.findByPlayerId(player.id)
         player.characters = characters

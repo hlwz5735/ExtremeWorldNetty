@@ -5,28 +5,29 @@ package com.duke.protobuf.data;
 
 /**
  * <pre>
- *&#47; 地图传送
+ * 背包数据
  * </pre>
  *
- * Protobuf type {@code com.duke.protobuf.data.MapTeleportRequest}
+ * Protobuf type {@code com.duke.protobuf.data.NBagInfo}
  */
-public final class MapTeleportRequest extends
+public final class NBagInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.MapTeleportRequest)
-    MapTeleportRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.NBagInfo)
+    NBagInfoOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MapTeleportRequest.newBuilder() to construct.
-  private MapTeleportRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use NBagInfo.newBuilder() to construct.
+  private NBagInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MapTeleportRequest() {
+  private NBagInfo() {
+    items_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MapTeleportRequest();
+    return new NBagInfo();
   }
 
   @java.lang.Override
@@ -34,7 +35,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MapTeleportRequest(
+  private NBagInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -54,7 +55,12 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            teleporterId_ = input.readInt32();
+            unlocked_ = input.readInt32();
+            break;
+          }
+          case 18: {
+
+            items_ = input.readBytes();
             break;
           }
           default: {
@@ -80,26 +86,45 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_NBagInfo_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_fieldAccessorTable
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_NBagInfo_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.duke.protobuf.data.MapTeleportRequest.class, com.duke.protobuf.data.MapTeleportRequest.Builder.class);
+            com.duke.protobuf.data.NBagInfo.class, com.duke.protobuf.data.NBagInfo.Builder.class);
   }
 
-  public static final int TELEPORTERID_FIELD_NUMBER = 1;
-  private int teleporterId_;
+  public static final int UNLOCKED_FIELD_NUMBER = 1;
+  private int unlocked_;
   /**
-   * <code>int32 teleporterId = 1;</code>
-   * @return The teleporterId.
+   * <pre>
+   * 解锁了多少个格子
+   * </pre>
+   *
+   * <code>int32 unlocked = 1;</code>
+   * @return The unlocked.
    */
   @java.lang.Override
-  public int getTeleporterId() {
-    return teleporterId_;
+  public int getUnlocked() {
+    return unlocked_;
+  }
+
+  public static final int ITEMS_FIELD_NUMBER = 2;
+  private com.google.protobuf.ByteString items_;
+  /**
+   * <pre>
+   * 具体道具数据（二进制）
+   * </pre>
+   *
+   * <code>bytes items = 2;</code>
+   * @return The items.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getItems() {
+    return items_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -116,8 +141,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (teleporterId_ != 0) {
-      output.writeInt32(1, teleporterId_);
+    if (unlocked_ != 0) {
+      output.writeInt32(1, unlocked_);
+    }
+    if (!items_.isEmpty()) {
+      output.writeBytes(2, items_);
     }
     unknownFields.writeTo(output);
   }
@@ -128,9 +156,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (teleporterId_ != 0) {
+    if (unlocked_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, teleporterId_);
+        .computeInt32Size(1, unlocked_);
+    }
+    if (!items_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(2, items_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -142,13 +174,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.duke.protobuf.data.MapTeleportRequest)) {
+    if (!(obj instanceof com.duke.protobuf.data.NBagInfo)) {
       return super.equals(obj);
     }
-    com.duke.protobuf.data.MapTeleportRequest other = (com.duke.protobuf.data.MapTeleportRequest) obj;
+    com.duke.protobuf.data.NBagInfo other = (com.duke.protobuf.data.NBagInfo) obj;
 
-    if (getTeleporterId()
-        != other.getTeleporterId()) return false;
+    if (getUnlocked()
+        != other.getUnlocked()) return false;
+    if (!getItems()
+        .equals(other.getItems())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -160,76 +194,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TELEPORTERID_FIELD_NUMBER;
-    hash = (53 * hash) + getTeleporterId();
+    hash = (37 * hash) + UNLOCKED_FIELD_NUMBER;
+    hash = (53 * hash) + getUnlocked();
+    hash = (37 * hash) + ITEMS_FIELD_NUMBER;
+    hash = (53 * hash) + getItems().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(byte[] data)
+  public static com.duke.protobuf.data.NBagInfo parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.NBagInfo parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.NBagInfo parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseDelimitedFrom(
+  public static com.duke.protobuf.data.NBagInfo parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.NBagInfo parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -242,7 +278,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.duke.protobuf.data.MapTeleportRequest prototype) {
+  public static Builder newBuilder(com.duke.protobuf.data.NBagInfo prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -259,29 +295,29 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *&#47; 地图传送
+   * 背包数据
    * </pre>
    *
-   * Protobuf type {@code com.duke.protobuf.data.MapTeleportRequest}
+   * Protobuf type {@code com.duke.protobuf.data.NBagInfo}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.MapTeleportRequest)
-      com.duke.protobuf.data.MapTeleportRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.NBagInfo)
+      com.duke.protobuf.data.NBagInfoOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_NBagInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_fieldAccessorTable
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_NBagInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.duke.protobuf.data.MapTeleportRequest.class, com.duke.protobuf.data.MapTeleportRequest.Builder.class);
+              com.duke.protobuf.data.NBagInfo.class, com.duke.protobuf.data.NBagInfo.Builder.class);
     }
 
-    // Construct using com.duke.protobuf.data.MapTeleportRequest.newBuilder()
+    // Construct using com.duke.protobuf.data.NBagInfo.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -299,7 +335,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      teleporterId_ = 0;
+      unlocked_ = 0;
+
+      items_ = com.google.protobuf.ByteString.EMPTY;
 
       return this;
     }
@@ -307,17 +345,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_NBagInfo_descriptor;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest getDefaultInstanceForType() {
-      return com.duke.protobuf.data.MapTeleportRequest.getDefaultInstance();
+    public com.duke.protobuf.data.NBagInfo getDefaultInstanceForType() {
+      return com.duke.protobuf.data.NBagInfo.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest build() {
-      com.duke.protobuf.data.MapTeleportRequest result = buildPartial();
+    public com.duke.protobuf.data.NBagInfo build() {
+      com.duke.protobuf.data.NBagInfo result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -325,9 +363,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest buildPartial() {
-      com.duke.protobuf.data.MapTeleportRequest result = new com.duke.protobuf.data.MapTeleportRequest(this);
-      result.teleporterId_ = teleporterId_;
+    public com.duke.protobuf.data.NBagInfo buildPartial() {
+      com.duke.protobuf.data.NBagInfo result = new com.duke.protobuf.data.NBagInfo(this);
+      result.unlocked_ = unlocked_;
+      result.items_ = items_;
       onBuilt();
       return result;
     }
@@ -366,18 +405,21 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.duke.protobuf.data.MapTeleportRequest) {
-        return mergeFrom((com.duke.protobuf.data.MapTeleportRequest)other);
+      if (other instanceof com.duke.protobuf.data.NBagInfo) {
+        return mergeFrom((com.duke.protobuf.data.NBagInfo)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.duke.protobuf.data.MapTeleportRequest other) {
-      if (other == com.duke.protobuf.data.MapTeleportRequest.getDefaultInstance()) return this;
-      if (other.getTeleporterId() != 0) {
-        setTeleporterId(other.getTeleporterId());
+    public Builder mergeFrom(com.duke.protobuf.data.NBagInfo other) {
+      if (other == com.duke.protobuf.data.NBagInfo.getDefaultInstance()) return this;
+      if (other.getUnlocked() != 0) {
+        setUnlocked(other.getUnlocked());
+      }
+      if (other.getItems() != com.google.protobuf.ByteString.EMPTY) {
+        setItems(other.getItems());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -394,11 +436,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.duke.protobuf.data.MapTeleportRequest parsedMessage = null;
+      com.duke.protobuf.data.NBagInfo parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.duke.protobuf.data.MapTeleportRequest) e.getUnfinishedMessage();
+        parsedMessage = (com.duke.protobuf.data.NBagInfo) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -408,33 +450,91 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int teleporterId_ ;
+    private int unlocked_ ;
     /**
-     * <code>int32 teleporterId = 1;</code>
-     * @return The teleporterId.
+     * <pre>
+     * 解锁了多少个格子
+     * </pre>
+     *
+     * <code>int32 unlocked = 1;</code>
+     * @return The unlocked.
      */
     @java.lang.Override
-    public int getTeleporterId() {
-      return teleporterId_;
+    public int getUnlocked() {
+      return unlocked_;
     }
     /**
-     * <code>int32 teleporterId = 1;</code>
-     * @param value The teleporterId to set.
+     * <pre>
+     * 解锁了多少个格子
+     * </pre>
+     *
+     * <code>int32 unlocked = 1;</code>
+     * @param value The unlocked to set.
      * @return This builder for chaining.
      */
-    public Builder setTeleporterId(int value) {
+    public Builder setUnlocked(int value) {
       
-      teleporterId_ = value;
+      unlocked_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 teleporterId = 1;</code>
+     * <pre>
+     * 解锁了多少个格子
+     * </pre>
+     *
+     * <code>int32 unlocked = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearTeleporterId() {
+    public Builder clearUnlocked() {
       
-      teleporterId_ = 0;
+      unlocked_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString items_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * 具体道具数据（二进制）
+     * </pre>
+     *
+     * <code>bytes items = 2;</code>
+     * @return The items.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getItems() {
+      return items_;
+    }
+    /**
+     * <pre>
+     * 具体道具数据（二进制）
+     * </pre>
+     *
+     * <code>bytes items = 2;</code>
+     * @param value The items to set.
+     * @return This builder for chaining.
+     */
+    public Builder setItems(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      items_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 具体道具数据（二进制）
+     * </pre>
+     *
+     * <code>bytes items = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearItems() {
+      
+      items_ = getDefaultInstance().getItems();
       onChanged();
       return this;
     }
@@ -451,41 +551,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.MapTeleportRequest)
+    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.NBagInfo)
   }
 
-  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.MapTeleportRequest)
-  private static final com.duke.protobuf.data.MapTeleportRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.NBagInfo)
+  private static final com.duke.protobuf.data.NBagInfo DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.duke.protobuf.data.MapTeleportRequest();
+    DEFAULT_INSTANCE = new com.duke.protobuf.data.NBagInfo();
   }
 
-  public static com.duke.protobuf.data.MapTeleportRequest getDefaultInstance() {
+  public static com.duke.protobuf.data.NBagInfo getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MapTeleportRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MapTeleportRequest>() {
+  private static final com.google.protobuf.Parser<NBagInfo>
+      PARSER = new com.google.protobuf.AbstractParser<NBagInfo>() {
     @java.lang.Override
-    public MapTeleportRequest parsePartialFrom(
+    public NBagInfo parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MapTeleportRequest(input, extensionRegistry);
+      return new NBagInfo(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MapTeleportRequest> parser() {
+  public static com.google.protobuf.Parser<NBagInfo> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MapTeleportRequest> getParserForType() {
+  public com.google.protobuf.Parser<NBagInfo> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.duke.protobuf.data.MapTeleportRequest getDefaultInstanceForType() {
+  public com.duke.protobuf.data.NBagInfo getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

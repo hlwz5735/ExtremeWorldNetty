@@ -1,9 +1,6 @@
 package com.duke.protobuf.server.modules.game.manager
 
-import com.duke.protobuf.server.modules.game.datadefine.CharacterDefine
-import com.duke.protobuf.server.modules.game.datadefine.MapDefine
-import com.duke.protobuf.server.modules.game.datadefine.NpcDefine
-import com.duke.protobuf.server.modules.game.datadefine.TeleporterDefine
+import com.duke.protobuf.server.modules.game.datadefine.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.slf4j.LoggerFactory
@@ -22,6 +19,7 @@ class DataDefineManager(
     var gameMapDic: Map<Int, MapDefine> = emptyMap()
     var teleporterDic: Map<Int, TeleporterDefine> = emptyMap()
     var npcDic: Map<Int, NpcDefine> = emptyMap()
+    var itemDic: Map<Int, ItemDefine> = emptyMap()
 
     @PostConstruct
     fun init() {
@@ -41,6 +39,10 @@ class DataDefineManager(
             this.npcDic = objectMapper.readValue(File(npcDefineFile))
         }
         logger.info("加载NPC配置文件成功，配置数：{}", npcDic.size)
+        if (itemDefineFile != null) {
+            this.itemDic = objectMapper.readValue(File(itemDefineFile))
+        }
+        logger.info("加载物品配置文件成功，配置数：{}", itemDic.size)
     }
 
     companion object {
@@ -50,5 +52,6 @@ class DataDefineManager(
         private val mapDefineFile = this::class.java.classLoader.getResource("data/MapDefine.txt")?.file
         private val teleporterDefineFile = this::class.java.classLoader.getResource("data/TeleporterDefine.txt")?.file
         private val npcDefineFile = this::class.java.classLoader.getResource("data/NpcDefine.txt")?.file
+        private val itemDefineFile = this::class.java.classLoader.getResource("data/ItemDefine.txt")?.file
     }
 }

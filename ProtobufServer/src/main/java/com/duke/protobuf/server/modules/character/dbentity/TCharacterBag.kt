@@ -19,7 +19,7 @@ data class TCharacterBag(
     var unlockedCellCount: Int? = null,
     @Lob
     @Column(name = "ITEMS", columnDefinition = "BLOB", nullable = true)
-    var items: Array<Byte>? = null
+    var items:ByteArray? = null
 ) {
     final override fun equals(other: Any?): Boolean {
         if (this === other) return true

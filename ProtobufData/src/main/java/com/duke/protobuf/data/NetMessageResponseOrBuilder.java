@@ -126,4 +126,19 @@ public interface NetMessageResponseOrBuilder extends
    * <code>.com.duke.protobuf.data.MapEntitySyncResponse mapEntitySync = 8;</code>
    */
   com.duke.protobuf.data.MapEntitySyncResponseOrBuilder getMapEntitySyncOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   * @return Whether the bagSaveResponse field is set.
+   */
+  boolean hasBagSaveResponse();
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   * @return The bagSaveResponse.
+   */
+  com.duke.protobuf.data.BagSaveResponse getBagSaveResponse();
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   */
+  com.duke.protobuf.data.BagSaveResponseOrBuilder getBagSaveResponseOrBuilder();
 }

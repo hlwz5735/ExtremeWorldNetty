@@ -52,6 +52,14 @@ message NItemInfo {
     int32 count = 2;
 }
 
+// 背包数据
+message NBagInfo {
+    // 解锁了多少个格子
+    int32 unlocked = 1;
+    // 具体道具数据（二进制）
+    bytes items = 2;
+}
+
 message NUserInfo {
     int32 id = 1;
     NPlayerInfo player = 2;
@@ -73,6 +81,7 @@ message NCharacterInfo {
     NEntity entity = 8;
 
     repeated NItemInfo items = 10;
+    NBagInfo bag = 11;
 }
 
 message NVector3
@@ -135,6 +144,8 @@ message NetMessageRequest {
 
     MapEntitySyncRequest mapEntitySync = 8;
     MapTeleportRequest mapTeleport = 9;
+
+    BagSaveRequest bagSaveRequest = 10;
 }
 
 message NetMessageResponse {
@@ -148,7 +159,8 @@ message NetMessageResponse {
     MapCharacterLeaveResponse mapCharacterLeave = 7;
 
     MapEntitySyncResponse mapEntitySync = 8;
-
+    
+    BagSaveResponse bagSaveResponse = 9;
 }
 
 
@@ -226,19 +238,24 @@ message MapCharacterLeaveResponse
     int32 characterId = 1;
 }
 
-
-message MapEntitySyncRequest
-{
+/// 地图实体同步
+message MapEntitySyncRequest {
     NEntitySync entitySync = 1;
 }
-
-
-message MapEntitySyncResponse
-{
+message MapEntitySyncResponse {
     repeated NEntitySync entitySyncs = 2;
 }
 
-message MapTeleportRequest
-{
+/// 地图传送
+message MapTeleportRequest {
     int32 teleporterId = 1;
+}
+
+/// 背包保存
+message BagSaveRequest {
+    NBagInfo bagInfo = 1;
+}
+message BagSaveResponse {
+    RESULT result = 1;
+    string errormsg = 2;
 }

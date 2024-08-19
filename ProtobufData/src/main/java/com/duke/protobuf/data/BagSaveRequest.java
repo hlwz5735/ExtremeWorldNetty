@@ -5,28 +5,28 @@ package com.duke.protobuf.data;
 
 /**
  * <pre>
- *&#47; 地图传送
+ *&#47; 背包保存
  * </pre>
  *
- * Protobuf type {@code com.duke.protobuf.data.MapTeleportRequest}
+ * Protobuf type {@code com.duke.protobuf.data.BagSaveRequest}
  */
-public final class MapTeleportRequest extends
+public final class BagSaveRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.MapTeleportRequest)
-    MapTeleportRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.BagSaveRequest)
+    BagSaveRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MapTeleportRequest.newBuilder() to construct.
-  private MapTeleportRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use BagSaveRequest.newBuilder() to construct.
+  private BagSaveRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MapTeleportRequest() {
+  private BagSaveRequest() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MapTeleportRequest();
+    return new BagSaveRequest();
   }
 
   @java.lang.Override
@@ -34,7 +34,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MapTeleportRequest(
+  private BagSaveRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -52,9 +52,17 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 10: {
+            com.duke.protobuf.data.NBagInfo.Builder subBuilder = null;
+            if (bagInfo_ != null) {
+              subBuilder = bagInfo_.toBuilder();
+            }
+            bagInfo_ = input.readMessage(com.duke.protobuf.data.NBagInfo.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(bagInfo_);
+              bagInfo_ = subBuilder.buildPartial();
+            }
 
-            teleporterId_ = input.readInt32();
             break;
           }
           default: {
@@ -80,26 +88,41 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_BagSaveRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_fieldAccessorTable
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_BagSaveRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.duke.protobuf.data.MapTeleportRequest.class, com.duke.protobuf.data.MapTeleportRequest.Builder.class);
+            com.duke.protobuf.data.BagSaveRequest.class, com.duke.protobuf.data.BagSaveRequest.Builder.class);
   }
 
-  public static final int TELEPORTERID_FIELD_NUMBER = 1;
-  private int teleporterId_;
+  public static final int BAGINFO_FIELD_NUMBER = 1;
+  private com.duke.protobuf.data.NBagInfo bagInfo_;
   /**
-   * <code>int32 teleporterId = 1;</code>
-   * @return The teleporterId.
+   * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+   * @return Whether the bagInfo field is set.
    */
   @java.lang.Override
-  public int getTeleporterId() {
-    return teleporterId_;
+  public boolean hasBagInfo() {
+    return bagInfo_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+   * @return The bagInfo.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NBagInfo getBagInfo() {
+    return bagInfo_ == null ? com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bagInfo_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NBagInfoOrBuilder getBagInfoOrBuilder() {
+    return getBagInfo();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -116,8 +139,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (teleporterId_ != 0) {
-      output.writeInt32(1, teleporterId_);
+    if (bagInfo_ != null) {
+      output.writeMessage(1, getBagInfo());
     }
     unknownFields.writeTo(output);
   }
@@ -128,9 +151,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (teleporterId_ != 0) {
+    if (bagInfo_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, teleporterId_);
+        .computeMessageSize(1, getBagInfo());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -142,13 +165,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.duke.protobuf.data.MapTeleportRequest)) {
+    if (!(obj instanceof com.duke.protobuf.data.BagSaveRequest)) {
       return super.equals(obj);
     }
-    com.duke.protobuf.data.MapTeleportRequest other = (com.duke.protobuf.data.MapTeleportRequest) obj;
+    com.duke.protobuf.data.BagSaveRequest other = (com.duke.protobuf.data.BagSaveRequest) obj;
 
-    if (getTeleporterId()
-        != other.getTeleporterId()) return false;
+    if (hasBagInfo() != other.hasBagInfo()) return false;
+    if (hasBagInfo()) {
+      if (!getBagInfo()
+          .equals(other.getBagInfo())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -160,76 +186,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TELEPORTERID_FIELD_NUMBER;
-    hash = (53 * hash) + getTeleporterId();
+    if (hasBagInfo()) {
+      hash = (37 * hash) + BAGINFO_FIELD_NUMBER;
+      hash = (53 * hash) + getBagInfo().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(byte[] data)
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.BagSaveRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseDelimitedFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapTeleportRequest parseFrom(
+  public static com.duke.protobuf.data.BagSaveRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -242,7 +270,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.duke.protobuf.data.MapTeleportRequest prototype) {
+  public static Builder newBuilder(com.duke.protobuf.data.BagSaveRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -259,29 +287,29 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   *&#47; 地图传送
+   *&#47; 背包保存
    * </pre>
    *
-   * Protobuf type {@code com.duke.protobuf.data.MapTeleportRequest}
+   * Protobuf type {@code com.duke.protobuf.data.BagSaveRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.MapTeleportRequest)
-      com.duke.protobuf.data.MapTeleportRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.BagSaveRequest)
+      com.duke.protobuf.data.BagSaveRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_BagSaveRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_fieldAccessorTable
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_BagSaveRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.duke.protobuf.data.MapTeleportRequest.class, com.duke.protobuf.data.MapTeleportRequest.Builder.class);
+              com.duke.protobuf.data.BagSaveRequest.class, com.duke.protobuf.data.BagSaveRequest.Builder.class);
     }
 
-    // Construct using com.duke.protobuf.data.MapTeleportRequest.newBuilder()
+    // Construct using com.duke.protobuf.data.BagSaveRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -299,25 +327,29 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      teleporterId_ = 0;
-
+      if (bagInfoBuilder_ == null) {
+        bagInfo_ = null;
+      } else {
+        bagInfo_ = null;
+        bagInfoBuilder_ = null;
+      }
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapTeleportRequest_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_BagSaveRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest getDefaultInstanceForType() {
-      return com.duke.protobuf.data.MapTeleportRequest.getDefaultInstance();
+    public com.duke.protobuf.data.BagSaveRequest getDefaultInstanceForType() {
+      return com.duke.protobuf.data.BagSaveRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest build() {
-      com.duke.protobuf.data.MapTeleportRequest result = buildPartial();
+    public com.duke.protobuf.data.BagSaveRequest build() {
+      com.duke.protobuf.data.BagSaveRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -325,9 +357,13 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapTeleportRequest buildPartial() {
-      com.duke.protobuf.data.MapTeleportRequest result = new com.duke.protobuf.data.MapTeleportRequest(this);
-      result.teleporterId_ = teleporterId_;
+    public com.duke.protobuf.data.BagSaveRequest buildPartial() {
+      com.duke.protobuf.data.BagSaveRequest result = new com.duke.protobuf.data.BagSaveRequest(this);
+      if (bagInfoBuilder_ == null) {
+        result.bagInfo_ = bagInfo_;
+      } else {
+        result.bagInfo_ = bagInfoBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -366,18 +402,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.duke.protobuf.data.MapTeleportRequest) {
-        return mergeFrom((com.duke.protobuf.data.MapTeleportRequest)other);
+      if (other instanceof com.duke.protobuf.data.BagSaveRequest) {
+        return mergeFrom((com.duke.protobuf.data.BagSaveRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.duke.protobuf.data.MapTeleportRequest other) {
-      if (other == com.duke.protobuf.data.MapTeleportRequest.getDefaultInstance()) return this;
-      if (other.getTeleporterId() != 0) {
-        setTeleporterId(other.getTeleporterId());
+    public Builder mergeFrom(com.duke.protobuf.data.BagSaveRequest other) {
+      if (other == com.duke.protobuf.data.BagSaveRequest.getDefaultInstance()) return this;
+      if (other.hasBagInfo()) {
+        mergeBagInfo(other.getBagInfo());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -394,11 +430,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.duke.protobuf.data.MapTeleportRequest parsedMessage = null;
+      com.duke.protobuf.data.BagSaveRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.duke.protobuf.data.MapTeleportRequest) e.getUnfinishedMessage();
+        parsedMessage = (com.duke.protobuf.data.BagSaveRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -408,35 +444,123 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int teleporterId_ ;
+    private com.duke.protobuf.data.NBagInfo bagInfo_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> bagInfoBuilder_;
     /**
-     * <code>int32 teleporterId = 1;</code>
-     * @return The teleporterId.
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     * @return Whether the bagInfo field is set.
      */
-    @java.lang.Override
-    public int getTeleporterId() {
-      return teleporterId_;
+    public boolean hasBagInfo() {
+      return bagInfoBuilder_ != null || bagInfo_ != null;
     }
     /**
-     * <code>int32 teleporterId = 1;</code>
-     * @param value The teleporterId to set.
-     * @return This builder for chaining.
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     * @return The bagInfo.
      */
-    public Builder setTeleporterId(int value) {
-      
-      teleporterId_ = value;
-      onChanged();
+    public com.duke.protobuf.data.NBagInfo getBagInfo() {
+      if (bagInfoBuilder_ == null) {
+        return bagInfo_ == null ? com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bagInfo_;
+      } else {
+        return bagInfoBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    public Builder setBagInfo(com.duke.protobuf.data.NBagInfo value) {
+      if (bagInfoBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bagInfo_ = value;
+        onChanged();
+      } else {
+        bagInfoBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 teleporterId = 1;</code>
-     * @return This builder for chaining.
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
      */
-    public Builder clearTeleporterId() {
-      
-      teleporterId_ = 0;
-      onChanged();
+    public Builder setBagInfo(
+        com.duke.protobuf.data.NBagInfo.Builder builderForValue) {
+      if (bagInfoBuilder_ == null) {
+        bagInfo_ = builderForValue.build();
+        onChanged();
+      } else {
+        bagInfoBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    public Builder mergeBagInfo(com.duke.protobuf.data.NBagInfo value) {
+      if (bagInfoBuilder_ == null) {
+        if (bagInfo_ != null) {
+          bagInfo_ =
+            com.duke.protobuf.data.NBagInfo.newBuilder(bagInfo_).mergeFrom(value).buildPartial();
+        } else {
+          bagInfo_ = value;
+        }
+        onChanged();
+      } else {
+        bagInfoBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    public Builder clearBagInfo() {
+      if (bagInfoBuilder_ == null) {
+        bagInfo_ = null;
+        onChanged();
+      } else {
+        bagInfo_ = null;
+        bagInfoBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    public com.duke.protobuf.data.NBagInfo.Builder getBagInfoBuilder() {
+      
+      onChanged();
+      return getBagInfoFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    public com.duke.protobuf.data.NBagInfoOrBuilder getBagInfoOrBuilder() {
+      if (bagInfoBuilder_ != null) {
+        return bagInfoBuilder_.getMessageOrBuilder();
+      } else {
+        return bagInfo_ == null ?
+            com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bagInfo_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bagInfo = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> 
+        getBagInfoFieldBuilder() {
+      if (bagInfoBuilder_ == null) {
+        bagInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder>(
+                getBagInfo(),
+                getParentForChildren(),
+                isClean());
+        bagInfo_ = null;
+      }
+      return bagInfoBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
@@ -451,41 +575,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.MapTeleportRequest)
+    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.BagSaveRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.MapTeleportRequest)
-  private static final com.duke.protobuf.data.MapTeleportRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.BagSaveRequest)
+  private static final com.duke.protobuf.data.BagSaveRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.duke.protobuf.data.MapTeleportRequest();
+    DEFAULT_INSTANCE = new com.duke.protobuf.data.BagSaveRequest();
   }
 
-  public static com.duke.protobuf.data.MapTeleportRequest getDefaultInstance() {
+  public static com.duke.protobuf.data.BagSaveRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MapTeleportRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MapTeleportRequest>() {
+  private static final com.google.protobuf.Parser<BagSaveRequest>
+      PARSER = new com.google.protobuf.AbstractParser<BagSaveRequest>() {
     @java.lang.Override
-    public MapTeleportRequest parsePartialFrom(
+    public BagSaveRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MapTeleportRequest(input, extensionRegistry);
+      return new BagSaveRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MapTeleportRequest> parser() {
+  public static com.google.protobuf.Parser<BagSaveRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MapTeleportRequest> getParserForType() {
+  public com.google.protobuf.Parser<BagSaveRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.duke.protobuf.data.MapTeleportRequest getDefaultInstanceForType() {
+  public com.duke.protobuf.data.BagSaveRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

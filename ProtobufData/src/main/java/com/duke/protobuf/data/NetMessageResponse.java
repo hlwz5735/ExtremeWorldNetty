@@ -152,6 +152,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 74: {
+            com.duke.protobuf.data.BagSaveResponse.Builder subBuilder = null;
+            if (bagSaveResponse_ != null) {
+              subBuilder = bagSaveResponse_.toBuilder();
+            }
+            bagSaveResponse_ = input.readMessage(com.duke.protobuf.data.BagSaveResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(bagSaveResponse_);
+              bagSaveResponse_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -394,6 +407,32 @@ private static final long serialVersionUID = 0L;
     return getMapEntitySync();
   }
 
+  public static final int BAGSAVERESPONSE_FIELD_NUMBER = 9;
+  private com.duke.protobuf.data.BagSaveResponse bagSaveResponse_;
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   * @return Whether the bagSaveResponse field is set.
+   */
+  @java.lang.Override
+  public boolean hasBagSaveResponse() {
+    return bagSaveResponse_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   * @return The bagSaveResponse.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.BagSaveResponse getBagSaveResponse() {
+    return bagSaveResponse_ == null ? com.duke.protobuf.data.BagSaveResponse.getDefaultInstance() : bagSaveResponse_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.BagSaveResponseOrBuilder getBagSaveResponseOrBuilder() {
+    return getBagSaveResponse();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -431,6 +470,9 @@ private static final long serialVersionUID = 0L;
     }
     if (mapEntitySync_ != null) {
       output.writeMessage(8, getMapEntitySync());
+    }
+    if (bagSaveResponse_ != null) {
+      output.writeMessage(9, getBagSaveResponse());
     }
     unknownFields.writeTo(output);
   }
@@ -472,6 +514,10 @@ private static final long serialVersionUID = 0L;
     if (mapEntitySync_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(8, getMapEntitySync());
+    }
+    if (bagSaveResponse_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(9, getBagSaveResponse());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -528,6 +574,11 @@ private static final long serialVersionUID = 0L;
       if (!getMapEntitySync()
           .equals(other.getMapEntitySync())) return false;
     }
+    if (hasBagSaveResponse() != other.hasBagSaveResponse()) return false;
+    if (hasBagSaveResponse()) {
+      if (!getBagSaveResponse()
+          .equals(other.getBagSaveResponse())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -570,6 +621,10 @@ private static final long serialVersionUID = 0L;
     if (hasMapEntitySync()) {
       hash = (37 * hash) + MAPENTITYSYNC_FIELD_NUMBER;
       hash = (53 * hash) + getMapEntitySync().hashCode();
+    }
+    if (hasBagSaveResponse()) {
+      hash = (37 * hash) + BAGSAVERESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + getBagSaveResponse().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -752,6 +807,12 @@ private static final long serialVersionUID = 0L;
         mapEntitySync_ = null;
         mapEntitySyncBuilder_ = null;
       }
+      if (bagSaveResponseBuilder_ == null) {
+        bagSaveResponse_ = null;
+      } else {
+        bagSaveResponse_ = null;
+        bagSaveResponseBuilder_ = null;
+      }
       return this;
     }
 
@@ -817,6 +878,11 @@ private static final long serialVersionUID = 0L;
         result.mapEntitySync_ = mapEntitySync_;
       } else {
         result.mapEntitySync_ = mapEntitySyncBuilder_.build();
+      }
+      if (bagSaveResponseBuilder_ == null) {
+        result.bagSaveResponse_ = bagSaveResponse_;
+      } else {
+        result.bagSaveResponse_ = bagSaveResponseBuilder_.build();
       }
       onBuilt();
       return result;
@@ -889,6 +955,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasMapEntitySync()) {
         mergeMapEntitySync(other.getMapEntitySync());
+      }
+      if (other.hasBagSaveResponse()) {
+        mergeBagSaveResponse(other.getBagSaveResponse());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1869,6 +1938,125 @@ private static final long serialVersionUID = 0L;
         mapEntitySync_ = null;
       }
       return mapEntitySyncBuilder_;
+    }
+
+    private com.duke.protobuf.data.BagSaveResponse bagSaveResponse_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.BagSaveResponse, com.duke.protobuf.data.BagSaveResponse.Builder, com.duke.protobuf.data.BagSaveResponseOrBuilder> bagSaveResponseBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     * @return Whether the bagSaveResponse field is set.
+     */
+    public boolean hasBagSaveResponse() {
+      return bagSaveResponseBuilder_ != null || bagSaveResponse_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     * @return The bagSaveResponse.
+     */
+    public com.duke.protobuf.data.BagSaveResponse getBagSaveResponse() {
+      if (bagSaveResponseBuilder_ == null) {
+        return bagSaveResponse_ == null ? com.duke.protobuf.data.BagSaveResponse.getDefaultInstance() : bagSaveResponse_;
+      } else {
+        return bagSaveResponseBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public Builder setBagSaveResponse(com.duke.protobuf.data.BagSaveResponse value) {
+      if (bagSaveResponseBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bagSaveResponse_ = value;
+        onChanged();
+      } else {
+        bagSaveResponseBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public Builder setBagSaveResponse(
+        com.duke.protobuf.data.BagSaveResponse.Builder builderForValue) {
+      if (bagSaveResponseBuilder_ == null) {
+        bagSaveResponse_ = builderForValue.build();
+        onChanged();
+      } else {
+        bagSaveResponseBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public Builder mergeBagSaveResponse(com.duke.protobuf.data.BagSaveResponse value) {
+      if (bagSaveResponseBuilder_ == null) {
+        if (bagSaveResponse_ != null) {
+          bagSaveResponse_ =
+            com.duke.protobuf.data.BagSaveResponse.newBuilder(bagSaveResponse_).mergeFrom(value).buildPartial();
+        } else {
+          bagSaveResponse_ = value;
+        }
+        onChanged();
+      } else {
+        bagSaveResponseBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public Builder clearBagSaveResponse() {
+      if (bagSaveResponseBuilder_ == null) {
+        bagSaveResponse_ = null;
+        onChanged();
+      } else {
+        bagSaveResponse_ = null;
+        bagSaveResponseBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public com.duke.protobuf.data.BagSaveResponse.Builder getBagSaveResponseBuilder() {
+      
+      onChanged();
+      return getBagSaveResponseFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    public com.duke.protobuf.data.BagSaveResponseOrBuilder getBagSaveResponseOrBuilder() {
+      if (bagSaveResponseBuilder_ != null) {
+        return bagSaveResponseBuilder_.getMessageOrBuilder();
+      } else {
+        return bagSaveResponse_ == null ?
+            com.duke.protobuf.data.BagSaveResponse.getDefaultInstance() : bagSaveResponse_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.BagSaveResponse, com.duke.protobuf.data.BagSaveResponse.Builder, com.duke.protobuf.data.BagSaveResponseOrBuilder> 
+        getBagSaveResponseFieldBuilder() {
+      if (bagSaveResponseBuilder_ == null) {
+        bagSaveResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.BagSaveResponse, com.duke.protobuf.data.BagSaveResponse.Builder, com.duke.protobuf.data.BagSaveResponseOrBuilder>(
+                getBagSaveResponse(),
+                getParentForChildren(),
+                isClean());
+        bagSaveResponse_ = null;
+      }
+      return bagSaveResponseBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

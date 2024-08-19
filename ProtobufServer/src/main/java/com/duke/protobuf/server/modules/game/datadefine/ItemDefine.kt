@@ -16,6 +16,7 @@ data class ItemDefine(
     val id: Int,
     val name: String,
     val description: String?,
+    val category: String,
     val type: ITEM_TYPE,
     val canUse: Boolean,
     val useCd: Float,

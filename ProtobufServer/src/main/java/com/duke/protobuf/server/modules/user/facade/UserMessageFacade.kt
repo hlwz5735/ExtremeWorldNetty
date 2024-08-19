@@ -4,6 +4,7 @@ import com.duke.protobuf.data.*
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
+import com.duke.protobuf.server.modules.character.service.BagService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.map.service.MapService
 import com.duke.protobuf.server.modules.character.service.CharacterService
@@ -21,6 +22,7 @@ class UserMessageFacade(
     private val service: UserService,
     private val characterService: CharacterService,
     private val itemService: ItemService,
+    private val bagService: BagService,
     private val mapService: MapService,
     private val onlineUserManager: OnlineUserManager,
 ) {
@@ -128,7 +130,7 @@ class UserMessageFacade(
                 .setErrormsg("指定的角色不存在或超出范围限制。")
                 .build()
         }
-        var sessionChar = session.user.tableData.player?.characters?.get(request.characterIdx)
+        val sessionChar = session.user.tableData.player?.characters?.get(request.characterIdx)
             ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("指定的角色不存在或超出范围限制。")
@@ -139,7 +141,7 @@ class UserMessageFacade(
                 .setErrormsg("指定的角色在数据库中不存在！")
                 .build()
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(currentCharacter, itemService)
+        val playerCharacter = PlayerCharacter(currentCharacter, itemService, bagService)
         session.user.character = playerCharacter
 
         onlineUserManager.add(session.user)

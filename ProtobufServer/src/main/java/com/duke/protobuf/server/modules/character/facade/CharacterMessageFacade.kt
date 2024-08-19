@@ -10,7 +10,5 @@ import org.springframework.stereotype.Component
 class CharacterMessageFacade(
     private val service: CharacterService
 ) {
-
-
     companion object { private val logger = LoggerFactory.getLogger(CharacterMessageFacade::class.java) }
 }

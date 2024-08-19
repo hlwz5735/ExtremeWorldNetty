@@ -113,6 +113,19 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(com.duke.protobuf.data.NItemInfo.parser(), extensionRegistry));
             break;
           }
+          case 90: {
+            com.duke.protobuf.data.NBagInfo.Builder subBuilder = null;
+            if (bag_ != null) {
+              subBuilder = bag_.toBuilder();
+            }
+            bag_ = input.readMessage(com.duke.protobuf.data.NBagInfo.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(bag_);
+              bag_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -336,6 +349,32 @@ private static final long serialVersionUID = 0L;
     return items_.get(index);
   }
 
+  public static final int BAG_FIELD_NUMBER = 11;
+  private com.duke.protobuf.data.NBagInfo bag_;
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * @return Whether the bag field is set.
+   */
+  @java.lang.Override
+  public boolean hasBag() {
+    return bag_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * @return The bag.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NBagInfo getBag() {
+    return bag_ == null ? com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bag_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder() {
+    return getBag();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -376,6 +415,9 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < items_.size(); i++) {
       output.writeMessage(10, items_.get(i));
+    }
+    if (bag_ != null) {
+      output.writeMessage(11, getBag());
     }
     unknownFields.writeTo(output);
   }
@@ -421,6 +463,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, items_.get(i));
     }
+    if (bag_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(11, getBag());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -455,6 +501,11 @@ private static final long serialVersionUID = 0L;
     }
     if (!getItemsList()
         .equals(other.getItemsList())) return false;
+    if (hasBag() != other.hasBag()) return false;
+    if (hasBag()) {
+      if (!getBag()
+          .equals(other.getBag())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -487,6 +538,10 @@ private static final long serialVersionUID = 0L;
     if (getItemsCount() > 0) {
       hash = (37 * hash) + ITEMS_FIELD_NUMBER;
       hash = (53 * hash) + getItemsList().hashCode();
+    }
+    if (hasBag()) {
+      hash = (37 * hash) + BAG_FIELD_NUMBER;
+      hash = (53 * hash) + getBag().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -648,6 +703,12 @@ private static final long serialVersionUID = 0L;
       } else {
         itemsBuilder_.clear();
       }
+      if (bagBuilder_ == null) {
+        bag_ = null;
+      } else {
+        bag_ = null;
+        bagBuilder_ = null;
+      }
       return this;
     }
 
@@ -695,6 +756,11 @@ private static final long serialVersionUID = 0L;
         result.items_ = items_;
       } else {
         result.items_ = itemsBuilder_.build();
+      }
+      if (bagBuilder_ == null) {
+        result.bag_ = bag_;
+      } else {
+        result.bag_ = bagBuilder_.build();
       }
       onBuilt();
       return result;
@@ -794,6 +860,9 @@ private static final long serialVersionUID = 0L;
             itemsBuilder_.addAllMessages(other.items_);
           }
         }
+      }
+      if (other.hasBag()) {
+        mergeBag(other.getBag());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1490,6 +1559,125 @@ private static final long serialVersionUID = 0L;
         items_ = null;
       }
       return itemsBuilder_;
+    }
+
+    private com.duke.protobuf.data.NBagInfo bag_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> bagBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * @return Whether the bag field is set.
+     */
+    public boolean hasBag() {
+      return bagBuilder_ != null || bag_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * @return The bag.
+     */
+    public com.duke.protobuf.data.NBagInfo getBag() {
+      if (bagBuilder_ == null) {
+        return bag_ == null ? com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bag_;
+      } else {
+        return bagBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public Builder setBag(com.duke.protobuf.data.NBagInfo value) {
+      if (bagBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bag_ = value;
+        onChanged();
+      } else {
+        bagBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public Builder setBag(
+        com.duke.protobuf.data.NBagInfo.Builder builderForValue) {
+      if (bagBuilder_ == null) {
+        bag_ = builderForValue.build();
+        onChanged();
+      } else {
+        bagBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public Builder mergeBag(com.duke.protobuf.data.NBagInfo value) {
+      if (bagBuilder_ == null) {
+        if (bag_ != null) {
+          bag_ =
+            com.duke.protobuf.data.NBagInfo.newBuilder(bag_).mergeFrom(value).buildPartial();
+        } else {
+          bag_ = value;
+        }
+        onChanged();
+      } else {
+        bagBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public Builder clearBag() {
+      if (bagBuilder_ == null) {
+        bag_ = null;
+        onChanged();
+      } else {
+        bag_ = null;
+        bagBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public com.duke.protobuf.data.NBagInfo.Builder getBagBuilder() {
+      
+      onChanged();
+      return getBagFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    public com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder() {
+      if (bagBuilder_ != null) {
+        return bagBuilder_.getMessageOrBuilder();
+      } else {
+        return bag_ == null ?
+            com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bag_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> 
+        getBagFieldBuilder() {
+      if (bagBuilder_ == null) {
+        bagBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder>(
+                getBag(),
+                getParentForChildren(),
+                isClean());
+        bag_ = null;
+      }
+      return bagBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

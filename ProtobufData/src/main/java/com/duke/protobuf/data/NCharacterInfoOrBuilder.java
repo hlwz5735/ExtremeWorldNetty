@@ -103,4 +103,19 @@ public interface NCharacterInfoOrBuilder extends
    */
   com.duke.protobuf.data.NItemInfoOrBuilder getItemsOrBuilder(
       int index);
+
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * @return Whether the bag field is set.
+   */
+  boolean hasBag();
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * @return The bag.
+   */
+  com.duke.protobuf.data.NBagInfo getBag();
+  /**
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   */
+  com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder();
 }

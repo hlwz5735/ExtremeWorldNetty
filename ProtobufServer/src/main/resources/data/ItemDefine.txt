@@ -9,6 +9,8 @@
     "useCd": 1.0,
     "price": 200,
     "sellPrice": 100,
+    "stackLimit": 99,
+    "icon": "UI/Items/hongp",
     "function": "RecoverHp",
     "param": 500
   },
@@ -22,6 +24,8 @@
     "useCd": 1.0,
     "price": 200,
     "sellPrice": 100,
+    "stackLimit": 99,
+    "icon": "UI/Items/lanp",
     "function": "RecoverMp",
     "param": 500
   },
@@ -35,6 +39,8 @@
     "useCd": 5.0,
     "price": 200,
     "sellPrice": 100,
+    "stackLimit": 99,
+    "icon": "UI/Items/mbao",
     "function": "AddBuff",
     "param": 1
   },
@@ -48,6 +54,8 @@
     "useCd": 5.0,
     "price": 200,
     "sellPrice": 100,
+    "stackLimit": 99,
+    "icon": "UI/Items/haixiant",
     "function": "AddBuff",
     "param": 2
   },
@@ -60,16 +68,20 @@
     "canUse": true,
     "useCd": 0.0,
     "sellPrice": 1,
+    "stackLimit": 1,
+    "icon": "UI/Items/jinengsh",
     "function": "AddExp"
   },
   "6": {
     "id": 6,
     "name": "荣耀徽章",
     "description": "集齐一定数量兑换装备",
-    "type": "METERIAL",
+    "type": "MATERIAL",
     "category": "徽章",
     "useCd": 0.0,
-    "sellPrice": 1
+    "sellPrice": 1,
+    "stackLimit": 99,
+    "icon": "UI/Items/huizhang"
   },
   "7": {
     "id": 7,
@@ -80,6 +92,8 @@
     "canUse": true,
     "useCd": 0.0,
     "sellPrice": 1,
+    "stackLimit": 1,
+    "icon": "UI/Items/xiaoqiandai",
     "function": "AddMoney",
     "param": 1000
   },
@@ -92,6 +106,8 @@
     "canUse": true,
     "useCd": 0.0,
     "sellPrice": 1,
+    "stackLimit": 1,
+    "icon": "UI/Items/daqiandai",
     "function": "AddMoney",
     "param": 10000
   },
@@ -104,6 +120,8 @@
     "canUse": true,
     "useCd": 0.0,
     "sellPrice": 1,
+    "stackLimit": 1,
+    "icon": "UI/Items/baoxiang",
     "function": "AddItem"
   },
   "10": {
@@ -115,6 +133,8 @@
     "canUse": true,
     "useCd": 0.0,
     "sellPrice": 1,
+    "stackLimit": 1,
+    "icon": "UI/Items/jinengshu",
     "function": "AddSkillPoint",
     "param": 1
   }

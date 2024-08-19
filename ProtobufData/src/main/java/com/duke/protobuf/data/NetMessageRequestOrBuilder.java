@@ -126,4 +126,19 @@ public interface NetMessageRequestOrBuilder extends
    * <code>.com.duke.protobuf.data.MapTeleportRequest mapTeleport = 9;</code>
    */
   com.duke.protobuf.data.MapTeleportRequestOrBuilder getMapTeleportOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
+   * @return Whether the bagSaveRequest field is set.
+   */
+  boolean hasBagSaveRequest();
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
+   * @return The bagSaveRequest.
+   */
+  com.duke.protobuf.data.BagSaveRequest getBagSaveRequest();
+  /**
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
+   */
+  com.duke.protobuf.data.BagSaveRequestOrBuilder getBagSaveRequestOrBuilder();
 }
