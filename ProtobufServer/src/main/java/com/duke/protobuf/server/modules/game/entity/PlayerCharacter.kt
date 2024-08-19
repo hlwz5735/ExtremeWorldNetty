@@ -2,11 +2,10 @@ package com.duke.protobuf.server.modules.game.entity
 
 import com.duke.protobuf.data.CHARACTER_TYPE
 import com.duke.protobuf.data.NCharacterInfo
-import com.duke.protobuf.data.NItemInfo
 import com.duke.protobuf.server.modules.game.core.Vector3Int
-import com.duke.protobuf.server.modules.item.service.ItemService
-import com.duke.protobuf.server.modules.user.dbentity.TCharacter
-import com.duke.protobuf.server.modules.user.manager.ItemManager
+import com.duke.protobuf.server.modules.character.service.ItemService
+import com.duke.protobuf.server.modules.character.dbentity.TCharacter
+import com.duke.protobuf.server.modules.character.manager.ItemManager
 
 class PlayerCharacter(
     val tableData: TCharacter,

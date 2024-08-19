@@ -1,11 +1,8 @@
 package com.duke.protobuf.server.modules.user.service
 
-import com.duke.protobuf.data.RESULT
-import com.duke.protobuf.data.UserGameLeaveResponse
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.netty.SessionUtil
-import com.duke.protobuf.server.modules.game.OnlineUserManager
-import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.modules.user.OnlineUserManager
 import com.duke.protobuf.server.modules.user.dbentity.TPlayer
 import com.duke.protobuf.server.modules.user.dbentity.TUser
 import com.duke.protobuf.server.modules.user.repo.PlayerRepository

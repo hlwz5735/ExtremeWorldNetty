@@ -1,6 +1,6 @@
-package com.duke.protobuf.server.modules.item.model
+package com.duke.protobuf.server.modules.character.model
 
-import com.duke.protobuf.server.modules.item.dbentity.TCharacterItem
+import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
 
 /**
  * 道具信息的内存版本，避免频繁的数据库操作

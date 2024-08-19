@@ -1,10 +1,10 @@
-package com.duke.protobuf.server.modules.user.manager
+package com.duke.protobuf.server.modules.character.manager
 
 import com.duke.protobuf.data.NItemInfo
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
-import com.duke.protobuf.server.modules.item.dbentity.TCharacterItem
-import com.duke.protobuf.server.modules.item.model.Item
-import com.duke.protobuf.server.modules.item.service.ItemService
+import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
+import com.duke.protobuf.server.modules.character.model.Item
+import com.duke.protobuf.server.modules.character.service.ItemService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap

@@ -1,5 +1,6 @@
 package com.duke.protobuf.server.modules.user.dbentity
 
+import com.duke.protobuf.server.modules.character.dbentity.TCharacter
 import org.hibernate.Hibernate
 import javax.persistence.*
 

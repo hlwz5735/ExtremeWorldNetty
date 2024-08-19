@@ -21,6 +21,8 @@ data class ItemDefine(
     val useCd: Float,
     val price: Int?,
     val sellPrice: Int,
+    val stackLimit: Int?,
+    val icon: String?,
     val function: ItemFunction?,
     val param: Int?,
     val paramArr: List<Int>?

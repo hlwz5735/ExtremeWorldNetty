@@ -2,8 +2,8 @@ package com.duke.protobuf.server.modules.map.service
 
 import com.duke.protobuf.data.NEntitySync
 import com.duke.protobuf.netty.NettySession
-import com.duke.protobuf.server.modules.game.DataDefineManager
-import com.duke.protobuf.server.modules.game.GameEntityManager
+import com.duke.protobuf.server.modules.game.manager.DataDefineManager
+import com.duke.protobuf.server.modules.game.manager.GameEntityManager
 import com.duke.protobuf.server.modules.game.datadefine.TeleporterDefine
 import com.duke.protobuf.server.modules.game.entity.GameEntity
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter

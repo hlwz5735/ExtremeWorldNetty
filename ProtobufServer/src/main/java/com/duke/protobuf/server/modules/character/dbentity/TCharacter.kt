@@ -1,7 +1,7 @@
-package com.duke.protobuf.server.modules.user.dbentity
+package com.duke.protobuf.server.modules.character.dbentity
 
 import com.duke.protobuf.data.CHARACTER_CLASS
-import com.duke.protobuf.server.modules.item.dbentity.TCharacterItem
+import com.duke.protobuf.server.modules.user.dbentity.TPlayer
 import org.hibernate.Hibernate
 import javax.persistence.*
 
@@ -27,7 +27,9 @@ data class TCharacter (
     @JoinColumn(name = "PLAYER_ID", referencedColumnName = "ID")
     var player: TPlayer? = null,
     @OneToMany(mappedBy = "owner")
-    var items: List<TCharacterItem> = emptyList()
+    var items: List<TCharacterItem> = emptyList(),
+    @OneToOne(mappedBy = "owner")
+    var bag: TCharacterBag? = null,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

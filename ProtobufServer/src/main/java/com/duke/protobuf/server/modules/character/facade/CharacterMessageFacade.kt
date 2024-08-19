@@ -1,7 +1,7 @@
-package com.duke.protobuf.server.modules.user.facade
+package com.duke.protobuf.server.modules.character.facade
 
 import com.duke.protobuf.server.annotation.MessageFacade
-import com.duke.protobuf.server.modules.user.service.CharacterService
+import com.duke.protobuf.server.modules.character.service.CharacterService
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 

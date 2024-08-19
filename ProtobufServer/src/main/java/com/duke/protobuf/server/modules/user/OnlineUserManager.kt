@@ -1,4 +1,4 @@
-package com.duke.protobuf.server.modules.game
+package com.duke.protobuf.server.modules.user
 
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.springframework.stereotype.Component

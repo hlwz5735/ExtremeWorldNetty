@@ -1,4 +1,4 @@
-package com.duke.protobuf.server.modules.game
+package com.duke.protobuf.server.modules.game.manager
 
 import com.duke.protobuf.server.modules.game.entity.GameEntity
 import org.springframework.stereotype.Component

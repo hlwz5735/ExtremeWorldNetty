@@ -1,7 +1,7 @@
-package com.duke.protobuf.server.modules.item.service
+package com.duke.protobuf.server.modules.character.service
 
-import com.duke.protobuf.server.modules.item.dbentity.TCharacterItem
-import com.duke.protobuf.server.modules.item.repo.CharacterItemRepository
+import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
+import com.duke.protobuf.server.modules.character.repo.CharacterItemRepository
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 

@@ -1,28 +1,30 @@
-package com.duke.protobuf.server.modules.item.dbentity
+package com.duke.protobuf.server.modules.character.dbentity
 
-import com.duke.protobuf.server.modules.user.dbentity.TCharacter
 import org.hibernate.Hibernate
 import javax.persistence.*
 
 /**
- * 角色-道具记录表实体
+ * 角色背包实体记录
  */
 @Entity
-@Table(name = "CHARACTER_ITEM")
-data class TCharacterItem(
+@Table(name = "CHARACTER_BAG")
+data class TCharacterBag(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "CHARACTER_ID", referencedColumnName = "ID")
     var owner: TCharacter? = null,
-    var itemId: Int? = null,
-    var itemCount: Int? = null,
+    /** 已解锁的格子数 */
+    var unlockedCellCount: Int? = null,
+    @Lob
+    @Column(name = "ITEMS", columnDefinition = "BLOB", nullable = true)
+    var items: Array<Byte>? = null
 ) {
     final override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as TCharacterItem
+        other as TCharacterBag
 
         return id != null && id == other.id
     }
