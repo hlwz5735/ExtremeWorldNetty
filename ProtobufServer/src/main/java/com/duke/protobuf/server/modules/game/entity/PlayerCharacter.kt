@@ -27,7 +27,7 @@ class PlayerCharacter(
     pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
     dir = Vector3Int(100, 0, 0)
 ) {
-    private val itemManager: ItemManager = ItemManager(this, itemService)
+    val itemManager: ItemManager = ItemManager(this, itemService)
 
     override fun toNetCharacterInfo(): NCharacterInfo {
         // 构建道具信息
@@ -51,6 +51,7 @@ class PlayerCharacter(
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())
             .setBag(nBag)
+            .setCarriedMoney(tableData.carriedMoney)
             .addAllItems(nItems)
         return builder.build()
     }

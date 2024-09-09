@@ -47,6 +47,38 @@ enum ITEM_TYPE {
     TASK = 2;
 }
 
+/// 状态通知相关
+/*
+enum STATUS_ACTION {
+    UPDATE = 0;
+    ADD = 1;
+    DELETE = 2;
+}
+
+enum STATUS_TYPE {
+    MONEY = 0;
+    EXP = 1;
+    SKILL_POINT = 2;
+    ITEM = 3;
+}
+
+enum STATUS_SOURCE {
+    UPDATE = 0;
+    ADD = 1;
+    DELETE = 2;
+}
+
+message NStatus {
+    STATUS_TYPE type = 1;
+    STATUS_ACTION action = 2;
+    int32 id = 3;
+    int32 value = 4;
+}
+
+message StatusNotify {
+    repeated NStatus status = 1;
+}*/
+
 message NItemInfo {
     int32 id = 1;
     int32 count = 2;
@@ -79,7 +111,7 @@ message NCharacterInfo {
     int32 level = 6;
     int32 mapId = 7;
     NEntity entity = 8;
-
+    int64 carriedMoney = 9;
     repeated NItemInfo items = 10;
     NBagInfo bag = 11;
 }
@@ -145,7 +177,9 @@ message NetMessageRequest {
     MapEntitySyncRequest mapEntitySync = 8;
     MapTeleportRequest mapTeleport = 9;
 
-    BagSaveRequest bagSaveRequest = 10;
+    BagSaveRequest bagSave = 10;
+
+    ItemPurchaseRequest itemPurchase = 11;
 }
 
 message NetMessageResponse {
@@ -159,8 +193,12 @@ message NetMessageResponse {
     MapCharacterLeaveResponse mapCharacterLeave = 7;
 
     MapEntitySyncResponse mapEntitySync = 8;
-    
+
     BagSaveResponse bagSaveResponse = 9;
+
+    ItemPurchaseResponse itemPurchase = 10;
+
+    // StatusNotify statusNotify = 100;
 }
 
 
@@ -256,6 +294,16 @@ message BagSaveRequest {
     NBagInfo bagInfo = 1;
 }
 message BagSaveResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+}
+
+/// 购买道具
+message ItemPurchaseRequest {
+    int32 shopId = 1;
+    int32 shopItemId = 2;
+}
+message ItemPurchaseResponse {
     RESULT result = 1;
     string errormsg = 2;
 }

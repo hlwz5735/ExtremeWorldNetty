@@ -23,6 +23,8 @@ data class TCharacter (
     var mapPosY: Int? = null,
     @Column(name = "MAP_POS_Z")
     var mapPosZ: Int? = null,
+    @Column(name = "CARRIED_MONEY", nullable = false)
+    var carriedMoney: Long = 0,
     @ManyToOne
     @JoinColumn(name = "PLAYER_ID", referencedColumnName = "ID")
     var player: TPlayer? = null,

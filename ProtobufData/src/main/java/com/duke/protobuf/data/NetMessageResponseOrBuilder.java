@@ -141,4 +141,19 @@ public interface NetMessageResponseOrBuilder extends
    * <code>.com.duke.protobuf.data.BagSaveResponse bagSaveResponse = 9;</code>
    */
   com.duke.protobuf.data.BagSaveResponseOrBuilder getBagSaveResponseOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   * @return Whether the itemPurchase field is set.
+   */
+  boolean hasItemPurchase();
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   * @return The itemPurchase.
+   */
+  com.duke.protobuf.data.ItemPurchaseResponse getItemPurchase();
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   */
+  com.duke.protobuf.data.ItemPurchaseResponseOrBuilder getItemPurchaseOrBuilder();
 }

@@ -165,6 +165,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 82: {
+            com.duke.protobuf.data.ItemPurchaseResponse.Builder subBuilder = null;
+            if (itemPurchase_ != null) {
+              subBuilder = itemPurchase_.toBuilder();
+            }
+            itemPurchase_ = input.readMessage(com.duke.protobuf.data.ItemPurchaseResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(itemPurchase_);
+              itemPurchase_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -433,6 +446,32 @@ private static final long serialVersionUID = 0L;
     return getBagSaveResponse();
   }
 
+  public static final int ITEMPURCHASE_FIELD_NUMBER = 10;
+  private com.duke.protobuf.data.ItemPurchaseResponse itemPurchase_;
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   * @return Whether the itemPurchase field is set.
+   */
+  @java.lang.Override
+  public boolean hasItemPurchase() {
+    return itemPurchase_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   * @return The itemPurchase.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemPurchaseResponse getItemPurchase() {
+    return itemPurchase_ == null ? com.duke.protobuf.data.ItemPurchaseResponse.getDefaultInstance() : itemPurchase_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemPurchaseResponseOrBuilder getItemPurchaseOrBuilder() {
+    return getItemPurchase();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -473,6 +512,9 @@ private static final long serialVersionUID = 0L;
     }
     if (bagSaveResponse_ != null) {
       output.writeMessage(9, getBagSaveResponse());
+    }
+    if (itemPurchase_ != null) {
+      output.writeMessage(10, getItemPurchase());
     }
     unknownFields.writeTo(output);
   }
@@ -518,6 +560,10 @@ private static final long serialVersionUID = 0L;
     if (bagSaveResponse_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, getBagSaveResponse());
+    }
+    if (itemPurchase_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(10, getItemPurchase());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -579,6 +625,11 @@ private static final long serialVersionUID = 0L;
       if (!getBagSaveResponse()
           .equals(other.getBagSaveResponse())) return false;
     }
+    if (hasItemPurchase() != other.hasItemPurchase()) return false;
+    if (hasItemPurchase()) {
+      if (!getItemPurchase()
+          .equals(other.getItemPurchase())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -625,6 +676,10 @@ private static final long serialVersionUID = 0L;
     if (hasBagSaveResponse()) {
       hash = (37 * hash) + BAGSAVERESPONSE_FIELD_NUMBER;
       hash = (53 * hash) + getBagSaveResponse().hashCode();
+    }
+    if (hasItemPurchase()) {
+      hash = (37 * hash) + ITEMPURCHASE_FIELD_NUMBER;
+      hash = (53 * hash) + getItemPurchase().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -813,6 +868,12 @@ private static final long serialVersionUID = 0L;
         bagSaveResponse_ = null;
         bagSaveResponseBuilder_ = null;
       }
+      if (itemPurchaseBuilder_ == null) {
+        itemPurchase_ = null;
+      } else {
+        itemPurchase_ = null;
+        itemPurchaseBuilder_ = null;
+      }
       return this;
     }
 
@@ -883,6 +944,11 @@ private static final long serialVersionUID = 0L;
         result.bagSaveResponse_ = bagSaveResponse_;
       } else {
         result.bagSaveResponse_ = bagSaveResponseBuilder_.build();
+      }
+      if (itemPurchaseBuilder_ == null) {
+        result.itemPurchase_ = itemPurchase_;
+      } else {
+        result.itemPurchase_ = itemPurchaseBuilder_.build();
       }
       onBuilt();
       return result;
@@ -958,6 +1024,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasBagSaveResponse()) {
         mergeBagSaveResponse(other.getBagSaveResponse());
+      }
+      if (other.hasItemPurchase()) {
+        mergeItemPurchase(other.getItemPurchase());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2057,6 +2126,125 @@ private static final long serialVersionUID = 0L;
         bagSaveResponse_ = null;
       }
       return bagSaveResponseBuilder_;
+    }
+
+    private com.duke.protobuf.data.ItemPurchaseResponse itemPurchase_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemPurchaseResponse, com.duke.protobuf.data.ItemPurchaseResponse.Builder, com.duke.protobuf.data.ItemPurchaseResponseOrBuilder> itemPurchaseBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     * @return Whether the itemPurchase field is set.
+     */
+    public boolean hasItemPurchase() {
+      return itemPurchaseBuilder_ != null || itemPurchase_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     * @return The itemPurchase.
+     */
+    public com.duke.protobuf.data.ItemPurchaseResponse getItemPurchase() {
+      if (itemPurchaseBuilder_ == null) {
+        return itemPurchase_ == null ? com.duke.protobuf.data.ItemPurchaseResponse.getDefaultInstance() : itemPurchase_;
+      } else {
+        return itemPurchaseBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public Builder setItemPurchase(com.duke.protobuf.data.ItemPurchaseResponse value) {
+      if (itemPurchaseBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        itemPurchase_ = value;
+        onChanged();
+      } else {
+        itemPurchaseBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public Builder setItemPurchase(
+        com.duke.protobuf.data.ItemPurchaseResponse.Builder builderForValue) {
+      if (itemPurchaseBuilder_ == null) {
+        itemPurchase_ = builderForValue.build();
+        onChanged();
+      } else {
+        itemPurchaseBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public Builder mergeItemPurchase(com.duke.protobuf.data.ItemPurchaseResponse value) {
+      if (itemPurchaseBuilder_ == null) {
+        if (itemPurchase_ != null) {
+          itemPurchase_ =
+            com.duke.protobuf.data.ItemPurchaseResponse.newBuilder(itemPurchase_).mergeFrom(value).buildPartial();
+        } else {
+          itemPurchase_ = value;
+        }
+        onChanged();
+      } else {
+        itemPurchaseBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public Builder clearItemPurchase() {
+      if (itemPurchaseBuilder_ == null) {
+        itemPurchase_ = null;
+        onChanged();
+      } else {
+        itemPurchase_ = null;
+        itemPurchaseBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public com.duke.protobuf.data.ItemPurchaseResponse.Builder getItemPurchaseBuilder() {
+      
+      onChanged();
+      return getItemPurchaseFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    public com.duke.protobuf.data.ItemPurchaseResponseOrBuilder getItemPurchaseOrBuilder() {
+      if (itemPurchaseBuilder_ != null) {
+        return itemPurchaseBuilder_.getMessageOrBuilder();
+      } else {
+        return itemPurchase_ == null ?
+            com.duke.protobuf.data.ItemPurchaseResponse.getDefaultInstance() : itemPurchase_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemPurchaseResponse, com.duke.protobuf.data.ItemPurchaseResponse.Builder, com.duke.protobuf.data.ItemPurchaseResponseOrBuilder> 
+        getItemPurchaseFieldBuilder() {
+      if (itemPurchaseBuilder_ == null) {
+        itemPurchaseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.ItemPurchaseResponse, com.duke.protobuf.data.ItemPurchaseResponse.Builder, com.duke.protobuf.data.ItemPurchaseResponseOrBuilder>(
+                getItemPurchase(),
+                getParentForChildren(),
+                isClean());
+        itemPurchase_ = null;
+      }
+      return itemPurchaseBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

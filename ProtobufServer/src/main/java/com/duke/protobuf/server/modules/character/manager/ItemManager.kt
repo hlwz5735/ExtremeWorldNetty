@@ -59,6 +59,7 @@ class ItemManager(
         var item = this.itemDic[itemId]
         if (item != null) {
             item.increaseCount(count)
+            itemService.save(item.dbItem)
         } else {
             // 创建并插入记录
             val dbItem = TCharacterItem(
@@ -66,10 +67,10 @@ class ItemManager(
                 itemId = itemId,
                 itemCount = count,
             )
+            itemService.save(dbItem)
             item = Item(dbItem)
             this.itemDic[itemId] = item
         }
-        itemService.save(item.dbItem)
         return true
     }
 

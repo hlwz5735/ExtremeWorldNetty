@@ -81,6 +81,12 @@ public interface NCharacterInfoOrBuilder extends
   com.duke.protobuf.data.NEntityOrBuilder getEntityOrBuilder();
 
   /**
+   * <code>int64 carriedMoney = 9;</code>
+   * @return The carriedMoney.
+   */
+  long getCarriedMoney();
+
+  /**
    * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
    */
   java.util.List<com.duke.protobuf.data.NItemInfo> 

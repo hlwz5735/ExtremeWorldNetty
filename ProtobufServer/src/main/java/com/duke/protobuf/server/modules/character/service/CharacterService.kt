@@ -29,7 +29,8 @@ class CharacterService(
             mapPosX = 5000,
             mapPosY = 4000,
             mapPosZ = 820,
-            player = player
+            player = player,
+            carriedMoney = 100000
         )
         repo.save(character)
 

@@ -104,6 +104,11 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 72: {
+
+            carriedMoney_ = input.readInt64();
+            break;
+          }
           case 82: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               items_ = new java.util.ArrayList<com.duke.protobuf.data.NItemInfo>();
@@ -309,6 +314,17 @@ private static final long serialVersionUID = 0L;
     return getEntity();
   }
 
+  public static final int CARRIEDMONEY_FIELD_NUMBER = 9;
+  private long carriedMoney_;
+  /**
+   * <code>int64 carriedMoney = 9;</code>
+   * @return The carriedMoney.
+   */
+  @java.lang.Override
+  public long getCarriedMoney() {
+    return carriedMoney_;
+  }
+
   public static final int ITEMS_FIELD_NUMBER = 10;
   private java.util.List<com.duke.protobuf.data.NItemInfo> items_;
   /**
@@ -413,6 +429,9 @@ private static final long serialVersionUID = 0L;
     if (entity_ != null) {
       output.writeMessage(8, getEntity());
     }
+    if (carriedMoney_ != 0L) {
+      output.writeInt64(9, carriedMoney_);
+    }
     for (int i = 0; i < items_.size(); i++) {
       output.writeMessage(10, items_.get(i));
     }
@@ -459,6 +478,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(8, getEntity());
     }
+    if (carriedMoney_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(9, carriedMoney_);
+    }
     for (int i = 0; i < items_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, items_.get(i));
@@ -499,6 +522,8 @@ private static final long serialVersionUID = 0L;
       if (!getEntity()
           .equals(other.getEntity())) return false;
     }
+    if (getCarriedMoney()
+        != other.getCarriedMoney()) return false;
     if (!getItemsList()
         .equals(other.getItemsList())) return false;
     if (hasBag() != other.hasBag()) return false;
@@ -535,6 +560,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ENTITY_FIELD_NUMBER;
       hash = (53 * hash) + getEntity().hashCode();
     }
+    hash = (37 * hash) + CARRIEDMONEY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCarriedMoney());
     if (getItemsCount() > 0) {
       hash = (37 * hash) + ITEMS_FIELD_NUMBER;
       hash = (53 * hash) + getItemsList().hashCode();
@@ -697,6 +725,8 @@ private static final long serialVersionUID = 0L;
         entity_ = null;
         entityBuilder_ = null;
       }
+      carriedMoney_ = 0L;
+
       if (itemsBuilder_ == null) {
         items_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -748,6 +778,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.entity_ = entityBuilder_.build();
       }
+      result.carriedMoney_ = carriedMoney_;
       if (itemsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           items_ = java.util.Collections.unmodifiableList(items_);
@@ -834,6 +865,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasEntity()) {
         mergeEntity(other.getEntity());
+      }
+      if (other.getCarriedMoney() != 0L) {
+        setCarriedMoney(other.getCarriedMoney());
       }
       if (itemsBuilder_ == null) {
         if (!other.items_.isEmpty()) {
@@ -1319,6 +1353,37 @@ private static final long serialVersionUID = 0L;
         entity_ = null;
       }
       return entityBuilder_;
+    }
+
+    private long carriedMoney_ ;
+    /**
+     * <code>int64 carriedMoney = 9;</code>
+     * @return The carriedMoney.
+     */
+    @java.lang.Override
+    public long getCarriedMoney() {
+      return carriedMoney_;
+    }
+    /**
+     * <code>int64 carriedMoney = 9;</code>
+     * @param value The carriedMoney to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCarriedMoney(long value) {
+      
+      carriedMoney_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 carriedMoney = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCarriedMoney() {
+      
+      carriedMoney_ = 0L;
+      onChanged();
+      return this;
     }
 
     private java.util.List<com.duke.protobuf.data.NItemInfo> items_ =

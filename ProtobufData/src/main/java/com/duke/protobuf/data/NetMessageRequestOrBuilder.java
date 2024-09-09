@@ -128,17 +128,32 @@ public interface NetMessageRequestOrBuilder extends
   com.duke.protobuf.data.MapTeleportRequestOrBuilder getMapTeleportOrBuilder();
 
   /**
-   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
-   * @return Whether the bagSaveRequest field is set.
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSave = 10;</code>
+   * @return Whether the bagSave field is set.
    */
-  boolean hasBagSaveRequest();
+  boolean hasBagSave();
   /**
-   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
-   * @return The bagSaveRequest.
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSave = 10;</code>
+   * @return The bagSave.
    */
-  com.duke.protobuf.data.BagSaveRequest getBagSaveRequest();
+  com.duke.protobuf.data.BagSaveRequest getBagSave();
   /**
-   * <code>.com.duke.protobuf.data.BagSaveRequest bagSaveRequest = 10;</code>
+   * <code>.com.duke.protobuf.data.BagSaveRequest bagSave = 10;</code>
    */
-  com.duke.protobuf.data.BagSaveRequestOrBuilder getBagSaveRequestOrBuilder();
+  com.duke.protobuf.data.BagSaveRequestOrBuilder getBagSaveOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseRequest itemPurchase = 11;</code>
+   * @return Whether the itemPurchase field is set.
+   */
+  boolean hasItemPurchase();
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseRequest itemPurchase = 11;</code>
+   * @return The itemPurchase.
+   */
+  com.duke.protobuf.data.ItemPurchaseRequest getItemPurchase();
+  /**
+   * <code>.com.duke.protobuf.data.ItemPurchaseRequest itemPurchase = 11;</code>
+   */
+  com.duke.protobuf.data.ItemPurchaseRequestOrBuilder getItemPurchaseOrBuilder();
 }
