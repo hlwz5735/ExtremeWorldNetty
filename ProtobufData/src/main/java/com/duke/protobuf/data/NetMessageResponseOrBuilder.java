@@ -156,4 +156,19 @@ public interface NetMessageResponseOrBuilder extends
    * <code>.com.duke.protobuf.data.ItemPurchaseResponse itemPurchase = 10;</code>
    */
   com.duke.protobuf.data.ItemPurchaseResponseOrBuilder getItemPurchaseOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   * @return Whether the statusNotify field is set.
+   */
+  boolean hasStatusNotify();
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   * @return The statusNotify.
+   */
+  com.duke.protobuf.data.StatusNotify getStatusNotify();
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   */
+  com.duke.protobuf.data.StatusNotifyOrBuilder getStatusNotifyOrBuilder();
 }

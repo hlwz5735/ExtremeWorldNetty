@@ -7,6 +7,7 @@ import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
 import com.duke.protobuf.server.modules.character.manager.ItemManager
+import com.duke.protobuf.server.modules.character.manager.StatusManager
 import com.duke.protobuf.server.modules.character.service.BagService
 import com.google.protobuf.ByteString
 
@@ -27,7 +28,8 @@ class PlayerCharacter(
     pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
     dir = Vector3Int(100, 0, 0)
 ) {
-    val itemManager: ItemManager = ItemManager(this, itemService)
+    val itemManager = ItemManager(this, itemService)
+    val statusManager = StatusManager(this, itemService)
 
     override fun toNetCharacterInfo(): NCharacterInfo {
         // 构建道具信息

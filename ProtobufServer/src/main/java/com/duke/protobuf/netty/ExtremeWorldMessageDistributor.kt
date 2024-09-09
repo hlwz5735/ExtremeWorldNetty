@@ -2,6 +2,8 @@ package com.duke.protobuf.netty
 
 import com.duke.protobuf.data.NetMessage
 import com.duke.protobuf.data.NetMessageResponse
+import com.duke.protobuf.data.RESULT
+import com.duke.protobuf.data.UserGameEnterResponse
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import com.duke.protobuf.server.modules.game.net.OnlineUser
@@ -59,6 +61,14 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
             }
             // 针对所有正常处理的请求响应体，查找setter并调用以设置值
             .forEach { respData -> findSetterAndSetField(respData, response) }
+
+        do {
+            val channel = ctx.channel() ?: break
+            val session = SessionUtil.getSessionByChannel<OnlineUser>(channel) ?: break
+            val sessionChar = session.user.character ?: break
+            val statusNotifies = sessionChar.statusManager.collectChangesToResponse()
+            response.setStatusNotify(statusNotifies)
+        } while (false)
 
         val responseMsg = NetMessage.newBuilder()
             .setResponse(response.build())

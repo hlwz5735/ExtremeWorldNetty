@@ -6,7 +6,7 @@ import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
  * 道具信息的内存版本，避免频繁的数据库操作
  */
 class Item(val dbItem: TCharacterItem) {
-    var itemId: Int = dbItem.id!!
+    var itemId: Int = dbItem.itemId!!
     var count: Int = dbItem.itemCount ?: 0
 
     fun increaseCount(count: Int) {

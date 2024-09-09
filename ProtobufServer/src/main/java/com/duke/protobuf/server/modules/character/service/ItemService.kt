@@ -35,6 +35,8 @@ class ItemService(
         if (character.tableData.carriedMoney > item.price) {
             character.itemManager.giveItem(item.itemId, item.count)
             character.tableData.carriedMoney -= item.price
+            // 通知客户端和写库这里是分别做的
+            character.statusManager.modifyMoney(-item.price)
             characterRepository.save(character.tableData)
             return DTuple(true)
         } else {

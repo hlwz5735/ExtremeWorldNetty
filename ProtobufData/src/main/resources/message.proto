@@ -48,27 +48,27 @@ enum ITEM_TYPE {
 }
 
 /// 状态通知相关
-/*
-enum STATUS_ACTION {
-    UPDATE = 0;
-    ADD = 1;
-    DELETE = 2;
-}
+//enum STATUS_SOURCE {
+//    UPDATE = 0;
+//    ADD = 1;
+//    DELETE = 2;
+//}
 
-enum STATUS_TYPE {
-    MONEY = 0;
-    EXP = 1;
-    SKILL_POINT = 2;
-    ITEM = 3;
-}
-
-enum STATUS_SOURCE {
-    UPDATE = 0;
-    ADD = 1;
-    DELETE = 2;
-}
-
+// 状态变化通知
 message NStatus {
+    enum STATUS_ACTION {
+        UPDATE = 0;
+        ADD = 1;
+        DELETE = 2;
+    }
+
+    enum STATUS_TYPE {
+        MONEY = 0;
+        EXP = 1;
+        SKILL_POINT = 2;
+        ITEM = 3;
+    }
+
     STATUS_TYPE type = 1;
     STATUS_ACTION action = 2;
     int32 id = 3;
@@ -77,7 +77,7 @@ message NStatus {
 
 message StatusNotify {
     repeated NStatus status = 1;
-}*/
+}
 
 message NItemInfo {
     int32 id = 1;
@@ -198,7 +198,7 @@ message NetMessageResponse {
 
     ItemPurchaseResponse itemPurchase = 10;
 
-    // StatusNotify statusNotify = 100;
+    StatusNotify statusNotify = 100;
 }
 
 

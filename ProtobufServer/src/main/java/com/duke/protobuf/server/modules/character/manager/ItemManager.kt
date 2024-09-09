@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.character.manager
 
 import com.duke.protobuf.data.NItemInfo
+import com.duke.protobuf.data.NStatus
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
 import com.duke.protobuf.server.modules.character.model.Item
@@ -71,6 +72,7 @@ class ItemManager(
             item = Item(dbItem)
             this.itemDic[itemId] = item
         }
+        owner.statusManager.modifyItem(itemId, count, NStatus.STATUS_ACTION.ADD)
         return true
     }
 
@@ -88,6 +90,7 @@ class ItemManager(
         item.decreaseCount(count)
         logger.info("[{}] DestroyItem [{}:{}]", owner.tableData.id, itemId, count)
         itemService.save(item.dbItem)
+        owner.statusManager.modifyItem(itemId, count, NStatus.STATUS_ACTION.DELETE)
         return true
     }
 

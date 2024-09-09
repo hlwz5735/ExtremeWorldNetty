@@ -178,6 +178,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 802: {
+            com.duke.protobuf.data.StatusNotify.Builder subBuilder = null;
+            if (statusNotify_ != null) {
+              subBuilder = statusNotify_.toBuilder();
+            }
+            statusNotify_ = input.readMessage(com.duke.protobuf.data.StatusNotify.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(statusNotify_);
+              statusNotify_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -472,6 +485,32 @@ private static final long serialVersionUID = 0L;
     return getItemPurchase();
   }
 
+  public static final int STATUSNOTIFY_FIELD_NUMBER = 100;
+  private com.duke.protobuf.data.StatusNotify statusNotify_;
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   * @return Whether the statusNotify field is set.
+   */
+  @java.lang.Override
+  public boolean hasStatusNotify() {
+    return statusNotify_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   * @return The statusNotify.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.StatusNotify getStatusNotify() {
+    return statusNotify_ == null ? com.duke.protobuf.data.StatusNotify.getDefaultInstance() : statusNotify_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.StatusNotifyOrBuilder getStatusNotifyOrBuilder() {
+    return getStatusNotify();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -515,6 +554,9 @@ private static final long serialVersionUID = 0L;
     }
     if (itemPurchase_ != null) {
       output.writeMessage(10, getItemPurchase());
+    }
+    if (statusNotify_ != null) {
+      output.writeMessage(100, getStatusNotify());
     }
     unknownFields.writeTo(output);
   }
@@ -564,6 +606,10 @@ private static final long serialVersionUID = 0L;
     if (itemPurchase_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, getItemPurchase());
+    }
+    if (statusNotify_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(100, getStatusNotify());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -630,6 +676,11 @@ private static final long serialVersionUID = 0L;
       if (!getItemPurchase()
           .equals(other.getItemPurchase())) return false;
     }
+    if (hasStatusNotify() != other.hasStatusNotify()) return false;
+    if (hasStatusNotify()) {
+      if (!getStatusNotify()
+          .equals(other.getStatusNotify())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -680,6 +731,10 @@ private static final long serialVersionUID = 0L;
     if (hasItemPurchase()) {
       hash = (37 * hash) + ITEMPURCHASE_FIELD_NUMBER;
       hash = (53 * hash) + getItemPurchase().hashCode();
+    }
+    if (hasStatusNotify()) {
+      hash = (37 * hash) + STATUSNOTIFY_FIELD_NUMBER;
+      hash = (53 * hash) + getStatusNotify().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -874,6 +929,12 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
         itemPurchaseBuilder_ = null;
       }
+      if (statusNotifyBuilder_ == null) {
+        statusNotify_ = null;
+      } else {
+        statusNotify_ = null;
+        statusNotifyBuilder_ = null;
+      }
       return this;
     }
 
@@ -949,6 +1010,11 @@ private static final long serialVersionUID = 0L;
         result.itemPurchase_ = itemPurchase_;
       } else {
         result.itemPurchase_ = itemPurchaseBuilder_.build();
+      }
+      if (statusNotifyBuilder_ == null) {
+        result.statusNotify_ = statusNotify_;
+      } else {
+        result.statusNotify_ = statusNotifyBuilder_.build();
       }
       onBuilt();
       return result;
@@ -1027,6 +1093,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasItemPurchase()) {
         mergeItemPurchase(other.getItemPurchase());
+      }
+      if (other.hasStatusNotify()) {
+        mergeStatusNotify(other.getStatusNotify());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2245,6 +2314,125 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
       }
       return itemPurchaseBuilder_;
+    }
+
+    private com.duke.protobuf.data.StatusNotify statusNotify_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.StatusNotify, com.duke.protobuf.data.StatusNotify.Builder, com.duke.protobuf.data.StatusNotifyOrBuilder> statusNotifyBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     * @return Whether the statusNotify field is set.
+     */
+    public boolean hasStatusNotify() {
+      return statusNotifyBuilder_ != null || statusNotify_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     * @return The statusNotify.
+     */
+    public com.duke.protobuf.data.StatusNotify getStatusNotify() {
+      if (statusNotifyBuilder_ == null) {
+        return statusNotify_ == null ? com.duke.protobuf.data.StatusNotify.getDefaultInstance() : statusNotify_;
+      } else {
+        return statusNotifyBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public Builder setStatusNotify(com.duke.protobuf.data.StatusNotify value) {
+      if (statusNotifyBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        statusNotify_ = value;
+        onChanged();
+      } else {
+        statusNotifyBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public Builder setStatusNotify(
+        com.duke.protobuf.data.StatusNotify.Builder builderForValue) {
+      if (statusNotifyBuilder_ == null) {
+        statusNotify_ = builderForValue.build();
+        onChanged();
+      } else {
+        statusNotifyBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public Builder mergeStatusNotify(com.duke.protobuf.data.StatusNotify value) {
+      if (statusNotifyBuilder_ == null) {
+        if (statusNotify_ != null) {
+          statusNotify_ =
+            com.duke.protobuf.data.StatusNotify.newBuilder(statusNotify_).mergeFrom(value).buildPartial();
+        } else {
+          statusNotify_ = value;
+        }
+        onChanged();
+      } else {
+        statusNotifyBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public Builder clearStatusNotify() {
+      if (statusNotifyBuilder_ == null) {
+        statusNotify_ = null;
+        onChanged();
+      } else {
+        statusNotify_ = null;
+        statusNotifyBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public com.duke.protobuf.data.StatusNotify.Builder getStatusNotifyBuilder() {
+      
+      onChanged();
+      return getStatusNotifyFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    public com.duke.protobuf.data.StatusNotifyOrBuilder getStatusNotifyOrBuilder() {
+      if (statusNotifyBuilder_ != null) {
+        return statusNotifyBuilder_.getMessageOrBuilder();
+      } else {
+        return statusNotify_ == null ?
+            com.duke.protobuf.data.StatusNotify.getDefaultInstance() : statusNotify_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.StatusNotify, com.duke.protobuf.data.StatusNotify.Builder, com.duke.protobuf.data.StatusNotifyOrBuilder> 
+        getStatusNotifyFieldBuilder() {
+      if (statusNotifyBuilder_ == null) {
+        statusNotifyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.StatusNotify, com.duke.protobuf.data.StatusNotify.Builder, com.duke.protobuf.data.StatusNotifyOrBuilder>(
+                getStatusNotify(),
+                getParentForChildren(),
+                isClean());
+        statusNotify_ = null;
+      }
+      return statusNotifyBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
