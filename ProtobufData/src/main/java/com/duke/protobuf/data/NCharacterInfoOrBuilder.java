@@ -124,4 +124,14 @@ public interface NCharacterInfoOrBuilder extends
    * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
    */
   com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder();
+
+  /**
+   * <pre>
+   * 装备信息（字节数组形式）
+   * </pre>
+   *
+   * <code>bytes equips = 12;</code>
+   * @return The equips.
+   */
+  com.google.protobuf.ByteString getEquips();
 }

@@ -20,6 +20,7 @@ private static final long serialVersionUID = 0L;
     type_ = 0;
     class__ = 0;
     items_ = java.util.Collections.emptyList();
+    equips_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -129,6 +130,11 @@ private static final long serialVersionUID = 0L;
               bag_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 98: {
+
+            equips_ = input.readBytes();
             break;
           }
           default: {
@@ -391,6 +397,21 @@ private static final long serialVersionUID = 0L;
     return getBag();
   }
 
+  public static final int EQUIPS_FIELD_NUMBER = 12;
+  private com.google.protobuf.ByteString equips_;
+  /**
+   * <pre>
+   * 装备信息（字节数组形式）
+   * </pre>
+   *
+   * <code>bytes equips = 12;</code>
+   * @return The equips.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getEquips() {
+    return equips_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -437,6 +458,9 @@ private static final long serialVersionUID = 0L;
     }
     if (bag_ != null) {
       output.writeMessage(11, getBag());
+    }
+    if (!equips_.isEmpty()) {
+      output.writeBytes(12, equips_);
     }
     unknownFields.writeTo(output);
   }
@@ -490,6 +514,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, getBag());
     }
+    if (!equips_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(12, equips_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -531,6 +559,8 @@ private static final long serialVersionUID = 0L;
       if (!getBag()
           .equals(other.getBag())) return false;
     }
+    if (!getEquips()
+        .equals(other.getEquips())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -571,6 +601,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + BAG_FIELD_NUMBER;
       hash = (53 * hash) + getBag().hashCode();
     }
+    hash = (37 * hash) + EQUIPS_FIELD_NUMBER;
+    hash = (53 * hash) + getEquips().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -739,6 +771,8 @@ private static final long serialVersionUID = 0L;
         bag_ = null;
         bagBuilder_ = null;
       }
+      equips_ = com.google.protobuf.ByteString.EMPTY;
+
       return this;
     }
 
@@ -793,6 +827,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.bag_ = bagBuilder_.build();
       }
+      result.equips_ = equips_;
       onBuilt();
       return result;
     }
@@ -897,6 +932,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasBag()) {
         mergeBag(other.getBag());
+      }
+      if (other.getEquips() != com.google.protobuf.ByteString.EMPTY) {
+        setEquips(other.getEquips());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1743,6 +1781,52 @@ private static final long serialVersionUID = 0L;
         bag_ = null;
       }
       return bagBuilder_;
+    }
+
+    private com.google.protobuf.ByteString equips_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * 装备信息（字节数组形式）
+     * </pre>
+     *
+     * <code>bytes equips = 12;</code>
+     * @return The equips.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getEquips() {
+      return equips_;
+    }
+    /**
+     * <pre>
+     * 装备信息（字节数组形式）
+     * </pre>
+     *
+     * <code>bytes equips = 12;</code>
+     * @param value The equips to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEquips(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      equips_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 装备信息（字节数组形式）
+     * </pre>
+     *
+     * <code>bytes equips = 12;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEquips() {
+      
+      equips_ = getDefaultInstance().getEquips();
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

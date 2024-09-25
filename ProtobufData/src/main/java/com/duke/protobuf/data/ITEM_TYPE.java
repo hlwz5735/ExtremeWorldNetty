@@ -32,6 +32,14 @@ public enum ITEM_TYPE
    * <code>TASK = 2;</code>
    */
   TASK(2),
+  /**
+   * <pre>
+   * 装备
+   * </pre>
+   *
+   * <code>EQUIP = 3;</code>
+   */
+  EQUIP(3),
   UNRECOGNIZED(-1),
   ;
 
@@ -59,6 +67,14 @@ public enum ITEM_TYPE
    * <code>TASK = 2;</code>
    */
   public static final int TASK_VALUE = 2;
+  /**
+   * <pre>
+   * 装备
+   * </pre>
+   *
+   * <code>EQUIP = 3;</code>
+   */
+  public static final int EQUIP_VALUE = 3;
 
 
   public final int getNumber() {
@@ -88,6 +104,7 @@ public enum ITEM_TYPE
       case 0: return NORMAL;
       case 1: return MATERIAL;
       case 2: return TASK;
+      case 3: return EQUIP;
       default: return null;
     }
   }

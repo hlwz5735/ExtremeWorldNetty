@@ -178,6 +178,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 90: {
+            com.duke.protobuf.data.ItemEquipResponse.Builder subBuilder = null;
+            if (itemEquip_ != null) {
+              subBuilder = itemEquip_.toBuilder();
+            }
+            itemEquip_ = input.readMessage(com.duke.protobuf.data.ItemEquipResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(itemEquip_);
+              itemEquip_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           case 802: {
             com.duke.protobuf.data.StatusNotify.Builder subBuilder = null;
             if (statusNotify_ != null) {
@@ -485,6 +498,32 @@ private static final long serialVersionUID = 0L;
     return getItemPurchase();
   }
 
+  public static final int ITEMEQUIP_FIELD_NUMBER = 11;
+  private com.duke.protobuf.data.ItemEquipResponse itemEquip_;
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+   * @return Whether the itemEquip field is set.
+   */
+  @java.lang.Override
+  public boolean hasItemEquip() {
+    return itemEquip_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+   * @return The itemEquip.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemEquipResponse getItemEquip() {
+    return itemEquip_ == null ? com.duke.protobuf.data.ItemEquipResponse.getDefaultInstance() : itemEquip_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemEquipResponseOrBuilder getItemEquipOrBuilder() {
+    return getItemEquip();
+  }
+
   public static final int STATUSNOTIFY_FIELD_NUMBER = 100;
   private com.duke.protobuf.data.StatusNotify statusNotify_;
   /**
@@ -555,6 +594,9 @@ private static final long serialVersionUID = 0L;
     if (itemPurchase_ != null) {
       output.writeMessage(10, getItemPurchase());
     }
+    if (itemEquip_ != null) {
+      output.writeMessage(11, getItemEquip());
+    }
     if (statusNotify_ != null) {
       output.writeMessage(100, getStatusNotify());
     }
@@ -606,6 +648,10 @@ private static final long serialVersionUID = 0L;
     if (itemPurchase_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, getItemPurchase());
+    }
+    if (itemEquip_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(11, getItemEquip());
     }
     if (statusNotify_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -676,6 +722,11 @@ private static final long serialVersionUID = 0L;
       if (!getItemPurchase()
           .equals(other.getItemPurchase())) return false;
     }
+    if (hasItemEquip() != other.hasItemEquip()) return false;
+    if (hasItemEquip()) {
+      if (!getItemEquip()
+          .equals(other.getItemEquip())) return false;
+    }
     if (hasStatusNotify() != other.hasStatusNotify()) return false;
     if (hasStatusNotify()) {
       if (!getStatusNotify()
@@ -731,6 +782,10 @@ private static final long serialVersionUID = 0L;
     if (hasItemPurchase()) {
       hash = (37 * hash) + ITEMPURCHASE_FIELD_NUMBER;
       hash = (53 * hash) + getItemPurchase().hashCode();
+    }
+    if (hasItemEquip()) {
+      hash = (37 * hash) + ITEMEQUIP_FIELD_NUMBER;
+      hash = (53 * hash) + getItemEquip().hashCode();
     }
     if (hasStatusNotify()) {
       hash = (37 * hash) + STATUSNOTIFY_FIELD_NUMBER;
@@ -929,6 +984,12 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
         itemPurchaseBuilder_ = null;
       }
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = null;
+      } else {
+        itemEquip_ = null;
+        itemEquipBuilder_ = null;
+      }
       if (statusNotifyBuilder_ == null) {
         statusNotify_ = null;
       } else {
@@ -1010,6 +1071,11 @@ private static final long serialVersionUID = 0L;
         result.itemPurchase_ = itemPurchase_;
       } else {
         result.itemPurchase_ = itemPurchaseBuilder_.build();
+      }
+      if (itemEquipBuilder_ == null) {
+        result.itemEquip_ = itemEquip_;
+      } else {
+        result.itemEquip_ = itemEquipBuilder_.build();
       }
       if (statusNotifyBuilder_ == null) {
         result.statusNotify_ = statusNotify_;
@@ -1093,6 +1159,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasItemPurchase()) {
         mergeItemPurchase(other.getItemPurchase());
+      }
+      if (other.hasItemEquip()) {
+        mergeItemEquip(other.getItemEquip());
       }
       if (other.hasStatusNotify()) {
         mergeStatusNotify(other.getStatusNotify());
@@ -2314,6 +2383,125 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
       }
       return itemPurchaseBuilder_;
+    }
+
+    private com.duke.protobuf.data.ItemEquipResponse itemEquip_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemEquipResponse, com.duke.protobuf.data.ItemEquipResponse.Builder, com.duke.protobuf.data.ItemEquipResponseOrBuilder> itemEquipBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     * @return Whether the itemEquip field is set.
+     */
+    public boolean hasItemEquip() {
+      return itemEquipBuilder_ != null || itemEquip_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     * @return The itemEquip.
+     */
+    public com.duke.protobuf.data.ItemEquipResponse getItemEquip() {
+      if (itemEquipBuilder_ == null) {
+        return itemEquip_ == null ? com.duke.protobuf.data.ItemEquipResponse.getDefaultInstance() : itemEquip_;
+      } else {
+        return itemEquipBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public Builder setItemEquip(com.duke.protobuf.data.ItemEquipResponse value) {
+      if (itemEquipBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        itemEquip_ = value;
+        onChanged();
+      } else {
+        itemEquipBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public Builder setItemEquip(
+        com.duke.protobuf.data.ItemEquipResponse.Builder builderForValue) {
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = builderForValue.build();
+        onChanged();
+      } else {
+        itemEquipBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public Builder mergeItemEquip(com.duke.protobuf.data.ItemEquipResponse value) {
+      if (itemEquipBuilder_ == null) {
+        if (itemEquip_ != null) {
+          itemEquip_ =
+            com.duke.protobuf.data.ItemEquipResponse.newBuilder(itemEquip_).mergeFrom(value).buildPartial();
+        } else {
+          itemEquip_ = value;
+        }
+        onChanged();
+      } else {
+        itemEquipBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public Builder clearItemEquip() {
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = null;
+        onChanged();
+      } else {
+        itemEquip_ = null;
+        itemEquipBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public com.duke.protobuf.data.ItemEquipResponse.Builder getItemEquipBuilder() {
+      
+      onChanged();
+      return getItemEquipFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    public com.duke.protobuf.data.ItemEquipResponseOrBuilder getItemEquipOrBuilder() {
+      if (itemEquipBuilder_ != null) {
+        return itemEquipBuilder_.getMessageOrBuilder();
+      } else {
+        return itemEquip_ == null ?
+            com.duke.protobuf.data.ItemEquipResponse.getDefaultInstance() : itemEquip_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipResponse itemEquip = 11;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemEquipResponse, com.duke.protobuf.data.ItemEquipResponse.Builder, com.duke.protobuf.data.ItemEquipResponseOrBuilder> 
+        getItemEquipFieldBuilder() {
+      if (itemEquipBuilder_ == null) {
+        itemEquipBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.ItemEquipResponse, com.duke.protobuf.data.ItemEquipResponse.Builder, com.duke.protobuf.data.ItemEquipResponseOrBuilder>(
+                getItemEquip(),
+                getParentForChildren(),
+                isClean());
+        itemEquip_ = null;
+      }
+      return itemEquipBuilder_;
     }
 
     private com.duke.protobuf.data.StatusNotify statusNotify_;

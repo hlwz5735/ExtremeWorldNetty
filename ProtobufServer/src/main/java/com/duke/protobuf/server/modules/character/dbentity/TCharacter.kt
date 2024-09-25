@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "GAME_CHARACTER")
-data class TCharacter (
+data class TCharacter(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
@@ -32,6 +32,10 @@ data class TCharacter (
     var items: List<TCharacterItem> = emptyList(),
     @OneToOne(mappedBy = "owner")
     var bag: TCharacterBag? = null,
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "EQUIPS", columnDefinition = "BLOB", nullable = true)
+    var equips: ByteArray? = byteArrayOf(),
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

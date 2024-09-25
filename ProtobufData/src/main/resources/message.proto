@@ -45,6 +45,28 @@ enum ITEM_TYPE {
     MATERIAL = 1;
     // 任务道具
     TASK = 2;
+    // 装备
+    EQUIP = 3;
+}
+
+/// 装备槽枚举
+enum EQUIP_SLOT {
+    // 武器
+    WEAPON = 0;
+    // 副手
+    ACCESSORY = 1;
+    // 头盔
+    HELMET = 2;
+    // 胸甲
+    CHEST = 3;
+    // 肩甲
+    SHOULDER = 4;
+    // 裤子
+    PANTS = 5;
+    // 鞋子
+    BOOTS = 6;
+    // 最大限位
+    SLOT_MAX = 7;
 }
 
 /// 状态通知相关
@@ -114,6 +136,8 @@ message NCharacterInfo {
     int64 carriedMoney = 9;
     repeated NItemInfo items = 10;
     NBagInfo bag = 11;
+    // 装备信息（字节数组形式）
+    bytes equips = 12;
 }
 
 message NVector3
@@ -180,6 +204,7 @@ message NetMessageRequest {
     BagSaveRequest bagSave = 10;
 
     ItemPurchaseRequest itemPurchase = 11;
+    ItemEquipRequest itemEquip = 12;
 }
 
 message NetMessageResponse {
@@ -197,6 +222,7 @@ message NetMessageResponse {
     BagSaveResponse bagSaveResponse = 9;
 
     ItemPurchaseResponse itemPurchase = 10;
+    ItemEquipResponse itemEquip = 11;
 
     StatusNotify statusNotify = 100;
 }
@@ -304,6 +330,17 @@ message ItemPurchaseRequest {
     int32 shopItemId = 2;
 }
 message ItemPurchaseResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+}
+
+/// 装备穿脱
+message ItemEquipRequest {
+    int32 slot = 1;
+    int32 itemId = 2;
+    bool isPutOn = 3;
+}
+message ItemEquipResponse {
     RESULT result = 1;
     string errormsg = 2;
 }

@@ -40,8 +40,8 @@ class ItemManager(
         return false
     }
 
-    fun hasItem(item: Item): Boolean {
-        val item = this.itemDic[item.itemId]
+    fun hasItem(itemId: Int): Boolean {
+        val item = this.itemDic[itemId]
         return (item?.count ?: 0) > 0
     }
 

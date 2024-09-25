@@ -178,6 +178,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 98: {
+            com.duke.protobuf.data.ItemEquipRequest.Builder subBuilder = null;
+            if (itemEquip_ != null) {
+              subBuilder = itemEquip_.toBuilder();
+            }
+            itemEquip_ = input.readMessage(com.duke.protobuf.data.ItemEquipRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(itemEquip_);
+              itemEquip_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -472,6 +485,32 @@ private static final long serialVersionUID = 0L;
     return getItemPurchase();
   }
 
+  public static final int ITEMEQUIP_FIELD_NUMBER = 12;
+  private com.duke.protobuf.data.ItemEquipRequest itemEquip_;
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   * @return Whether the itemEquip field is set.
+   */
+  @java.lang.Override
+  public boolean hasItemEquip() {
+    return itemEquip_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   * @return The itemEquip.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemEquipRequest getItemEquip() {
+    return itemEquip_ == null ? com.duke.protobuf.data.ItemEquipRequest.getDefaultInstance() : itemEquip_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.ItemEquipRequestOrBuilder getItemEquipOrBuilder() {
+    return getItemEquip();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -515,6 +554,9 @@ private static final long serialVersionUID = 0L;
     }
     if (itemPurchase_ != null) {
       output.writeMessage(11, getItemPurchase());
+    }
+    if (itemEquip_ != null) {
+      output.writeMessage(12, getItemEquip());
     }
     unknownFields.writeTo(output);
   }
@@ -564,6 +606,10 @@ private static final long serialVersionUID = 0L;
     if (itemPurchase_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, getItemPurchase());
+    }
+    if (itemEquip_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(12, getItemEquip());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -630,6 +676,11 @@ private static final long serialVersionUID = 0L;
       if (!getItemPurchase()
           .equals(other.getItemPurchase())) return false;
     }
+    if (hasItemEquip() != other.hasItemEquip()) return false;
+    if (hasItemEquip()) {
+      if (!getItemEquip()
+          .equals(other.getItemEquip())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -680,6 +731,10 @@ private static final long serialVersionUID = 0L;
     if (hasItemPurchase()) {
       hash = (37 * hash) + ITEMPURCHASE_FIELD_NUMBER;
       hash = (53 * hash) + getItemPurchase().hashCode();
+    }
+    if (hasItemEquip()) {
+      hash = (37 * hash) + ITEMEQUIP_FIELD_NUMBER;
+      hash = (53 * hash) + getItemEquip().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -874,6 +929,12 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
         itemPurchaseBuilder_ = null;
       }
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = null;
+      } else {
+        itemEquip_ = null;
+        itemEquipBuilder_ = null;
+      }
       return this;
     }
 
@@ -949,6 +1010,11 @@ private static final long serialVersionUID = 0L;
         result.itemPurchase_ = itemPurchase_;
       } else {
         result.itemPurchase_ = itemPurchaseBuilder_.build();
+      }
+      if (itemEquipBuilder_ == null) {
+        result.itemEquip_ = itemEquip_;
+      } else {
+        result.itemEquip_ = itemEquipBuilder_.build();
       }
       onBuilt();
       return result;
@@ -1027,6 +1093,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasItemPurchase()) {
         mergeItemPurchase(other.getItemPurchase());
+      }
+      if (other.hasItemEquip()) {
+        mergeItemEquip(other.getItemEquip());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2245,6 +2314,125 @@ private static final long serialVersionUID = 0L;
         itemPurchase_ = null;
       }
       return itemPurchaseBuilder_;
+    }
+
+    private com.duke.protobuf.data.ItemEquipRequest itemEquip_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemEquipRequest, com.duke.protobuf.data.ItemEquipRequest.Builder, com.duke.protobuf.data.ItemEquipRequestOrBuilder> itemEquipBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     * @return Whether the itemEquip field is set.
+     */
+    public boolean hasItemEquip() {
+      return itemEquipBuilder_ != null || itemEquip_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     * @return The itemEquip.
+     */
+    public com.duke.protobuf.data.ItemEquipRequest getItemEquip() {
+      if (itemEquipBuilder_ == null) {
+        return itemEquip_ == null ? com.duke.protobuf.data.ItemEquipRequest.getDefaultInstance() : itemEquip_;
+      } else {
+        return itemEquipBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public Builder setItemEquip(com.duke.protobuf.data.ItemEquipRequest value) {
+      if (itemEquipBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        itemEquip_ = value;
+        onChanged();
+      } else {
+        itemEquipBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public Builder setItemEquip(
+        com.duke.protobuf.data.ItemEquipRequest.Builder builderForValue) {
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = builderForValue.build();
+        onChanged();
+      } else {
+        itemEquipBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public Builder mergeItemEquip(com.duke.protobuf.data.ItemEquipRequest value) {
+      if (itemEquipBuilder_ == null) {
+        if (itemEquip_ != null) {
+          itemEquip_ =
+            com.duke.protobuf.data.ItemEquipRequest.newBuilder(itemEquip_).mergeFrom(value).buildPartial();
+        } else {
+          itemEquip_ = value;
+        }
+        onChanged();
+      } else {
+        itemEquipBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public Builder clearItemEquip() {
+      if (itemEquipBuilder_ == null) {
+        itemEquip_ = null;
+        onChanged();
+      } else {
+        itemEquip_ = null;
+        itemEquipBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public com.duke.protobuf.data.ItemEquipRequest.Builder getItemEquipBuilder() {
+      
+      onChanged();
+      return getItemEquipFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    public com.duke.protobuf.data.ItemEquipRequestOrBuilder getItemEquipOrBuilder() {
+      if (itemEquipBuilder_ != null) {
+        return itemEquipBuilder_.getMessageOrBuilder();
+      } else {
+        return itemEquip_ == null ?
+            com.duke.protobuf.data.ItemEquipRequest.getDefaultInstance() : itemEquip_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.ItemEquipRequest, com.duke.protobuf.data.ItemEquipRequest.Builder, com.duke.protobuf.data.ItemEquipRequestOrBuilder> 
+        getItemEquipFieldBuilder() {
+      if (itemEquipBuilder_ == null) {
+        itemEquipBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.ItemEquipRequest, com.duke.protobuf.data.ItemEquipRequest.Builder, com.duke.protobuf.data.ItemEquipRequestOrBuilder>(
+                getItemEquip(),
+                getParentForChildren(),
+                isClean());
+        itemEquip_ = null;
+      }
+      return itemEquipBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

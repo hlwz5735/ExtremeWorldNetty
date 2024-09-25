@@ -40,10 +40,11 @@ class CharacterService(
         player.characters = characters
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     fun getById(id: Int): TCharacter? {
         return repo.findById(id).map {
             Hibernate.initialize(it.items)
+            Hibernate.initialize(it.equips)
             it
         }.orElseGet(null)
     }

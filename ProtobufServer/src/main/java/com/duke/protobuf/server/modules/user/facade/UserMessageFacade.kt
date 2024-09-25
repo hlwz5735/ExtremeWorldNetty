@@ -130,18 +130,18 @@ class UserMessageFacade(
                 .setErrormsg("指定的角色不存在或超出范围限制。")
                 .build()
         }
-        val sessionChar = session.user.tableData.player?.characters?.get(request.characterIdx)
+        val sessionTChar = session.user.tableData.player?.characters?.get(request.characterIdx)
             ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("指定的角色不存在或超出范围限制。")
                 .build()
-        val currentCharacter = characterService.getById(sessionChar.id!!)
+        val tCharacter = characterService.getById(sessionTChar.id!!)
             ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("指定的角色在数据库中不存在！")
                 .build()
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(currentCharacter, itemService, bagService)
+        val playerCharacter = PlayerCharacter(tCharacter, itemService, bagService)
         session.user.character = playerCharacter
 
         onlineUserManager.add(session.user)

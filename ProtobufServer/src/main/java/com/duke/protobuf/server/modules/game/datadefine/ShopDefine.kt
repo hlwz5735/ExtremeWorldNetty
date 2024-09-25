@@ -13,4 +13,5 @@ data class ShopItemDefine (
     var count: Int = 0,
     var price: Int = 0,
     var status: Int = 1,
+    var remark: String? = null,
 )

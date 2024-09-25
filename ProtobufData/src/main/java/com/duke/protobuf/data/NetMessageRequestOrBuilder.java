@@ -156,4 +156,19 @@ public interface NetMessageRequestOrBuilder extends
    * <code>.com.duke.protobuf.data.ItemPurchaseRequest itemPurchase = 11;</code>
    */
   com.duke.protobuf.data.ItemPurchaseRequestOrBuilder getItemPurchaseOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   * @return Whether the itemEquip field is set.
+   */
+  boolean hasItemEquip();
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   * @return The itemEquip.
+   */
+  com.duke.protobuf.data.ItemEquipRequest getItemEquip();
+  /**
+   * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
+   */
+  com.duke.protobuf.data.ItemEquipRequestOrBuilder getItemEquipOrBuilder();
 }

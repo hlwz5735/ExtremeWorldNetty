@@ -42,7 +42,7 @@ class BagMessageFacade(
 
         return BagSaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
-            .build();
+            .build()
     }
 
     companion object { private val logger = LoggerFactory.getLogger(BagMessageFacade::class.java) }

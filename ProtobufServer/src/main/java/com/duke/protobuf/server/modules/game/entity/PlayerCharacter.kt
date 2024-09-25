@@ -38,6 +38,7 @@ class PlayerCharacter(
         // 构建背包信息
         val tBag = bagService.getByCharacterId(dbId)
         val itemsBs = ByteString.copyFrom(tBag.items ?: byteArrayOf())
+        val equipBs = ByteString.copyFrom(tableData.equips ?: byteArrayOf())
         val nBag = NBagInfo.newBuilder()
             .setUnlocked(tBag.unlockedCellCount ?: 1)
             .setItems(itemsBs)
@@ -53,6 +54,7 @@ class PlayerCharacter(
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())
             .setBag(nBag)
+            .setEquips(equipBs)
             .setCarriedMoney(tableData.carriedMoney)
             .addAllItems(nItems)
         return builder.build()
