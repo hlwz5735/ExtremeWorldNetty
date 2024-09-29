@@ -171,4 +171,49 @@ public interface NetMessageRequestOrBuilder extends
    * <code>.com.duke.protobuf.data.ItemEquipRequest itemEquip = 12;</code>
    */
   com.duke.protobuf.data.ItemEquipRequestOrBuilder getItemEquipOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   * @return Whether the questList field is set.
+   */
+  boolean hasQuestList();
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   * @return The questList.
+   */
+  com.duke.protobuf.data.QuestListRequest getQuestList();
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   */
+  com.duke.protobuf.data.QuestListRequestOrBuilder getQuestListOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   * @return Whether the questAccept field is set.
+   */
+  boolean hasQuestAccept();
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   * @return The questAccept.
+   */
+  com.duke.protobuf.data.QuestAcceptRequest getQuestAccept();
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   */
+  com.duke.protobuf.data.QuestAcceptRequestOrBuilder getQuestAcceptOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   * @return Whether the questSubmit field is set.
+   */
+  boolean hasQuestSubmit();
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   * @return The questSubmit.
+   */
+  com.duke.protobuf.data.QuestSubmitRequest getQuestSubmit();
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   */
+  com.duke.protobuf.data.QuestSubmitRequestOrBuilder getQuestSubmitOrBuilder();
 }

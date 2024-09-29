@@ -25,6 +25,9 @@ class ItemManager(
     }
 
     fun useItem(itemId: Int, count: Int = 1): Boolean {
+        if (count == 0) {
+            return false
+        }
         logger.info("[{}] UseItem [{}:{}]", owner.tableData.id, itemId, count)
         val item = this.itemDic[itemId]
         if (item != null) {
@@ -57,6 +60,9 @@ class ItemManager(
      * 给当前角色发放道具
      */
     fun giveItem(itemId: Int, count: Int): Boolean {
+        if (count == 0) {
+            return true
+        }
         var item = this.itemDic[itemId]
         if (item != null) {
             item.increaseCount(count)
@@ -80,6 +86,9 @@ class ItemManager(
      * 核销当前角色的指定道具
      */
     fun destroyItem(itemId: Int, count: Int): Boolean {
+        if (count == 0) {
+            return true
+        }
         val item = this.itemDic[itemId]
         if (item == null) {
             return false

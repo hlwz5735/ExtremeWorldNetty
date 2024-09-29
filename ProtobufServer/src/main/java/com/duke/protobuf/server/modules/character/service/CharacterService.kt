@@ -48,4 +48,9 @@ class CharacterService(
             it
         }.orElseGet(null)
     }
+
+    @Transactional
+    fun save(character: TCharacter): TCharacter {
+        return repo.save(character)
+    }
 }

@@ -17,9 +17,9 @@ class ItemService(
     val characterRepository: CharacterRepository,
 ) {
     @Transactional
-    fun save(item: TCharacterItem) {
+    fun save(item: TCharacterItem): TCharacterItem {
         // TODO: 这里是同步的保存，未来考虑改为异步
-        repository.save(item)
+        return repository.save(item)
     }
 
     @Transactional

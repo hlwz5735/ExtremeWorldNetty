@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
     class__ = 0;
     items_ = java.util.Collections.emptyList();
     equips_ = com.google.protobuf.ByteString.EMPTY;
+    quests_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -137,6 +138,15 @@ private static final long serialVersionUID = 0L;
             equips_ = input.readBytes();
             break;
           }
+          case 106: {
+            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+              quests_ = new java.util.ArrayList<com.duke.protobuf.data.NQuestInfo>();
+              mutable_bitField0_ |= 0x00000002;
+            }
+            quests_.add(
+                input.readMessage(com.duke.protobuf.data.NQuestInfo.parser(), extensionRegistry));
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -156,6 +166,9 @@ private static final long serialVersionUID = 0L;
     } finally {
       if (((mutable_bitField0_ & 0x00000001) != 0)) {
         items_ = java.util.Collections.unmodifiableList(items_);
+      }
+      if (((mutable_bitField0_ & 0x00000002) != 0)) {
+        quests_ = java.util.Collections.unmodifiableList(quests_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -412,6 +425,66 @@ private static final long serialVersionUID = 0L;
     return equips_;
   }
 
+  public static final int QUESTS_FIELD_NUMBER = 13;
+  private java.util.List<com.duke.protobuf.data.NQuestInfo> quests_;
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  @java.lang.Override
+  public java.util.List<com.duke.protobuf.data.NQuestInfo> getQuestsList() {
+    return quests_;
+  }
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
+      getQuestsOrBuilderList() {
+    return quests_;
+  }
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  @java.lang.Override
+  public int getQuestsCount() {
+    return quests_.size();
+  }
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NQuestInfo getQuests(int index) {
+    return quests_.get(index);
+  }
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
+      int index) {
+    return quests_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -461,6 +534,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!equips_.isEmpty()) {
       output.writeBytes(12, equips_);
+    }
+    for (int i = 0; i < quests_.size(); i++) {
+      output.writeMessage(13, quests_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -518,6 +594,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(12, equips_);
     }
+    for (int i = 0; i < quests_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(13, quests_.get(i));
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -561,6 +641,8 @@ private static final long serialVersionUID = 0L;
     }
     if (!getEquips()
         .equals(other.getEquips())) return false;
+    if (!getQuestsList()
+        .equals(other.getQuestsList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -603,6 +685,10 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + EQUIPS_FIELD_NUMBER;
     hash = (53 * hash) + getEquips().hashCode();
+    if (getQuestsCount() > 0) {
+      hash = (37 * hash) + QUESTS_FIELD_NUMBER;
+      hash = (53 * hash) + getQuestsList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -732,6 +818,7 @@ private static final long serialVersionUID = 0L;
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getItemsFieldBuilder();
+        getQuestsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -773,6 +860,12 @@ private static final long serialVersionUID = 0L;
       }
       equips_ = com.google.protobuf.ByteString.EMPTY;
 
+      if (questsBuilder_ == null) {
+        quests_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+      } else {
+        questsBuilder_.clear();
+      }
       return this;
     }
 
@@ -828,6 +921,15 @@ private static final long serialVersionUID = 0L;
         result.bag_ = bagBuilder_.build();
       }
       result.equips_ = equips_;
+      if (questsBuilder_ == null) {
+        if (((bitField0_ & 0x00000002) != 0)) {
+          quests_ = java.util.Collections.unmodifiableList(quests_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.quests_ = quests_;
+      } else {
+        result.quests_ = questsBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -935,6 +1037,32 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getEquips() != com.google.protobuf.ByteString.EMPTY) {
         setEquips(other.getEquips());
+      }
+      if (questsBuilder_ == null) {
+        if (!other.quests_.isEmpty()) {
+          if (quests_.isEmpty()) {
+            quests_ = other.quests_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureQuestsIsMutable();
+            quests_.addAll(other.quests_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.quests_.isEmpty()) {
+          if (questsBuilder_.isEmpty()) {
+            questsBuilder_.dispose();
+            questsBuilder_ = null;
+            quests_ = other.quests_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+            questsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getQuestsFieldBuilder() : null;
+          } else {
+            questsBuilder_.addAllMessages(other.quests_);
+          }
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1827,6 +1955,318 @@ private static final long serialVersionUID = 0L;
       equips_ = getDefaultInstance().getEquips();
       onChanged();
       return this;
+    }
+
+    private java.util.List<com.duke.protobuf.data.NQuestInfo> quests_ =
+      java.util.Collections.emptyList();
+    private void ensureQuestsIsMutable() {
+      if (!((bitField0_ & 0x00000002) != 0)) {
+        quests_ = new java.util.ArrayList<com.duke.protobuf.data.NQuestInfo>(quests_);
+        bitField0_ |= 0x00000002;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.duke.protobuf.data.NQuestInfo, com.duke.protobuf.data.NQuestInfo.Builder, com.duke.protobuf.data.NQuestInfoOrBuilder> questsBuilder_;
+
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public java.util.List<com.duke.protobuf.data.NQuestInfo> getQuestsList() {
+      if (questsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(quests_);
+      } else {
+        return questsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public int getQuestsCount() {
+      if (questsBuilder_ == null) {
+        return quests_.size();
+      } else {
+        return questsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public com.duke.protobuf.data.NQuestInfo getQuests(int index) {
+      if (questsBuilder_ == null) {
+        return quests_.get(index);
+      } else {
+        return questsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder setQuests(
+        int index, com.duke.protobuf.data.NQuestInfo value) {
+      if (questsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureQuestsIsMutable();
+        quests_.set(index, value);
+        onChanged();
+      } else {
+        questsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder setQuests(
+        int index, com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
+      if (questsBuilder_ == null) {
+        ensureQuestsIsMutable();
+        quests_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        questsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder addQuests(com.duke.protobuf.data.NQuestInfo value) {
+      if (questsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureQuestsIsMutable();
+        quests_.add(value);
+        onChanged();
+      } else {
+        questsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder addQuests(
+        int index, com.duke.protobuf.data.NQuestInfo value) {
+      if (questsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureQuestsIsMutable();
+        quests_.add(index, value);
+        onChanged();
+      } else {
+        questsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder addQuests(
+        com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
+      if (questsBuilder_ == null) {
+        ensureQuestsIsMutable();
+        quests_.add(builderForValue.build());
+        onChanged();
+      } else {
+        questsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder addQuests(
+        int index, com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
+      if (questsBuilder_ == null) {
+        ensureQuestsIsMutable();
+        quests_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        questsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder addAllQuests(
+        java.lang.Iterable<? extends com.duke.protobuf.data.NQuestInfo> values) {
+      if (questsBuilder_ == null) {
+        ensureQuestsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, quests_);
+        onChanged();
+      } else {
+        questsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder clearQuests() {
+      if (questsBuilder_ == null) {
+        quests_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+      } else {
+        questsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public Builder removeQuests(int index) {
+      if (questsBuilder_ == null) {
+        ensureQuestsIsMutable();
+        quests_.remove(index);
+        onChanged();
+      } else {
+        questsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public com.duke.protobuf.data.NQuestInfo.Builder getQuestsBuilder(
+        int index) {
+      return getQuestsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
+        int index) {
+      if (questsBuilder_ == null) {
+        return quests_.get(index);  } else {
+        return questsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
+         getQuestsOrBuilderList() {
+      if (questsBuilder_ != null) {
+        return questsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(quests_);
+      }
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public com.duke.protobuf.data.NQuestInfo.Builder addQuestsBuilder() {
+      return getQuestsFieldBuilder().addBuilder(
+          com.duke.protobuf.data.NQuestInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public com.duke.protobuf.data.NQuestInfo.Builder addQuestsBuilder(
+        int index) {
+      return getQuestsFieldBuilder().addBuilder(
+          index, com.duke.protobuf.data.NQuestInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * 任务列表信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     */
+    public java.util.List<com.duke.protobuf.data.NQuestInfo.Builder> 
+         getQuestsBuilderList() {
+      return getQuestsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.duke.protobuf.data.NQuestInfo, com.duke.protobuf.data.NQuestInfo.Builder, com.duke.protobuf.data.NQuestInfoOrBuilder> 
+        getQuestsFieldBuilder() {
+      if (questsBuilder_ == null) {
+        questsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.duke.protobuf.data.NQuestInfo, com.duke.protobuf.data.NQuestInfo.Builder, com.duke.protobuf.data.NQuestInfoOrBuilder>(
+                quests_,
+                ((bitField0_ & 0x00000002) != 0),
+                getParentForChildren(),
+                isClean());
+        quests_ = null;
+      }
+      return questsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

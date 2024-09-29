@@ -7,21 +7,26 @@ import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
 import com.duke.protobuf.server.modules.character.manager.ItemManager
+import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
 import com.duke.protobuf.server.modules.character.service.BagService
+import com.duke.protobuf.server.modules.character.service.CharacterService
+import com.duke.protobuf.server.modules.character.service.QuestService
 import com.google.protobuf.ByteString
 
 class PlayerCharacter(
     val tableData: TCharacter,
+    service: CharacterService,
     itemService: ItemService,
-    val bagService: BagService,
+    questService: QuestService,
+    private val bagService: BagService,
     type: CHARACTER_TYPE = CHARACTER_TYPE.Player
 ) : BaseGameCharacter(
     entityId = 0,
     dbId = tableData.id!!,
     type,
     tableData.tid!!,
-    1, // tableData.level
+    tableData.level,
     tableData.name!!,
     tableData.clazz,
     tableData.mapId,
@@ -30,6 +35,7 @@ class PlayerCharacter(
 ) {
     val itemManager = ItemManager(this, itemService)
     val statusManager = StatusManager(this, itemService)
+    val questManager = QuestManager(this, questService, service)
 
     override fun toNetCharacterInfo(): NCharacterInfo {
         // 构建道具信息
@@ -42,6 +48,9 @@ class PlayerCharacter(
         val nBag = NBagInfo.newBuilder()
             .setUnlocked(tBag.unlockedCellCount ?: 1)
             .setItems(itemsBs)
+
+        // 构建任务信息
+        val nQuests = questManager.buildQuestInfos()
 
         val builder = NCharacterInfo.newBuilder()
             // 本身的ID设为数据库ID
@@ -57,6 +66,7 @@ class PlayerCharacter(
             .setEquips(equipBs)
             .setCarriedMoney(tableData.carriedMoney)
             .addAllItems(nItems)
+            .addAllQuests(nQuests)
         return builder.build()
     }
 }

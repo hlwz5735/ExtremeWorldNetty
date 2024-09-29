@@ -1,14 +1,11 @@
 package com.duke.protobuf.server.modules.character.facade
 
-import com.duke.protobuf.data.BagSaveRequest
-import com.duke.protobuf.data.BagSaveResponse
 import com.duke.protobuf.data.ItemEquipRequest
 import com.duke.protobuf.data.ItemEquipResponse
 import com.duke.protobuf.data.RESULT
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
-import com.duke.protobuf.server.modules.character.facade.BagMessageFacade.Companion
 import com.duke.protobuf.server.modules.character.service.CharacterService
 import com.duke.protobuf.server.modules.character.service.EquipService
 import com.duke.protobuf.server.modules.game.net.OnlineUser

@@ -138,6 +138,8 @@ message NCharacterInfo {
     NBagInfo bag = 11;
     // 装备信息（字节数组形式）
     bytes equips = 12;
+    // 任务列表信息
+    repeated NQuestInfo quests = 13;
 }
 
 message NVector3
@@ -205,6 +207,9 @@ message NetMessageRequest {
 
     ItemPurchaseRequest itemPurchase = 11;
     ItemEquipRequest itemEquip = 12;
+    QuestListRequest questList = 13;
+    QuestAcceptRequest questAccept = 14;
+    QuestSubmitRequest questSubmit = 15;
 }
 
 message NetMessageResponse {
@@ -223,6 +228,10 @@ message NetMessageResponse {
 
     ItemPurchaseResponse itemPurchase = 10;
     ItemEquipResponse itemEquip = 11;
+
+    QuestListResponse questList = 12;
+    QuestAcceptResponse questAccept = 13;
+    QuestSubmitResponse questSubmit = 14;
 
     StatusNotify statusNotify = 100;
 }
@@ -341,6 +350,67 @@ message ItemEquipRequest {
     bool isPutOn = 3;
 }
 message ItemEquipResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+}
+
+/// 任务系统
+message NQuestInfo {
+    // 任务状态
+    enum QUEST_STATUS {
+        IN_PROGRESS = 0; // 进行中
+        COMPLETED = 1;   // 已完成未提交
+        FINISHED = 2;    // 已完成已提交
+        FAILED = 3;      // 任务失败
+    }
+
+    // 任务ID
+    int32 questId = 1;
+    // 任务实例ID
+    int32 questGuid = 2;
+    // 任务状态
+    QUEST_STATUS status = 3;
+    // 任务目标信息
+    repeated int32 targets = 4;
+}
+
+message QuestListRequest {
+    // 列表拉取类型
+    enum QUEST_LIST_TYPE {
+        ALL = 0;
+        IN_PROGRESS = 1;
+        FINISHED = 2;
+    }
+    QUEST_LIST_TYPE listType = 1;
+}
+message QuestListResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    repeated NQuestInfo quests = 3;
+}
+
+message QuestAcceptRequest {
+    int32 questId = 1;
+}
+message QuestAcceptResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NQuestInfo quest = 3;
+}
+
+message QuestSubmitRequest {
+    int32 questId = 1;
+}
+message QuestSubmitResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NQuestInfo quest = 3;
+}
+
+message QuestAbandonRequest {
+    int32 questId = 1;
+}
+message QuestAbandonResponse {
     RESULT result = 1;
     string errormsg = 2;
 }

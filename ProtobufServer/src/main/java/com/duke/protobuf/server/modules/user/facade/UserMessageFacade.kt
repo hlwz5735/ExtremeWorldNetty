@@ -12,6 +12,7 @@ import com.duke.protobuf.server.modules.user.service.UserService
 import com.duke.protobuf.server.modules.user.OnlineUserManager
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.character.service.ItemService
+import com.duke.protobuf.server.modules.character.service.QuestService
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -23,6 +24,7 @@ class UserMessageFacade(
     private val characterService: CharacterService,
     private val itemService: ItemService,
     private val bagService: BagService,
+    private val questService: QuestService,
     private val mapService: MapService,
     private val onlineUserManager: OnlineUserManager,
 ) {
@@ -141,7 +143,7 @@ class UserMessageFacade(
                 .setErrormsg("指定的角色在数据库中不存在！")
                 .build()
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(tCharacter, itemService, bagService)
+        val playerCharacter = PlayerCharacter(tCharacter, characterService, itemService, questService, bagService)
         session.user.character = playerCharacter
 
         onlineUserManager.add(session.user)

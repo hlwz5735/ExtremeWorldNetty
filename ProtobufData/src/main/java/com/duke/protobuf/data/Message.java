@@ -189,6 +189,51 @@ public final class Message {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_duke_protobuf_data_ItemEquipResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_NQuestInfo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_NQuestInfo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestListRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestListRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestListResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestListResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestAcceptRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestAcceptRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestAcceptResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestAcceptResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestSubmitRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestSubmitRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestSubmitResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestSubmitResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestAbandonRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestAbandonRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_duke_protobuf_data_QuestAbandonResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_duke_protobuf_data_QuestAbandonResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -213,7 +258,7 @@ public final class Message {
       "d\030\001 \001(\005\0223\n\006player\030\002 \001(\0132#.com.duke.proto" +
       "buf.data.NPlayerInfo\"U\n\013NPlayerInfo\022\n\n\002i" +
       "d\030\001 \001(\005\022:\n\ncharacters\030\002 \003(\0132&.com.duke.p" +
-      "rotobuf.data.NCharacterInfo\"\373\002\n\016NCharact" +
+      "rotobuf.data.NCharacterInfo\"\257\003\n\016NCharact" +
       "erInfo\022\n\n\002id\030\001 \001(\005\022\013\n\003tid\030\002 \001(\005\022\014\n\004name\030" +
       "\003 \001(\t\0224\n\004type\030\004 \001(\0162&.com.duke.protobuf." +
       "data.CHARACTER_TYPE\0226\n\005class\030\005 \001(\0162\'.com" +
@@ -223,114 +268,150 @@ public final class Message {
       "rriedMoney\030\t \001(\003\0220\n\005items\030\n \003(\0132!.com.du" +
       "ke.protobuf.data.NItemInfo\022-\n\003bag\030\013 \001(\0132" +
       " .com.duke.protobuf.data.NBagInfo\022\016\n\006equ" +
-      "ips\030\014 \001(\014\"+\n\010NVector3\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 " +
-      "\001(\005\022\t\n\001z\030\003 \001(\005\"\215\001\n\007NEntity\022\n\n\002id\030\001 \001(\005\0222" +
-      "\n\010position\030\002 \001(\0132 .com.duke.protobuf.dat" +
-      "a.NVector3\0223\n\tdirection\030\003 \001(\0132 .com.duke" +
-      ".protobuf.data.NVector3\022\r\n\005speed\030\004 \001(\005\"\326" +
-      "\001\n\013NEntitySync\022\n\n\002id\030\001 \001(\005\022?\n\005event\030\002 \001(" +
-      "\01620.com.duke.protobuf.data.NEntitySync.E" +
-      "NTITY_EVENT\022/\n\006entity\030\003 \001(\0132\037.com.duke.p" +
-      "rotobuf.data.NEntity\"I\n\014ENTITY_EVENT\022\010\n\004" +
-      "NONE\020\000\022\010\n\004IDLE\020\001\022\014\n\010MOVE_FWD\020\002\022\r\n\tMOVE_B" +
-      "ACK\020\003\022\010\n\004JUMP\020\004\"\206\001\n\nNetMessage\022:\n\007Reques" +
-      "t\030\001 \001(\0132).com.duke.protobuf.data.NetMess" +
-      "ageRequest\022<\n\010Response\030\002 \001(\0132*.com.duke." +
-      "protobuf.data.NetMessageResponse\"\351\005\n\021Net" +
-      "MessageRequest\022A\n\014userRegister\030\001 \001(\0132+.c" +
-      "om.duke.protobuf.data.UserRegisterReques" +
-      "t\022;\n\tuserLogin\030\002 \001(\0132(.com.duke.protobuf" +
-      ".data.UserLoginRequest\022F\n\ncreateChar\030\003 \001" +
-      "(\01322.com.duke.protobuf.data.UserCreateCh" +
-      "aracterRequest\022?\n\tgameEnter\030\004 \001(\0132,.com." +
-      "duke.protobuf.data.UserGameEnterRequest\022" +
-      "?\n\tgameLeave\030\005 \001(\0132,.com.duke.protobuf.d" +
-      "ata.UserGameLeaveRequest\022K\n\021mapCharacter" +
-      "Enter\030\006 \001(\01320.com.duke.protobuf.data.Map" +
-      "CharacterEnterRequest\022C\n\rmapEntitySync\030\010" +
-      " \001(\0132,.com.duke.protobuf.data.MapEntityS" +
-      "yncRequest\022?\n\013mapTeleport\030\t \001(\0132*.com.du" +
-      "ke.protobuf.data.MapTeleportRequest\0227\n\007b" +
-      "agSave\030\n \001(\0132&.com.duke.protobuf.data.Ba" +
-      "gSaveRequest\022A\n\014itemPurchase\030\013 \001(\0132+.com" +
-      ".duke.protobuf.data.ItemPurchaseRequest\022" +
-      ";\n\titemEquip\030\014 \001(\0132(.com.duke.protobuf.d" +
-      "ata.ItemEquipRequest\"\305\006\n\022NetMessageRespo" +
-      "nse\022B\n\014userRegister\030\001 \001(\0132,.com.duke.pro" +
-      "tobuf.data.UserRegisterResponse\022<\n\tuserL" +
-      "ogin\030\002 \001(\0132).com.duke.protobuf.data.User" +
-      "LoginResponse\022G\n\ncreateChar\030\003 \001(\01323.com." +
-      "duke.protobuf.data.UserCreateCharacterRe" +
-      "sponse\022@\n\tgameEnter\030\004 \001(\0132-.com.duke.pro" +
-      "tobuf.data.UserGameEnterResponse\022@\n\tgame" +
-      "Leave\030\005 \001(\0132-.com.duke.protobuf.data.Use" +
-      "rGameLeaveResponse\022L\n\021mapCharacterEnter\030" +
-      "\006 \001(\01321.com.duke.protobuf.data.MapCharac" +
-      "terEnterResponse\022L\n\021mapCharacterLeave\030\007 " +
-      "\001(\01321.com.duke.protobuf.data.MapCharacte" +
-      "rLeaveResponse\022D\n\rmapEntitySync\030\010 \001(\0132-." +
-      "com.duke.protobuf.data.MapEntitySyncResp" +
-      "onse\022@\n\017bagSaveResponse\030\t \001(\0132\'.com.duke" +
-      ".protobuf.data.BagSaveResponse\022B\n\014itemPu" +
-      "rchase\030\n \001(\0132,.com.duke.protobuf.data.It" +
-      "emPurchaseResponse\022<\n\titemEquip\030\013 \001(\0132)." +
-      "com.duke.protobuf.data.ItemEquipResponse" +
-      "\022:\n\014statusNotify\030d \001(\0132$.com.duke.protob" +
-      "uf.data.StatusNotify\"2\n\020UserLoginRequest" +
-      "\022\014\n\004user\030\001 \001(\t\022\020\n\010passward\030\002 \001(\t\"\212\001\n\021Use" +
-      "rLoginResponse\022.\n\006result\030\001 \001(\0162\036.com.duk" +
-      "e.protobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t" +
-      "\0223\n\010userinfo\030\003 \001(\0132!.com.duke.protobuf.d" +
-      "ata.NUserInfo\"5\n\023UserRegisterRequest\022\014\n\004" +
-      "user\030\001 \001(\t\022\020\n\010passward\030\002 \001(\t\"X\n\024UserRegi" +
-      "sterResponse\022.\n\006result\030\001 \001(\0162\036.com.duke." +
-      "protobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\"b" +
-      "\n\032UserCreateCharacterRequest\022\014\n\004name\030\001 \001" +
-      "(\t\0226\n\005class\030\002 \001(\0162\'.com.duke.protobuf.da" +
-      "ta.CHARACTER_CLASS\"\233\001\n\033UserCreateCharact" +
-      "erResponse\022.\n\006result\030\001 \001(\0162\036.com.duke.pr" +
-      "otobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\022:\n\n" +
-      "characters\030\003 \003(\0132&.com.duke.protobuf.dat" +
-      "a.NCharacterInfo\",\n\024UserGameEnterRequest" +
-      "\022\024\n\014characterIdx\030\001 \001(\005\"\224\001\n\025UserGameEnter" +
-      "Response\022.\n\006result\030\001 \001(\0162\036.com.duke.prot" +
-      "obuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\0229\n\tch" +
-      "aracter\030\003 \001(\0132&.com.duke.protobuf.data.N" +
-      "CharacterInfo\"\026\n\024UserGameLeaveRequest\"Y\n" +
-      "\025UserGameLeaveResponse\022.\n\006result\030\001 \001(\0162\036" +
-      ".com.duke.protobuf.data.RESULT\022\020\n\010errorm" +
-      "sg\030\002 \001(\t\")\n\030MapCharacterEnterRequest\022\r\n\005" +
-      "mapId\030\001 \001(\005\"f\n\031MapCharacterEnterResponse" +
-      "\022\r\n\005mapId\030\001 \001(\005\022:\n\ncharacters\030\002 \003(\0132&.co" +
-      "m.duke.protobuf.data.NCharacterInfo\"0\n\031M" +
-      "apCharacterLeaveResponse\022\023\n\013characterId\030" +
-      "\001 \001(\005\"O\n\024MapEntitySyncRequest\0227\n\nentityS" +
-      "ync\030\001 \001(\0132#.com.duke.protobuf.data.NEnti" +
-      "tySync\"Q\n\025MapEntitySyncResponse\0228\n\013entit" +
-      "ySyncs\030\002 \003(\0132#.com.duke.protobuf.data.NE" +
-      "ntitySync\"*\n\022MapTeleportRequest\022\024\n\014telep" +
-      "orterId\030\001 \001(\005\"C\n\016BagSaveRequest\0221\n\007bagIn" +
-      "fo\030\001 \001(\0132 .com.duke.protobuf.data.NBagIn" +
-      "fo\"S\n\017BagSaveResponse\022.\n\006result\030\001 \001(\0162\036." +
-      "com.duke.protobuf.data.RESULT\022\020\n\010errorms" +
-      "g\030\002 \001(\t\"9\n\023ItemPurchaseRequest\022\016\n\006shopId" +
-      "\030\001 \001(\005\022\022\n\nshopItemId\030\002 \001(\005\"X\n\024ItemPurcha" +
-      "seResponse\022.\n\006result\030\001 \001(\0162\036.com.duke.pr" +
-      "otobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\"A\n\020" +
-      "ItemEquipRequest\022\014\n\004slot\030\001 \001(\005\022\016\n\006itemId" +
-      "\030\002 \001(\005\022\017\n\007isPutOn\030\003 \001(\010\"U\n\021ItemEquipResp" +
-      "onse\022.\n\006result\030\001 \001(\0162\036.com.duke.protobuf" +
-      ".data.RESULT\022\020\n\010errormsg\030\002 \001(\t*!\n\006RESULT" +
-      "\022\013\n\007SUCCESS\020\000\022\n\n\006FAILED\020\001*2\n\016CHARACTER_T" +
-      "YPE\022\n\n\006Player\020\000\022\007\n\003NPC\020\001\022\013\n\007Monster\020\002*@\n" +
-      "\017CHARACTER_CLASS\022\010\n\004NONE\020\000\022\013\n\007WARRIOR\020\001\022" +
-      "\n\n\006WIZARD\020\002\022\n\n\006ARCHER\020\003*%\n\017CHARACTER_STA" +
-      "TE\022\010\n\004IDLE\020\000\022\010\n\004MOVE\020\001*:\n\tITEM_TYPE\022\n\n\006N" +
-      "ORMAL\020\000\022\014\n\010MATERIAL\020\001\022\010\n\004TASK\020\002\022\t\n\005EQUIP" +
-      "\020\003*p\n\nEQUIP_SLOT\022\n\n\006WEAPON\020\000\022\r\n\tACCESSOR" +
-      "Y\020\001\022\n\n\006HELMET\020\002\022\t\n\005CHEST\020\003\022\014\n\010SHOULDER\020\004" +
-      "\022\t\n\005PANTS\020\005\022\t\n\005BOOTS\020\006\022\014\n\010SLOT_MAX\020\007B\033P\001" +
-      "\370\001\001\252\002\023SkillBridge.Messageb\006proto3"
+      "ips\030\014 \001(\014\0222\n\006quests\030\r \003(\0132\".com.duke.pro" +
+      "tobuf.data.NQuestInfo\"+\n\010NVector3\022\t\n\001x\030\001" +
+      " \001(\005\022\t\n\001y\030\002 \001(\005\022\t\n\001z\030\003 \001(\005\"\215\001\n\007NEntity\022\n" +
+      "\n\002id\030\001 \001(\005\0222\n\010position\030\002 \001(\0132 .com.duke." +
+      "protobuf.data.NVector3\0223\n\tdirection\030\003 \001(" +
+      "\0132 .com.duke.protobuf.data.NVector3\022\r\n\005s" +
+      "peed\030\004 \001(\005\"\326\001\n\013NEntitySync\022\n\n\002id\030\001 \001(\005\022?" +
+      "\n\005event\030\002 \001(\01620.com.duke.protobuf.data.N" +
+      "EntitySync.ENTITY_EVENT\022/\n\006entity\030\003 \001(\0132" +
+      "\037.com.duke.protobuf.data.NEntity\"I\n\014ENTI" +
+      "TY_EVENT\022\010\n\004NONE\020\000\022\010\n\004IDLE\020\001\022\014\n\010MOVE_FWD" +
+      "\020\002\022\r\n\tMOVE_BACK\020\003\022\010\n\004JUMP\020\004\"\206\001\n\nNetMessa" +
+      "ge\022:\n\007Request\030\001 \001(\0132).com.duke.protobuf." +
+      "data.NetMessageRequest\022<\n\010Response\030\002 \001(\013" +
+      "2*.com.duke.protobuf.data.NetMessageResp" +
+      "onse\"\250\007\n\021NetMessageRequest\022A\n\014userRegist" +
+      "er\030\001 \001(\0132+.com.duke.protobuf.data.UserRe" +
+      "gisterRequest\022;\n\tuserLogin\030\002 \001(\0132(.com.d" +
+      "uke.protobuf.data.UserLoginRequest\022F\n\ncr" +
+      "eateChar\030\003 \001(\01322.com.duke.protobuf.data." +
+      "UserCreateCharacterRequest\022?\n\tgameEnter\030" +
+      "\004 \001(\0132,.com.duke.protobuf.data.UserGameE" +
+      "nterRequest\022?\n\tgameLeave\030\005 \001(\0132,.com.duk" +
+      "e.protobuf.data.UserGameLeaveRequest\022K\n\021" +
+      "mapCharacterEnter\030\006 \001(\01320.com.duke.proto" +
+      "buf.data.MapCharacterEnterRequest\022C\n\rmap" +
+      "EntitySync\030\010 \001(\0132,.com.duke.protobuf.dat" +
+      "a.MapEntitySyncRequest\022?\n\013mapTeleport\030\t " +
+      "\001(\0132*.com.duke.protobuf.data.MapTeleport" +
+      "Request\0227\n\007bagSave\030\n \001(\0132&.com.duke.prot" +
+      "obuf.data.BagSaveRequest\022A\n\014itemPurchase" +
+      "\030\013 \001(\0132+.com.duke.protobuf.data.ItemPurc" +
+      "haseRequest\022;\n\titemEquip\030\014 \001(\0132(.com.duk" +
+      "e.protobuf.data.ItemEquipRequest\022;\n\tques" +
+      "tList\030\r \001(\0132(.com.duke.protobuf.data.Que" +
+      "stListRequest\022?\n\013questAccept\030\016 \001(\0132*.com" +
+      ".duke.protobuf.data.QuestAcceptRequest\022?" +
+      "\n\013questSubmit\030\017 \001(\0132*.com.duke.protobuf." +
+      "data.QuestSubmitRequest\"\207\010\n\022NetMessageRe" +
+      "sponse\022B\n\014userRegister\030\001 \001(\0132,.com.duke." +
+      "protobuf.data.UserRegisterResponse\022<\n\tus" +
+      "erLogin\030\002 \001(\0132).com.duke.protobuf.data.U" +
+      "serLoginResponse\022G\n\ncreateChar\030\003 \001(\01323.c" +
+      "om.duke.protobuf.data.UserCreateCharacte" +
+      "rResponse\022@\n\tgameEnter\030\004 \001(\0132-.com.duke." +
+      "protobuf.data.UserGameEnterResponse\022@\n\tg" +
+      "ameLeave\030\005 \001(\0132-.com.duke.protobuf.data." +
+      "UserGameLeaveResponse\022L\n\021mapCharacterEnt" +
+      "er\030\006 \001(\01321.com.duke.protobuf.data.MapCha" +
+      "racterEnterResponse\022L\n\021mapCharacterLeave" +
+      "\030\007 \001(\01321.com.duke.protobuf.data.MapChara" +
+      "cterLeaveResponse\022D\n\rmapEntitySync\030\010 \001(\013" +
+      "2-.com.duke.protobuf.data.MapEntitySyncR" +
+      "esponse\022@\n\017bagSaveResponse\030\t \001(\0132\'.com.d" +
+      "uke.protobuf.data.BagSaveResponse\022B\n\014ite" +
+      "mPurchase\030\n \001(\0132,.com.duke.protobuf.data" +
+      ".ItemPurchaseResponse\022<\n\titemEquip\030\013 \001(\013" +
+      "2).com.duke.protobuf.data.ItemEquipRespo" +
+      "nse\022<\n\tquestList\030\014 \001(\0132).com.duke.protob" +
+      "uf.data.QuestListResponse\022@\n\013questAccept" +
+      "\030\r \001(\0132+.com.duke.protobuf.data.QuestAcc" +
+      "eptResponse\022@\n\013questSubmit\030\016 \001(\0132+.com.d" +
+      "uke.protobuf.data.QuestSubmitResponse\022:\n" +
+      "\014statusNotify\030d \001(\0132$.com.duke.protobuf." +
+      "data.StatusNotify\"2\n\020UserLoginRequest\022\014\n" +
+      "\004user\030\001 \001(\t\022\020\n\010passward\030\002 \001(\t\"\212\001\n\021UserLo" +
+      "ginResponse\022.\n\006result\030\001 \001(\0162\036.com.duke.p" +
+      "rotobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\0223\n" +
+      "\010userinfo\030\003 \001(\0132!.com.duke.protobuf.data" +
+      ".NUserInfo\"5\n\023UserRegisterRequest\022\014\n\004use" +
+      "r\030\001 \001(\t\022\020\n\010passward\030\002 \001(\t\"X\n\024UserRegiste" +
+      "rResponse\022.\n\006result\030\001 \001(\0162\036.com.duke.pro" +
+      "tobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\"b\n\032U" +
+      "serCreateCharacterRequest\022\014\n\004name\030\001 \001(\t\022" +
+      "6\n\005class\030\002 \001(\0162\'.com.duke.protobuf.data." +
+      "CHARACTER_CLASS\"\233\001\n\033UserCreateCharacterR" +
+      "esponse\022.\n\006result\030\001 \001(\0162\036.com.duke.proto" +
+      "buf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\022:\n\ncha" +
+      "racters\030\003 \003(\0132&.com.duke.protobuf.data.N" +
+      "CharacterInfo\",\n\024UserGameEnterRequest\022\024\n" +
+      "\014characterIdx\030\001 \001(\005\"\224\001\n\025UserGameEnterRes" +
+      "ponse\022.\n\006result\030\001 \001(\0162\036.com.duke.protobu" +
+      "f.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\0229\n\tchara" +
+      "cter\030\003 \001(\0132&.com.duke.protobuf.data.NCha" +
+      "racterInfo\"\026\n\024UserGameLeaveRequest\"Y\n\025Us" +
+      "erGameLeaveResponse\022.\n\006result\030\001 \001(\0162\036.co" +
+      "m.duke.protobuf.data.RESULT\022\020\n\010errormsg\030" +
+      "\002 \001(\t\")\n\030MapCharacterEnterRequest\022\r\n\005map" +
+      "Id\030\001 \001(\005\"f\n\031MapCharacterEnterResponse\022\r\n" +
+      "\005mapId\030\001 \001(\005\022:\n\ncharacters\030\002 \003(\0132&.com.d" +
+      "uke.protobuf.data.NCharacterInfo\"0\n\031MapC" +
+      "haracterLeaveResponse\022\023\n\013characterId\030\001 \001" +
+      "(\005\"O\n\024MapEntitySyncRequest\0227\n\nentitySync" +
+      "\030\001 \001(\0132#.com.duke.protobuf.data.NEntityS" +
+      "ync\"Q\n\025MapEntitySyncResponse\0228\n\013entitySy" +
+      "ncs\030\002 \003(\0132#.com.duke.protobuf.data.NEnti" +
+      "tySync\"*\n\022MapTeleportRequest\022\024\n\014teleport" +
+      "erId\030\001 \001(\005\"C\n\016BagSaveRequest\0221\n\007bagInfo\030" +
+      "\001 \001(\0132 .com.duke.protobuf.data.NBagInfo\"" +
+      "S\n\017BagSaveResponse\022.\n\006result\030\001 \001(\0162\036.com" +
+      ".duke.protobuf.data.RESULT\022\020\n\010errormsg\030\002" +
+      " \001(\t\"9\n\023ItemPurchaseRequest\022\016\n\006shopId\030\001 " +
+      "\001(\005\022\022\n\nshopItemId\030\002 \001(\005\"X\n\024ItemPurchaseR" +
+      "esponse\022.\n\006result\030\001 \001(\0162\036.com.duke.proto" +
+      "buf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\"A\n\020Ite" +
+      "mEquipRequest\022\014\n\004slot\030\001 \001(\005\022\016\n\006itemId\030\002 " +
+      "\001(\005\022\017\n\007isPutOn\030\003 \001(\010\"U\n\021ItemEquipRespons" +
+      "e\022.\n\006result\030\001 \001(\0162\036.com.duke.protobuf.da" +
+      "ta.RESULT\022\020\n\010errormsg\030\002 \001(\t\"\314\001\n\nNQuestIn" +
+      "fo\022\017\n\007questId\030\001 \001(\005\022\021\n\tquestGuid\030\002 \001(\005\022?" +
+      "\n\006status\030\003 \001(\0162/.com.duke.protobuf.data." +
+      "NQuestInfo.QUEST_STATUS\022\017\n\007targets\030\004 \003(\005" +
+      "\"H\n\014QUEST_STATUS\022\017\n\013IN_PROGRESS\020\000\022\r\n\tCOM" +
+      "PLETED\020\001\022\014\n\010FINISHED\020\002\022\n\n\006FAILED\020\003\"\231\001\n\020Q" +
+      "uestListRequest\022J\n\010listType\030\001 \001(\01628.com." +
+      "duke.protobuf.data.QuestListRequest.QUES" +
+      "T_LIST_TYPE\"9\n\017QUEST_LIST_TYPE\022\007\n\003ALL\020\000\022" +
+      "\017\n\013IN_PROGRESS\020\001\022\014\n\010FINISHED\020\002\"\211\001\n\021Quest" +
+      "ListResponse\022.\n\006result\030\001 \001(\0162\036.com.duke." +
+      "protobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\0222" +
+      "\n\006quests\030\003 \003(\0132\".com.duke.protobuf.data." +
+      "NQuestInfo\"%\n\022QuestAcceptRequest\022\017\n\007ques" +
+      "tId\030\001 \001(\005\"\212\001\n\023QuestAcceptResponse\022.\n\006res" +
+      "ult\030\001 \001(\0162\036.com.duke.protobuf.data.RESUL" +
+      "T\022\020\n\010errormsg\030\002 \001(\t\0221\n\005quest\030\003 \001(\0132\".com" +
+      ".duke.protobuf.data.NQuestInfo\"%\n\022QuestS" +
+      "ubmitRequest\022\017\n\007questId\030\001 \001(\005\"\212\001\n\023QuestS" +
+      "ubmitResponse\022.\n\006result\030\001 \001(\0162\036.com.duke" +
+      ".protobuf.data.RESULT\022\020\n\010errormsg\030\002 \001(\t\022" +
+      "1\n\005quest\030\003 \001(\0132\".com.duke.protobuf.data." +
+      "NQuestInfo\"&\n\023QuestAbandonRequest\022\017\n\007que" +
+      "stId\030\001 \001(\005\"X\n\024QuestAbandonResponse\022.\n\006re" +
+      "sult\030\001 \001(\0162\036.com.duke.protobuf.data.RESU" +
+      "LT\022\020\n\010errormsg\030\002 \001(\t*!\n\006RESULT\022\013\n\007SUCCES" +
+      "S\020\000\022\n\n\006FAILED\020\001*2\n\016CHARACTER_TYPE\022\n\n\006Pla" +
+      "yer\020\000\022\007\n\003NPC\020\001\022\013\n\007Monster\020\002*@\n\017CHARACTER" +
+      "_CLASS\022\010\n\004NONE\020\000\022\013\n\007WARRIOR\020\001\022\n\n\006WIZARD\020" +
+      "\002\022\n\n\006ARCHER\020\003*%\n\017CHARACTER_STATE\022\010\n\004IDLE" +
+      "\020\000\022\010\n\004MOVE\020\001*:\n\tITEM_TYPE\022\n\n\006NORMAL\020\000\022\014\n" +
+      "\010MATERIAL\020\001\022\010\n\004TASK\020\002\022\t\n\005EQUIP\020\003*p\n\nEQUI" +
+      "P_SLOT\022\n\n\006WEAPON\020\000\022\r\n\tACCESSORY\020\001\022\n\n\006HEL" +
+      "MET\020\002\022\t\n\005CHEST\020\003\022\014\n\010SHOULDER\020\004\022\t\n\005PANTS\020" +
+      "\005\022\t\n\005BOOTS\020\006\022\014\n\010SLOT_MAX\020\007B\033P\001\370\001\001\252\002\023Skil" +
+      "lBridge.Messageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -377,7 +458,7 @@ public final class Message {
     internal_static_com_duke_protobuf_data_NCharacterInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_duke_protobuf_data_NCharacterInfo_descriptor,
-        new java.lang.String[] { "Id", "Tid", "Name", "Type", "Class_", "Level", "MapId", "Entity", "CarriedMoney", "Items", "Bag", "Equips", });
+        new java.lang.String[] { "Id", "Tid", "Name", "Type", "Class_", "Level", "MapId", "Entity", "CarriedMoney", "Items", "Bag", "Equips", "Quests", });
     internal_static_com_duke_protobuf_data_NVector3_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_com_duke_protobuf_data_NVector3_fieldAccessorTable = new
@@ -407,13 +488,13 @@ public final class Message {
     internal_static_com_duke_protobuf_data_NetMessageRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_duke_protobuf_data_NetMessageRequest_descriptor,
-        new java.lang.String[] { "UserRegister", "UserLogin", "CreateChar", "GameEnter", "GameLeave", "MapCharacterEnter", "MapEntitySync", "MapTeleport", "BagSave", "ItemPurchase", "ItemEquip", });
+        new java.lang.String[] { "UserRegister", "UserLogin", "CreateChar", "GameEnter", "GameLeave", "MapCharacterEnter", "MapEntitySync", "MapTeleport", "BagSave", "ItemPurchase", "ItemEquip", "QuestList", "QuestAccept", "QuestSubmit", });
     internal_static_com_duke_protobuf_data_NetMessageResponse_descriptor =
       getDescriptor().getMessageTypes().get(12);
     internal_static_com_duke_protobuf_data_NetMessageResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_duke_protobuf_data_NetMessageResponse_descriptor,
-        new java.lang.String[] { "UserRegister", "UserLogin", "CreateChar", "GameEnter", "GameLeave", "MapCharacterEnter", "MapCharacterLeave", "MapEntitySync", "BagSaveResponse", "ItemPurchase", "ItemEquip", "StatusNotify", });
+        new java.lang.String[] { "UserRegister", "UserLogin", "CreateChar", "GameEnter", "GameLeave", "MapCharacterEnter", "MapCharacterLeave", "MapEntitySync", "BagSaveResponse", "ItemPurchase", "ItemEquip", "QuestList", "QuestAccept", "QuestSubmit", "StatusNotify", });
     internal_static_com_duke_protobuf_data_UserLoginRequest_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_com_duke_protobuf_data_UserLoginRequest_fieldAccessorTable = new
@@ -545,6 +626,60 @@ public final class Message {
     internal_static_com_duke_protobuf_data_ItemEquipResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_duke_protobuf_data_ItemEquipResponse_descriptor,
+        new java.lang.String[] { "Result", "Errormsg", });
+    internal_static_com_duke_protobuf_data_NQuestInfo_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_com_duke_protobuf_data_NQuestInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_NQuestInfo_descriptor,
+        new java.lang.String[] { "QuestId", "QuestGuid", "Status", "Targets", });
+    internal_static_com_duke_protobuf_data_QuestListRequest_descriptor =
+      getDescriptor().getMessageTypes().get(36);
+    internal_static_com_duke_protobuf_data_QuestListRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestListRequest_descriptor,
+        new java.lang.String[] { "ListType", });
+    internal_static_com_duke_protobuf_data_QuestListResponse_descriptor =
+      getDescriptor().getMessageTypes().get(37);
+    internal_static_com_duke_protobuf_data_QuestListResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestListResponse_descriptor,
+        new java.lang.String[] { "Result", "Errormsg", "Quests", });
+    internal_static_com_duke_protobuf_data_QuestAcceptRequest_descriptor =
+      getDescriptor().getMessageTypes().get(38);
+    internal_static_com_duke_protobuf_data_QuestAcceptRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestAcceptRequest_descriptor,
+        new java.lang.String[] { "QuestId", });
+    internal_static_com_duke_protobuf_data_QuestAcceptResponse_descriptor =
+      getDescriptor().getMessageTypes().get(39);
+    internal_static_com_duke_protobuf_data_QuestAcceptResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestAcceptResponse_descriptor,
+        new java.lang.String[] { "Result", "Errormsg", "Quest", });
+    internal_static_com_duke_protobuf_data_QuestSubmitRequest_descriptor =
+      getDescriptor().getMessageTypes().get(40);
+    internal_static_com_duke_protobuf_data_QuestSubmitRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestSubmitRequest_descriptor,
+        new java.lang.String[] { "QuestId", });
+    internal_static_com_duke_protobuf_data_QuestSubmitResponse_descriptor =
+      getDescriptor().getMessageTypes().get(41);
+    internal_static_com_duke_protobuf_data_QuestSubmitResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestSubmitResponse_descriptor,
+        new java.lang.String[] { "Result", "Errormsg", "Quest", });
+    internal_static_com_duke_protobuf_data_QuestAbandonRequest_descriptor =
+      getDescriptor().getMessageTypes().get(42);
+    internal_static_com_duke_protobuf_data_QuestAbandonRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestAbandonRequest_descriptor,
+        new java.lang.String[] { "QuestId", });
+    internal_static_com_duke_protobuf_data_QuestAbandonResponse_descriptor =
+      getDescriptor().getMessageTypes().get(43);
+    internal_static_com_duke_protobuf_data_QuestAbandonResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_duke_protobuf_data_QuestAbandonResponse_descriptor,
         new java.lang.String[] { "Result", "Errormsg", });
   }
 

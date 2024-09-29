@@ -134,4 +134,48 @@ public interface NCharacterInfoOrBuilder extends
    * @return The equips.
    */
   com.google.protobuf.ByteString getEquips();
+
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  java.util.List<com.duke.protobuf.data.NQuestInfo> 
+      getQuestsList();
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  com.duke.protobuf.data.NQuestInfo getQuests(int index);
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  int getQuestsCount();
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
+      getQuestsOrBuilderList();
+  /**
+   * <pre>
+   * 任务列表信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   */
+  com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
+      int index);
 }

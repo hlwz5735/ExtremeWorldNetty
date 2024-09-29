@@ -191,6 +191,45 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 106: {
+            com.duke.protobuf.data.QuestListRequest.Builder subBuilder = null;
+            if (questList_ != null) {
+              subBuilder = questList_.toBuilder();
+            }
+            questList_ = input.readMessage(com.duke.protobuf.data.QuestListRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(questList_);
+              questList_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 114: {
+            com.duke.protobuf.data.QuestAcceptRequest.Builder subBuilder = null;
+            if (questAccept_ != null) {
+              subBuilder = questAccept_.toBuilder();
+            }
+            questAccept_ = input.readMessage(com.duke.protobuf.data.QuestAcceptRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(questAccept_);
+              questAccept_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 122: {
+            com.duke.protobuf.data.QuestSubmitRequest.Builder subBuilder = null;
+            if (questSubmit_ != null) {
+              subBuilder = questSubmit_.toBuilder();
+            }
+            questSubmit_ = input.readMessage(com.duke.protobuf.data.QuestSubmitRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(questSubmit_);
+              questSubmit_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -511,6 +550,84 @@ private static final long serialVersionUID = 0L;
     return getItemEquip();
   }
 
+  public static final int QUESTLIST_FIELD_NUMBER = 13;
+  private com.duke.protobuf.data.QuestListRequest questList_;
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   * @return Whether the questList field is set.
+   */
+  @java.lang.Override
+  public boolean hasQuestList() {
+    return questList_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   * @return The questList.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestListRequest getQuestList() {
+    return questList_ == null ? com.duke.protobuf.data.QuestListRequest.getDefaultInstance() : questList_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestListRequestOrBuilder getQuestListOrBuilder() {
+    return getQuestList();
+  }
+
+  public static final int QUESTACCEPT_FIELD_NUMBER = 14;
+  private com.duke.protobuf.data.QuestAcceptRequest questAccept_;
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   * @return Whether the questAccept field is set.
+   */
+  @java.lang.Override
+  public boolean hasQuestAccept() {
+    return questAccept_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   * @return The questAccept.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestAcceptRequest getQuestAccept() {
+    return questAccept_ == null ? com.duke.protobuf.data.QuestAcceptRequest.getDefaultInstance() : questAccept_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestAcceptRequestOrBuilder getQuestAcceptOrBuilder() {
+    return getQuestAccept();
+  }
+
+  public static final int QUESTSUBMIT_FIELD_NUMBER = 15;
+  private com.duke.protobuf.data.QuestSubmitRequest questSubmit_;
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   * @return Whether the questSubmit field is set.
+   */
+  @java.lang.Override
+  public boolean hasQuestSubmit() {
+    return questSubmit_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   * @return The questSubmit.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestSubmitRequest getQuestSubmit() {
+    return questSubmit_ == null ? com.duke.protobuf.data.QuestSubmitRequest.getDefaultInstance() : questSubmit_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.QuestSubmitRequestOrBuilder getQuestSubmitOrBuilder() {
+    return getQuestSubmit();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -557,6 +674,15 @@ private static final long serialVersionUID = 0L;
     }
     if (itemEquip_ != null) {
       output.writeMessage(12, getItemEquip());
+    }
+    if (questList_ != null) {
+      output.writeMessage(13, getQuestList());
+    }
+    if (questAccept_ != null) {
+      output.writeMessage(14, getQuestAccept());
+    }
+    if (questSubmit_ != null) {
+      output.writeMessage(15, getQuestSubmit());
     }
     unknownFields.writeTo(output);
   }
@@ -610,6 +736,18 @@ private static final long serialVersionUID = 0L;
     if (itemEquip_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(12, getItemEquip());
+    }
+    if (questList_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(13, getQuestList());
+    }
+    if (questAccept_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(14, getQuestAccept());
+    }
+    if (questSubmit_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(15, getQuestSubmit());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -681,6 +819,21 @@ private static final long serialVersionUID = 0L;
       if (!getItemEquip()
           .equals(other.getItemEquip())) return false;
     }
+    if (hasQuestList() != other.hasQuestList()) return false;
+    if (hasQuestList()) {
+      if (!getQuestList()
+          .equals(other.getQuestList())) return false;
+    }
+    if (hasQuestAccept() != other.hasQuestAccept()) return false;
+    if (hasQuestAccept()) {
+      if (!getQuestAccept()
+          .equals(other.getQuestAccept())) return false;
+    }
+    if (hasQuestSubmit() != other.hasQuestSubmit()) return false;
+    if (hasQuestSubmit()) {
+      if (!getQuestSubmit()
+          .equals(other.getQuestSubmit())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -735,6 +888,18 @@ private static final long serialVersionUID = 0L;
     if (hasItemEquip()) {
       hash = (37 * hash) + ITEMEQUIP_FIELD_NUMBER;
       hash = (53 * hash) + getItemEquip().hashCode();
+    }
+    if (hasQuestList()) {
+      hash = (37 * hash) + QUESTLIST_FIELD_NUMBER;
+      hash = (53 * hash) + getQuestList().hashCode();
+    }
+    if (hasQuestAccept()) {
+      hash = (37 * hash) + QUESTACCEPT_FIELD_NUMBER;
+      hash = (53 * hash) + getQuestAccept().hashCode();
+    }
+    if (hasQuestSubmit()) {
+      hash = (37 * hash) + QUESTSUBMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getQuestSubmit().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -935,6 +1100,24 @@ private static final long serialVersionUID = 0L;
         itemEquip_ = null;
         itemEquipBuilder_ = null;
       }
+      if (questListBuilder_ == null) {
+        questList_ = null;
+      } else {
+        questList_ = null;
+        questListBuilder_ = null;
+      }
+      if (questAcceptBuilder_ == null) {
+        questAccept_ = null;
+      } else {
+        questAccept_ = null;
+        questAcceptBuilder_ = null;
+      }
+      if (questSubmitBuilder_ == null) {
+        questSubmit_ = null;
+      } else {
+        questSubmit_ = null;
+        questSubmitBuilder_ = null;
+      }
       return this;
     }
 
@@ -1016,6 +1199,21 @@ private static final long serialVersionUID = 0L;
       } else {
         result.itemEquip_ = itemEquipBuilder_.build();
       }
+      if (questListBuilder_ == null) {
+        result.questList_ = questList_;
+      } else {
+        result.questList_ = questListBuilder_.build();
+      }
+      if (questAcceptBuilder_ == null) {
+        result.questAccept_ = questAccept_;
+      } else {
+        result.questAccept_ = questAcceptBuilder_.build();
+      }
+      if (questSubmitBuilder_ == null) {
+        result.questSubmit_ = questSubmit_;
+      } else {
+        result.questSubmit_ = questSubmitBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -1096,6 +1294,15 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasItemEquip()) {
         mergeItemEquip(other.getItemEquip());
+      }
+      if (other.hasQuestList()) {
+        mergeQuestList(other.getQuestList());
+      }
+      if (other.hasQuestAccept()) {
+        mergeQuestAccept(other.getQuestAccept());
+      }
+      if (other.hasQuestSubmit()) {
+        mergeQuestSubmit(other.getQuestSubmit());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2433,6 +2640,363 @@ private static final long serialVersionUID = 0L;
         itemEquip_ = null;
       }
       return itemEquipBuilder_;
+    }
+
+    private com.duke.protobuf.data.QuestListRequest questList_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestListRequest, com.duke.protobuf.data.QuestListRequest.Builder, com.duke.protobuf.data.QuestListRequestOrBuilder> questListBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     * @return Whether the questList field is set.
+     */
+    public boolean hasQuestList() {
+      return questListBuilder_ != null || questList_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     * @return The questList.
+     */
+    public com.duke.protobuf.data.QuestListRequest getQuestList() {
+      if (questListBuilder_ == null) {
+        return questList_ == null ? com.duke.protobuf.data.QuestListRequest.getDefaultInstance() : questList_;
+      } else {
+        return questListBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public Builder setQuestList(com.duke.protobuf.data.QuestListRequest value) {
+      if (questListBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        questList_ = value;
+        onChanged();
+      } else {
+        questListBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public Builder setQuestList(
+        com.duke.protobuf.data.QuestListRequest.Builder builderForValue) {
+      if (questListBuilder_ == null) {
+        questList_ = builderForValue.build();
+        onChanged();
+      } else {
+        questListBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public Builder mergeQuestList(com.duke.protobuf.data.QuestListRequest value) {
+      if (questListBuilder_ == null) {
+        if (questList_ != null) {
+          questList_ =
+            com.duke.protobuf.data.QuestListRequest.newBuilder(questList_).mergeFrom(value).buildPartial();
+        } else {
+          questList_ = value;
+        }
+        onChanged();
+      } else {
+        questListBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public Builder clearQuestList() {
+      if (questListBuilder_ == null) {
+        questList_ = null;
+        onChanged();
+      } else {
+        questList_ = null;
+        questListBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public com.duke.protobuf.data.QuestListRequest.Builder getQuestListBuilder() {
+      
+      onChanged();
+      return getQuestListFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    public com.duke.protobuf.data.QuestListRequestOrBuilder getQuestListOrBuilder() {
+      if (questListBuilder_ != null) {
+        return questListBuilder_.getMessageOrBuilder();
+      } else {
+        return questList_ == null ?
+            com.duke.protobuf.data.QuestListRequest.getDefaultInstance() : questList_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestListRequest questList = 13;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestListRequest, com.duke.protobuf.data.QuestListRequest.Builder, com.duke.protobuf.data.QuestListRequestOrBuilder> 
+        getQuestListFieldBuilder() {
+      if (questListBuilder_ == null) {
+        questListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.QuestListRequest, com.duke.protobuf.data.QuestListRequest.Builder, com.duke.protobuf.data.QuestListRequestOrBuilder>(
+                getQuestList(),
+                getParentForChildren(),
+                isClean());
+        questList_ = null;
+      }
+      return questListBuilder_;
+    }
+
+    private com.duke.protobuf.data.QuestAcceptRequest questAccept_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestAcceptRequest, com.duke.protobuf.data.QuestAcceptRequest.Builder, com.duke.protobuf.data.QuestAcceptRequestOrBuilder> questAcceptBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     * @return Whether the questAccept field is set.
+     */
+    public boolean hasQuestAccept() {
+      return questAcceptBuilder_ != null || questAccept_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     * @return The questAccept.
+     */
+    public com.duke.protobuf.data.QuestAcceptRequest getQuestAccept() {
+      if (questAcceptBuilder_ == null) {
+        return questAccept_ == null ? com.duke.protobuf.data.QuestAcceptRequest.getDefaultInstance() : questAccept_;
+      } else {
+        return questAcceptBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public Builder setQuestAccept(com.duke.protobuf.data.QuestAcceptRequest value) {
+      if (questAcceptBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        questAccept_ = value;
+        onChanged();
+      } else {
+        questAcceptBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public Builder setQuestAccept(
+        com.duke.protobuf.data.QuestAcceptRequest.Builder builderForValue) {
+      if (questAcceptBuilder_ == null) {
+        questAccept_ = builderForValue.build();
+        onChanged();
+      } else {
+        questAcceptBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public Builder mergeQuestAccept(com.duke.protobuf.data.QuestAcceptRequest value) {
+      if (questAcceptBuilder_ == null) {
+        if (questAccept_ != null) {
+          questAccept_ =
+            com.duke.protobuf.data.QuestAcceptRequest.newBuilder(questAccept_).mergeFrom(value).buildPartial();
+        } else {
+          questAccept_ = value;
+        }
+        onChanged();
+      } else {
+        questAcceptBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public Builder clearQuestAccept() {
+      if (questAcceptBuilder_ == null) {
+        questAccept_ = null;
+        onChanged();
+      } else {
+        questAccept_ = null;
+        questAcceptBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public com.duke.protobuf.data.QuestAcceptRequest.Builder getQuestAcceptBuilder() {
+      
+      onChanged();
+      return getQuestAcceptFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    public com.duke.protobuf.data.QuestAcceptRequestOrBuilder getQuestAcceptOrBuilder() {
+      if (questAcceptBuilder_ != null) {
+        return questAcceptBuilder_.getMessageOrBuilder();
+      } else {
+        return questAccept_ == null ?
+            com.duke.protobuf.data.QuestAcceptRequest.getDefaultInstance() : questAccept_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestAcceptRequest questAccept = 14;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestAcceptRequest, com.duke.protobuf.data.QuestAcceptRequest.Builder, com.duke.protobuf.data.QuestAcceptRequestOrBuilder> 
+        getQuestAcceptFieldBuilder() {
+      if (questAcceptBuilder_ == null) {
+        questAcceptBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.QuestAcceptRequest, com.duke.protobuf.data.QuestAcceptRequest.Builder, com.duke.protobuf.data.QuestAcceptRequestOrBuilder>(
+                getQuestAccept(),
+                getParentForChildren(),
+                isClean());
+        questAccept_ = null;
+      }
+      return questAcceptBuilder_;
+    }
+
+    private com.duke.protobuf.data.QuestSubmitRequest questSubmit_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestSubmitRequest, com.duke.protobuf.data.QuestSubmitRequest.Builder, com.duke.protobuf.data.QuestSubmitRequestOrBuilder> questSubmitBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     * @return Whether the questSubmit field is set.
+     */
+    public boolean hasQuestSubmit() {
+      return questSubmitBuilder_ != null || questSubmit_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     * @return The questSubmit.
+     */
+    public com.duke.protobuf.data.QuestSubmitRequest getQuestSubmit() {
+      if (questSubmitBuilder_ == null) {
+        return questSubmit_ == null ? com.duke.protobuf.data.QuestSubmitRequest.getDefaultInstance() : questSubmit_;
+      } else {
+        return questSubmitBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public Builder setQuestSubmit(com.duke.protobuf.data.QuestSubmitRequest value) {
+      if (questSubmitBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        questSubmit_ = value;
+        onChanged();
+      } else {
+        questSubmitBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public Builder setQuestSubmit(
+        com.duke.protobuf.data.QuestSubmitRequest.Builder builderForValue) {
+      if (questSubmitBuilder_ == null) {
+        questSubmit_ = builderForValue.build();
+        onChanged();
+      } else {
+        questSubmitBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public Builder mergeQuestSubmit(com.duke.protobuf.data.QuestSubmitRequest value) {
+      if (questSubmitBuilder_ == null) {
+        if (questSubmit_ != null) {
+          questSubmit_ =
+            com.duke.protobuf.data.QuestSubmitRequest.newBuilder(questSubmit_).mergeFrom(value).buildPartial();
+        } else {
+          questSubmit_ = value;
+        }
+        onChanged();
+      } else {
+        questSubmitBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public Builder clearQuestSubmit() {
+      if (questSubmitBuilder_ == null) {
+        questSubmit_ = null;
+        onChanged();
+      } else {
+        questSubmit_ = null;
+        questSubmitBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public com.duke.protobuf.data.QuestSubmitRequest.Builder getQuestSubmitBuilder() {
+      
+      onChanged();
+      return getQuestSubmitFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    public com.duke.protobuf.data.QuestSubmitRequestOrBuilder getQuestSubmitOrBuilder() {
+      if (questSubmitBuilder_ != null) {
+        return questSubmitBuilder_.getMessageOrBuilder();
+      } else {
+        return questSubmit_ == null ?
+            com.duke.protobuf.data.QuestSubmitRequest.getDefaultInstance() : questSubmit_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.QuestSubmitRequest, com.duke.protobuf.data.QuestSubmitRequest.Builder, com.duke.protobuf.data.QuestSubmitRequestOrBuilder> 
+        getQuestSubmitFieldBuilder() {
+      if (questSubmitBuilder_ == null) {
+        questSubmitBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.QuestSubmitRequest, com.duke.protobuf.data.QuestSubmitRequest.Builder, com.duke.protobuf.data.QuestSubmitRequestOrBuilder>(
+                getQuestSubmit(),
+                getParentForChildren(),
+                isClean());
+        questSubmit_ = null;
+      }
+      return questSubmitBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

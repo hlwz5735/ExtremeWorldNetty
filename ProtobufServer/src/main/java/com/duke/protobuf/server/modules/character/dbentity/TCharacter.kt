@@ -12,6 +12,7 @@ data class TCharacter(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     var tid: Int? = null,
+    var level: Int = 1,
     var name: String? = null,
     @Column(name = "CLASS")
     @Enumerated(EnumType.ORDINAL)

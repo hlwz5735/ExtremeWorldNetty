@@ -23,6 +23,7 @@ class DataDefineManager(
     var shopDic: Map<Int, ShopDefine> = emptyMap()
     var shopItemDic: Map<Int, Map<Int, ShopItemDefine>> = emptyMap()
     var equipDic: Map<Int, EquipDefine> = emptyMap()
+    var questDic: Map<Int, QuestDefine> = emptyMap()
 
     @PostConstruct
     fun init() {
@@ -58,6 +59,10 @@ class DataDefineManager(
             this.equipDic = objectMapper.readValue(File(equipDefineFile))
         }
         logger.info("加载装备道具信息配置文件成功，配置数：{}", equipDic.size)
+        if (questDefineFile != null) {
+            this.questDic = objectMapper.readValue(File(questDefineFile))
+        }
+        logger.info("加载任务信息配置文件成功，配置数：{}", questDic.size)
     }
 
     companion object {
@@ -71,5 +76,6 @@ class DataDefineManager(
         private val shopDefineFile = this::class.java.classLoader.getResource("data/ShopDefine.txt")?.file
         private val shopItemDefineFile = this::class.java.classLoader.getResource("data/ShopItemDefine.txt")?.file
         private val equipDefineFile = this::class.java.classLoader.getResource("data/EquipDefine.txt")?.file
+        private val questDefineFile = this::class.java.classLoader.getResource("data/QuestDefine.txt")?.file
     }
 }
