@@ -1,59 +1,82 @@
 {
-  "1": {
-    "tid": 1,
-    "name": "战士",
-    "type": "Normal",
-    "clazz": "WARRIOR",
-    "resource": "Character/Warrior",
-    "description": "谁敢挡我？！",
-    "initLevel": 1,
-    "speed": 300
+  "1" : {
+    "resource" : "Character/Warrior",
+    "initLevel" : 1,
+    "name" : "战士",
+    "description" : "谁敢挡我？！",
+    "type" : "Normal",
+    "clazz" : "WARRIOR",
+    "tid" : 1,
+    "speed" : 300
   },
-  "2": {
-    "tid": 2,
-    "name": "法师",
-    "type": "Normal",
-    "clazz": "WIZARD",
-    "resource": "Character/Wizard",
-    "description": "操纵元素魔法的地灵族法师，灵活地运用万物中所蕴含的风地水火四大元素的力量进行战斗，也可以为自己和盟友提供额外的魔法增益。",
-    "initLevel": 1,
-    "speed": 300
+  "2" : {
+    "resource" : "Character/Wizard",
+    "initLevel" : 1,
+    "name" : "法师",
+    "description" : "操纵元素魔法的地灵族法师，灵活地运用万物中所蕴含的风地水火四大元素的力量进行战斗，也可以为自己和盟友提供额外的魔法增益。",
+    "type" : "Normal",
+    "clazz" : "WIZARD",
+    "tid" : 2,
+    "speed" : 300
   },
-  "3": {
-    "tid": 3,
-    "name": "弓箭手",
-    "type": "Normal",
-    "clazz": "ARCHER",
-    "resource": "Character/Archer",
-    "description": "使用弓箭攻击敌人的精灵族女战士，灵活、优雅。",
-    "initLevel": 1,
-    "speed": 300
+  "3" : {
+    "resource" : "Character/Archer",
+    "initLevel" : 1,
+    "name" : "弓箭手",
+    "description" : "使用弓箭攻击敌人的精灵族女战士，灵活、优雅。",
+    "type" : "Normal",
+    "clazz" : "ARCHER",
+    "tid" : 3,
+    "speed" : 300
   },
-  "1001": {
-    "tid": 1001,
-    "name": "恶鬼",
-    "type": "Normal",
-    "clazz": "WARRIOR",
-    "resource": "Monster/M1001",
-    "initLevel": 1,
-    "speed": 300
+  "1005" : {
+    "resource" : "Monster/M1005",
+    "initLevel" : 1,
+    "name" : "死神",
+    "description" : "",
+    "type" : "Normal",
+    "clazz" : "WIZARD",
+    "tid" : 1005,
+    "speed" : 300
   },
-  "1002": {
-    "tid": 1002,
-    "name": "-",
-    "type": "Normal",
-    "clazz": "WIZARD",
-    "resource": "Monster/M1002",
-    "initLevel": 1,
-    "speed": 300
+  "1004" : {
+    "resource" : "Monster/M1004",
+    "initLevel" : 1,
+    "name" : "骷髅兵",
+    "description" : "",
+    "type" : "Normal",
+    "clazz" : "ARCHER",
+    "tid" : 1004,
+    "speed" : 300
   },
-  "1003": {
-    "tid": 1003,
-    "name": "-",
-    "type": "Normal",
-    "clazz": "ARCHER",
-    "resource": "Monster/M1003",
-    "initLevel": 1,
-    "speed": 300
+  "1003" : {
+    "resource" : "Monster/M1003",
+    "initLevel" : 1,
+    "name" : "小恶魔",
+    "description" : "",
+    "type" : "Normal",
+    "clazz" : "WARRIOR",
+    "tid" : 1003,
+    "speed" : 300
+  },
+  "1002" : {
+    "resource" : "Monster/M1002",
+    "initLevel" : 1,
+    "name" : "山丘巨人",
+    "description" : "",
+    "type" : "Normal",
+    "clazz" : "WARRIOR",
+    "tid" : 1002,
+    "speed" : 300
+  },
+  "1001" : {
+    "resource" : "Monster/M1001",
+    "initLevel" : 1,
+    "name" : "恶鬼",
+    "description" : "",
+    "type" : "Normal",
+    "clazz" : "WARRIOR",
+    "tid" : 1001,
+    "speed" : 300
   }
 }

@@ -21,12 +21,21 @@ class MapService(
 ): InitializingBean {
     /** 地图ID - 地图对象的映射表 */
     private val mapDic: MutableMap<Int, GameMap> = ConcurrentHashMap()
+    var updateThreadRunning = false
 
     override fun afterPropertiesSet() {
         this.dataDefineManager.gameMapDic.values.forEach { mapDefine ->
             logger.info("加载地图信息:{}:{}", mapDefine.id, mapDefine.name)
-            this.mapDic[mapDefine.id] = GameMap(mapDefine, gameEntityManager)
+            this.mapDic[mapDefine.id] = GameMap(mapDefine, gameEntityManager, dataDefineManager)
         }
+        updateThreadRunning = true
+        val updateThread = Thread({
+            while (updateThreadRunning) {
+                update()
+                Thread.sleep(100)
+            }
+        })
+        updateThread.start()
     }
 
     operator fun get(key: Int): GameMap? {

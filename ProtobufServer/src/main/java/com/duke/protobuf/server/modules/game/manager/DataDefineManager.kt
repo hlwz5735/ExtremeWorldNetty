@@ -24,6 +24,8 @@ class DataDefineManager(
     var shopItemDic: Map<Int, Map<Int, ShopItemDefine>> = emptyMap()
     var equipDic: Map<Int, EquipDefine> = emptyMap()
     var questDic: Map<Int, QuestDefine> = emptyMap()
+    var spawnRuleDic: Map<Int, Map<Int, SpawnRuleDefine>> = emptyMap()
+    var spawnPointDic: Map<Int, Map<Int, SpawnPointDefine>> = emptyMap()
 
     @PostConstruct
     fun init() {
@@ -63,6 +65,14 @@ class DataDefineManager(
             this.questDic = objectMapper.readValue(File(questDefineFile))
         }
         logger.info("加载任务信息配置文件成功，配置数：{}", questDic.size)
+        if (spawnRuleDefineFile != null) {
+            this.spawnRuleDic = objectMapper.readValue(File(spawnRuleDefineFile))
+        }
+        logger.info("加载刷怪规则配置文件成功，配置数：{}", spawnRuleDic.size)
+        if (spawnPointDefineFile != null) {
+            this.spawnPointDic = objectMapper.readValue(File(spawnPointDefineFile))
+        }
+        logger.info("加载刷怪点信息配置文件成功，配置数：{}", spawnPointDic.size)
     }
 
     companion object {
@@ -77,5 +87,7 @@ class DataDefineManager(
         private val shopItemDefineFile = this::class.java.classLoader.getResource("data/ShopItemDefine.txt")?.file
         private val equipDefineFile = this::class.java.classLoader.getResource("data/EquipDefine.txt")?.file
         private val questDefineFile = this::class.java.classLoader.getResource("data/QuestDefine.txt")?.file
+        private val spawnRuleDefineFile = this::class.java.classLoader.getResource("data/SpawnRuleDefine.txt")?.file
+        private val spawnPointDefineFile = this::class.java.classLoader.getResource("data/SpawnPointDefine.txt")?.file
     }
 }

@@ -10,11 +10,12 @@ open class BaseGameCharacter(
     entityId: Int = 0,
     var dbId: Int = 0,
     var type: CHARACTER_TYPE = CHARACTER_TYPE.UNRECOGNIZED,
-    val tid: Int = 0,
     var level: Int = 1,
     var name: String = "",
     var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,
     var mapId: Int? = null,
+    /** 配置表中的ID */
+    var tid: Int? = null,
     pos: Vector3Int,
     dir: Vector3Int
 ) : GameEntity(entityId, pos, dir) {
@@ -27,7 +28,7 @@ open class BaseGameCharacter(
             .setType(type)
             .setClass_(this.clazz)
             .setLevel(level)
-            .setTid(tid)
+            .setTid(tid ?: 0)
             .setName(this.name.ifEmpty { this.define.name })
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())

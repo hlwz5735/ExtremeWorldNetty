@@ -5,22 +5,29 @@ import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.manager.GameEntityManager
 import com.duke.protobuf.server.modules.game.datadefine.MapDefine
 import com.duke.protobuf.server.modules.game.entity.GameEntity
+import com.duke.protobuf.server.modules.game.entity.Monster
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.modules.game.manager.DataDefineManager
 import com.duke.protobuf.server.modules.game.net.OnlineUser
+import com.duke.protobuf.server.modules.map.manager.MonsterManager
+import com.duke.protobuf.server.modules.map.manager.SpawnManager
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 
 class GameMap(
-    internal val define: MapDefine,
-    private val gameEntityManager: GameEntityManager
+    private val define: MapDefine,
+    private val gameEntityManager: GameEntityManager,
+    dataDefineManager: DataDefineManager,
 ) {
 
     /** 当前地图中的角色列表，键为角色的ID */
     private val characterMap = ConcurrentHashMap<Int, CharacterWithSession>()
+    val monsterManager = MonsterManager(this, gameEntityManager)
+    private val spawnManager = SpawnManager(this, dataDefineManager)
 
     val id get() = define.id
 
-    internal fun playerEnter(character: PlayerCharacter, session: NettySession<OnlineUser>) {
+    fun playerEnter(character: PlayerCharacter, session: NettySession<OnlineUser>) {
         // 在正式发出数据前，给实体ID赋值
         this.gameEntityManager.addToMap(this.id, character)
 
@@ -34,17 +41,24 @@ class GameMap(
             .addCharacters(character.toNetCharacterInfo())
             .build()
         this.characterMap.values.forEach {
-            it.session.channel.writeAndFlush(buildCharEnterResponse(responseForOther))
+            if (it.character.id != character.id) {
+                it.session.channel.writeAndFlush(buildCharEnterResponse(responseForOther))
+            }
         }
 
+        // 向当前玩家发送目前地图上所有的角色（包括玩家、怪物）信息
         this.characterMap[character.id] = CharacterWithSession(session, character)
         val characterList = this.characterMap.values
             .map { it.character.toNetCharacterInfo() }
+            .toList()
+        val monsterList = this.monsterManager.monsterDic.values
+            .map { it.toNetCharacterInfo() }
             .toList()
 
         val response = buildCharEnterResponse(MapCharacterEnterResponse.newBuilder()
             .setMapId(this.id)
             .addAllCharacters(characterList)
+            .addAllCharacters(monsterList)
             .build())
 
         session.channel.writeAndFlush(response)
@@ -78,8 +92,21 @@ class GameMap(
         return builder.build()
     }
 
-    internal fun update() {
-        throw NotImplementedError()
+    fun monsterEnter(monster: Monster) {
+        logger.info("MonsterEnter: Map:{} monsterId:{}", this.id, monster.id)
+        // 向所有玩家角色发送怪物进入的消息
+        val response = MapCharacterEnterResponse.newBuilder()
+            .setMapId(id)
+            // 只包含当前怪物的信息
+            .addCharacters(monster.toNetCharacterInfo())
+            .build()
+        this.characterMap.values.forEach {
+            it.session.channel.writeAndFlush(buildCharEnterResponse(response))
+        }
+    }
+
+    fun update() {
+        spawnManager.update()
     }
 
     /**

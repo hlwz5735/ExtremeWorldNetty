@@ -1,6 +1,7 @@
 package com.duke.protobuf.server
 
 import com.duke.protobuf.netty.ExtremeWorldMessageDistributor
+import com.duke.protobuf.server.modules.map.service.MapService
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.ApplicationContext
@@ -29,6 +30,8 @@ fun main(args: Array<String>) {
     val future = endpoint.start(InetSocketAddress(port))
 
     Runtime.getRuntime().addShutdownHook(Thread {
+        val mapService = context.getBean(MapService::class.java)
+        mapService.updateThreadRunning = false
         endpoint.destroy()
     })
 

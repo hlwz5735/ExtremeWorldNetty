@@ -1,70 +1,78 @@
 {
-  "2": {
-    "1": {
-      "id": 1,
-      "mapId": "2",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 1
+  "2" : {
+    "1" : {
+      "spawnMonId" : 1001,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 1,
+      "mapId" : "2",
+      "remark" : "",
+      "id" : 1
     },
-    "2": {
-      "id": 2,
-      "mapId": "2",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 2
+    "2" : {
+      "spawnMonId" : 1002,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 2,
+      "mapId" : "2",
+      "remark" : "",
+      "id" : 2
     },
-    "3": {
-      "id": 3,
-      "mapId": "2",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 3
+    "3" : {
+      "spawnMonId" : 1003,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 3,
+      "mapId" : "2",
+      "remark" : "",
+      "id" : 3
     },
-    "4": {
-      "id": 4,
-      "mapId": "2",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 4
+    "4" : {
+      "spawnMonId" : 1005,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 4,
+      "mapId" : "2",
+      "remark" : "",
+      "id" : 4
     }
   },
-  "3": {
-    "1": {
-      "id": 1,
-      "mapId": "3",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 1
+  "3" : {
+    "1" : {
+      "spawnMonId" : 1001,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 1,
+      "mapId" : "3",
+      "remark" : "",
+      "id" : 1
     },
-    "2": {
-      "id": 2,
-      "mapId": "3",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 2
+    "2" : {
+      "spawnMonId" : 1002,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 2,
+      "mapId" : "3",
+      "remark" : "",
+      "id" : 2
     },
-    "3": {
-      "id": 3,
-      "mapId": "3",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 3
+    "3" : {
+      "spawnMonId" : 1003,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 3,
+      "mapId" : "3",
+      "remark" : "",
+      "id" : 3
     },
-    "4": {
-      "id": 4,
-      "mapId": "3",
-      "spawnMonId": 1001,
-      "spawnLevel": 1,
-      "spawnPeriod": 60,
-      "spawnPoint": 4
+    "4" : {
+      "spawnMonId" : 1005,
+      "spawnLevel" : 1,
+      "spawnPeriod" : 60,
+      "spawnPoint" : 4,
+      "mapId" : "3",
+      "remark" : "",
+      "id" : 4
     }
   }
 }

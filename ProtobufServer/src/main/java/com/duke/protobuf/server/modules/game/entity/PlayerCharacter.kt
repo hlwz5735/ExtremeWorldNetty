@@ -25,11 +25,12 @@ class PlayerCharacter(
     entityId = 0,
     dbId = tableData.id!!,
     type,
-    tableData.tid!!,
     tableData.level,
     tableData.name!!,
     tableData.clazz,
     tableData.mapId,
+    // TODO: 暂时角色TID根据职业转换
+    tid = tableData.clazz.number,
     pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
     dir = Vector3Int(100, 0, 0)
 ) {
@@ -58,9 +59,9 @@ class PlayerCharacter(
             .setType(type)
             .setClass_(this.clazz)
             .setLevel(level)
-            .setTid(tid)
             .setName(this.name.ifEmpty { this.define.name })
             .setMapId(this.mapId ?: 0)
+            .setTid(this.tid ?: 0)
             .setEntity(this.toNetEntity())
             .setBag(nBag)
             .setEquips(equipBs)
