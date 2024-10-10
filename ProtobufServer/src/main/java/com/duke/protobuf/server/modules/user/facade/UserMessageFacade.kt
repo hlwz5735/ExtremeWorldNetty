@@ -9,7 +9,7 @@ import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.map.service.MapService
 import com.duke.protobuf.server.modules.character.service.CharacterService
 import com.duke.protobuf.server.modules.user.service.UserService
-import com.duke.protobuf.server.modules.user.OnlineUserManager
+import com.duke.protobuf.server.modules.user.OnlineCharacterManager
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.character.service.QuestService
@@ -26,36 +26,33 @@ class UserMessageFacade(
     private val bagService: BagService,
     private val questService: QuestService,
     private val mapService: MapService,
-    private val onlineUserManager: OnlineUserManager,
+    private val onlineCharacterManager: OnlineCharacterManager,
 ) {
     @MessageHandler(UserLoginRequest::class)
     fun onUserLogin(request: UserLoginRequest, channel: Channel): UserLoginResponse {
         logger.info("用户登录请求: 用户名：${request.user}，密码：${request.passward}")
 
-        val result = this.service.onLogin(request.user, request.passward, channel)
+        val result = this.service.userLogin(request.user, request.passward, channel)
         val user = result.first
 
-        return if (user != null) {
-            val builder = UserLoginResponse.newBuilder()
-                .setErrormsg("None")
+        if (user != null) {
+            return UserLoginResponse.newBuilder()
                 .setResult(RESULT.SUCCESS)
-            builder.userinfoBuilder
-                .setId(user.id!!)
-                .setPlayer(
-                    builder.userinfoBuilder.playerBuilder
+                .setErrormsg("None")
+                .setUserinfo(NUserInfo.newBuilder()
+                    .setId(user.id!!)
+                    .setPlayer(NPlayerInfo.newBuilder()
                         .setId(user.player!!.id!!)
-                        .addAllCharacters(user.player!!.characters.map {
-                            NCharacterInfo.newBuilder()
-                                .setId(it.id!!)
-                                .setName(it.name)
-                                .setClass_(it.clazz)
-                                .build()
+                        .addAllCharacters(user.player!!.characters.map { NCharacterInfo.newBuilder()
+                            .setId(it.id!!)
+                            .setName(it.name)
+                            .setClass_(it.clazz)
+                            .setLevel(it.level)
+                            .build()
                         })
-                        .build()
-                )
-            builder.build()
+                    )).build()
         } else {
-            UserLoginResponse.newBuilder()
+            return UserLoginResponse.newBuilder()
                 .setErrormsg(result.second)
                 .setResult(RESULT.FAILED)
                 .build()
@@ -69,7 +66,7 @@ class UserMessageFacade(
         return if (result.first == true) {
             UserRegisterResponse.newBuilder()
                 .setResult(RESULT.SUCCESS)
-                .setErrormsg("NONE")
+                .setErrormsg("注册成功，请登录！")
                 .build()
         } else {
             UserRegisterResponse.newBuilder()
@@ -146,7 +143,9 @@ class UserMessageFacade(
         val playerCharacter = PlayerCharacter(tCharacter, characterService, itemService, questService, bagService)
         session.user.character = playerCharacter
 
-        onlineUserManager.add(session.user)
+        onlineCharacterManager.add(session.user)
+        // 通知朋友上线
+        playerCharacter.friendManager.tellFriendOnline()
 
         // 将玩家角色设置进入所在地图
         mapService.characterEnter(playerCharacter.mapId!!, session)

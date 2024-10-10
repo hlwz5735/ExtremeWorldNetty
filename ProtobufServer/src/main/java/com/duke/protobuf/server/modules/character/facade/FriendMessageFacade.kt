@@ -5,8 +5,9 @@ import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import com.duke.protobuf.server.modules.character.service.FriendService
+import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
-import com.duke.protobuf.server.modules.user.OnlineUserManager
+import com.duke.protobuf.server.modules.user.OnlineCharacterManager
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -15,24 +16,13 @@ import org.springframework.stereotype.Component
 @MessageFacade
 class FriendMessageFacade(
     val service: FriendService,
-    val onlineUserManager: OnlineUserManager,
+    val onlineCharacterManager: OnlineCharacterManager,
 ) {
     @MessageHandler(FriendAddRequest::class)
-    fun onFriendAddRequest(req: FriendAddRequest, channel: Channel): FriendAddResponse? {
-        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
-            ?: return FriendAddResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("用户会话不存在。")
-                .build()
-        val sessionChar = session.user.character
-            ?: return FriendAddResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("指定的角色不存在或超出范围限制。")
-                .build()
-
+    fun onFriendAddRequest(req: FriendAddRequest, sessionChar: PlayerCharacter): FriendAddResponse? {
         var toId: Int = req.toId
         if (req.toId == 0) {
-            val target = onlineUserManager.getByName(req.toName)
+            val target = onlineCharacterManager.getByName(req.toName)
                 ?: return FriendAddResponse.newBuilder()
                     .setResult(RESULT.FAILED)
                     .setErrormsg("指定的朋友不存在或不在线上。")
@@ -40,7 +30,7 @@ class FriendMessageFacade(
             toId = target.character!!.dbId
         }
 
-        val friend = service.getFriendByCharacterId(sessionChar.dbId, toId)
+        val friend = sessionChar.friendManager.getFriend(toId)
         if (friend != null) {
             return FriendAddResponse.newBuilder()
                 .setResult(RESULT.FAILED)
@@ -48,7 +38,7 @@ class FriendMessageFacade(
                 .build()
         }
 
-        val onlineUser = onlineUserManager.getByCharacterId(toId)
+        val onlineUser = onlineCharacterManager[toId]
         if (onlineUser?.character == null) {
             return FriendAddResponse.newBuilder()
                 .setResult(RESULT.FAILED)
@@ -57,7 +47,7 @@ class FriendMessageFacade(
         }
 
         logger.info("转发好友请求 :: FromId: {} FromName: {} toId: {} toName: {}", req.fromId, req.fromName, toId, req.toName)
-        onlineUser.session.channel.writeAndFlush(
+        onlineUser.session.send(
             NetMessage.newBuilder()
                 .setResponse(NetMessageResponse.newBuilder()
                     .setFriendAddReq(FriendAddRequest.newBuilder(req).setToId(toId))
@@ -68,28 +58,18 @@ class FriendMessageFacade(
     }
 
     @MessageHandler(FriendAddResponse::class)
-    fun onFriendAddResponse(res: FriendAddResponse, channel: Channel): FriendAddResponse? {
-        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
-            ?: return FriendAddResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("用户会话不存在。")
-                .build()
-        val sessionChar = session.user.character
-            ?: return FriendAddResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("指定的角色不存在或超出范围限制。")
-                .build()
-        val sender = onlineUserManager.getByCharacterId(res.request.fromId)
+    fun onFriendAddResponse(res: FriendAddResponse, sessionChar: PlayerCharacter): FriendAddResponse? {
+        val sender = onlineCharacterManager[res.request.fromId]
             ?: return FriendAddResponse.newBuilder()
                 .setResult(RESULT.FAILED)
                 .setErrormsg("好友请求发起者已离线。")
                 .build()
         if (res.result == RESULT.SUCCESS) {
             // 处理好友建立
-            service.createFriendRelationship(sessionChar.dbId, sender.character!!.dbId)
+            sessionChar.friendManager.addFriend(sender.character!!.dbId)
 
             // 双方通知
-            sender.session.channel.writeAndFlush(NetMessage.newBuilder()
+            sender.session.send(NetMessage.newBuilder()
                 .setResponse(NetMessageResponse.newBuilder()
                     .setFriendAddRes(res))
                 .build())
@@ -99,7 +79,7 @@ class FriendMessageFacade(
                 .build()
         } else {
             // 拒绝建立关系，转发响应
-            sender.session.channel.writeAndFlush(NetMessage.newBuilder()
+            sender.session.send(NetMessage.newBuilder()
                 .setResponse(NetMessageResponse.newBuilder()
                     .setFriendAddRes(res))
                 .build())
@@ -108,39 +88,16 @@ class FriendMessageFacade(
     }
 
     @MessageHandler(FriendListRequest::class)
-    fun onFriendListRequest(req: FriendListRequest, channel: Channel): FriendListResponse {
-        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
-            ?: return FriendListResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("用户会话不存在。")
-                .build()
-        val sessionChar = session.user.character
-            ?: return FriendListResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("指定的角色不存在或超出范围限制。")
-                .build()
-
-        val friends = service.listFriendsByCharacterId(sessionChar.dbId)
-
+    fun onFriendListRequest(req: FriendListRequest, sessionChar: PlayerCharacter): FriendListResponse {
         return FriendListResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
-            .addAllFriends(friends)
+            .addAllFriends(sessionChar.friendManager.nFriendList)
             .build()
     }
 
     @MessageHandler(FriendRemoveRequest::class)
-    fun onFriendRemoveRequest(req: FriendRemoveRequest, channel: Channel): FriendRemoveResponse {
-        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
-            ?: return FriendRemoveResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("用户会话不存在。")
-                .build()
-        val sessionChar = session.user.character
-            ?: return FriendRemoveResponse.newBuilder()
-                .setResult(RESULT.FAILED)
-                .setErrormsg("指定的角色不存在或超出范围限制。")
-                .build()
-        service.removeRelationship(sessionChar.dbId, req.friendId)
+    fun onFriendRemoveRequest(req: FriendRemoveRequest, sessionChar: PlayerCharacter): FriendRemoveResponse {
+        sessionChar.friendManager.removeFriend(req.friendId)
         return FriendRemoveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
             .build()

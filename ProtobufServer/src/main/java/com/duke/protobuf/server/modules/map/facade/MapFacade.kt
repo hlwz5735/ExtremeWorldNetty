@@ -5,6 +5,7 @@ import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import com.duke.protobuf.server.modules.game.entity.GameEntity
+import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.map.service.MapService
 import io.netty.channel.Channel
@@ -18,9 +19,8 @@ class MapFacade(
 ) {
 
     @MessageHandler(MapEntitySyncRequest::class)
-    fun onMapEntitySync(request: MapEntitySyncRequest, channel: Channel) {
+    fun onMapEntitySync(request: MapEntitySyncRequest, character: PlayerCharacter) {
         val sync = request.entitySync ?: return
-        val character = SessionUtil.getSessionByChannel<OnlineUser>(channel)?.user?.character ?: return
         val mapId = character.mapId ?: return
 
         logger.debug("地图游戏实体对象更新请求：角色id：{}，实体id：{}，事件：{}，地图id：{}",
@@ -34,8 +34,8 @@ class MapFacade(
     @MessageHandler(MapTeleportRequest::class)
     fun onMapTeleport(request: MapTeleportRequest, channel: Channel) {
         val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)!!
-        val teleportId = request.teleporterId ?: return
-        val character = SessionUtil.getSessionByChannel<OnlineUser>(channel)?.user?.character ?: return
+        val character = session.user.character ?: return
+        val teleportId = request.teleporterId
 
         logger.info("地图传送请求：角色id：{}，传送点id：{}", character.id, teleportId)
 

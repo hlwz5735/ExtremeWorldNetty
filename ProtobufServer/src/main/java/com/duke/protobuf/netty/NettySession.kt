@@ -27,7 +27,7 @@ class NettySession<T : SessionUser>(
         channel.writeAndFlush(data)
     }
 
-    fun isCLose(): Boolean {
+    fun isClose(): Boolean {
         return !channel.isActive || channel.isOpen
     }
 

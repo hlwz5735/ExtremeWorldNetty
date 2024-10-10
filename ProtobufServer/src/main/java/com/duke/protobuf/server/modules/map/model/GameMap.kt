@@ -42,7 +42,7 @@ class GameMap(
             .build()
         this.characterMap.values.forEach {
             if (it.character.id != character.id) {
-                it.session.channel.writeAndFlush(buildCharEnterResponse(responseForOther))
+                it.session.send(buildCharEnterResponse(responseForOther))
             }
         }
 
@@ -61,7 +61,7 @@ class GameMap(
             .addAllCharacters(monsterList)
             .build())
 
-        session.channel.writeAndFlush(response)
+        session.send(response)
     }
 
     private fun buildCharEnterResponse(obj: MapCharacterEnterResponse): NetMessage {
@@ -81,7 +81,7 @@ class GameMap(
             .build())
 
         this.characterMap.values.forEach {
-            it.session.channel.writeAndFlush(response)
+            it.session.send(response)
         }
         this.characterMap.remove(character.id)
     }
@@ -101,7 +101,7 @@ class GameMap(
             .addCharacters(monster.toNetCharacterInfo())
             .build()
         this.characterMap.values.forEach {
-            it.session.channel.writeAndFlush(buildCharEnterResponse(response))
+            it.session.send(buildCharEnterResponse(response))
         }
     }
 
@@ -136,7 +136,7 @@ class GameMap(
                 character.direction = gameEntity.direction
                 character.speed = gameEntity.speed
             } else {
-                it.session.channel.writeAndFlush(responseForOther)
+                it.session.send(responseForOther)
             }
         }
     }

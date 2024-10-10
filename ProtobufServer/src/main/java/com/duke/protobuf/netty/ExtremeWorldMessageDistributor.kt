@@ -6,8 +6,10 @@ import com.duke.protobuf.data.RESULT
 import com.duke.protobuf.data.UserGameEnterResponse
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
+import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.user.service.UserService
+import io.netty.channel.Channel
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
@@ -43,41 +45,64 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
     override fun channelRead0(ctx: ChannelHandlerContext, msg: NetMessage) {
         val requests = extractRequests(msg)
 
-        val response = NetMessageResponse.newBuilder()
+        val channel = ctx.channel()
+        val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
+        val sessionChar = session?.user?.character
+
+        val response: NetMessageResponse.Builder
+        if (sessionChar == null) {
+            response = NetMessageResponse.newBuilder()
+        } else {
+            response = sessionChar.getResponseBuilder()
+        }
 
         requests
-            .mapNotNull { req ->
-                val handlerMapping = handlerMap[req::class.java]
-                if (handlerMapping != null) {
-                    // TODO 这里直接拿参数个数作为判断依据，后续可以实现更加优雅的参数绑定逻辑（参考MVC）
-                    if (handlerMapping.method.parameterCount == 1) {
-                        handlerMapping.method.invoke(handlerMapping.instance, req)
-                    } else {
-                        handlerMapping.method.invoke(handlerMapping.instance, req, ctx.channel())
-                    }
-                } else {
-                    null
-                }
-            }
-            // 针对所有正常处理的请求响应体，查找setter并调用以设置值
+            .mapNotNull { req -> doHandleRequest(req, ctx, sessionChar) }
+            // 针对带有响应体信息的处理器返回值（忽略null），查找setter并调用以设置值
             .forEach { respData -> findSetterAndSetField(respData, response) }
 
-        do {
-            val channel = ctx.channel() ?: break
-            val session = SessionUtil.getSessionByChannel<OnlineUser>(channel) ?: break
-            val sessionChar = session.user.character ?: break
-            val statusNotifies = sessionChar.statusManager.collectChangesToResponse()
-            response.setStatusNotify(statusNotifies)
-        } while (false)
+        // 后置处理
+        sessionChar?.postResponseProcess()
 
-        val responseMsg = NetMessage.newBuilder()
-            .setResponse(response.build())
-            .build()
         try {
-            ctx.writeAndFlush(responseMsg)
+            ctx.writeAndFlush(NetMessage.newBuilder().setResponse(response).build())
+            sessionChar?.resetResponseBuilder()
         } catch (ex: Throwable) {
             logger.error("写出数据时发生了异常！", ex)
         }
+    }
+
+    /**
+     * 真正处理消息的入口
+     */
+    private fun doHandleRequest(req: Any, ctx: ChannelHandlerContext, sessionChar: PlayerCharacter?): Any? {
+        try {
+            val handlerMapping = handlerMap[req::class.java]
+            if (handlerMapping != null) {
+                // TODO 这里直接拿参数个数作为判断依据，后续可以实现更加优雅的参数绑定逻辑（参考MVC）
+                return if (handlerMapping.method.parameterCount == 1) {
+                    handlerMapping.method.invoke(handlerMapping.instance, req)
+                } else {
+                    val p = handlerMapping.method.parameters[1]
+                    if (p.type == PlayerCharacter::class.java) {
+                        if (sessionChar != null) {
+                            handlerMapping.method.invoke(handlerMapping.instance, req, sessionChar)
+                        } else {
+                            logger.warn("消息映射方法{}声明需要会话角色，但没有！", handlerMapping.method.name)
+                            null
+                        }
+                    } else if (p.type == Channel::class.java) {
+                        handlerMapping.method.invoke(handlerMapping.instance, req, ctx.channel())
+                    } else {
+                        logger.warn("消息映射方法{}的声明不符合调用约定！", handlerMapping.method.name)
+                        null
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            logger.error("消息处理过程中发生了异常！", e)
+        }
+        return null
     }
 
     private fun findSetterAndSetField(respData: Any, response: NetMessageResponse.Builder?) {

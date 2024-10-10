@@ -5,29 +5,33 @@ import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 
 @Component
-class OnlineUserManager {
-    /** 用户ID - 在线用户的列表 */
+class OnlineCharacterManager {
+    /** 角色ID - 在线用户的列表 */
     private val onlineUsers: MutableMap<Int, OnlineUser> = ConcurrentHashMap()
 
     fun clear() {
         this.onlineUsers.clear()
     }
 
-    operator fun get(id: Int): OnlineUser? {
-        return this.onlineUsers[id]
+    operator fun get(characterId: Int): OnlineUser? {
+        return this.onlineUsers[characterId]
+    }
+
+    fun forEach(func: (OnlineUser) -> Unit) {
+        this.onlineUsers.values.forEach(func)
     }
 
     fun add(user: OnlineUser) {
-        this.onlineUsers[user.id] = user
+        this.onlineUsers[user.character!!.dbId] = user
     }
 
-    fun removeById(id: Int) {
-        this.onlineUsers.remove(id)
+    fun removeByCharacterId(characterId: Int): OnlineUser? {
+        return this.onlineUsers.remove(characterId)
     }
 
-    fun getByCharacterId(characterId: Int): OnlineUser? {
+    fun getByUserId(userId: Int): OnlineUser? {
         for (onlineUser in this.onlineUsers.values) {
-            if (onlineUser.character?.dbId == characterId) {
+            if (onlineUser.id == userId) {
                 return onlineUser
             }
         }
