@@ -22,6 +22,7 @@ class CharacterService(
         val player = session.user.tableData.player!!
 
         val character = TCharacter(
+            // FIXME: 这里配置ID直接是职业枚举转数字
             tid = clazz.ordinal,
             clazz = clazz,
             name = name,

@@ -4,25 +4,25 @@
 package com.duke.protobuf.data;
 
 /**
- * Protobuf type {@code com.duke.protobuf.data.MapCharacterLeaveResponse}
+ * Protobuf type {@code com.duke.protobuf.data.FriendListRequest}
  */
-public final class MapCharacterLeaveResponse extends
+public final class FriendListRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.MapCharacterLeaveResponse)
-    MapCharacterLeaveResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.FriendListRequest)
+    FriendListRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MapCharacterLeaveResponse.newBuilder() to construct.
-  private MapCharacterLeaveResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use FriendListRequest.newBuilder() to construct.
+  private FriendListRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MapCharacterLeaveResponse() {
+  private FriendListRequest() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MapCharacterLeaveResponse();
+    return new FriendListRequest();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MapCharacterLeaveResponse(
+  private FriendListRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -48,11 +48,6 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-
-            entityId_ = input.readInt32();
-            break;
-          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -76,26 +71,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendListRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_fieldAccessorTable
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendListRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.duke.protobuf.data.MapCharacterLeaveResponse.class, com.duke.protobuf.data.MapCharacterLeaveResponse.Builder.class);
-  }
-
-  public static final int ENTITYID_FIELD_NUMBER = 1;
-  private int entityId_;
-  /**
-   * <code>int32 entityId = 1;</code>
-   * @return The entityId.
-   */
-  @java.lang.Override
-  public int getEntityId() {
-    return entityId_;
+            com.duke.protobuf.data.FriendListRequest.class, com.duke.protobuf.data.FriendListRequest.Builder.class);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -112,9 +96,6 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (entityId_ != 0) {
-      output.writeInt32(1, entityId_);
-    }
     unknownFields.writeTo(output);
   }
 
@@ -124,10 +105,6 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (entityId_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, entityId_);
-    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -138,13 +115,11 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.duke.protobuf.data.MapCharacterLeaveResponse)) {
+    if (!(obj instanceof com.duke.protobuf.data.FriendListRequest)) {
       return super.equals(obj);
     }
-    com.duke.protobuf.data.MapCharacterLeaveResponse other = (com.duke.protobuf.data.MapCharacterLeaveResponse) obj;
+    com.duke.protobuf.data.FriendListRequest other = (com.duke.protobuf.data.FriendListRequest) obj;
 
-    if (getEntityId()
-        != other.getEntityId()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -156,76 +131,74 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ENTITYID_FIELD_NUMBER;
-    hash = (53 * hash) + getEntityId();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(byte[] data)
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseDelimitedFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.FriendListRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseDelimitedFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendListRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -238,7 +211,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.duke.protobuf.data.MapCharacterLeaveResponse prototype) {
+  public static Builder newBuilder(com.duke.protobuf.data.FriendListRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -254,26 +227,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code com.duke.protobuf.data.MapCharacterLeaveResponse}
+   * Protobuf type {@code com.duke.protobuf.data.FriendListRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.MapCharacterLeaveResponse)
-      com.duke.protobuf.data.MapCharacterLeaveResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.FriendListRequest)
+      com.duke.protobuf.data.FriendListRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendListRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_fieldAccessorTable
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendListRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.duke.protobuf.data.MapCharacterLeaveResponse.class, com.duke.protobuf.data.MapCharacterLeaveResponse.Builder.class);
+              com.duke.protobuf.data.FriendListRequest.class, com.duke.protobuf.data.FriendListRequest.Builder.class);
     }
 
-    // Construct using com.duke.protobuf.data.MapCharacterLeaveResponse.newBuilder()
+    // Construct using com.duke.protobuf.data.FriendListRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -291,25 +264,23 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      entityId_ = 0;
-
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendListRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstanceForType() {
-      return com.duke.protobuf.data.MapCharacterLeaveResponse.getDefaultInstance();
+    public com.duke.protobuf.data.FriendListRequest getDefaultInstanceForType() {
+      return com.duke.protobuf.data.FriendListRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse build() {
-      com.duke.protobuf.data.MapCharacterLeaveResponse result = buildPartial();
+    public com.duke.protobuf.data.FriendListRequest build() {
+      com.duke.protobuf.data.FriendListRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -317,9 +288,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse buildPartial() {
-      com.duke.protobuf.data.MapCharacterLeaveResponse result = new com.duke.protobuf.data.MapCharacterLeaveResponse(this);
-      result.entityId_ = entityId_;
+    public com.duke.protobuf.data.FriendListRequest buildPartial() {
+      com.duke.protobuf.data.FriendListRequest result = new com.duke.protobuf.data.FriendListRequest(this);
       onBuilt();
       return result;
     }
@@ -358,19 +328,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.duke.protobuf.data.MapCharacterLeaveResponse) {
-        return mergeFrom((com.duke.protobuf.data.MapCharacterLeaveResponse)other);
+      if (other instanceof com.duke.protobuf.data.FriendListRequest) {
+        return mergeFrom((com.duke.protobuf.data.FriendListRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.duke.protobuf.data.MapCharacterLeaveResponse other) {
-      if (other == com.duke.protobuf.data.MapCharacterLeaveResponse.getDefaultInstance()) return this;
-      if (other.getEntityId() != 0) {
-        setEntityId(other.getEntityId());
-      }
+    public Builder mergeFrom(com.duke.protobuf.data.FriendListRequest other) {
+      if (other == com.duke.protobuf.data.FriendListRequest.getDefaultInstance()) return this;
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -386,48 +353,17 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.duke.protobuf.data.MapCharacterLeaveResponse parsedMessage = null;
+      com.duke.protobuf.data.FriendListRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.duke.protobuf.data.MapCharacterLeaveResponse) e.getUnfinishedMessage();
+        parsedMessage = (com.duke.protobuf.data.FriendListRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
           mergeFrom(parsedMessage);
         }
       }
-      return this;
-    }
-
-    private int entityId_ ;
-    /**
-     * <code>int32 entityId = 1;</code>
-     * @return The entityId.
-     */
-    @java.lang.Override
-    public int getEntityId() {
-      return entityId_;
-    }
-    /**
-     * <code>int32 entityId = 1;</code>
-     * @param value The entityId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setEntityId(int value) {
-      
-      entityId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 entityId = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearEntityId() {
-      
-      entityId_ = 0;
-      onChanged();
       return this;
     }
     @java.lang.Override
@@ -443,41 +379,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.MapCharacterLeaveResponse)
+    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.FriendListRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.MapCharacterLeaveResponse)
-  private static final com.duke.protobuf.data.MapCharacterLeaveResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.FriendListRequest)
+  private static final com.duke.protobuf.data.FriendListRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.duke.protobuf.data.MapCharacterLeaveResponse();
+    DEFAULT_INSTANCE = new com.duke.protobuf.data.FriendListRequest();
   }
 
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstance() {
+  public static com.duke.protobuf.data.FriendListRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MapCharacterLeaveResponse>
-      PARSER = new com.google.protobuf.AbstractParser<MapCharacterLeaveResponse>() {
+  private static final com.google.protobuf.Parser<FriendListRequest>
+      PARSER = new com.google.protobuf.AbstractParser<FriendListRequest>() {
     @java.lang.Override
-    public MapCharacterLeaveResponse parsePartialFrom(
+    public FriendListRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MapCharacterLeaveResponse(input, extensionRegistry);
+      return new FriendListRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MapCharacterLeaveResponse> parser() {
+  public static com.google.protobuf.Parser<FriendListRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MapCharacterLeaveResponse> getParserForType() {
+  public com.google.protobuf.Parser<FriendListRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstanceForType() {
+  public com.duke.protobuf.data.FriendListRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

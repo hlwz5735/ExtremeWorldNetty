@@ -124,22 +124,56 @@ message NPlayerInfo {
     repeated NCharacterInfo characters = 2;
 }
 
-message NCharacterInfo {
+message NQuestInfo {
+    // 任务状态
+    enum QUEST_STATUS {
+        IN_PROGRESS = 0; // 进行中
+        COMPLETED = 1;   // 已完成未提交
+        FINISHED = 2;    // 已完成已提交
+        FAILED = 3;      // 任务失败
+    }
+
+    // 任务ID
+    int32 questId = 1;
+    // 任务实例ID
+    int32 questGuid = 2;
+    // 任务状态
+    QUEST_STATUS status = 3;
+    // 任务目标信息
+    repeated int32 targets = 4;
+}
+
+message NFriendInfo {
     int32 id = 1;
-    int32 tid = 2;
-    string name = 3;
-    CHARACTER_TYPE type = 4;
-    CHARACTER_CLASS class = 5;
-    int32 level = 6;
-    int32 mapId = 7;
-    NEntity entity = 8;
-    int64 carriedMoney = 9;
-    repeated NItemInfo items = 10;
-    NBagInfo bag = 11;
+    NCharacterInfo friendInfo = 2;
+    int32 status = 3;
+}
+
+message NCharacterInfo {
+    // 数据库ID
+    int32 id = 1;
+    // 配置表ID
+    int32 configId = 2;
+    // 实体ID
+    int32 entityId = 3;
+    // 名字
+    string name = 4;
+    CHARACTER_TYPE type = 5;
+    CHARACTER_CLASS class = 6;
+    int32 level = 7;
+    int32 mapId = 8;
+    NEntity entity = 9;
+    int64 carriedMoney = 10;
+    // 道具信息
+    repeated NItemInfo items = 11;
+    // 背包信息
+    NBagInfo bag = 12;
     // 装备信息（字节数组形式）
-    bytes equips = 12;
+    bytes equips = 13;
     // 任务列表信息
-    repeated NQuestInfo quests = 13;
+    repeated NQuestInfo quests = 14;
+    // 好友信息
+    repeated NFriendInfo friends = 15;
 }
 
 message NVector3
@@ -210,6 +244,11 @@ message NetMessageRequest {
     QuestListRequest questList = 13;
     QuestAcceptRequest questAccept = 14;
     QuestSubmitRequest questSubmit = 15;
+
+    FriendAddRequest friendAddReq = 16;
+    FriendAddResponse friendAddRes = 17;
+    FriendListRequest friendList = 18;
+    FriendRemoveRequest friendRemove = 19;
 }
 
 message NetMessageResponse {
@@ -232,6 +271,11 @@ message NetMessageResponse {
     QuestListResponse questList = 12;
     QuestAcceptResponse questAccept = 13;
     QuestSubmitResponse questSubmit = 14;
+
+    FriendAddRequest friendAddReq = 15;
+    FriendAddResponse friendAddRes = 16;
+    FriendListResponse friendList = 17;
+    FriendRemoveResponse friendRemove = 18;
 
     StatusNotify statusNotify = 100;
 }
@@ -308,7 +352,7 @@ message MapCharacterEnterResponse
 
 message MapCharacterLeaveResponse
 {
-    int32 characterId = 1;
+    int32 entityId = 1;
 }
 
 /// 地图实体同步
@@ -355,25 +399,6 @@ message ItemEquipResponse {
 }
 
 /// 任务系统
-message NQuestInfo {
-    // 任务状态
-    enum QUEST_STATUS {
-        IN_PROGRESS = 0; // 进行中
-        COMPLETED = 1;   // 已完成未提交
-        FINISHED = 2;    // 已完成已提交
-        FAILED = 3;      // 任务失败
-    }
-
-    // 任务ID
-    int32 questId = 1;
-    // 任务实例ID
-    int32 questGuid = 2;
-    // 任务状态
-    QUEST_STATUS status = 3;
-    // 任务目标信息
-    repeated int32 targets = 4;
-}
-
 message QuestListRequest {
     // 列表拉取类型
     enum QUEST_LIST_TYPE {
@@ -413,4 +438,36 @@ message QuestAbandonRequest {
 message QuestAbandonResponse {
     RESULT result = 1;
     string errormsg = 2;
+}
+
+/// 好友系统
+// 添加好友请求
+message FriendAddRequest {
+    int32 fromId = 1;
+    string fromName = 2;
+    int32 toId = 3;
+    string toName = 4;
+}
+message FriendAddResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    FriendAddRequest request = 3;
+}
+
+message FriendListRequest {
+}
+message FriendListResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    repeated NFriendInfo friends = 3;
+}
+
+message FriendRemoveRequest {
+    int32 id = 1;
+    int32 friendId = 2;
+}
+message FriendRemoveResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    int32 id = 3;
 }

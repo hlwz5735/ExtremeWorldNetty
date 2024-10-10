@@ -11,26 +11,26 @@ class Monster(
     position: Vector3Int,
     direction: Vector3Int,
 ) : BaseGameCharacter(
-    entityId = 0,
     dbId = 0,
+    configId = spawnMonId,
+    entityId = 0,
     type = CHARACTER_TYPE.Monster,
     level = spawnLevel,
-    name = "怪物",
+    name = "",
     clazz = CHARACTER_CLASS.NONE,
     mapId = null,
-    tid = spawnMonId,
     pos = position,
     dir = direction,
 ) {
     override fun toNetCharacterInfo(): NCharacterInfo {
         return NCharacterInfo.newBuilder()
-            // 本身的ID设为实体ID
-            .setId(id)
+            .setId(entityId)
+            .setEntityId(this.entityId)
+            .setConfigId(this.configId ?: 0)
             .setType(type)
             .setClass_(this.clazz)
             .setLevel(level)
-            .setTid(this.tid ?: 0)
-            .setName(this.name.ifEmpty { this.define.name })
+            .setName(this.name.ifEmpty { tryGetDefine()?.name ?: "Unknown_Monster" })
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())
             .build()

@@ -230,6 +230,58 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 130: {
+            com.duke.protobuf.data.FriendAddRequest.Builder subBuilder = null;
+            if (friendAddReq_ != null) {
+              subBuilder = friendAddReq_.toBuilder();
+            }
+            friendAddReq_ = input.readMessage(com.duke.protobuf.data.FriendAddRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(friendAddReq_);
+              friendAddReq_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 138: {
+            com.duke.protobuf.data.FriendAddResponse.Builder subBuilder = null;
+            if (friendAddRes_ != null) {
+              subBuilder = friendAddRes_.toBuilder();
+            }
+            friendAddRes_ = input.readMessage(com.duke.protobuf.data.FriendAddResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(friendAddRes_);
+              friendAddRes_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 146: {
+            com.duke.protobuf.data.FriendListRequest.Builder subBuilder = null;
+            if (friendList_ != null) {
+              subBuilder = friendList_.toBuilder();
+            }
+            friendList_ = input.readMessage(com.duke.protobuf.data.FriendListRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(friendList_);
+              friendList_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 154: {
+            com.duke.protobuf.data.FriendRemoveRequest.Builder subBuilder = null;
+            if (friendRemove_ != null) {
+              subBuilder = friendRemove_.toBuilder();
+            }
+            friendRemove_ = input.readMessage(com.duke.protobuf.data.FriendRemoveRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(friendRemove_);
+              friendRemove_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -628,6 +680,110 @@ private static final long serialVersionUID = 0L;
     return getQuestSubmit();
   }
 
+  public static final int FRIENDADDREQ_FIELD_NUMBER = 16;
+  private com.duke.protobuf.data.FriendAddRequest friendAddReq_;
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   * @return Whether the friendAddReq field is set.
+   */
+  @java.lang.Override
+  public boolean hasFriendAddReq() {
+    return friendAddReq_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   * @return The friendAddReq.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendAddRequest getFriendAddReq() {
+    return friendAddReq_ == null ? com.duke.protobuf.data.FriendAddRequest.getDefaultInstance() : friendAddReq_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendAddRequestOrBuilder getFriendAddReqOrBuilder() {
+    return getFriendAddReq();
+  }
+
+  public static final int FRIENDADDRES_FIELD_NUMBER = 17;
+  private com.duke.protobuf.data.FriendAddResponse friendAddRes_;
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   * @return Whether the friendAddRes field is set.
+   */
+  @java.lang.Override
+  public boolean hasFriendAddRes() {
+    return friendAddRes_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   * @return The friendAddRes.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendAddResponse getFriendAddRes() {
+    return friendAddRes_ == null ? com.duke.protobuf.data.FriendAddResponse.getDefaultInstance() : friendAddRes_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendAddResponseOrBuilder getFriendAddResOrBuilder() {
+    return getFriendAddRes();
+  }
+
+  public static final int FRIENDLIST_FIELD_NUMBER = 18;
+  private com.duke.protobuf.data.FriendListRequest friendList_;
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   * @return Whether the friendList field is set.
+   */
+  @java.lang.Override
+  public boolean hasFriendList() {
+    return friendList_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   * @return The friendList.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendListRequest getFriendList() {
+    return friendList_ == null ? com.duke.protobuf.data.FriendListRequest.getDefaultInstance() : friendList_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendListRequestOrBuilder getFriendListOrBuilder() {
+    return getFriendList();
+  }
+
+  public static final int FRIENDREMOVE_FIELD_NUMBER = 19;
+  private com.duke.protobuf.data.FriendRemoveRequest friendRemove_;
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   * @return Whether the friendRemove field is set.
+   */
+  @java.lang.Override
+  public boolean hasFriendRemove() {
+    return friendRemove_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   * @return The friendRemove.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendRemoveRequest getFriendRemove() {
+    return friendRemove_ == null ? com.duke.protobuf.data.FriendRemoveRequest.getDefaultInstance() : friendRemove_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.FriendRemoveRequestOrBuilder getFriendRemoveOrBuilder() {
+    return getFriendRemove();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -683,6 +839,18 @@ private static final long serialVersionUID = 0L;
     }
     if (questSubmit_ != null) {
       output.writeMessage(15, getQuestSubmit());
+    }
+    if (friendAddReq_ != null) {
+      output.writeMessage(16, getFriendAddReq());
+    }
+    if (friendAddRes_ != null) {
+      output.writeMessage(17, getFriendAddRes());
+    }
+    if (friendList_ != null) {
+      output.writeMessage(18, getFriendList());
+    }
+    if (friendRemove_ != null) {
+      output.writeMessage(19, getFriendRemove());
     }
     unknownFields.writeTo(output);
   }
@@ -748,6 +916,22 @@ private static final long serialVersionUID = 0L;
     if (questSubmit_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(15, getQuestSubmit());
+    }
+    if (friendAddReq_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(16, getFriendAddReq());
+    }
+    if (friendAddRes_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(17, getFriendAddRes());
+    }
+    if (friendList_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(18, getFriendList());
+    }
+    if (friendRemove_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(19, getFriendRemove());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -834,6 +1018,26 @@ private static final long serialVersionUID = 0L;
       if (!getQuestSubmit()
           .equals(other.getQuestSubmit())) return false;
     }
+    if (hasFriendAddReq() != other.hasFriendAddReq()) return false;
+    if (hasFriendAddReq()) {
+      if (!getFriendAddReq()
+          .equals(other.getFriendAddReq())) return false;
+    }
+    if (hasFriendAddRes() != other.hasFriendAddRes()) return false;
+    if (hasFriendAddRes()) {
+      if (!getFriendAddRes()
+          .equals(other.getFriendAddRes())) return false;
+    }
+    if (hasFriendList() != other.hasFriendList()) return false;
+    if (hasFriendList()) {
+      if (!getFriendList()
+          .equals(other.getFriendList())) return false;
+    }
+    if (hasFriendRemove() != other.hasFriendRemove()) return false;
+    if (hasFriendRemove()) {
+      if (!getFriendRemove()
+          .equals(other.getFriendRemove())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -900,6 +1104,22 @@ private static final long serialVersionUID = 0L;
     if (hasQuestSubmit()) {
       hash = (37 * hash) + QUESTSUBMIT_FIELD_NUMBER;
       hash = (53 * hash) + getQuestSubmit().hashCode();
+    }
+    if (hasFriendAddReq()) {
+      hash = (37 * hash) + FRIENDADDREQ_FIELD_NUMBER;
+      hash = (53 * hash) + getFriendAddReq().hashCode();
+    }
+    if (hasFriendAddRes()) {
+      hash = (37 * hash) + FRIENDADDRES_FIELD_NUMBER;
+      hash = (53 * hash) + getFriendAddRes().hashCode();
+    }
+    if (hasFriendList()) {
+      hash = (37 * hash) + FRIENDLIST_FIELD_NUMBER;
+      hash = (53 * hash) + getFriendList().hashCode();
+    }
+    if (hasFriendRemove()) {
+      hash = (37 * hash) + FRIENDREMOVE_FIELD_NUMBER;
+      hash = (53 * hash) + getFriendRemove().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1118,6 +1338,30 @@ private static final long serialVersionUID = 0L;
         questSubmit_ = null;
         questSubmitBuilder_ = null;
       }
+      if (friendAddReqBuilder_ == null) {
+        friendAddReq_ = null;
+      } else {
+        friendAddReq_ = null;
+        friendAddReqBuilder_ = null;
+      }
+      if (friendAddResBuilder_ == null) {
+        friendAddRes_ = null;
+      } else {
+        friendAddRes_ = null;
+        friendAddResBuilder_ = null;
+      }
+      if (friendListBuilder_ == null) {
+        friendList_ = null;
+      } else {
+        friendList_ = null;
+        friendListBuilder_ = null;
+      }
+      if (friendRemoveBuilder_ == null) {
+        friendRemove_ = null;
+      } else {
+        friendRemove_ = null;
+        friendRemoveBuilder_ = null;
+      }
       return this;
     }
 
@@ -1214,6 +1458,26 @@ private static final long serialVersionUID = 0L;
       } else {
         result.questSubmit_ = questSubmitBuilder_.build();
       }
+      if (friendAddReqBuilder_ == null) {
+        result.friendAddReq_ = friendAddReq_;
+      } else {
+        result.friendAddReq_ = friendAddReqBuilder_.build();
+      }
+      if (friendAddResBuilder_ == null) {
+        result.friendAddRes_ = friendAddRes_;
+      } else {
+        result.friendAddRes_ = friendAddResBuilder_.build();
+      }
+      if (friendListBuilder_ == null) {
+        result.friendList_ = friendList_;
+      } else {
+        result.friendList_ = friendListBuilder_.build();
+      }
+      if (friendRemoveBuilder_ == null) {
+        result.friendRemove_ = friendRemove_;
+      } else {
+        result.friendRemove_ = friendRemoveBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -1303,6 +1567,18 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasQuestSubmit()) {
         mergeQuestSubmit(other.getQuestSubmit());
+      }
+      if (other.hasFriendAddReq()) {
+        mergeFriendAddReq(other.getFriendAddReq());
+      }
+      if (other.hasFriendAddRes()) {
+        mergeFriendAddRes(other.getFriendAddRes());
+      }
+      if (other.hasFriendList()) {
+        mergeFriendList(other.getFriendList());
+      }
+      if (other.hasFriendRemove()) {
+        mergeFriendRemove(other.getFriendRemove());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2997,6 +3273,482 @@ private static final long serialVersionUID = 0L;
         questSubmit_ = null;
       }
       return questSubmitBuilder_;
+    }
+
+    private com.duke.protobuf.data.FriendAddRequest friendAddReq_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendAddRequest, com.duke.protobuf.data.FriendAddRequest.Builder, com.duke.protobuf.data.FriendAddRequestOrBuilder> friendAddReqBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     * @return Whether the friendAddReq field is set.
+     */
+    public boolean hasFriendAddReq() {
+      return friendAddReqBuilder_ != null || friendAddReq_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     * @return The friendAddReq.
+     */
+    public com.duke.protobuf.data.FriendAddRequest getFriendAddReq() {
+      if (friendAddReqBuilder_ == null) {
+        return friendAddReq_ == null ? com.duke.protobuf.data.FriendAddRequest.getDefaultInstance() : friendAddReq_;
+      } else {
+        return friendAddReqBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public Builder setFriendAddReq(com.duke.protobuf.data.FriendAddRequest value) {
+      if (friendAddReqBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        friendAddReq_ = value;
+        onChanged();
+      } else {
+        friendAddReqBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public Builder setFriendAddReq(
+        com.duke.protobuf.data.FriendAddRequest.Builder builderForValue) {
+      if (friendAddReqBuilder_ == null) {
+        friendAddReq_ = builderForValue.build();
+        onChanged();
+      } else {
+        friendAddReqBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public Builder mergeFriendAddReq(com.duke.protobuf.data.FriendAddRequest value) {
+      if (friendAddReqBuilder_ == null) {
+        if (friendAddReq_ != null) {
+          friendAddReq_ =
+            com.duke.protobuf.data.FriendAddRequest.newBuilder(friendAddReq_).mergeFrom(value).buildPartial();
+        } else {
+          friendAddReq_ = value;
+        }
+        onChanged();
+      } else {
+        friendAddReqBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public Builder clearFriendAddReq() {
+      if (friendAddReqBuilder_ == null) {
+        friendAddReq_ = null;
+        onChanged();
+      } else {
+        friendAddReq_ = null;
+        friendAddReqBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public com.duke.protobuf.data.FriendAddRequest.Builder getFriendAddReqBuilder() {
+      
+      onChanged();
+      return getFriendAddReqFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    public com.duke.protobuf.data.FriendAddRequestOrBuilder getFriendAddReqOrBuilder() {
+      if (friendAddReqBuilder_ != null) {
+        return friendAddReqBuilder_.getMessageOrBuilder();
+      } else {
+        return friendAddReq_ == null ?
+            com.duke.protobuf.data.FriendAddRequest.getDefaultInstance() : friendAddReq_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendAddRequest, com.duke.protobuf.data.FriendAddRequest.Builder, com.duke.protobuf.data.FriendAddRequestOrBuilder> 
+        getFriendAddReqFieldBuilder() {
+      if (friendAddReqBuilder_ == null) {
+        friendAddReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.FriendAddRequest, com.duke.protobuf.data.FriendAddRequest.Builder, com.duke.protobuf.data.FriendAddRequestOrBuilder>(
+                getFriendAddReq(),
+                getParentForChildren(),
+                isClean());
+        friendAddReq_ = null;
+      }
+      return friendAddReqBuilder_;
+    }
+
+    private com.duke.protobuf.data.FriendAddResponse friendAddRes_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendAddResponse, com.duke.protobuf.data.FriendAddResponse.Builder, com.duke.protobuf.data.FriendAddResponseOrBuilder> friendAddResBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     * @return Whether the friendAddRes field is set.
+     */
+    public boolean hasFriendAddRes() {
+      return friendAddResBuilder_ != null || friendAddRes_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     * @return The friendAddRes.
+     */
+    public com.duke.protobuf.data.FriendAddResponse getFriendAddRes() {
+      if (friendAddResBuilder_ == null) {
+        return friendAddRes_ == null ? com.duke.protobuf.data.FriendAddResponse.getDefaultInstance() : friendAddRes_;
+      } else {
+        return friendAddResBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public Builder setFriendAddRes(com.duke.protobuf.data.FriendAddResponse value) {
+      if (friendAddResBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        friendAddRes_ = value;
+        onChanged();
+      } else {
+        friendAddResBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public Builder setFriendAddRes(
+        com.duke.protobuf.data.FriendAddResponse.Builder builderForValue) {
+      if (friendAddResBuilder_ == null) {
+        friendAddRes_ = builderForValue.build();
+        onChanged();
+      } else {
+        friendAddResBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public Builder mergeFriendAddRes(com.duke.protobuf.data.FriendAddResponse value) {
+      if (friendAddResBuilder_ == null) {
+        if (friendAddRes_ != null) {
+          friendAddRes_ =
+            com.duke.protobuf.data.FriendAddResponse.newBuilder(friendAddRes_).mergeFrom(value).buildPartial();
+        } else {
+          friendAddRes_ = value;
+        }
+        onChanged();
+      } else {
+        friendAddResBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public Builder clearFriendAddRes() {
+      if (friendAddResBuilder_ == null) {
+        friendAddRes_ = null;
+        onChanged();
+      } else {
+        friendAddRes_ = null;
+        friendAddResBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public com.duke.protobuf.data.FriendAddResponse.Builder getFriendAddResBuilder() {
+      
+      onChanged();
+      return getFriendAddResFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    public com.duke.protobuf.data.FriendAddResponseOrBuilder getFriendAddResOrBuilder() {
+      if (friendAddResBuilder_ != null) {
+        return friendAddResBuilder_.getMessageOrBuilder();
+      } else {
+        return friendAddRes_ == null ?
+            com.duke.protobuf.data.FriendAddResponse.getDefaultInstance() : friendAddRes_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendAddResponse, com.duke.protobuf.data.FriendAddResponse.Builder, com.duke.protobuf.data.FriendAddResponseOrBuilder> 
+        getFriendAddResFieldBuilder() {
+      if (friendAddResBuilder_ == null) {
+        friendAddResBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.FriendAddResponse, com.duke.protobuf.data.FriendAddResponse.Builder, com.duke.protobuf.data.FriendAddResponseOrBuilder>(
+                getFriendAddRes(),
+                getParentForChildren(),
+                isClean());
+        friendAddRes_ = null;
+      }
+      return friendAddResBuilder_;
+    }
+
+    private com.duke.protobuf.data.FriendListRequest friendList_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendListRequest, com.duke.protobuf.data.FriendListRequest.Builder, com.duke.protobuf.data.FriendListRequestOrBuilder> friendListBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     * @return Whether the friendList field is set.
+     */
+    public boolean hasFriendList() {
+      return friendListBuilder_ != null || friendList_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     * @return The friendList.
+     */
+    public com.duke.protobuf.data.FriendListRequest getFriendList() {
+      if (friendListBuilder_ == null) {
+        return friendList_ == null ? com.duke.protobuf.data.FriendListRequest.getDefaultInstance() : friendList_;
+      } else {
+        return friendListBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public Builder setFriendList(com.duke.protobuf.data.FriendListRequest value) {
+      if (friendListBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        friendList_ = value;
+        onChanged();
+      } else {
+        friendListBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public Builder setFriendList(
+        com.duke.protobuf.data.FriendListRequest.Builder builderForValue) {
+      if (friendListBuilder_ == null) {
+        friendList_ = builderForValue.build();
+        onChanged();
+      } else {
+        friendListBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public Builder mergeFriendList(com.duke.protobuf.data.FriendListRequest value) {
+      if (friendListBuilder_ == null) {
+        if (friendList_ != null) {
+          friendList_ =
+            com.duke.protobuf.data.FriendListRequest.newBuilder(friendList_).mergeFrom(value).buildPartial();
+        } else {
+          friendList_ = value;
+        }
+        onChanged();
+      } else {
+        friendListBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public Builder clearFriendList() {
+      if (friendListBuilder_ == null) {
+        friendList_ = null;
+        onChanged();
+      } else {
+        friendList_ = null;
+        friendListBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public com.duke.protobuf.data.FriendListRequest.Builder getFriendListBuilder() {
+      
+      onChanged();
+      return getFriendListFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    public com.duke.protobuf.data.FriendListRequestOrBuilder getFriendListOrBuilder() {
+      if (friendListBuilder_ != null) {
+        return friendListBuilder_.getMessageOrBuilder();
+      } else {
+        return friendList_ == null ?
+            com.duke.protobuf.data.FriendListRequest.getDefaultInstance() : friendList_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendListRequest, com.duke.protobuf.data.FriendListRequest.Builder, com.duke.protobuf.data.FriendListRequestOrBuilder> 
+        getFriendListFieldBuilder() {
+      if (friendListBuilder_ == null) {
+        friendListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.FriendListRequest, com.duke.protobuf.data.FriendListRequest.Builder, com.duke.protobuf.data.FriendListRequestOrBuilder>(
+                getFriendList(),
+                getParentForChildren(),
+                isClean());
+        friendList_ = null;
+      }
+      return friendListBuilder_;
+    }
+
+    private com.duke.protobuf.data.FriendRemoveRequest friendRemove_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendRemoveRequest, com.duke.protobuf.data.FriendRemoveRequest.Builder, com.duke.protobuf.data.FriendRemoveRequestOrBuilder> friendRemoveBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     * @return Whether the friendRemove field is set.
+     */
+    public boolean hasFriendRemove() {
+      return friendRemoveBuilder_ != null || friendRemove_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     * @return The friendRemove.
+     */
+    public com.duke.protobuf.data.FriendRemoveRequest getFriendRemove() {
+      if (friendRemoveBuilder_ == null) {
+        return friendRemove_ == null ? com.duke.protobuf.data.FriendRemoveRequest.getDefaultInstance() : friendRemove_;
+      } else {
+        return friendRemoveBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public Builder setFriendRemove(com.duke.protobuf.data.FriendRemoveRequest value) {
+      if (friendRemoveBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        friendRemove_ = value;
+        onChanged();
+      } else {
+        friendRemoveBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public Builder setFriendRemove(
+        com.duke.protobuf.data.FriendRemoveRequest.Builder builderForValue) {
+      if (friendRemoveBuilder_ == null) {
+        friendRemove_ = builderForValue.build();
+        onChanged();
+      } else {
+        friendRemoveBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public Builder mergeFriendRemove(com.duke.protobuf.data.FriendRemoveRequest value) {
+      if (friendRemoveBuilder_ == null) {
+        if (friendRemove_ != null) {
+          friendRemove_ =
+            com.duke.protobuf.data.FriendRemoveRequest.newBuilder(friendRemove_).mergeFrom(value).buildPartial();
+        } else {
+          friendRemove_ = value;
+        }
+        onChanged();
+      } else {
+        friendRemoveBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public Builder clearFriendRemove() {
+      if (friendRemoveBuilder_ == null) {
+        friendRemove_ = null;
+        onChanged();
+      } else {
+        friendRemove_ = null;
+        friendRemoveBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public com.duke.protobuf.data.FriendRemoveRequest.Builder getFriendRemoveBuilder() {
+      
+      onChanged();
+      return getFriendRemoveFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    public com.duke.protobuf.data.FriendRemoveRequestOrBuilder getFriendRemoveOrBuilder() {
+      if (friendRemoveBuilder_ != null) {
+        return friendRemoveBuilder_.getMessageOrBuilder();
+      } else {
+        return friendRemove_ == null ?
+            com.duke.protobuf.data.FriendRemoveRequest.getDefaultInstance() : friendRemove_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.FriendRemoveRequest, com.duke.protobuf.data.FriendRemoveRequest.Builder, com.duke.protobuf.data.FriendRemoveRequestOrBuilder> 
+        getFriendRemoveFieldBuilder() {
+      if (friendRemoveBuilder_ == null) {
+        friendRemoveBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.FriendRemoveRequest, com.duke.protobuf.data.FriendRemoveRequest.Builder, com.duke.protobuf.data.FriendRemoveRequestOrBuilder>(
+                getFriendRemove(),
+                getParentForChildren(),
+                isClean());
+        friendRemove_ = null;
+      }
+      return friendRemoveBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

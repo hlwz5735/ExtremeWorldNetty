@@ -98,9 +98,9 @@ class UserMessageFacade(
                     session.user.tableData.player?.characters?.map {
                         NCharacterInfo.newBuilder()
                             .setId(it.id ?: 0)
+                            .setConfigId(it.tid ?: 0)
                             .setName(it.name)
                             .setClass_(it.clazz)
-                            .setTid(it.tid ?: 0)
                             .build()
                     } ?: ArrayList<NCharacterInfo>())
                 .build()

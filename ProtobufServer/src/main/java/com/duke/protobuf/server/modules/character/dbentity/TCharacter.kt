@@ -11,9 +11,13 @@ data class TCharacter(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+    /** 配置表中的ID，其他地方都是configId */
     var tid: Int? = null,
     var level: Int = 1,
     var name: String? = null,
+    /** 经验值 */
+    @Column(name = "EXP_VAL")
+    var exp: Long = 0,
     @Column(name = "CLASS")
     @Enumerated(EnumType.ORDINAL)
     var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,

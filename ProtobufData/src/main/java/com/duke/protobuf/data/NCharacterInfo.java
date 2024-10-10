@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
     items_ = java.util.Collections.emptyList();
     equips_ = com.google.protobuf.ByteString.EMPTY;
     quests_ = java.util.Collections.emptyList();
+    friends_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -62,38 +63,43 @@ private static final long serialVersionUID = 0L;
           }
           case 16: {
 
-            tid_ = input.readInt32();
+            configId_ = input.readInt32();
             break;
           }
-          case 26: {
+          case 24: {
+
+            entityId_ = input.readInt32();
+            break;
+          }
+          case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
             name_ = s;
             break;
           }
-          case 32: {
+          case 40: {
             int rawValue = input.readEnum();
 
             type_ = rawValue;
             break;
           }
-          case 40: {
+          case 48: {
             int rawValue = input.readEnum();
 
             class__ = rawValue;
             break;
           }
-          case 48: {
+          case 56: {
 
             level_ = input.readInt32();
             break;
           }
-          case 56: {
+          case 64: {
 
             mapId_ = input.readInt32();
             break;
           }
-          case 66: {
+          case 74: {
             com.duke.protobuf.data.NEntity.Builder subBuilder = null;
             if (entity_ != null) {
               subBuilder = entity_.toBuilder();
@@ -106,12 +112,12 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 72: {
+          case 80: {
 
             carriedMoney_ = input.readInt64();
             break;
           }
-          case 82: {
+          case 90: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               items_ = new java.util.ArrayList<com.duke.protobuf.data.NItemInfo>();
               mutable_bitField0_ |= 0x00000001;
@@ -120,7 +126,7 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(com.duke.protobuf.data.NItemInfo.parser(), extensionRegistry));
             break;
           }
-          case 90: {
+          case 98: {
             com.duke.protobuf.data.NBagInfo.Builder subBuilder = null;
             if (bag_ != null) {
               subBuilder = bag_.toBuilder();
@@ -133,18 +139,27 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 98: {
+          case 106: {
 
             equips_ = input.readBytes();
             break;
           }
-          case 106: {
+          case 114: {
             if (!((mutable_bitField0_ & 0x00000002) != 0)) {
               quests_ = new java.util.ArrayList<com.duke.protobuf.data.NQuestInfo>();
               mutable_bitField0_ |= 0x00000002;
             }
             quests_.add(
                 input.readMessage(com.duke.protobuf.data.NQuestInfo.parser(), extensionRegistry));
+            break;
+          }
+          case 122: {
+            if (!((mutable_bitField0_ & 0x00000004) != 0)) {
+              friends_ = new java.util.ArrayList<com.duke.protobuf.data.NFriendInfo>();
+              mutable_bitField0_ |= 0x00000004;
+            }
+            friends_.add(
+                input.readMessage(com.duke.protobuf.data.NFriendInfo.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -170,6 +185,9 @@ private static final long serialVersionUID = 0L;
       if (((mutable_bitField0_ & 0x00000002) != 0)) {
         quests_ = java.util.Collections.unmodifiableList(quests_);
       }
+      if (((mutable_bitField0_ & 0x00000004) != 0)) {
+        friends_ = java.util.Collections.unmodifiableList(friends_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -190,6 +208,10 @@ private static final long serialVersionUID = 0L;
   public static final int ID_FIELD_NUMBER = 1;
   private int id_;
   /**
+   * <pre>
+   * 数据库ID
+   * </pre>
+   *
    * <code>int32 id = 1;</code>
    * @return The id.
    */
@@ -198,21 +220,44 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int TID_FIELD_NUMBER = 2;
-  private int tid_;
+  public static final int CONFIGID_FIELD_NUMBER = 2;
+  private int configId_;
   /**
-   * <code>int32 tid = 2;</code>
-   * @return The tid.
+   * <pre>
+   * 配置表ID
+   * </pre>
+   *
+   * <code>int32 configId = 2;</code>
+   * @return The configId.
    */
   @java.lang.Override
-  public int getTid() {
-    return tid_;
+  public int getConfigId() {
+    return configId_;
   }
 
-  public static final int NAME_FIELD_NUMBER = 3;
+  public static final int ENTITYID_FIELD_NUMBER = 3;
+  private int entityId_;
+  /**
+   * <pre>
+   * 实体ID
+   * </pre>
+   *
+   * <code>int32 entityId = 3;</code>
+   * @return The entityId.
+   */
+  @java.lang.Override
+  public int getEntityId() {
+    return entityId_;
+  }
+
+  public static final int NAME_FIELD_NUMBER = 4;
   private volatile java.lang.Object name_;
   /**
-   * <code>string name = 3;</code>
+   * <pre>
+   * 名字
+   * </pre>
+   *
+   * <code>string name = 4;</code>
    * @return The name.
    */
   @java.lang.Override
@@ -229,7 +274,11 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string name = 3;</code>
+   * <pre>
+   * 名字
+   * </pre>
+   *
+   * <code>string name = 4;</code>
    * @return The bytes for name.
    */
   @java.lang.Override
@@ -247,17 +296,17 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int TYPE_FIELD_NUMBER = 4;
+  public static final int TYPE_FIELD_NUMBER = 5;
   private int type_;
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
    * @return The enum numeric value on the wire for type.
    */
   @java.lang.Override public int getTypeValue() {
     return type_;
   }
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
    * @return The type.
    */
   @java.lang.Override public com.duke.protobuf.data.CHARACTER_TYPE getType() {
@@ -266,17 +315,17 @@ private static final long serialVersionUID = 0L;
     return result == null ? com.duke.protobuf.data.CHARACTER_TYPE.UNRECOGNIZED : result;
   }
 
-  public static final int CLASS_FIELD_NUMBER = 5;
+  public static final int CLASS_FIELD_NUMBER = 6;
   private int class__;
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
    * @return The enum numeric value on the wire for class.
    */
   @java.lang.Override public int getClass_Value() {
     return class__;
   }
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
    * @return The class.
    */
   @java.lang.Override public com.duke.protobuf.data.CHARACTER_CLASS getClass_() {
@@ -285,10 +334,10 @@ private static final long serialVersionUID = 0L;
     return result == null ? com.duke.protobuf.data.CHARACTER_CLASS.UNRECOGNIZED : result;
   }
 
-  public static final int LEVEL_FIELD_NUMBER = 6;
+  public static final int LEVEL_FIELD_NUMBER = 7;
   private int level_;
   /**
-   * <code>int32 level = 6;</code>
+   * <code>int32 level = 7;</code>
    * @return The level.
    */
   @java.lang.Override
@@ -296,10 +345,10 @@ private static final long serialVersionUID = 0L;
     return level_;
   }
 
-  public static final int MAPID_FIELD_NUMBER = 7;
+  public static final int MAPID_FIELD_NUMBER = 8;
   private int mapId_;
   /**
-   * <code>int32 mapId = 7;</code>
+   * <code>int32 mapId = 8;</code>
    * @return The mapId.
    */
   @java.lang.Override
@@ -307,10 +356,10 @@ private static final long serialVersionUID = 0L;
     return mapId_;
   }
 
-  public static final int ENTITY_FIELD_NUMBER = 8;
+  public static final int ENTITY_FIELD_NUMBER = 9;
   private com.duke.protobuf.data.NEntity entity_;
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    * @return Whether the entity field is set.
    */
   @java.lang.Override
@@ -318,7 +367,7 @@ private static final long serialVersionUID = 0L;
     return entity_ != null;
   }
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    * @return The entity.
    */
   @java.lang.Override
@@ -326,17 +375,17 @@ private static final long serialVersionUID = 0L;
     return entity_ == null ? com.duke.protobuf.data.NEntity.getDefaultInstance() : entity_;
   }
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NEntityOrBuilder getEntityOrBuilder() {
     return getEntity();
   }
 
-  public static final int CARRIEDMONEY_FIELD_NUMBER = 9;
+  public static final int CARRIEDMONEY_FIELD_NUMBER = 10;
   private long carriedMoney_;
   /**
-   * <code>int64 carriedMoney = 9;</code>
+   * <code>int64 carriedMoney = 10;</code>
    * @return The carriedMoney.
    */
   @java.lang.Override
@@ -344,17 +393,25 @@ private static final long serialVersionUID = 0L;
     return carriedMoney_;
   }
 
-  public static final int ITEMS_FIELD_NUMBER = 10;
+  public static final int ITEMS_FIELD_NUMBER = 11;
   private java.util.List<com.duke.protobuf.data.NItemInfo> items_;
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   @java.lang.Override
   public java.util.List<com.duke.protobuf.data.NItemInfo> getItemsList() {
     return items_;
   }
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   @java.lang.Override
   public java.util.List<? extends com.duke.protobuf.data.NItemInfoOrBuilder> 
@@ -362,21 +419,33 @@ private static final long serialVersionUID = 0L;
     return items_;
   }
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   @java.lang.Override
   public int getItemsCount() {
     return items_.size();
   }
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NItemInfo getItems(int index) {
     return items_.get(index);
   }
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NItemInfoOrBuilder getItemsOrBuilder(
@@ -384,10 +453,14 @@ private static final long serialVersionUID = 0L;
     return items_.get(index);
   }
 
-  public static final int BAG_FIELD_NUMBER = 11;
+  public static final int BAG_FIELD_NUMBER = 12;
   private com.duke.protobuf.data.NBagInfo bag_;
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    * @return Whether the bag field is set.
    */
   @java.lang.Override
@@ -395,7 +468,11 @@ private static final long serialVersionUID = 0L;
     return bag_ != null;
   }
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    * @return The bag.
    */
   @java.lang.Override
@@ -403,21 +480,25 @@ private static final long serialVersionUID = 0L;
     return bag_ == null ? com.duke.protobuf.data.NBagInfo.getDefaultInstance() : bag_;
   }
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder() {
     return getBag();
   }
 
-  public static final int EQUIPS_FIELD_NUMBER = 12;
+  public static final int EQUIPS_FIELD_NUMBER = 13;
   private com.google.protobuf.ByteString equips_;
   /**
    * <pre>
    * 装备信息（字节数组形式）
    * </pre>
    *
-   * <code>bytes equips = 12;</code>
+   * <code>bytes equips = 13;</code>
    * @return The equips.
    */
   @java.lang.Override
@@ -425,14 +506,14 @@ private static final long serialVersionUID = 0L;
     return equips_;
   }
 
-  public static final int QUESTS_FIELD_NUMBER = 13;
+  public static final int QUESTS_FIELD_NUMBER = 14;
   private java.util.List<com.duke.protobuf.data.NQuestInfo> quests_;
   /**
    * <pre>
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   @java.lang.Override
   public java.util.List<com.duke.protobuf.data.NQuestInfo> getQuestsList() {
@@ -443,7 +524,7 @@ private static final long serialVersionUID = 0L;
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   @java.lang.Override
   public java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
@@ -455,7 +536,7 @@ private static final long serialVersionUID = 0L;
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   @java.lang.Override
   public int getQuestsCount() {
@@ -466,7 +547,7 @@ private static final long serialVersionUID = 0L;
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NQuestInfo getQuests(int index) {
@@ -477,12 +558,72 @@ private static final long serialVersionUID = 0L;
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   @java.lang.Override
   public com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
       int index) {
     return quests_.get(index);
+  }
+
+  public static final int FRIENDS_FIELD_NUMBER = 15;
+  private java.util.List<com.duke.protobuf.data.NFriendInfo> friends_;
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  @java.lang.Override
+  public java.util.List<com.duke.protobuf.data.NFriendInfo> getFriendsList() {
+    return friends_;
+  }
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends com.duke.protobuf.data.NFriendInfoOrBuilder> 
+      getFriendsOrBuilderList() {
+    return friends_;
+  }
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  @java.lang.Override
+  public int getFriendsCount() {
+    return friends_.size();
+  }
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NFriendInfo getFriends(int index) {
+    return friends_.get(index);
+  }
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.NFriendInfoOrBuilder getFriendsOrBuilder(
+      int index) {
+    return friends_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -502,41 +643,47 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0) {
       output.writeInt32(1, id_);
     }
-    if (tid_ != 0) {
-      output.writeInt32(2, tid_);
+    if (configId_ != 0) {
+      output.writeInt32(2, configId_);
+    }
+    if (entityId_ != 0) {
+      output.writeInt32(3, entityId_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, name_);
     }
     if (type_ != com.duke.protobuf.data.CHARACTER_TYPE.Player.getNumber()) {
-      output.writeEnum(4, type_);
+      output.writeEnum(5, type_);
     }
     if (class__ != com.duke.protobuf.data.CHARACTER_CLASS.NONE.getNumber()) {
-      output.writeEnum(5, class__);
+      output.writeEnum(6, class__);
     }
     if (level_ != 0) {
-      output.writeInt32(6, level_);
+      output.writeInt32(7, level_);
     }
     if (mapId_ != 0) {
-      output.writeInt32(7, mapId_);
+      output.writeInt32(8, mapId_);
     }
     if (entity_ != null) {
-      output.writeMessage(8, getEntity());
+      output.writeMessage(9, getEntity());
     }
     if (carriedMoney_ != 0L) {
-      output.writeInt64(9, carriedMoney_);
+      output.writeInt64(10, carriedMoney_);
     }
     for (int i = 0; i < items_.size(); i++) {
-      output.writeMessage(10, items_.get(i));
+      output.writeMessage(11, items_.get(i));
     }
     if (bag_ != null) {
-      output.writeMessage(11, getBag());
+      output.writeMessage(12, getBag());
     }
     if (!equips_.isEmpty()) {
-      output.writeBytes(12, equips_);
+      output.writeBytes(13, equips_);
     }
     for (int i = 0; i < quests_.size(); i++) {
-      output.writeMessage(13, quests_.get(i));
+      output.writeMessage(14, quests_.get(i));
+    }
+    for (int i = 0; i < friends_.size(); i++) {
+      output.writeMessage(15, friends_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -551,52 +698,60 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, id_);
     }
-    if (tid_ != 0) {
+    if (configId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, tid_);
+        .computeInt32Size(2, configId_);
+    }
+    if (entityId_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(3, entityId_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, name_);
     }
     if (type_ != com.duke.protobuf.data.CHARACTER_TYPE.Player.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(4, type_);
+        .computeEnumSize(5, type_);
     }
     if (class__ != com.duke.protobuf.data.CHARACTER_CLASS.NONE.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(5, class__);
+        .computeEnumSize(6, class__);
     }
     if (level_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(6, level_);
+        .computeInt32Size(7, level_);
     }
     if (mapId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(7, mapId_);
+        .computeInt32Size(8, mapId_);
     }
     if (entity_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, getEntity());
+        .computeMessageSize(9, getEntity());
     }
     if (carriedMoney_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(9, carriedMoney_);
+        .computeInt64Size(10, carriedMoney_);
     }
     for (int i = 0; i < items_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(10, items_.get(i));
+        .computeMessageSize(11, items_.get(i));
     }
     if (bag_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(11, getBag());
+        .computeMessageSize(12, getBag());
     }
     if (!equips_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(12, equips_);
+        .computeBytesSize(13, equips_);
     }
     for (int i = 0; i < quests_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(13, quests_.get(i));
+        .computeMessageSize(14, quests_.get(i));
+    }
+    for (int i = 0; i < friends_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(15, friends_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -615,8 +770,10 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
-    if (getTid()
-        != other.getTid()) return false;
+    if (getConfigId()
+        != other.getConfigId()) return false;
+    if (getEntityId()
+        != other.getEntityId()) return false;
     if (!getName()
         .equals(other.getName())) return false;
     if (type_ != other.type_) return false;
@@ -643,6 +800,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getEquips())) return false;
     if (!getQuestsList()
         .equals(other.getQuestsList())) return false;
+    if (!getFriendsList()
+        .equals(other.getFriendsList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -656,8 +815,10 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
-    hash = (37 * hash) + TID_FIELD_NUMBER;
-    hash = (53 * hash) + getTid();
+    hash = (37 * hash) + CONFIGID_FIELD_NUMBER;
+    hash = (53 * hash) + getConfigId();
+    hash = (37 * hash) + ENTITYID_FIELD_NUMBER;
+    hash = (53 * hash) + getEntityId();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
@@ -688,6 +849,10 @@ private static final long serialVersionUID = 0L;
     if (getQuestsCount() > 0) {
       hash = (37 * hash) + QUESTS_FIELD_NUMBER;
       hash = (53 * hash) + getQuestsList().hashCode();
+    }
+    if (getFriendsCount() > 0) {
+      hash = (37 * hash) + FRIENDS_FIELD_NUMBER;
+      hash = (53 * hash) + getFriendsList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -819,6 +984,7 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
         getItemsFieldBuilder();
         getQuestsFieldBuilder();
+        getFriendsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -826,7 +992,9 @@ private static final long serialVersionUID = 0L;
       super.clear();
       id_ = 0;
 
-      tid_ = 0;
+      configId_ = 0;
+
+      entityId_ = 0;
 
       name_ = "";
 
@@ -866,6 +1034,12 @@ private static final long serialVersionUID = 0L;
       } else {
         questsBuilder_.clear();
       }
+      if (friendsBuilder_ == null) {
+        friends_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+      } else {
+        friendsBuilder_.clear();
+      }
       return this;
     }
 
@@ -894,7 +1068,8 @@ private static final long serialVersionUID = 0L;
       com.duke.protobuf.data.NCharacterInfo result = new com.duke.protobuf.data.NCharacterInfo(this);
       int from_bitField0_ = bitField0_;
       result.id_ = id_;
-      result.tid_ = tid_;
+      result.configId_ = configId_;
+      result.entityId_ = entityId_;
       result.name_ = name_;
       result.type_ = type_;
       result.class__ = class__;
@@ -929,6 +1104,15 @@ private static final long serialVersionUID = 0L;
         result.quests_ = quests_;
       } else {
         result.quests_ = questsBuilder_.build();
+      }
+      if (friendsBuilder_ == null) {
+        if (((bitField0_ & 0x00000004) != 0)) {
+          friends_ = java.util.Collections.unmodifiableList(friends_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.friends_ = friends_;
+      } else {
+        result.friends_ = friendsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -981,8 +1165,11 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0) {
         setId(other.getId());
       }
-      if (other.getTid() != 0) {
-        setTid(other.getTid());
+      if (other.getConfigId() != 0) {
+        setConfigId(other.getConfigId());
+      }
+      if (other.getEntityId() != 0) {
+        setEntityId(other.getEntityId());
       }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
@@ -1064,6 +1251,32 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
+      if (friendsBuilder_ == null) {
+        if (!other.friends_.isEmpty()) {
+          if (friends_.isEmpty()) {
+            friends_ = other.friends_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureFriendsIsMutable();
+            friends_.addAll(other.friends_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.friends_.isEmpty()) {
+          if (friendsBuilder_.isEmpty()) {
+            friendsBuilder_.dispose();
+            friendsBuilder_ = null;
+            friends_ = other.friends_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            friendsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getFriendsFieldBuilder() : null;
+          } else {
+            friendsBuilder_.addAllMessages(other.friends_);
+          }
+        }
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -1096,6 +1309,10 @@ private static final long serialVersionUID = 0L;
 
     private int id_ ;
     /**
+     * <pre>
+     * 数据库ID
+     * </pre>
+     *
      * <code>int32 id = 1;</code>
      * @return The id.
      */
@@ -1104,6 +1321,10 @@ private static final long serialVersionUID = 0L;
       return id_;
     }
     /**
+     * <pre>
+     * 数据库ID
+     * </pre>
+     *
      * <code>int32 id = 1;</code>
      * @param value The id to set.
      * @return This builder for chaining.
@@ -1115,6 +1336,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * 数据库ID
+     * </pre>
+     *
      * <code>int32 id = 1;</code>
      * @return This builder for chaining.
      */
@@ -1125,40 +1350,99 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int tid_ ;
+    private int configId_ ;
     /**
-     * <code>int32 tid = 2;</code>
-     * @return The tid.
+     * <pre>
+     * 配置表ID
+     * </pre>
+     *
+     * <code>int32 configId = 2;</code>
+     * @return The configId.
      */
     @java.lang.Override
-    public int getTid() {
-      return tid_;
+    public int getConfigId() {
+      return configId_;
     }
     /**
-     * <code>int32 tid = 2;</code>
-     * @param value The tid to set.
+     * <pre>
+     * 配置表ID
+     * </pre>
+     *
+     * <code>int32 configId = 2;</code>
+     * @param value The configId to set.
      * @return This builder for chaining.
      */
-    public Builder setTid(int value) {
+    public Builder setConfigId(int value) {
       
-      tid_ = value;
+      configId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 tid = 2;</code>
+     * <pre>
+     * 配置表ID
+     * </pre>
+     *
+     * <code>int32 configId = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearTid() {
+    public Builder clearConfigId() {
       
-      tid_ = 0;
+      configId_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int entityId_ ;
+    /**
+     * <pre>
+     * 实体ID
+     * </pre>
+     *
+     * <code>int32 entityId = 3;</code>
+     * @return The entityId.
+     */
+    @java.lang.Override
+    public int getEntityId() {
+      return entityId_;
+    }
+    /**
+     * <pre>
+     * 实体ID
+     * </pre>
+     *
+     * <code>int32 entityId = 3;</code>
+     * @param value The entityId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEntityId(int value) {
+      
+      entityId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 实体ID
+     * </pre>
+     *
+     * <code>int32 entityId = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEntityId() {
+      
+      entityId_ = 0;
       onChanged();
       return this;
     }
 
     private java.lang.Object name_ = "";
     /**
-     * <code>string name = 3;</code>
+     * <pre>
+     * 名字
+     * </pre>
+     *
+     * <code>string name = 4;</code>
      * @return The name.
      */
     public java.lang.String getName() {
@@ -1174,7 +1458,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string name = 3;</code>
+     * <pre>
+     * 名字
+     * </pre>
+     *
+     * <code>string name = 4;</code>
      * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
@@ -1191,7 +1479,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string name = 3;</code>
+     * <pre>
+     * 名字
+     * </pre>
+     *
+     * <code>string name = 4;</code>
      * @param value The name to set.
      * @return This builder for chaining.
      */
@@ -1206,7 +1498,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string name = 3;</code>
+     * <pre>
+     * 名字
+     * </pre>
+     *
+     * <code>string name = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearName() {
@@ -1216,7 +1512,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string name = 3;</code>
+     * <pre>
+     * 名字
+     * </pre>
+     *
+     * <code>string name = 4;</code>
      * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
@@ -1234,14 +1534,14 @@ private static final long serialVersionUID = 0L;
 
     private int type_ = 0;
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
      * @param value The enum numeric value on the wire for type to set.
      * @return This builder for chaining.
      */
@@ -1252,7 +1552,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
      * @return The type.
      */
     @java.lang.Override
@@ -1262,7 +1562,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? com.duke.protobuf.data.CHARACTER_TYPE.UNRECOGNIZED : result;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
      * @param value The type to set.
      * @return This builder for chaining.
      */
@@ -1276,7 +1576,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearType() {
@@ -1288,14 +1588,14 @@ private static final long serialVersionUID = 0L;
 
     private int class__ = 0;
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
      * @return The enum numeric value on the wire for class.
      */
     @java.lang.Override public int getClass_Value() {
       return class__;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
      * @param value The enum numeric value on the wire for class to set.
      * @return This builder for chaining.
      */
@@ -1306,7 +1606,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
      * @return The class.
      */
     @java.lang.Override
@@ -1316,7 +1616,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? com.duke.protobuf.data.CHARACTER_CLASS.UNRECOGNIZED : result;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
      * @param value The class to set.
      * @return This builder for chaining.
      */
@@ -1330,7 +1630,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+     * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
      * @return This builder for chaining.
      */
     public Builder clearClass_() {
@@ -1342,7 +1642,7 @@ private static final long serialVersionUID = 0L;
 
     private int level_ ;
     /**
-     * <code>int32 level = 6;</code>
+     * <code>int32 level = 7;</code>
      * @return The level.
      */
     @java.lang.Override
@@ -1350,7 +1650,7 @@ private static final long serialVersionUID = 0L;
       return level_;
     }
     /**
-     * <code>int32 level = 6;</code>
+     * <code>int32 level = 7;</code>
      * @param value The level to set.
      * @return This builder for chaining.
      */
@@ -1361,7 +1661,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 level = 6;</code>
+     * <code>int32 level = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearLevel() {
@@ -1373,7 +1673,7 @@ private static final long serialVersionUID = 0L;
 
     private int mapId_ ;
     /**
-     * <code>int32 mapId = 7;</code>
+     * <code>int32 mapId = 8;</code>
      * @return The mapId.
      */
     @java.lang.Override
@@ -1381,7 +1681,7 @@ private static final long serialVersionUID = 0L;
       return mapId_;
     }
     /**
-     * <code>int32 mapId = 7;</code>
+     * <code>int32 mapId = 8;</code>
      * @param value The mapId to set.
      * @return This builder for chaining.
      */
@@ -1392,7 +1692,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 mapId = 7;</code>
+     * <code>int32 mapId = 8;</code>
      * @return This builder for chaining.
      */
     public Builder clearMapId() {
@@ -1406,14 +1706,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.duke.protobuf.data.NEntity, com.duke.protobuf.data.NEntity.Builder, com.duke.protobuf.data.NEntityOrBuilder> entityBuilder_;
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      * @return Whether the entity field is set.
      */
     public boolean hasEntity() {
       return entityBuilder_ != null || entity_ != null;
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      * @return The entity.
      */
     public com.duke.protobuf.data.NEntity getEntity() {
@@ -1424,7 +1724,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public Builder setEntity(com.duke.protobuf.data.NEntity value) {
       if (entityBuilder_ == null) {
@@ -1440,7 +1740,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public Builder setEntity(
         com.duke.protobuf.data.NEntity.Builder builderForValue) {
@@ -1454,7 +1754,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public Builder mergeEntity(com.duke.protobuf.data.NEntity value) {
       if (entityBuilder_ == null) {
@@ -1472,7 +1772,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public Builder clearEntity() {
       if (entityBuilder_ == null) {
@@ -1486,7 +1786,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public com.duke.protobuf.data.NEntity.Builder getEntityBuilder() {
       
@@ -1494,7 +1794,7 @@ private static final long serialVersionUID = 0L;
       return getEntityFieldBuilder().getBuilder();
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     public com.duke.protobuf.data.NEntityOrBuilder getEntityOrBuilder() {
       if (entityBuilder_ != null) {
@@ -1505,7 +1805,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+     * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.duke.protobuf.data.NEntity, com.duke.protobuf.data.NEntity.Builder, com.duke.protobuf.data.NEntityOrBuilder> 
@@ -1523,7 +1823,7 @@ private static final long serialVersionUID = 0L;
 
     private long carriedMoney_ ;
     /**
-     * <code>int64 carriedMoney = 9;</code>
+     * <code>int64 carriedMoney = 10;</code>
      * @return The carriedMoney.
      */
     @java.lang.Override
@@ -1531,7 +1831,7 @@ private static final long serialVersionUID = 0L;
       return carriedMoney_;
     }
     /**
-     * <code>int64 carriedMoney = 9;</code>
+     * <code>int64 carriedMoney = 10;</code>
      * @param value The carriedMoney to set.
      * @return This builder for chaining.
      */
@@ -1542,7 +1842,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int64 carriedMoney = 9;</code>
+     * <code>int64 carriedMoney = 10;</code>
      * @return This builder for chaining.
      */
     public Builder clearCarriedMoney() {
@@ -1565,7 +1865,11 @@ private static final long serialVersionUID = 0L;
         com.duke.protobuf.data.NItemInfo, com.duke.protobuf.data.NItemInfo.Builder, com.duke.protobuf.data.NItemInfoOrBuilder> itemsBuilder_;
 
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public java.util.List<com.duke.protobuf.data.NItemInfo> getItemsList() {
       if (itemsBuilder_ == null) {
@@ -1575,7 +1879,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public int getItemsCount() {
       if (itemsBuilder_ == null) {
@@ -1585,7 +1893,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public com.duke.protobuf.data.NItemInfo getItems(int index) {
       if (itemsBuilder_ == null) {
@@ -1595,7 +1907,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder setItems(
         int index, com.duke.protobuf.data.NItemInfo value) {
@@ -1612,7 +1928,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder setItems(
         int index, com.duke.protobuf.data.NItemInfo.Builder builderForValue) {
@@ -1626,7 +1946,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder addItems(com.duke.protobuf.data.NItemInfo value) {
       if (itemsBuilder_ == null) {
@@ -1642,7 +1966,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder addItems(
         int index, com.duke.protobuf.data.NItemInfo value) {
@@ -1659,7 +1987,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder addItems(
         com.duke.protobuf.data.NItemInfo.Builder builderForValue) {
@@ -1673,7 +2005,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder addItems(
         int index, com.duke.protobuf.data.NItemInfo.Builder builderForValue) {
@@ -1687,7 +2023,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder addAllItems(
         java.lang.Iterable<? extends com.duke.protobuf.data.NItemInfo> values) {
@@ -1702,7 +2042,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder clearItems() {
       if (itemsBuilder_ == null) {
@@ -1715,7 +2059,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public Builder removeItems(int index) {
       if (itemsBuilder_ == null) {
@@ -1728,14 +2076,22 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public com.duke.protobuf.data.NItemInfo.Builder getItemsBuilder(
         int index) {
       return getItemsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public com.duke.protobuf.data.NItemInfoOrBuilder getItemsOrBuilder(
         int index) {
@@ -1745,7 +2101,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public java.util.List<? extends com.duke.protobuf.data.NItemInfoOrBuilder> 
          getItemsOrBuilderList() {
@@ -1756,14 +2116,22 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public com.duke.protobuf.data.NItemInfo.Builder addItemsBuilder() {
       return getItemsFieldBuilder().addBuilder(
           com.duke.protobuf.data.NItemInfo.getDefaultInstance());
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public com.duke.protobuf.data.NItemInfo.Builder addItemsBuilder(
         int index) {
@@ -1771,7 +2139,11 @@ private static final long serialVersionUID = 0L;
           index, com.duke.protobuf.data.NItemInfo.getDefaultInstance());
     }
     /**
-     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+     * <pre>
+     * 道具信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
      */
     public java.util.List<com.duke.protobuf.data.NItemInfo.Builder> 
          getItemsBuilderList() {
@@ -1796,14 +2168,22 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> bagBuilder_;
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      * @return Whether the bag field is set.
      */
     public boolean hasBag() {
       return bagBuilder_ != null || bag_ != null;
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      * @return The bag.
      */
     public com.duke.protobuf.data.NBagInfo getBag() {
@@ -1814,7 +2194,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public Builder setBag(com.duke.protobuf.data.NBagInfo value) {
       if (bagBuilder_ == null) {
@@ -1830,7 +2214,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public Builder setBag(
         com.duke.protobuf.data.NBagInfo.Builder builderForValue) {
@@ -1844,7 +2232,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public Builder mergeBag(com.duke.protobuf.data.NBagInfo value) {
       if (bagBuilder_ == null) {
@@ -1862,7 +2254,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public Builder clearBag() {
       if (bagBuilder_ == null) {
@@ -1876,7 +2272,11 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public com.duke.protobuf.data.NBagInfo.Builder getBagBuilder() {
       
@@ -1884,7 +2284,11 @@ private static final long serialVersionUID = 0L;
       return getBagFieldBuilder().getBuilder();
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     public com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder() {
       if (bagBuilder_ != null) {
@@ -1895,7 +2299,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+     * <pre>
+     * 背包信息
+     * </pre>
+     *
+     * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.duke.protobuf.data.NBagInfo, com.duke.protobuf.data.NBagInfo.Builder, com.duke.protobuf.data.NBagInfoOrBuilder> 
@@ -1917,7 +2325,7 @@ private static final long serialVersionUID = 0L;
      * 装备信息（字节数组形式）
      * </pre>
      *
-     * <code>bytes equips = 12;</code>
+     * <code>bytes equips = 13;</code>
      * @return The equips.
      */
     @java.lang.Override
@@ -1929,7 +2337,7 @@ private static final long serialVersionUID = 0L;
      * 装备信息（字节数组形式）
      * </pre>
      *
-     * <code>bytes equips = 12;</code>
+     * <code>bytes equips = 13;</code>
      * @param value The equips to set.
      * @return This builder for chaining.
      */
@@ -1947,7 +2355,7 @@ private static final long serialVersionUID = 0L;
      * 装备信息（字节数组形式）
      * </pre>
      *
-     * <code>bytes equips = 12;</code>
+     * <code>bytes equips = 13;</code>
      * @return This builder for chaining.
      */
     public Builder clearEquips() {
@@ -1974,7 +2382,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public java.util.List<com.duke.protobuf.data.NQuestInfo> getQuestsList() {
       if (questsBuilder_ == null) {
@@ -1988,7 +2396,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public int getQuestsCount() {
       if (questsBuilder_ == null) {
@@ -2002,7 +2410,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public com.duke.protobuf.data.NQuestInfo getQuests(int index) {
       if (questsBuilder_ == null) {
@@ -2016,7 +2424,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder setQuests(
         int index, com.duke.protobuf.data.NQuestInfo value) {
@@ -2037,7 +2445,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder setQuests(
         int index, com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
@@ -2055,7 +2463,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder addQuests(com.duke.protobuf.data.NQuestInfo value) {
       if (questsBuilder_ == null) {
@@ -2075,7 +2483,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder addQuests(
         int index, com.duke.protobuf.data.NQuestInfo value) {
@@ -2096,7 +2504,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder addQuests(
         com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
@@ -2114,7 +2522,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder addQuests(
         int index, com.duke.protobuf.data.NQuestInfo.Builder builderForValue) {
@@ -2132,7 +2540,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder addAllQuests(
         java.lang.Iterable<? extends com.duke.protobuf.data.NQuestInfo> values) {
@@ -2151,7 +2559,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder clearQuests() {
       if (questsBuilder_ == null) {
@@ -2168,7 +2576,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public Builder removeQuests(int index) {
       if (questsBuilder_ == null) {
@@ -2185,7 +2593,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public com.duke.protobuf.data.NQuestInfo.Builder getQuestsBuilder(
         int index) {
@@ -2196,7 +2604,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
         int index) {
@@ -2210,7 +2618,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
          getQuestsOrBuilderList() {
@@ -2225,7 +2633,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public com.duke.protobuf.data.NQuestInfo.Builder addQuestsBuilder() {
       return getQuestsFieldBuilder().addBuilder(
@@ -2236,7 +2644,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public com.duke.protobuf.data.NQuestInfo.Builder addQuestsBuilder(
         int index) {
@@ -2248,7 +2656,7 @@ private static final long serialVersionUID = 0L;
      * 任务列表信息
      * </pre>
      *
-     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+     * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
      */
     public java.util.List<com.duke.protobuf.data.NQuestInfo.Builder> 
          getQuestsBuilderList() {
@@ -2267,6 +2675,318 @@ private static final long serialVersionUID = 0L;
         quests_ = null;
       }
       return questsBuilder_;
+    }
+
+    private java.util.List<com.duke.protobuf.data.NFriendInfo> friends_ =
+      java.util.Collections.emptyList();
+    private void ensureFriendsIsMutable() {
+      if (!((bitField0_ & 0x00000004) != 0)) {
+        friends_ = new java.util.ArrayList<com.duke.protobuf.data.NFriendInfo>(friends_);
+        bitField0_ |= 0x00000004;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.duke.protobuf.data.NFriendInfo, com.duke.protobuf.data.NFriendInfo.Builder, com.duke.protobuf.data.NFriendInfoOrBuilder> friendsBuilder_;
+
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public java.util.List<com.duke.protobuf.data.NFriendInfo> getFriendsList() {
+      if (friendsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(friends_);
+      } else {
+        return friendsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public int getFriendsCount() {
+      if (friendsBuilder_ == null) {
+        return friends_.size();
+      } else {
+        return friendsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public com.duke.protobuf.data.NFriendInfo getFriends(int index) {
+      if (friendsBuilder_ == null) {
+        return friends_.get(index);
+      } else {
+        return friendsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder setFriends(
+        int index, com.duke.protobuf.data.NFriendInfo value) {
+      if (friendsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureFriendsIsMutable();
+        friends_.set(index, value);
+        onChanged();
+      } else {
+        friendsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder setFriends(
+        int index, com.duke.protobuf.data.NFriendInfo.Builder builderForValue) {
+      if (friendsBuilder_ == null) {
+        ensureFriendsIsMutable();
+        friends_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        friendsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder addFriends(com.duke.protobuf.data.NFriendInfo value) {
+      if (friendsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureFriendsIsMutable();
+        friends_.add(value);
+        onChanged();
+      } else {
+        friendsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder addFriends(
+        int index, com.duke.protobuf.data.NFriendInfo value) {
+      if (friendsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureFriendsIsMutable();
+        friends_.add(index, value);
+        onChanged();
+      } else {
+        friendsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder addFriends(
+        com.duke.protobuf.data.NFriendInfo.Builder builderForValue) {
+      if (friendsBuilder_ == null) {
+        ensureFriendsIsMutable();
+        friends_.add(builderForValue.build());
+        onChanged();
+      } else {
+        friendsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder addFriends(
+        int index, com.duke.protobuf.data.NFriendInfo.Builder builderForValue) {
+      if (friendsBuilder_ == null) {
+        ensureFriendsIsMutable();
+        friends_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        friendsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder addAllFriends(
+        java.lang.Iterable<? extends com.duke.protobuf.data.NFriendInfo> values) {
+      if (friendsBuilder_ == null) {
+        ensureFriendsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, friends_);
+        onChanged();
+      } else {
+        friendsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder clearFriends() {
+      if (friendsBuilder_ == null) {
+        friends_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+      } else {
+        friendsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public Builder removeFriends(int index) {
+      if (friendsBuilder_ == null) {
+        ensureFriendsIsMutable();
+        friends_.remove(index);
+        onChanged();
+      } else {
+        friendsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public com.duke.protobuf.data.NFriendInfo.Builder getFriendsBuilder(
+        int index) {
+      return getFriendsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public com.duke.protobuf.data.NFriendInfoOrBuilder getFriendsOrBuilder(
+        int index) {
+      if (friendsBuilder_ == null) {
+        return friends_.get(index);  } else {
+        return friendsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public java.util.List<? extends com.duke.protobuf.data.NFriendInfoOrBuilder> 
+         getFriendsOrBuilderList() {
+      if (friendsBuilder_ != null) {
+        return friendsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(friends_);
+      }
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public com.duke.protobuf.data.NFriendInfo.Builder addFriendsBuilder() {
+      return getFriendsFieldBuilder().addBuilder(
+          com.duke.protobuf.data.NFriendInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public com.duke.protobuf.data.NFriendInfo.Builder addFriendsBuilder(
+        int index) {
+      return getFriendsFieldBuilder().addBuilder(
+          index, com.duke.protobuf.data.NFriendInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * 好友信息
+     * </pre>
+     *
+     * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+     */
+    public java.util.List<com.duke.protobuf.data.NFriendInfo.Builder> 
+         getFriendsBuilderList() {
+      return getFriendsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.duke.protobuf.data.NFriendInfo, com.duke.protobuf.data.NFriendInfo.Builder, com.duke.protobuf.data.NFriendInfoOrBuilder> 
+        getFriendsFieldBuilder() {
+      if (friendsBuilder_ == null) {
+        friendsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.duke.protobuf.data.NFriendInfo, com.duke.protobuf.data.NFriendInfo.Builder, com.duke.protobuf.data.NFriendInfoOrBuilder>(
+                friends_,
+                ((bitField0_ & 0x00000004) != 0),
+                getParentForChildren(),
+                isClean());
+        friends_ = null;
+      }
+      return friendsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

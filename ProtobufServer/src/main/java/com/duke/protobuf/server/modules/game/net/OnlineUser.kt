@@ -1,5 +1,6 @@
 package com.duke.protobuf.server.modules.game.net
 
+import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.netty.SessionUser
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.user.dbentity.TUser
@@ -11,4 +12,6 @@ class OnlineUser(
     var character: PlayerCharacter? = null,
 ): SessionUser {
     override val id get() = tableData.id!!
+
+    lateinit var session: NettySession<OnlineUser>
 }

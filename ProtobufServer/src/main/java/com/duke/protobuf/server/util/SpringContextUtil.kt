@@ -18,11 +18,11 @@ class SpringContextUtil : ApplicationContextAware {
             return applicationContext
         }
 
-        fun <T> getBean(name: String): T {
+        fun <T> getBean(name: String): T? {
             return applicationContext.getBean(name) as T
         }
 
-        fun <T> getBean(tClass: Class<T>): T {
+        fun <T> getBean(tClass: Class<T>): T? {
             return applicationContext.getBean(tClass) as T
         }
     }

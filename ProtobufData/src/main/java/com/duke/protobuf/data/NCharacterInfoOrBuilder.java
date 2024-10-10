@@ -8,120 +8,178 @@ public interface NCharacterInfoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * 数据库ID
+   * </pre>
+   *
    * <code>int32 id = 1;</code>
    * @return The id.
    */
   int getId();
 
   /**
-   * <code>int32 tid = 2;</code>
-   * @return The tid.
+   * <pre>
+   * 配置表ID
+   * </pre>
+   *
+   * <code>int32 configId = 2;</code>
+   * @return The configId.
    */
-  int getTid();
+  int getConfigId();
 
   /**
-   * <code>string name = 3;</code>
+   * <pre>
+   * 实体ID
+   * </pre>
+   *
+   * <code>int32 entityId = 3;</code>
+   * @return The entityId.
+   */
+  int getEntityId();
+
+  /**
+   * <pre>
+   * 名字
+   * </pre>
+   *
+   * <code>string name = 4;</code>
    * @return The name.
    */
   java.lang.String getName();
   /**
-   * <code>string name = 3;</code>
+   * <pre>
+   * 名字
+   * </pre>
+   *
+   * <code>string name = 4;</code>
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
       getNameBytes();
 
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
    * @return The enum numeric value on the wire for type.
    */
   int getTypeValue();
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 4;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_TYPE type = 5;</code>
    * @return The type.
    */
   com.duke.protobuf.data.CHARACTER_TYPE getType();
 
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
    * @return The enum numeric value on the wire for class.
    */
   int getClass_Value();
   /**
-   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 5;</code>
+   * <code>.com.duke.protobuf.data.CHARACTER_CLASS class = 6;</code>
    * @return The class.
    */
   com.duke.protobuf.data.CHARACTER_CLASS getClass_();
 
   /**
-   * <code>int32 level = 6;</code>
+   * <code>int32 level = 7;</code>
    * @return The level.
    */
   int getLevel();
 
   /**
-   * <code>int32 mapId = 7;</code>
+   * <code>int32 mapId = 8;</code>
    * @return The mapId.
    */
   int getMapId();
 
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    * @return Whether the entity field is set.
    */
   boolean hasEntity();
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    * @return The entity.
    */
   com.duke.protobuf.data.NEntity getEntity();
   /**
-   * <code>.com.duke.protobuf.data.NEntity entity = 8;</code>
+   * <code>.com.duke.protobuf.data.NEntity entity = 9;</code>
    */
   com.duke.protobuf.data.NEntityOrBuilder getEntityOrBuilder();
 
   /**
-   * <code>int64 carriedMoney = 9;</code>
+   * <code>int64 carriedMoney = 10;</code>
    * @return The carriedMoney.
    */
   long getCarriedMoney();
 
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   java.util.List<com.duke.protobuf.data.NItemInfo> 
       getItemsList();
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   com.duke.protobuf.data.NItemInfo getItems(int index);
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   int getItemsCount();
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   java.util.List<? extends com.duke.protobuf.data.NItemInfoOrBuilder> 
       getItemsOrBuilderList();
   /**
-   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 10;</code>
+   * <pre>
+   * 道具信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NItemInfo items = 11;</code>
    */
   com.duke.protobuf.data.NItemInfoOrBuilder getItemsOrBuilder(
       int index);
 
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    * @return Whether the bag field is set.
    */
   boolean hasBag();
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    * @return The bag.
    */
   com.duke.protobuf.data.NBagInfo getBag();
   /**
-   * <code>.com.duke.protobuf.data.NBagInfo bag = 11;</code>
+   * <pre>
+   * 背包信息
+   * </pre>
+   *
+   * <code>.com.duke.protobuf.data.NBagInfo bag = 12;</code>
    */
   com.duke.protobuf.data.NBagInfoOrBuilder getBagOrBuilder();
 
@@ -130,7 +188,7 @@ public interface NCharacterInfoOrBuilder extends
    * 装备信息（字节数组形式）
    * </pre>
    *
-   * <code>bytes equips = 12;</code>
+   * <code>bytes equips = 13;</code>
    * @return The equips.
    */
   com.google.protobuf.ByteString getEquips();
@@ -140,7 +198,7 @@ public interface NCharacterInfoOrBuilder extends
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   java.util.List<com.duke.protobuf.data.NQuestInfo> 
       getQuestsList();
@@ -149,7 +207,7 @@ public interface NCharacterInfoOrBuilder extends
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   com.duke.protobuf.data.NQuestInfo getQuests(int index);
   /**
@@ -157,7 +215,7 @@ public interface NCharacterInfoOrBuilder extends
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   int getQuestsCount();
   /**
@@ -165,7 +223,7 @@ public interface NCharacterInfoOrBuilder extends
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   java.util.List<? extends com.duke.protobuf.data.NQuestInfoOrBuilder> 
       getQuestsOrBuilderList();
@@ -174,8 +232,52 @@ public interface NCharacterInfoOrBuilder extends
    * 任务列表信息
    * </pre>
    *
-   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 13;</code>
+   * <code>repeated .com.duke.protobuf.data.NQuestInfo quests = 14;</code>
    */
   com.duke.protobuf.data.NQuestInfoOrBuilder getQuestsOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  java.util.List<com.duke.protobuf.data.NFriendInfo> 
+      getFriendsList();
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  com.duke.protobuf.data.NFriendInfo getFriends(int index);
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  int getFriendsCount();
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  java.util.List<? extends com.duke.protobuf.data.NFriendInfoOrBuilder> 
+      getFriendsOrBuilderList();
+  /**
+   * <pre>
+   * 好友信息
+   * </pre>
+   *
+   * <code>repeated .com.duke.protobuf.data.NFriendInfo friends = 15;</code>
+   */
+  com.duke.protobuf.data.NFriendInfoOrBuilder getFriendsOrBuilder(
       int index);
 }

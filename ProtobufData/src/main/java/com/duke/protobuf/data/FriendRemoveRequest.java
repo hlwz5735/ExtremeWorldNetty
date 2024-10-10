@@ -4,25 +4,25 @@
 package com.duke.protobuf.data;
 
 /**
- * Protobuf type {@code com.duke.protobuf.data.MapCharacterLeaveResponse}
+ * Protobuf type {@code com.duke.protobuf.data.FriendRemoveRequest}
  */
-public final class MapCharacterLeaveResponse extends
+public final class FriendRemoveRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.MapCharacterLeaveResponse)
-    MapCharacterLeaveResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:com.duke.protobuf.data.FriendRemoveRequest)
+    FriendRemoveRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MapCharacterLeaveResponse.newBuilder() to construct.
-  private MapCharacterLeaveResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use FriendRemoveRequest.newBuilder() to construct.
+  private FriendRemoveRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MapCharacterLeaveResponse() {
+  private FriendRemoveRequest() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MapCharacterLeaveResponse();
+    return new FriendRemoveRequest();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MapCharacterLeaveResponse(
+  private FriendRemoveRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -50,7 +50,12 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            entityId_ = input.readInt32();
+            id_ = input.readInt32();
+            break;
+          }
+          case 16: {
+
+            friendId_ = input.readInt32();
             break;
           }
           default: {
@@ -76,26 +81,37 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendRemoveRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_fieldAccessorTable
+    return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendRemoveRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.duke.protobuf.data.MapCharacterLeaveResponse.class, com.duke.protobuf.data.MapCharacterLeaveResponse.Builder.class);
+            com.duke.protobuf.data.FriendRemoveRequest.class, com.duke.protobuf.data.FriendRemoveRequest.Builder.class);
   }
 
-  public static final int ENTITYID_FIELD_NUMBER = 1;
-  private int entityId_;
+  public static final int ID_FIELD_NUMBER = 1;
+  private int id_;
   /**
-   * <code>int32 entityId = 1;</code>
-   * @return The entityId.
+   * <code>int32 id = 1;</code>
+   * @return The id.
    */
   @java.lang.Override
-  public int getEntityId() {
-    return entityId_;
+  public int getId() {
+    return id_;
+  }
+
+  public static final int FRIENDID_FIELD_NUMBER = 2;
+  private int friendId_;
+  /**
+   * <code>int32 friendId = 2;</code>
+   * @return The friendId.
+   */
+  @java.lang.Override
+  public int getFriendId() {
+    return friendId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -112,8 +128,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (entityId_ != 0) {
-      output.writeInt32(1, entityId_);
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
+    }
+    if (friendId_ != 0) {
+      output.writeInt32(2, friendId_);
     }
     unknownFields.writeTo(output);
   }
@@ -124,9 +143,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (entityId_ != 0) {
+    if (id_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, entityId_);
+        .computeInt32Size(1, id_);
+    }
+    if (friendId_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, friendId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -138,13 +161,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.duke.protobuf.data.MapCharacterLeaveResponse)) {
+    if (!(obj instanceof com.duke.protobuf.data.FriendRemoveRequest)) {
       return super.equals(obj);
     }
-    com.duke.protobuf.data.MapCharacterLeaveResponse other = (com.duke.protobuf.data.MapCharacterLeaveResponse) obj;
+    com.duke.protobuf.data.FriendRemoveRequest other = (com.duke.protobuf.data.FriendRemoveRequest) obj;
 
-    if (getEntityId()
-        != other.getEntityId()) return false;
+    if (getId()
+        != other.getId()) return false;
+    if (getFriendId()
+        != other.getFriendId()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -156,76 +181,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ENTITYID_FIELD_NUMBER;
-    hash = (53 * hash) + getEntityId();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId();
+    hash = (37 * hash) + FRIENDID_FIELD_NUMBER;
+    hash = (53 * hash) + getFriendId();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(byte[] data)
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseDelimitedFrom(java.io.InputStream input)
+  public static com.duke.protobuf.data.FriendRemoveRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseDelimitedFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse parseFrom(
+  public static com.duke.protobuf.data.FriendRemoveRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -238,7 +265,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.duke.protobuf.data.MapCharacterLeaveResponse prototype) {
+  public static Builder newBuilder(com.duke.protobuf.data.FriendRemoveRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -254,26 +281,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code com.duke.protobuf.data.MapCharacterLeaveResponse}
+   * Protobuf type {@code com.duke.protobuf.data.FriendRemoveRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.MapCharacterLeaveResponse)
-      com.duke.protobuf.data.MapCharacterLeaveResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.duke.protobuf.data.FriendRemoveRequest)
+      com.duke.protobuf.data.FriendRemoveRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendRemoveRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_fieldAccessorTable
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendRemoveRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.duke.protobuf.data.MapCharacterLeaveResponse.class, com.duke.protobuf.data.MapCharacterLeaveResponse.Builder.class);
+              com.duke.protobuf.data.FriendRemoveRequest.class, com.duke.protobuf.data.FriendRemoveRequest.Builder.class);
     }
 
-    // Construct using com.duke.protobuf.data.MapCharacterLeaveResponse.newBuilder()
+    // Construct using com.duke.protobuf.data.FriendRemoveRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -291,7 +318,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      entityId_ = 0;
+      id_ = 0;
+
+      friendId_ = 0;
 
       return this;
     }
@@ -299,17 +328,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_MapCharacterLeaveResponse_descriptor;
+      return com.duke.protobuf.data.Message.internal_static_com_duke_protobuf_data_FriendRemoveRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstanceForType() {
-      return com.duke.protobuf.data.MapCharacterLeaveResponse.getDefaultInstance();
+    public com.duke.protobuf.data.FriendRemoveRequest getDefaultInstanceForType() {
+      return com.duke.protobuf.data.FriendRemoveRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse build() {
-      com.duke.protobuf.data.MapCharacterLeaveResponse result = buildPartial();
+    public com.duke.protobuf.data.FriendRemoveRequest build() {
+      com.duke.protobuf.data.FriendRemoveRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -317,9 +346,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.duke.protobuf.data.MapCharacterLeaveResponse buildPartial() {
-      com.duke.protobuf.data.MapCharacterLeaveResponse result = new com.duke.protobuf.data.MapCharacterLeaveResponse(this);
-      result.entityId_ = entityId_;
+    public com.duke.protobuf.data.FriendRemoveRequest buildPartial() {
+      com.duke.protobuf.data.FriendRemoveRequest result = new com.duke.protobuf.data.FriendRemoveRequest(this);
+      result.id_ = id_;
+      result.friendId_ = friendId_;
       onBuilt();
       return result;
     }
@@ -358,18 +388,21 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.duke.protobuf.data.MapCharacterLeaveResponse) {
-        return mergeFrom((com.duke.protobuf.data.MapCharacterLeaveResponse)other);
+      if (other instanceof com.duke.protobuf.data.FriendRemoveRequest) {
+        return mergeFrom((com.duke.protobuf.data.FriendRemoveRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.duke.protobuf.data.MapCharacterLeaveResponse other) {
-      if (other == com.duke.protobuf.data.MapCharacterLeaveResponse.getDefaultInstance()) return this;
-      if (other.getEntityId() != 0) {
-        setEntityId(other.getEntityId());
+    public Builder mergeFrom(com.duke.protobuf.data.FriendRemoveRequest other) {
+      if (other == com.duke.protobuf.data.FriendRemoveRequest.getDefaultInstance()) return this;
+      if (other.getId() != 0) {
+        setId(other.getId());
+      }
+      if (other.getFriendId() != 0) {
+        setFriendId(other.getFriendId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -386,11 +419,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.duke.protobuf.data.MapCharacterLeaveResponse parsedMessage = null;
+      com.duke.protobuf.data.FriendRemoveRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.duke.protobuf.data.MapCharacterLeaveResponse) e.getUnfinishedMessage();
+        parsedMessage = (com.duke.protobuf.data.FriendRemoveRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -400,33 +433,64 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int entityId_ ;
+    private int id_ ;
     /**
-     * <code>int32 entityId = 1;</code>
-     * @return The entityId.
+     * <code>int32 id = 1;</code>
+     * @return The id.
      */
     @java.lang.Override
-    public int getEntityId() {
-      return entityId_;
+    public int getId() {
+      return id_;
     }
     /**
-     * <code>int32 entityId = 1;</code>
-     * @param value The entityId to set.
+     * <code>int32 id = 1;</code>
+     * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setEntityId(int value) {
+    public Builder setId(int value) {
       
-      entityId_ = value;
+      id_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 entityId = 1;</code>
+     * <code>int32 id = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearEntityId() {
+    public Builder clearId() {
       
-      entityId_ = 0;
+      id_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int friendId_ ;
+    /**
+     * <code>int32 friendId = 2;</code>
+     * @return The friendId.
+     */
+    @java.lang.Override
+    public int getFriendId() {
+      return friendId_;
+    }
+    /**
+     * <code>int32 friendId = 2;</code>
+     * @param value The friendId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFriendId(int value) {
+      
+      friendId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 friendId = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearFriendId() {
+      
+      friendId_ = 0;
       onChanged();
       return this;
     }
@@ -443,41 +507,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.MapCharacterLeaveResponse)
+    // @@protoc_insertion_point(builder_scope:com.duke.protobuf.data.FriendRemoveRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.MapCharacterLeaveResponse)
-  private static final com.duke.protobuf.data.MapCharacterLeaveResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.duke.protobuf.data.FriendRemoveRequest)
+  private static final com.duke.protobuf.data.FriendRemoveRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.duke.protobuf.data.MapCharacterLeaveResponse();
+    DEFAULT_INSTANCE = new com.duke.protobuf.data.FriendRemoveRequest();
   }
 
-  public static com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstance() {
+  public static com.duke.protobuf.data.FriendRemoveRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MapCharacterLeaveResponse>
-      PARSER = new com.google.protobuf.AbstractParser<MapCharacterLeaveResponse>() {
+  private static final com.google.protobuf.Parser<FriendRemoveRequest>
+      PARSER = new com.google.protobuf.AbstractParser<FriendRemoveRequest>() {
     @java.lang.Override
-    public MapCharacterLeaveResponse parsePartialFrom(
+    public FriendRemoveRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MapCharacterLeaveResponse(input, extensionRegistry);
+      return new FriendRemoveRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MapCharacterLeaveResponse> parser() {
+  public static com.google.protobuf.Parser<FriendRemoveRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MapCharacterLeaveResponse> getParserForType() {
+  public com.google.protobuf.Parser<FriendRemoveRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.duke.protobuf.data.MapCharacterLeaveResponse getDefaultInstanceForType() {
+  public com.duke.protobuf.data.FriendRemoveRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -8,8 +8,8 @@ public interface MapCharacterLeaveResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 characterId = 1;</code>
-   * @return The characterId.
+   * <code>int32 entityId = 1;</code>
+   * @return The entityId.
    */
-  int getCharacterId();
+  int getEntityId();
 }

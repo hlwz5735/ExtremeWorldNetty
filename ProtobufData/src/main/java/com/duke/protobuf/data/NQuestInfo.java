@@ -4,10 +4,6 @@
 package com.duke.protobuf.data;
 
 /**
- * <pre>
- *&#47; 任务系统
- * </pre>
- *
  * Protobuf type {@code com.duke.protobuf.data.NQuestInfo}
  */
 public final class NQuestInfo extends
@@ -593,10 +589,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   *&#47; 任务系统
-   * </pre>
-   *
    * Protobuf type {@code com.duke.protobuf.data.NQuestInfo}
    */
   public static final class Builder extends

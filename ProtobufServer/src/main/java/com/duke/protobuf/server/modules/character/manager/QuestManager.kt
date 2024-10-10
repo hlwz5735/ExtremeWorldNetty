@@ -16,7 +16,7 @@ class QuestManager(
     private val service: QuestService,
     private val characterService: CharacterService,
 ) {
-    private val dataManager = SpringContextUtil.getBean(DataDefineManager::class.java)
+    private val dataManager = SpringContextUtil.getBean(DataDefineManager::class.java)!!
 
     fun buildQuestInfos(): List<NQuestInfo> {
         val list: List<TCharacterQuest> = service.listByCharacterId(owner.dbId)

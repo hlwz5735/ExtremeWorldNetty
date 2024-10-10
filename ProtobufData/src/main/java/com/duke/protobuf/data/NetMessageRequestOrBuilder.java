@@ -216,4 +216,64 @@ public interface NetMessageRequestOrBuilder extends
    * <code>.com.duke.protobuf.data.QuestSubmitRequest questSubmit = 15;</code>
    */
   com.duke.protobuf.data.QuestSubmitRequestOrBuilder getQuestSubmitOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   * @return Whether the friendAddReq field is set.
+   */
+  boolean hasFriendAddReq();
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   * @return The friendAddReq.
+   */
+  com.duke.protobuf.data.FriendAddRequest getFriendAddReq();
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddRequest friendAddReq = 16;</code>
+   */
+  com.duke.protobuf.data.FriendAddRequestOrBuilder getFriendAddReqOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   * @return Whether the friendAddRes field is set.
+   */
+  boolean hasFriendAddRes();
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   * @return The friendAddRes.
+   */
+  com.duke.protobuf.data.FriendAddResponse getFriendAddRes();
+  /**
+   * <code>.com.duke.protobuf.data.FriendAddResponse friendAddRes = 17;</code>
+   */
+  com.duke.protobuf.data.FriendAddResponseOrBuilder getFriendAddResOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   * @return Whether the friendList field is set.
+   */
+  boolean hasFriendList();
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   * @return The friendList.
+   */
+  com.duke.protobuf.data.FriendListRequest getFriendList();
+  /**
+   * <code>.com.duke.protobuf.data.FriendListRequest friendList = 18;</code>
+   */
+  com.duke.protobuf.data.FriendListRequestOrBuilder getFriendListOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   * @return Whether the friendRemove field is set.
+   */
+  boolean hasFriendRemove();
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   * @return The friendRemove.
+   */
+  com.duke.protobuf.data.FriendRemoveRequest getFriendRemove();
+  /**
+   * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
+   */
+  com.duke.protobuf.data.FriendRemoveRequestOrBuilder getFriendRemoveOrBuilder();
 }

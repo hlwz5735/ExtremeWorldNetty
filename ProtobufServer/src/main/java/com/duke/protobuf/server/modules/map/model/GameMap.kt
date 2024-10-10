@@ -19,9 +19,9 @@ class GameMap(
     private val gameEntityManager: GameEntityManager,
     dataDefineManager: DataDefineManager,
 ) {
-
     /** 当前地图中的角色列表，键为角色的ID */
     private val characterMap = ConcurrentHashMap<Int, CharacterWithSession>()
+
     val monsterManager = MonsterManager(this, gameEntityManager)
     private val spawnManager = SpawnManager(this, dataDefineManager)
 
@@ -77,7 +77,7 @@ class GameMap(
         character.mapId = null
 
         val response = buildCharLeaveResponse(MapCharacterLeaveResponse.newBuilder()
-            .setCharacterId(character.id)
+            .setEntityId(character.id)
             .build())
 
         this.characterMap.values.forEach {

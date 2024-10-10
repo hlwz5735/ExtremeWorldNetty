@@ -3,15 +3,14 @@ package com.duke.protobuf.server.modules.game.entity
 import com.duke.protobuf.data.CHARACTER_TYPE
 import com.duke.protobuf.data.NBagInfo
 import com.duke.protobuf.data.NCharacterInfo
+import com.duke.protobuf.data.NFriendInfo
 import com.duke.protobuf.server.modules.game.core.Vector3Int
-import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
 import com.duke.protobuf.server.modules.character.manager.ItemManager
 import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
-import com.duke.protobuf.server.modules.character.service.BagService
-import com.duke.protobuf.server.modules.character.service.CharacterService
-import com.duke.protobuf.server.modules.character.service.QuestService
+import com.duke.protobuf.server.modules.character.service.*
+import com.duke.protobuf.server.util.SpringContextUtil
 import com.google.protobuf.ByteString
 
 class PlayerCharacter(
@@ -24,13 +23,13 @@ class PlayerCharacter(
 ) : BaseGameCharacter(
     entityId = 0,
     dbId = tableData.id!!,
+    // TODO: 暂时角色TID根据职业转换
+    configId = tableData.clazz.number,
     type,
     tableData.level,
     tableData.name!!,
     tableData.clazz,
     tableData.mapId,
-    // TODO: 暂时角色TID根据职业转换
-    tid = tableData.clazz.number,
     pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
     dir = Vector3Int(100, 0, 0)
 ) {
@@ -50,24 +49,35 @@ class PlayerCharacter(
             .setUnlocked(tBag.unlockedCellCount ?: 1)
             .setItems(itemsBs)
 
+        // 构建好友信息
+        val nFriends: MutableList<NFriendInfo> = mutableListOf()
+        val friendService = SpringContextUtil.getBean(FriendService::class.java)
+        if (friendService != null) {
+            nFriends.addAll(
+                friendService.listFriendsByCharacterId(dbId))
+        }
+
         // 构建任务信息
         val nQuests = questManager.buildQuestInfos()
 
         val builder = NCharacterInfo.newBuilder()
             // 本身的ID设为数据库ID
             .setId(dbId)
+            .setConfigId(this.configId ?: 0)
+            .setEntityId(this.entityId)
             .setType(type)
             .setClass_(this.clazz)
             .setLevel(level)
-            .setName(this.name.ifEmpty { this.define.name })
+            // .setExp(tableData.exp)
+            .setName(this.name.ifEmpty { tryGetDefine()?.name ?: "Unknown_Char" })
             .setMapId(this.mapId ?: 0)
-            .setTid(this.tid ?: 0)
             .setEntity(this.toNetEntity())
             .setBag(nBag)
             .setEquips(equipBs)
             .setCarriedMoney(tableData.carriedMoney)
             .addAllItems(nItems)
             .addAllQuests(nQuests)
+            .addAllFriends(nFriends)
         return builder.build()
     }
 }

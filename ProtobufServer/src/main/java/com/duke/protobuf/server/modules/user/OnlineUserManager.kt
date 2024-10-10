@@ -24,4 +24,22 @@ class OnlineUserManager {
     fun removeById(id: Int) {
         this.onlineUsers.remove(id)
     }
+
+    fun getByCharacterId(characterId: Int): OnlineUser? {
+        for (onlineUser in this.onlineUsers.values) {
+            if (onlineUser.character?.dbId == characterId) {
+                return onlineUser
+            }
+        }
+        return null
+    }
+
+    fun getByName(name: String): OnlineUser? {
+        for (onlineUser in this.onlineUsers.values) {
+            if (onlineUser.character?.name == name) {
+                return onlineUser
+            }
+        }
+        return null
+    }
 }

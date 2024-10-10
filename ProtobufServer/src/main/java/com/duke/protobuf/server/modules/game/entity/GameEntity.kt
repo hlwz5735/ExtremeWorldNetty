@@ -16,6 +16,8 @@ open class GameEntity(
         speed = netEntity.speed
     )
 
+    val entityId get() = id
+
     fun toNetEntity(): NEntity {
         return NEntity.newBuilder()
             .setId(this.id)

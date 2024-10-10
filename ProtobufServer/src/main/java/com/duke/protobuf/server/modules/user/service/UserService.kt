@@ -37,7 +37,10 @@ class UserService(
         } else {
             logger.debug("用户包含角色{}个", user.player!!.characters.size)
             // 校验通过后，将用户信息放入会话
-            SessionUtil.addSessionToChannel(NettySession(channel, OnlineUser(user)))
+            val onlineUser = OnlineUser(user)
+            val session = NettySession(channel, onlineUser)
+            onlineUser.session = session
+            SessionUtil.addSessionToChannel(session)
             DTuple(user)
         }
     }
