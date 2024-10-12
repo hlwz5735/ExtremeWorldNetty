@@ -149,6 +149,12 @@ message NFriendInfo {
     int32 status = 3;
 }
 
+message NTeamInfo {
+    int32 id = 1;
+    int32 leaderId = 2;
+    repeated NCharacterInfo members = 3;
+}
+
 message NCharacterInfo {
     // 数据库ID
     int32 id = 1;
@@ -249,6 +255,11 @@ message NetMessageRequest {
     FriendAddResponse friendAddRes = 17;
     FriendListRequest friendList = 18;
     FriendRemoveRequest friendRemove = 19;
+
+    TeamInviteRequest teamInviteReq = 20;
+    TeamInviteResponse teamInviteRes = 21;
+    TeamInfoRequest teamInfo = 22;
+    TeamLeaveRequest teamLeave = 23;
 }
 
 message NetMessageResponse {
@@ -276,6 +287,11 @@ message NetMessageResponse {
     FriendAddResponse friendAddRes = 16;
     FriendListResponse friendList = 17;
     FriendRemoveResponse friendRemove = 18;
+
+    TeamInviteRequest teamInviteReq = 19;
+    TeamInviteResponse teamInviteRes = 20;
+    TeamInfoResponse teamInfo = 21;
+    TeamLeaveResponse teamLeave = 22;
 
     StatusNotify statusNotify = 100;
 }
@@ -470,4 +486,36 @@ message FriendRemoveResponse {
     RESULT result = 1;
     string errormsg = 2;
     int32 id = 3;
+}
+
+/// 组队系统
+message TeamInviteRequest {
+    int32 teamId = 1;
+    int32 fromId = 2;
+    string fromName = 3;
+    int32 toId = 4;
+    string toName = 5;
+}
+message TeamInviteResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    TeamInviteRequest request = 3;
+}
+
+message TeamInfoRequest{
+}
+message TeamInfoResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NTeamInfo teamInfo = 3;
+}
+
+message TeamLeaveRequest {
+    int32 teamId = 1;
+    int32 characterId = 2;
+}
+message TeamLeaveResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    int32 characterId = 3;
 }

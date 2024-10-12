@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.character.service
 
 import com.duke.protobuf.data.CHARACTER_CLASS
+import com.duke.protobuf.data.NCharacterInfo
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter

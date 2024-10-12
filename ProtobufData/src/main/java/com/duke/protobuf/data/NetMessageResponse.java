@@ -282,6 +282,58 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 154: {
+            com.duke.protobuf.data.TeamInviteRequest.Builder subBuilder = null;
+            if (teamInviteReq_ != null) {
+              subBuilder = teamInviteReq_.toBuilder();
+            }
+            teamInviteReq_ = input.readMessage(com.duke.protobuf.data.TeamInviteRequest.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(teamInviteReq_);
+              teamInviteReq_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 162: {
+            com.duke.protobuf.data.TeamInviteResponse.Builder subBuilder = null;
+            if (teamInviteRes_ != null) {
+              subBuilder = teamInviteRes_.toBuilder();
+            }
+            teamInviteRes_ = input.readMessage(com.duke.protobuf.data.TeamInviteResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(teamInviteRes_);
+              teamInviteRes_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 170: {
+            com.duke.protobuf.data.TeamInfoResponse.Builder subBuilder = null;
+            if (teamInfo_ != null) {
+              subBuilder = teamInfo_.toBuilder();
+            }
+            teamInfo_ = input.readMessage(com.duke.protobuf.data.TeamInfoResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(teamInfo_);
+              teamInfo_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 178: {
+            com.duke.protobuf.data.TeamLeaveResponse.Builder subBuilder = null;
+            if (teamLeave_ != null) {
+              subBuilder = teamLeave_.toBuilder();
+            }
+            teamLeave_ = input.readMessage(com.duke.protobuf.data.TeamLeaveResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(teamLeave_);
+              teamLeave_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           case 802: {
             com.duke.protobuf.data.StatusNotify.Builder subBuilder = null;
             if (statusNotify_ != null) {
@@ -797,6 +849,110 @@ private static final long serialVersionUID = 0L;
     return getFriendRemove();
   }
 
+  public static final int TEAMINVITEREQ_FIELD_NUMBER = 19;
+  private com.duke.protobuf.data.TeamInviteRequest teamInviteReq_;
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   * @return Whether the teamInviteReq field is set.
+   */
+  @java.lang.Override
+  public boolean hasTeamInviteReq() {
+    return teamInviteReq_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   * @return The teamInviteReq.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInviteRequest getTeamInviteReq() {
+    return teamInviteReq_ == null ? com.duke.protobuf.data.TeamInviteRequest.getDefaultInstance() : teamInviteReq_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInviteRequestOrBuilder getTeamInviteReqOrBuilder() {
+    return getTeamInviteReq();
+  }
+
+  public static final int TEAMINVITERES_FIELD_NUMBER = 20;
+  private com.duke.protobuf.data.TeamInviteResponse teamInviteRes_;
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   * @return Whether the teamInviteRes field is set.
+   */
+  @java.lang.Override
+  public boolean hasTeamInviteRes() {
+    return teamInviteRes_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   * @return The teamInviteRes.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInviteResponse getTeamInviteRes() {
+    return teamInviteRes_ == null ? com.duke.protobuf.data.TeamInviteResponse.getDefaultInstance() : teamInviteRes_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInviteResponseOrBuilder getTeamInviteResOrBuilder() {
+    return getTeamInviteRes();
+  }
+
+  public static final int TEAMINFO_FIELD_NUMBER = 21;
+  private com.duke.protobuf.data.TeamInfoResponse teamInfo_;
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   * @return Whether the teamInfo field is set.
+   */
+  @java.lang.Override
+  public boolean hasTeamInfo() {
+    return teamInfo_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   * @return The teamInfo.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInfoResponse getTeamInfo() {
+    return teamInfo_ == null ? com.duke.protobuf.data.TeamInfoResponse.getDefaultInstance() : teamInfo_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamInfoResponseOrBuilder getTeamInfoOrBuilder() {
+    return getTeamInfo();
+  }
+
+  public static final int TEAMLEAVE_FIELD_NUMBER = 22;
+  private com.duke.protobuf.data.TeamLeaveResponse teamLeave_;
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   * @return Whether the teamLeave field is set.
+   */
+  @java.lang.Override
+  public boolean hasTeamLeave() {
+    return teamLeave_ != null;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   * @return The teamLeave.
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamLeaveResponse getTeamLeave() {
+    return teamLeave_ == null ? com.duke.protobuf.data.TeamLeaveResponse.getDefaultInstance() : teamLeave_;
+  }
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   */
+  @java.lang.Override
+  public com.duke.protobuf.data.TeamLeaveResponseOrBuilder getTeamLeaveOrBuilder() {
+    return getTeamLeave();
+  }
+
   public static final int STATUSNOTIFY_FIELD_NUMBER = 100;
   private com.duke.protobuf.data.StatusNotify statusNotify_;
   /**
@@ -891,6 +1047,18 @@ private static final long serialVersionUID = 0L;
     if (friendRemove_ != null) {
       output.writeMessage(18, getFriendRemove());
     }
+    if (teamInviteReq_ != null) {
+      output.writeMessage(19, getTeamInviteReq());
+    }
+    if (teamInviteRes_ != null) {
+      output.writeMessage(20, getTeamInviteRes());
+    }
+    if (teamInfo_ != null) {
+      output.writeMessage(21, getTeamInfo());
+    }
+    if (teamLeave_ != null) {
+      output.writeMessage(22, getTeamLeave());
+    }
     if (statusNotify_ != null) {
       output.writeMessage(100, getStatusNotify());
     }
@@ -974,6 +1142,22 @@ private static final long serialVersionUID = 0L;
     if (friendRemove_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(18, getFriendRemove());
+    }
+    if (teamInviteReq_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(19, getTeamInviteReq());
+    }
+    if (teamInviteRes_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(20, getTeamInviteRes());
+    }
+    if (teamInfo_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(21, getTeamInfo());
+    }
+    if (teamLeave_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(22, getTeamLeave());
     }
     if (statusNotify_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -1084,6 +1268,26 @@ private static final long serialVersionUID = 0L;
       if (!getFriendRemove()
           .equals(other.getFriendRemove())) return false;
     }
+    if (hasTeamInviteReq() != other.hasTeamInviteReq()) return false;
+    if (hasTeamInviteReq()) {
+      if (!getTeamInviteReq()
+          .equals(other.getTeamInviteReq())) return false;
+    }
+    if (hasTeamInviteRes() != other.hasTeamInviteRes()) return false;
+    if (hasTeamInviteRes()) {
+      if (!getTeamInviteRes()
+          .equals(other.getTeamInviteRes())) return false;
+    }
+    if (hasTeamInfo() != other.hasTeamInfo()) return false;
+    if (hasTeamInfo()) {
+      if (!getTeamInfo()
+          .equals(other.getTeamInfo())) return false;
+    }
+    if (hasTeamLeave() != other.hasTeamLeave()) return false;
+    if (hasTeamLeave()) {
+      if (!getTeamLeave()
+          .equals(other.getTeamLeave())) return false;
+    }
     if (hasStatusNotify() != other.hasStatusNotify()) return false;
     if (hasStatusNotify()) {
       if (!getStatusNotify()
@@ -1171,6 +1375,22 @@ private static final long serialVersionUID = 0L;
     if (hasFriendRemove()) {
       hash = (37 * hash) + FRIENDREMOVE_FIELD_NUMBER;
       hash = (53 * hash) + getFriendRemove().hashCode();
+    }
+    if (hasTeamInviteReq()) {
+      hash = (37 * hash) + TEAMINVITEREQ_FIELD_NUMBER;
+      hash = (53 * hash) + getTeamInviteReq().hashCode();
+    }
+    if (hasTeamInviteRes()) {
+      hash = (37 * hash) + TEAMINVITERES_FIELD_NUMBER;
+      hash = (53 * hash) + getTeamInviteRes().hashCode();
+    }
+    if (hasTeamInfo()) {
+      hash = (37 * hash) + TEAMINFO_FIELD_NUMBER;
+      hash = (53 * hash) + getTeamInfo().hashCode();
+    }
+    if (hasTeamLeave()) {
+      hash = (37 * hash) + TEAMLEAVE_FIELD_NUMBER;
+      hash = (53 * hash) + getTeamLeave().hashCode();
     }
     if (hasStatusNotify()) {
       hash = (37 * hash) + STATUSNOTIFY_FIELD_NUMBER;
@@ -1417,6 +1637,30 @@ private static final long serialVersionUID = 0L;
         friendRemove_ = null;
         friendRemoveBuilder_ = null;
       }
+      if (teamInviteReqBuilder_ == null) {
+        teamInviteReq_ = null;
+      } else {
+        teamInviteReq_ = null;
+        teamInviteReqBuilder_ = null;
+      }
+      if (teamInviteResBuilder_ == null) {
+        teamInviteRes_ = null;
+      } else {
+        teamInviteRes_ = null;
+        teamInviteResBuilder_ = null;
+      }
+      if (teamInfoBuilder_ == null) {
+        teamInfo_ = null;
+      } else {
+        teamInfo_ = null;
+        teamInfoBuilder_ = null;
+      }
+      if (teamLeaveBuilder_ == null) {
+        teamLeave_ = null;
+      } else {
+        teamLeave_ = null;
+        teamLeaveBuilder_ = null;
+      }
       if (statusNotifyBuilder_ == null) {
         statusNotify_ = null;
       } else {
@@ -1539,6 +1783,26 @@ private static final long serialVersionUID = 0L;
       } else {
         result.friendRemove_ = friendRemoveBuilder_.build();
       }
+      if (teamInviteReqBuilder_ == null) {
+        result.teamInviteReq_ = teamInviteReq_;
+      } else {
+        result.teamInviteReq_ = teamInviteReqBuilder_.build();
+      }
+      if (teamInviteResBuilder_ == null) {
+        result.teamInviteRes_ = teamInviteRes_;
+      } else {
+        result.teamInviteRes_ = teamInviteResBuilder_.build();
+      }
+      if (teamInfoBuilder_ == null) {
+        result.teamInfo_ = teamInfo_;
+      } else {
+        result.teamInfo_ = teamInfoBuilder_.build();
+      }
+      if (teamLeaveBuilder_ == null) {
+        result.teamLeave_ = teamLeave_;
+      } else {
+        result.teamLeave_ = teamLeaveBuilder_.build();
+      }
       if (statusNotifyBuilder_ == null) {
         result.statusNotify_ = statusNotify_;
       } else {
@@ -1645,6 +1909,18 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasFriendRemove()) {
         mergeFriendRemove(other.getFriendRemove());
+      }
+      if (other.hasTeamInviteReq()) {
+        mergeTeamInviteReq(other.getTeamInviteReq());
+      }
+      if (other.hasTeamInviteRes()) {
+        mergeTeamInviteRes(other.getTeamInviteRes());
+      }
+      if (other.hasTeamInfo()) {
+        mergeTeamInfo(other.getTeamInfo());
+      }
+      if (other.hasTeamLeave()) {
+        mergeTeamLeave(other.getTeamLeave());
       }
       if (other.hasStatusNotify()) {
         mergeStatusNotify(other.getStatusNotify());
@@ -3818,6 +4094,482 @@ private static final long serialVersionUID = 0L;
         friendRemove_ = null;
       }
       return friendRemoveBuilder_;
+    }
+
+    private com.duke.protobuf.data.TeamInviteRequest teamInviteReq_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInviteRequest, com.duke.protobuf.data.TeamInviteRequest.Builder, com.duke.protobuf.data.TeamInviteRequestOrBuilder> teamInviteReqBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     * @return Whether the teamInviteReq field is set.
+     */
+    public boolean hasTeamInviteReq() {
+      return teamInviteReqBuilder_ != null || teamInviteReq_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     * @return The teamInviteReq.
+     */
+    public com.duke.protobuf.data.TeamInviteRequest getTeamInviteReq() {
+      if (teamInviteReqBuilder_ == null) {
+        return teamInviteReq_ == null ? com.duke.protobuf.data.TeamInviteRequest.getDefaultInstance() : teamInviteReq_;
+      } else {
+        return teamInviteReqBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public Builder setTeamInviteReq(com.duke.protobuf.data.TeamInviteRequest value) {
+      if (teamInviteReqBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        teamInviteReq_ = value;
+        onChanged();
+      } else {
+        teamInviteReqBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public Builder setTeamInviteReq(
+        com.duke.protobuf.data.TeamInviteRequest.Builder builderForValue) {
+      if (teamInviteReqBuilder_ == null) {
+        teamInviteReq_ = builderForValue.build();
+        onChanged();
+      } else {
+        teamInviteReqBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public Builder mergeTeamInviteReq(com.duke.protobuf.data.TeamInviteRequest value) {
+      if (teamInviteReqBuilder_ == null) {
+        if (teamInviteReq_ != null) {
+          teamInviteReq_ =
+            com.duke.protobuf.data.TeamInviteRequest.newBuilder(teamInviteReq_).mergeFrom(value).buildPartial();
+        } else {
+          teamInviteReq_ = value;
+        }
+        onChanged();
+      } else {
+        teamInviteReqBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public Builder clearTeamInviteReq() {
+      if (teamInviteReqBuilder_ == null) {
+        teamInviteReq_ = null;
+        onChanged();
+      } else {
+        teamInviteReq_ = null;
+        teamInviteReqBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public com.duke.protobuf.data.TeamInviteRequest.Builder getTeamInviteReqBuilder() {
+      
+      onChanged();
+      return getTeamInviteReqFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    public com.duke.protobuf.data.TeamInviteRequestOrBuilder getTeamInviteReqOrBuilder() {
+      if (teamInviteReqBuilder_ != null) {
+        return teamInviteReqBuilder_.getMessageOrBuilder();
+      } else {
+        return teamInviteReq_ == null ?
+            com.duke.protobuf.data.TeamInviteRequest.getDefaultInstance() : teamInviteReq_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInviteRequest, com.duke.protobuf.data.TeamInviteRequest.Builder, com.duke.protobuf.data.TeamInviteRequestOrBuilder> 
+        getTeamInviteReqFieldBuilder() {
+      if (teamInviteReqBuilder_ == null) {
+        teamInviteReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.TeamInviteRequest, com.duke.protobuf.data.TeamInviteRequest.Builder, com.duke.protobuf.data.TeamInviteRequestOrBuilder>(
+                getTeamInviteReq(),
+                getParentForChildren(),
+                isClean());
+        teamInviteReq_ = null;
+      }
+      return teamInviteReqBuilder_;
+    }
+
+    private com.duke.protobuf.data.TeamInviteResponse teamInviteRes_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInviteResponse, com.duke.protobuf.data.TeamInviteResponse.Builder, com.duke.protobuf.data.TeamInviteResponseOrBuilder> teamInviteResBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     * @return Whether the teamInviteRes field is set.
+     */
+    public boolean hasTeamInviteRes() {
+      return teamInviteResBuilder_ != null || teamInviteRes_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     * @return The teamInviteRes.
+     */
+    public com.duke.protobuf.data.TeamInviteResponse getTeamInviteRes() {
+      if (teamInviteResBuilder_ == null) {
+        return teamInviteRes_ == null ? com.duke.protobuf.data.TeamInviteResponse.getDefaultInstance() : teamInviteRes_;
+      } else {
+        return teamInviteResBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public Builder setTeamInviteRes(com.duke.protobuf.data.TeamInviteResponse value) {
+      if (teamInviteResBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        teamInviteRes_ = value;
+        onChanged();
+      } else {
+        teamInviteResBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public Builder setTeamInviteRes(
+        com.duke.protobuf.data.TeamInviteResponse.Builder builderForValue) {
+      if (teamInviteResBuilder_ == null) {
+        teamInviteRes_ = builderForValue.build();
+        onChanged();
+      } else {
+        teamInviteResBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public Builder mergeTeamInviteRes(com.duke.protobuf.data.TeamInviteResponse value) {
+      if (teamInviteResBuilder_ == null) {
+        if (teamInviteRes_ != null) {
+          teamInviteRes_ =
+            com.duke.protobuf.data.TeamInviteResponse.newBuilder(teamInviteRes_).mergeFrom(value).buildPartial();
+        } else {
+          teamInviteRes_ = value;
+        }
+        onChanged();
+      } else {
+        teamInviteResBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public Builder clearTeamInviteRes() {
+      if (teamInviteResBuilder_ == null) {
+        teamInviteRes_ = null;
+        onChanged();
+      } else {
+        teamInviteRes_ = null;
+        teamInviteResBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public com.duke.protobuf.data.TeamInviteResponse.Builder getTeamInviteResBuilder() {
+      
+      onChanged();
+      return getTeamInviteResFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    public com.duke.protobuf.data.TeamInviteResponseOrBuilder getTeamInviteResOrBuilder() {
+      if (teamInviteResBuilder_ != null) {
+        return teamInviteResBuilder_.getMessageOrBuilder();
+      } else {
+        return teamInviteRes_ == null ?
+            com.duke.protobuf.data.TeamInviteResponse.getDefaultInstance() : teamInviteRes_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInviteResponse, com.duke.protobuf.data.TeamInviteResponse.Builder, com.duke.protobuf.data.TeamInviteResponseOrBuilder> 
+        getTeamInviteResFieldBuilder() {
+      if (teamInviteResBuilder_ == null) {
+        teamInviteResBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.TeamInviteResponse, com.duke.protobuf.data.TeamInviteResponse.Builder, com.duke.protobuf.data.TeamInviteResponseOrBuilder>(
+                getTeamInviteRes(),
+                getParentForChildren(),
+                isClean());
+        teamInviteRes_ = null;
+      }
+      return teamInviteResBuilder_;
+    }
+
+    private com.duke.protobuf.data.TeamInfoResponse teamInfo_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInfoResponse, com.duke.protobuf.data.TeamInfoResponse.Builder, com.duke.protobuf.data.TeamInfoResponseOrBuilder> teamInfoBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     * @return Whether the teamInfo field is set.
+     */
+    public boolean hasTeamInfo() {
+      return teamInfoBuilder_ != null || teamInfo_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     * @return The teamInfo.
+     */
+    public com.duke.protobuf.data.TeamInfoResponse getTeamInfo() {
+      if (teamInfoBuilder_ == null) {
+        return teamInfo_ == null ? com.duke.protobuf.data.TeamInfoResponse.getDefaultInstance() : teamInfo_;
+      } else {
+        return teamInfoBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public Builder setTeamInfo(com.duke.protobuf.data.TeamInfoResponse value) {
+      if (teamInfoBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        teamInfo_ = value;
+        onChanged();
+      } else {
+        teamInfoBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public Builder setTeamInfo(
+        com.duke.protobuf.data.TeamInfoResponse.Builder builderForValue) {
+      if (teamInfoBuilder_ == null) {
+        teamInfo_ = builderForValue.build();
+        onChanged();
+      } else {
+        teamInfoBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public Builder mergeTeamInfo(com.duke.protobuf.data.TeamInfoResponse value) {
+      if (teamInfoBuilder_ == null) {
+        if (teamInfo_ != null) {
+          teamInfo_ =
+            com.duke.protobuf.data.TeamInfoResponse.newBuilder(teamInfo_).mergeFrom(value).buildPartial();
+        } else {
+          teamInfo_ = value;
+        }
+        onChanged();
+      } else {
+        teamInfoBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public Builder clearTeamInfo() {
+      if (teamInfoBuilder_ == null) {
+        teamInfo_ = null;
+        onChanged();
+      } else {
+        teamInfo_ = null;
+        teamInfoBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public com.duke.protobuf.data.TeamInfoResponse.Builder getTeamInfoBuilder() {
+      
+      onChanged();
+      return getTeamInfoFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    public com.duke.protobuf.data.TeamInfoResponseOrBuilder getTeamInfoOrBuilder() {
+      if (teamInfoBuilder_ != null) {
+        return teamInfoBuilder_.getMessageOrBuilder();
+      } else {
+        return teamInfo_ == null ?
+            com.duke.protobuf.data.TeamInfoResponse.getDefaultInstance() : teamInfo_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamInfoResponse, com.duke.protobuf.data.TeamInfoResponse.Builder, com.duke.protobuf.data.TeamInfoResponseOrBuilder> 
+        getTeamInfoFieldBuilder() {
+      if (teamInfoBuilder_ == null) {
+        teamInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.TeamInfoResponse, com.duke.protobuf.data.TeamInfoResponse.Builder, com.duke.protobuf.data.TeamInfoResponseOrBuilder>(
+                getTeamInfo(),
+                getParentForChildren(),
+                isClean());
+        teamInfo_ = null;
+      }
+      return teamInfoBuilder_;
+    }
+
+    private com.duke.protobuf.data.TeamLeaveResponse teamLeave_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamLeaveResponse, com.duke.protobuf.data.TeamLeaveResponse.Builder, com.duke.protobuf.data.TeamLeaveResponseOrBuilder> teamLeaveBuilder_;
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     * @return Whether the teamLeave field is set.
+     */
+    public boolean hasTeamLeave() {
+      return teamLeaveBuilder_ != null || teamLeave_ != null;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     * @return The teamLeave.
+     */
+    public com.duke.protobuf.data.TeamLeaveResponse getTeamLeave() {
+      if (teamLeaveBuilder_ == null) {
+        return teamLeave_ == null ? com.duke.protobuf.data.TeamLeaveResponse.getDefaultInstance() : teamLeave_;
+      } else {
+        return teamLeaveBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public Builder setTeamLeave(com.duke.protobuf.data.TeamLeaveResponse value) {
+      if (teamLeaveBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        teamLeave_ = value;
+        onChanged();
+      } else {
+        teamLeaveBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public Builder setTeamLeave(
+        com.duke.protobuf.data.TeamLeaveResponse.Builder builderForValue) {
+      if (teamLeaveBuilder_ == null) {
+        teamLeave_ = builderForValue.build();
+        onChanged();
+      } else {
+        teamLeaveBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public Builder mergeTeamLeave(com.duke.protobuf.data.TeamLeaveResponse value) {
+      if (teamLeaveBuilder_ == null) {
+        if (teamLeave_ != null) {
+          teamLeave_ =
+            com.duke.protobuf.data.TeamLeaveResponse.newBuilder(teamLeave_).mergeFrom(value).buildPartial();
+        } else {
+          teamLeave_ = value;
+        }
+        onChanged();
+      } else {
+        teamLeaveBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public Builder clearTeamLeave() {
+      if (teamLeaveBuilder_ == null) {
+        teamLeave_ = null;
+        onChanged();
+      } else {
+        teamLeave_ = null;
+        teamLeaveBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public com.duke.protobuf.data.TeamLeaveResponse.Builder getTeamLeaveBuilder() {
+      
+      onChanged();
+      return getTeamLeaveFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    public com.duke.protobuf.data.TeamLeaveResponseOrBuilder getTeamLeaveOrBuilder() {
+      if (teamLeaveBuilder_ != null) {
+        return teamLeaveBuilder_.getMessageOrBuilder();
+      } else {
+        return teamLeave_ == null ?
+            com.duke.protobuf.data.TeamLeaveResponse.getDefaultInstance() : teamLeave_;
+      }
+    }
+    /**
+     * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.duke.protobuf.data.TeamLeaveResponse, com.duke.protobuf.data.TeamLeaveResponse.Builder, com.duke.protobuf.data.TeamLeaveResponseOrBuilder> 
+        getTeamLeaveFieldBuilder() {
+      if (teamLeaveBuilder_ == null) {
+        teamLeaveBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.duke.protobuf.data.TeamLeaveResponse, com.duke.protobuf.data.TeamLeaveResponse.Builder, com.duke.protobuf.data.TeamLeaveResponseOrBuilder>(
+                getTeamLeave(),
+                getParentForChildren(),
+                isClean());
+        teamLeave_ = null;
+      }
+      return teamLeaveBuilder_;
     }
 
     private com.duke.protobuf.data.StatusNotify statusNotify_;

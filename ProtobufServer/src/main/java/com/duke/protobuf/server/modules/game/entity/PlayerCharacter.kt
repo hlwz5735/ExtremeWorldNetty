@@ -7,6 +7,7 @@ import com.duke.protobuf.server.modules.character.manager.FriendManager
 import com.duke.protobuf.server.modules.character.manager.ItemManager
 import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
+import com.duke.protobuf.server.modules.character.model.Team
 import com.duke.protobuf.server.modules.character.service.*
 import com.duke.protobuf.server.modules.user.OnlineCharacterManager
 import com.duke.protobuf.server.util.SpringContextUtil
@@ -39,6 +40,9 @@ class PlayerCharacter(
     val questManager = QuestManager(this, questService, service)
     val friendManager = FriendManager(this, SpringContextUtil.getBean(OnlineCharacterManager::class.java)!!)
 
+    var team: Team? = null
+    private var teamUpdateTs = 0L
+
     private val lock = ReentrantLock()
 
     private var responseBuilder: NetMessageResponse.Builder? = null
@@ -64,9 +68,15 @@ class PlayerCharacter(
         getResponseBuilder().setStatusNotify(statusNotifies)
         // 好友状态
         if (friendManager.isDirty) {
-            getResponseBuilder().setFriendList(
-                FriendListResponse.newBuilder()
-                    .addAllFriends(friendManager.nFriendList))
+            getResponseBuilder().setFriendList(FriendListResponse.newBuilder()
+                .addAllFriends(friendManager.nFriendList))
+        }
+        val team = this.team
+        if (team != null) {
+            if (teamUpdateTs < team.timestamp) {
+                teamUpdateTs = team.timestamp
+                team.postProcess(getResponseBuilder())
+            }
         }
     }
 
@@ -105,4 +115,23 @@ class PlayerCharacter(
             .addAllFriends(this.friendManager.nFriendList)
         return builder.build()
     }
+
+    fun getBasicInfo(): NCharacterInfo {
+        return NCharacterInfo.newBuilder()
+            .setId(dbId)
+            .setClass_(this.clazz)
+            .setLevel(level)
+            .setName(this.name.ifEmpty { tryGetDefine()?.name ?: "Unknown_Char" })
+            .build()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this.javaClass != other.javaClass) return false
+        other as PlayerCharacter
+
+        return id != null && id == other.id
+    }
+
+    override fun hashCode(): Int = id.hashCode()
 }

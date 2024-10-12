@@ -276,4 +276,64 @@ public interface NetMessageRequestOrBuilder extends
    * <code>.com.duke.protobuf.data.FriendRemoveRequest friendRemove = 19;</code>
    */
   com.duke.protobuf.data.FriendRemoveRequestOrBuilder getFriendRemoveOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 20;</code>
+   * @return Whether the teamInviteReq field is set.
+   */
+  boolean hasTeamInviteReq();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 20;</code>
+   * @return The teamInviteReq.
+   */
+  com.duke.protobuf.data.TeamInviteRequest getTeamInviteReq();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 20;</code>
+   */
+  com.duke.protobuf.data.TeamInviteRequestOrBuilder getTeamInviteReqOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 21;</code>
+   * @return Whether the teamInviteRes field is set.
+   */
+  boolean hasTeamInviteRes();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 21;</code>
+   * @return The teamInviteRes.
+   */
+  com.duke.protobuf.data.TeamInviteResponse getTeamInviteRes();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 21;</code>
+   */
+  com.duke.protobuf.data.TeamInviteResponseOrBuilder getTeamInviteResOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoRequest teamInfo = 22;</code>
+   * @return Whether the teamInfo field is set.
+   */
+  boolean hasTeamInfo();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoRequest teamInfo = 22;</code>
+   * @return The teamInfo.
+   */
+  com.duke.protobuf.data.TeamInfoRequest getTeamInfo();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoRequest teamInfo = 22;</code>
+   */
+  com.duke.protobuf.data.TeamInfoRequestOrBuilder getTeamInfoOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveRequest teamLeave = 23;</code>
+   * @return Whether the teamLeave field is set.
+   */
+  boolean hasTeamLeave();
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveRequest teamLeave = 23;</code>
+   * @return The teamLeave.
+   */
+  com.duke.protobuf.data.TeamLeaveRequest getTeamLeave();
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveRequest teamLeave = 23;</code>
+   */
+  com.duke.protobuf.data.TeamLeaveRequestOrBuilder getTeamLeaveOrBuilder();
 }

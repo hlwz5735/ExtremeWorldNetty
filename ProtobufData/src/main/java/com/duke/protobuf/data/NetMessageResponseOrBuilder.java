@@ -278,6 +278,66 @@ public interface NetMessageResponseOrBuilder extends
   com.duke.protobuf.data.FriendRemoveResponseOrBuilder getFriendRemoveOrBuilder();
 
   /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   * @return Whether the teamInviteReq field is set.
+   */
+  boolean hasTeamInviteReq();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   * @return The teamInviteReq.
+   */
+  com.duke.protobuf.data.TeamInviteRequest getTeamInviteReq();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteRequest teamInviteReq = 19;</code>
+   */
+  com.duke.protobuf.data.TeamInviteRequestOrBuilder getTeamInviteReqOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   * @return Whether the teamInviteRes field is set.
+   */
+  boolean hasTeamInviteRes();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   * @return The teamInviteRes.
+   */
+  com.duke.protobuf.data.TeamInviteResponse getTeamInviteRes();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInviteResponse teamInviteRes = 20;</code>
+   */
+  com.duke.protobuf.data.TeamInviteResponseOrBuilder getTeamInviteResOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   * @return Whether the teamInfo field is set.
+   */
+  boolean hasTeamInfo();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   * @return The teamInfo.
+   */
+  com.duke.protobuf.data.TeamInfoResponse getTeamInfo();
+  /**
+   * <code>.com.duke.protobuf.data.TeamInfoResponse teamInfo = 21;</code>
+   */
+  com.duke.protobuf.data.TeamInfoResponseOrBuilder getTeamInfoOrBuilder();
+
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   * @return Whether the teamLeave field is set.
+   */
+  boolean hasTeamLeave();
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   * @return The teamLeave.
+   */
+  com.duke.protobuf.data.TeamLeaveResponse getTeamLeave();
+  /**
+   * <code>.com.duke.protobuf.data.TeamLeaveResponse teamLeave = 22;</code>
+   */
+  com.duke.protobuf.data.TeamLeaveResponseOrBuilder getTeamLeaveOrBuilder();
+
+  /**
    * <code>.com.duke.protobuf.data.StatusNotify statusNotify = 100;</code>
    * @return Whether the statusNotify field is set.
    */

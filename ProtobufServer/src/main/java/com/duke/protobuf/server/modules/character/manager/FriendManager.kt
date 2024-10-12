@@ -56,6 +56,11 @@ class FriendManager(
             .build()
     }.toList()
 
+    fun forceRefresh() {
+        friendList.clear()
+        friendList.addAll(service.listFriendsByCharacterId(owner.dbId))
+    }
+
     fun addFriend(friendId: Int) {
         // 更新数据库
         val entityTuple = service.createFriendRelationship(owner.dbId, friendId)
@@ -101,7 +106,10 @@ class FriendManager(
         friend.friendManager.isDirty = true
     }
 
-    fun statusUpdate(friendId: Int, onlineStatus: Int) {
+    /**
+     * 在线状态更新，用户上下线时会调用好友的管理器上的该方法通知状态更新
+     */
+    private fun statusUpdate(friendId: Int, onlineStatus: Int) {
         val rel = getFriend(friendId) ?: return
         rel.onlineStatus = if (onlineStatus == 0) 0 else 1
         isDirty = true

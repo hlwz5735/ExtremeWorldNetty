@@ -89,6 +89,7 @@ class FriendMessageFacade(
 
     @MessageHandler(FriendListRequest::class)
     fun onFriendListRequest(req: FriendListRequest, sessionChar: PlayerCharacter): FriendListResponse {
+        sessionChar.friendManager.forceRefresh()
         return FriendListResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
             .addAllFriends(sessionChar.friendManager.nFriendList)
