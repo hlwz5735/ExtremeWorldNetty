@@ -120,6 +120,6 @@ class ItemManager(
     }
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(ItemManager::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(ItemManager::class.java)
     }
 }

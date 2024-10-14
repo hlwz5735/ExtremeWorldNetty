@@ -30,12 +30,7 @@ class TeamFacade(
         }
 
         // 转发请求
-        toUser.session.send(NetMessage.newBuilder()
-            .setResponse(NetMessageResponse.newBuilder()
-                .setTeamInviteReq(request))
-            .build()
-        )
-
+        toUser.session.sendSync { it.setTeamInviteReq(request) }
         return null
     }
 
@@ -52,16 +47,10 @@ class TeamFacade(
             }
             service.addTeamMember(fromUser.character!!, sessionChar)
             // 将组队响应信息转发给发起方
-            fromUser.session.send(NetMessage.newBuilder()
-                .setResponse(NetMessageResponse.newBuilder()
-                    .setTeamInviteRes(respMsg))
-                .build())
+            fromUser.session.sendSync { it.setTeamInviteRes(respMsg) }
         } else {
             // 不同意组队时只通知发起方，不通知响应方
-            fromUser?.session?.send(NetMessage.newBuilder()
-                .setResponse(NetMessageResponse.newBuilder()
-                    .setTeamInviteRes(respMsg))
-                .build())
+            fromUser?.session?.sendSync { it.setTeamInviteRes(respMsg) }
         }
 
         return null

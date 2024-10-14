@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.game.entity
 
 import com.duke.protobuf.data.*
+import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
 import com.duke.protobuf.server.modules.character.manager.FriendManager
@@ -9,6 +10,7 @@ import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
 import com.duke.protobuf.server.modules.character.model.Team
 import com.duke.protobuf.server.modules.character.service.*
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.user.OnlineCharacterManager
 import com.duke.protobuf.server.util.SpringContextUtil
 import com.google.protobuf.ByteString
@@ -39,43 +41,30 @@ class PlayerCharacter(
     val statusManager = StatusManager(this, itemService)
     val questManager = QuestManager(this, questService, service)
     val friendManager = FriendManager(this, SpringContextUtil.getBean(OnlineCharacterManager::class.java)!!)
+    lateinit var session: NettySession<OnlineUser>
 
     var team: Team? = null
     private var teamUpdateTs = 0L
 
-    private val lock = ReentrantLock()
-
-    private var responseBuilder: NetMessageResponse.Builder? = null
-
-    fun getResponseBuilder(): NetMessageResponse.Builder {
-        if (responseBuilder == null) {
-            lock.withLock {
-                if (responseBuilder == null) {
-                    responseBuilder = NetMessageResponse.newBuilder()
-                }
-            }
-        }
-        return responseBuilder!!
-    }
-
-    fun resetResponseBuilder() {
-        responseBuilder = null
-    }
-
     fun postResponseProcess() {
-        // 状态变更
-        val statusNotifies = statusManager.collectChangesToResponse()
-        getResponseBuilder().setStatusNotify(statusNotifies)
-        // 好友状态
-        if (friendManager.isDirty) {
-            getResponseBuilder().setFriendList(FriendListResponse.newBuilder()
-                .addAllFriends(friendManager.nFriendList))
+        session.sendAsync {
+            // 状态变更
+            val statusNotifies = statusManager.collectChangesToResponse()
+            if (statusNotifies != null) {
+                it.setStatusNotify(statusNotifies)
+            }
+            // 好友状态
+            if (friendManager.isDirty) {
+                it.setFriendList(FriendListResponse.newBuilder()
+                    .addAllFriends(friendManager.nFriendList))
+                friendManager.isDirty = false
+            }
         }
         val team = this.team
         if (team != null) {
             if (teamUpdateTs < team.timestamp) {
                 teamUpdateTs = team.timestamp
-                team.postProcess(getResponseBuilder())
+                team.postProcess(session)
             }
         }
     }
@@ -91,9 +80,10 @@ class PlayerCharacter(
         val nBag = NBagInfo.newBuilder()
             .setUnlocked(tBag.unlockedCellCount ?: 1)
             .setItems(itemsBs)
-
         // 构建任务信息
         val nQuests = questManager.buildQuestInfos()
+        // 构建好友信息
+        val nFriends = this.friendManager.nFriendList
 
         val builder = NCharacterInfo.newBuilder()
             // 本身的ID设为数据库ID
@@ -112,7 +102,7 @@ class PlayerCharacter(
             .setCarriedMoney(tableData.carriedMoney)
             .addAllItems(nItems)
             .addAllQuests(nQuests)
-            .addAllFriends(this.friendManager.nFriendList)
+            .addAllFriends(nFriends)
         return builder.build()
     }
 

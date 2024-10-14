@@ -1,14 +1,11 @@
 package com.duke.protobuf.server.modules.character.facade
 
 import com.duke.protobuf.data.*
-import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import com.duke.protobuf.server.modules.character.service.FriendService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
-import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.user.OnlineCharacterManager
-import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
@@ -47,13 +44,9 @@ class FriendMessageFacade(
         }
 
         logger.info("转发好友请求 :: FromId: {} FromName: {} toId: {} toName: {}", req.fromId, req.fromName, toId, req.toName)
-        onlineUser.session.send(
-            NetMessage.newBuilder()
-                .setResponse(NetMessageResponse.newBuilder()
-                    .setFriendAddReq(FriendAddRequest.newBuilder(req).setToId(toId))
-                )
-                .build()
-        )
+        onlineUser.session.sendSync {
+            it.setFriendAddReq(FriendAddRequest.newBuilder(req).setToId(toId))
+        }
         return null
     }
 
@@ -69,20 +62,14 @@ class FriendMessageFacade(
             sessionChar.friendManager.addFriend(sender.character!!.dbId)
 
             // 双方通知
-            sender.session.send(NetMessage.newBuilder()
-                .setResponse(NetMessageResponse.newBuilder()
-                    .setFriendAddRes(res))
-                .build())
+            sender.session.sendSync { it.setFriendAddRes(res) }
             return FriendAddResponse.newBuilder()
                 .setResult(RESULT.SUCCESS)
                 .setErrormsg("您和${sender.character!!.name}已成为好友")
                 .build()
         } else {
             // 拒绝建立关系，转发响应
-            sender.session.send(NetMessage.newBuilder()
-                .setResponse(NetMessageResponse.newBuilder()
-                    .setFriendAddRes(res))
-                .build())
+            sender.session.sendSync { it.setFriendAddRes(res) }
             return null
         }
     }

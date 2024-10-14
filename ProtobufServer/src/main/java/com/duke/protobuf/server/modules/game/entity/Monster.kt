@@ -22,6 +22,10 @@ class Monster(
     pos = position,
     dir = direction,
 ) {
+    init {
+        name = tryGetDefine()?.name ?: "Unknown_Monster"
+    }
+
     override fun toNetCharacterInfo(): NCharacterInfo {
         return NCharacterInfo.newBuilder()
             .setId(entityId)

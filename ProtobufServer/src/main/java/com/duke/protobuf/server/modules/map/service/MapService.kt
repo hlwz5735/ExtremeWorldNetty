@@ -49,11 +49,11 @@ class MapService(
     fun characterEnter(mapId: Int, session: NettySession<OnlineUser>) {
         val character = session.user.character
             ?: throw RuntimeException("用户尚未选择登录的角色。用户ID=${session.user.id}")
-        this.mapDic[mapId]?.playerEnter(character, session)
+        this.mapDic[mapId]?.characterEnterMap(character, session)
     }
 
     fun characterLeave(mapId: Int, character: PlayerCharacter) {
-        this.mapDic[mapId]?.playerLeave(character)
+        this.mapDic[mapId]?.characterLeaveMap(character)
     }
 
     fun updateEntity(mapId: Int, entity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
@@ -76,11 +76,11 @@ class MapService(
         val targetTeleporter = dataDefineManager.teleporterDic[sourceTeleporter.linkTo]!!
 
         val sourceMap = mapDic[sourceTeleporter.mapId]!!
-        sourceMap.playerLeave(character)
+        sourceMap.characterLeaveMap(character)
         character.position = targetTeleporter.position!!
         character.direction = targetTeleporter.direction!!
         val targetMap = mapDic[targetTeleporter.mapId]!!
-        targetMap.playerEnter(character, session)
+        targetMap.characterEnterMap(character, session)
     }
 
     companion object {

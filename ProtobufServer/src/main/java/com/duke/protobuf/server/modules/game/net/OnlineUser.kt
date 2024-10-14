@@ -13,5 +13,9 @@ class OnlineUser(
 ): SessionUser {
     override val id get() = tableData.id!!
 
+    override fun postProcess() {
+        character?.postResponseProcess()
+    }
+
     lateinit var session: NettySession<OnlineUser>
 }

@@ -40,7 +40,7 @@ class FriendManager(
     var isDirty = false
 
     init {
-        friendList.addAll(service.listFriendsByCharacterId(owner.dbId))
+        forceRefresh()
     }
 
     val nFriendList get() = friendList.map {
@@ -58,7 +58,8 @@ class FriendManager(
 
     fun forceRefresh() {
         friendList.clear()
-        friendList.addAll(service.listFriendsByCharacterId(owner.dbId))
+        val list = service.listFriendsByCharacterId(owner.dbId)
+        friendList.addAll(list)
     }
 
     fun addFriend(friendId: Int) {

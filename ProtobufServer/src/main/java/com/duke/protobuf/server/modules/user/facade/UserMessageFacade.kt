@@ -115,7 +115,7 @@ class UserMessageFacade(
      * 用户正式进入游戏的请求
      */
     @MessageHandler(UserGameEnterRequest::class)
-    fun onEnterGame(request: UserGameEnterRequest, channel: Channel): UserGameEnterResponse {
+    fun onEnterGame(request: UserGameEnterRequest, channel: Channel): UserGameEnterResponse? {
         val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
             ?: return UserGameEnterResponse.newBuilder()
                 .setResult(RESULT.FAILED)
@@ -139,29 +139,32 @@ class UserMessageFacade(
                 .setResult(RESULT.FAILED)
                 .setErrormsg("指定的角色在数据库中不存在！")
                 .build()
+
         // 将角色设置成玩家角色并放入在线角色列表
         val playerCharacter = PlayerCharacter(tCharacter, characterService, itemService, questService, bagService)
+        playerCharacter.session = session
         session.user.character = playerCharacter
-
         onlineCharacterManager.add(session.user)
         // 通知朋友上线
         playerCharacter.friendManager.tellFriendOnline()
 
+        session.sendSync {
+            it.setGameEnter(UserGameEnterResponse.newBuilder()
+                .setResult(RESULT.SUCCESS)
+                .setErrormsg("NONE")
+                .setCharacter(playerCharacter.toNetCharacterInfo()))
+        }
+
         // 将玩家角色设置进入所在地图
         mapService.characterEnter(playerCharacter.mapId!!, session)
-
-        return UserGameEnterResponse.newBuilder()
-            .setResult(RESULT.SUCCESS)
-            .setErrormsg("NONE")
-            .setCharacter(playerCharacter.toNetCharacterInfo())
-            .build()
+        return null
     }
 
     /**
      * 用户离开游戏的请求处理
      */
     @MessageHandler(UserGameLeaveRequest::class)
-    fun onLeaveGame(request: UserGameLeaveRequest, channel: Channel): UserGameLeaveResponse {
+    fun onLeaveGame(request: UserGameLeaveRequest, channel: Channel): UserGameLeaveResponse? {
         val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
             ?: return UserGameLeaveResponse.newBuilder()
                 .setResult(RESULT.FAILED)
@@ -181,12 +184,11 @@ class UserMessageFacade(
                 .build()
         }
 
-        service.userLeave(session)
-
-        return UserGameLeaveResponse.newBuilder()
+        session.sendAsync { it.setGameLeave(UserGameLeaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
-            .setErrormsg("NONE")
-            .build()
+            .setErrormsg("NONE"))}
+        service.userLeave(session)
+        return null
     }
 
     companion object {

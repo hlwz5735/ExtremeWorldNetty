@@ -45,16 +45,19 @@ class StatusManager(
         addStatus(NStatus.STATUS_TYPE.ITEM, id, count, action)
     }
 
-    fun collectChangesToResponse(): StatusNotify {
-        val responseBuilder = StatusNotify.newBuilder()
-            statusList.forEach {
-                responseBuilder.addStatus(it)
-            }
-        val res = responseBuilder.build()
+    fun collectChangesToResponse(): StatusNotify? {
+        if (statusList.isEmpty()) {
+            return null
+        }
+
+        val statusResponse = StatusNotify.newBuilder()
+        statusList.forEach {
+            statusResponse.addStatus(it)
+        }
+        val res = statusResponse.build()
 
         // 清空已经收集的变更
         this.statusList.clear()
-
         return res
     }
 }

@@ -27,11 +27,12 @@ class GameMap(
 
     val id get() = define.id
 
-    fun playerEnter(character: PlayerCharacter, session: NettySession<OnlineUser>) {
+    fun characterEnterMap(character: PlayerCharacter, session: NettySession<OnlineUser>) {
         // 在正式发出数据前，给实体ID赋值
-        this.gameEntityManager.addToMap(this.id, character)
+        this.gameEntityManager.addToMap(mapId = this.id, entity = character)
 
-        logger.info("playerEnter: Map:{} characterId:{}", this.id, character.id)
+        logger.info("玩家角色【{}-{}-{}】进入地图 【{}-{}】。", character.id, character.dbId, character.name,
+            this.id, this.define.name)
         character.mapId = this.id
 
         // 向其他玩家角色发送角色进入的消息
@@ -39,15 +40,15 @@ class GameMap(
             .setMapId(id)
             // 只包含当前用户信息
             .addCharacters(character.toNetCharacterInfo())
-            .build()
+
         this.characterMap.values.forEach {
             if (it.character.id != character.id) {
-                it.session.send(buildCharEnterResponse(responseForOther))
+                it.session.sendSync { builder -> builder.setMapCharacterEnter(responseForOther) }
             }
         }
 
         // 向当前玩家发送目前地图上所有的角色（包括玩家、怪物）信息
-        this.characterMap[character.id] = CharacterWithSession(session, character)
+        this.characterMap[character.entityId] = CharacterWithSession(session, character)
         val characterList = this.characterMap.values
             .map { it.character.toNetCharacterInfo() }
             .toList()
@@ -55,45 +56,32 @@ class GameMap(
             .map { it.toNetCharacterInfo() }
             .toList()
 
-        val response = buildCharEnterResponse(MapCharacterEnterResponse.newBuilder()
+        val charEnterResponseForPlayer = MapCharacterEnterResponse.newBuilder()
             .setMapId(this.id)
             .addAllCharacters(characterList)
             .addAllCharacters(monsterList)
-            .build())
-
-        session.send(response)
+        session.sendSync { it.setMapCharacterEnter(charEnterResponseForPlayer) }
     }
 
-    private fun buildCharEnterResponse(obj: MapCharacterEnterResponse): NetMessage {
-        val builder = NetMessage.newBuilder()
-        builder.responseBuilder.mapCharacterEnter = obj
-        return builder.build()
-    }
-
-    fun playerLeave(character: PlayerCharacter) {
-        logger.info("playerLeave: Map:{} characterId:{}", this.id, character.id)
+    fun characterLeaveMap(character: PlayerCharacter) {
+        logger.info("玩家角色【{}-{}-{}】离开地图 【{}-{}】。",
+            character.id, character.dbId, character.name,
+            this.id, this.define.name)
         this.gameEntityManager.removeFromMap(this.id, character)
 
         character.mapId = null
 
-        val response = buildCharLeaveResponse(MapCharacterLeaveResponse.newBuilder()
+        val response = MapCharacterLeaveResponse.newBuilder()
             .setEntityId(character.id)
-            .build())
 
         this.characterMap.values.forEach {
-            it.session.send(response)
+            it.session.sendSync { builder -> builder.setMapCharacterLeave(response) }
         }
-        this.characterMap.remove(character.id)
-    }
-
-    private fun buildCharLeaveResponse(obj: MapCharacterLeaveResponse): NetMessage {
-        val builder = NetMessage.newBuilder()
-        builder.responseBuilder.mapCharacterLeave = obj
-        return builder.build()
+        this.characterMap.remove(character.entityId)
     }
 
     fun monsterEnter(monster: Monster) {
-        logger.info("MonsterEnter: Map:{} monsterId:{}", this.id, monster.id)
+        logger.info("怪物【{}-{}】进入地图【{}-{}】。", monster.id, monster.name, this.id, this.define.name)
         // 向所有玩家角色发送怪物进入的消息
         val response = MapCharacterEnterResponse.newBuilder()
             .setMapId(id)
@@ -101,7 +89,7 @@ class GameMap(
             .addCharacters(monster.toNetCharacterInfo())
             .build()
         this.characterMap.values.forEach {
-            it.session.send(buildCharEnterResponse(response))
+            it.session.sendSync { builder -> builder.setMapCharacterEnter(response) }
         }
     }
 
@@ -115,19 +103,12 @@ class GameMap(
     fun updateEntity(gameEntity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
         val entityId = gameEntity.id
 
-        val responseForOther = buildMapEntitySyncResponse(
-            MapEntitySyncResponse
-                .newBuilder()
-                .addEntitySyncs(
-                    NEntitySync
-                        .newBuilder()
-                        .setId(gameEntity.id)
-                        .setEvent(entityEvent)
-                        .setEntity(gameEntity.toNetEntity())
-                        .build()
-                )
-                .build()
-        )
+        val responseForOther = MapEntitySyncResponse.newBuilder()
+            .addEntitySyncs(
+                NEntitySync.newBuilder()
+                    .setId(gameEntity.id)
+                    .setEvent(entityEvent)
+                    .setEntity(gameEntity.toNetEntity()))
 
         this.characterMap.values.forEach {
             val character = it.character
@@ -136,15 +117,9 @@ class GameMap(
                 character.direction = gameEntity.direction
                 character.speed = gameEntity.speed
             } else {
-                it.session.send(responseForOther)
+                it.session.sendSync { builder -> builder.setMapEntitySync(responseForOther) }
             }
         }
-    }
-
-    private fun buildMapEntitySyncResponse(obj: MapEntitySyncResponse): NetMessage {
-        val builder = NetMessage.newBuilder()
-        builder.responseBuilder.mapEntitySync = obj
-        return builder.build()
     }
 
     inner class CharacterWithSession (

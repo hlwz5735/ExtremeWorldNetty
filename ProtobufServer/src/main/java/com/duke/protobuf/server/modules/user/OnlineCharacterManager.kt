@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.user
 
 import com.duke.protobuf.server.modules.game.net.OnlineUser
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 
@@ -26,6 +27,9 @@ class OnlineCharacterManager {
     }
 
     fun removeByCharacterId(characterId: Int): OnlineUser? {
+        if (!onlineUsers.containsKey(characterId)) {
+            logger.warn("要从在线角色管理器中移除的角色{}不存在！", characterId)
+        }
         return this.onlineUsers.remove(characterId)
     }
 
@@ -45,5 +49,9 @@ class OnlineCharacterManager {
             }
         }
         return null
+    }
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(OnlineCharacterManager::class.java)
     }
 }

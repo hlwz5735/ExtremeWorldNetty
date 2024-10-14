@@ -48,25 +48,19 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         val channel = ctx.channel()
         val session = SessionUtil.getSessionByChannel<OnlineUser>(channel)
         val sessionChar = session?.user?.character
-
-        val response: NetMessageResponse.Builder
-        if (sessionChar == null) {
-            response = NetMessageResponse.newBuilder()
-        } else {
-            response = sessionChar.getResponseBuilder()
-        }
+        val response: NetMessageResponse.Builder = session?.getResponseBuilder() ?: NetMessageResponse.newBuilder()
 
         requests
             .mapNotNull { req -> doHandleRequest(req, ctx, sessionChar) }
             // 针对带有响应体信息的处理器返回值（忽略null），查找setter并调用以设置值
             .forEach { respData -> findSetterAndSetField(respData, response) }
 
-        // 后置处理
-        sessionChar?.postResponseProcess()
-
         try {
-            ctx.writeAndFlush(NetMessage.newBuilder().setResponse(response).build())
-            sessionChar?.resetResponseBuilder()
+            if (session == null) {
+                ctx.writeAndFlush(NetMessage.newBuilder().setResponse(response).build())
+            } else {
+                session.sendAndFlush()
+            }
         } catch (ex: Throwable) {
             logger.error("写出数据时发生了异常！", ex)
         }
@@ -141,7 +135,7 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
-        cause.printStackTrace()
+        logger.error("连接发生了异常，即将关闭！", cause)
         ctx.close()
     }
 
@@ -149,10 +143,17 @@ class ExtremeWorldMessageDistributor : SimpleChannelInboundHandler<NetMessage>()
         do {
             val channel = ctx?.channel() ?: break
             val session = SessionUtil.getSessionByChannel<OnlineUser>(channel) ?: break
+
             userService.userLeave(session)
+
+            val character = session.user.character
+            if (character != null) {
+                logger.info("用户【{}-{}-{}】连接关闭。", character.id, character.dbId, character.name)
+            } else {
+                logger.info("未指定角色的用户连接关闭。")
+            }
         } while (false)
         super.channelInactive(ctx)
-        logger.debug("用户连接关闭。")
     }
 
     /**

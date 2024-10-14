@@ -76,14 +76,16 @@ class UserService(
     fun userLeave(session: NettySession<OnlineUser>) {
         val character = session.user.character ?: return
         val mapId = character.mapId ?: return
-        onlineCharacterManager.removeByCharacterId(character.id)
         // 通知朋友下线
         character.friendManager.tellFriendOffline()
 
         logger.info("位于地图 {} 的角色 {}-{} 离开游戏。", mapId, character.id, character.name)
 
         mapService.characterLeave(mapId, character)
-
+        onlineCharacterManager.removeByCharacterId(character.dbId)
+        if (character.team != null) {
+            character.team!!.memberLeave(character)
+        }
         session.user.character = null
     }
 

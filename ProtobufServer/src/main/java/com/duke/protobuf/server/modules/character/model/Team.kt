@@ -4,7 +4,9 @@ import com.duke.protobuf.data.NTeamInfo
 import com.duke.protobuf.data.NetMessageResponse
 import com.duke.protobuf.data.RESULT
 import com.duke.protobuf.data.TeamInfoResponse
+import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import java.util.concurrent.atomic.AtomicInteger
 
 class Team(
@@ -43,15 +45,17 @@ class Team(
         timestamp = System.currentTimeMillis()
     }
 
-    fun postProcess(response: NetMessageResponse.Builder) {
+    fun postProcess(session: NettySession<OnlineUser>) {
         val leader = this.leader ?: return
-        response.setTeamInfo(TeamInfoResponse.newBuilder()
-            .setResult(RESULT.SUCCESS)
-            .setTeamInfo(NTeamInfo.newBuilder()
-                .setId(id)
-                .setLeaderId(leader.dbId)
-                .addAllMembers(members.map { it.getBasicInfo() })
-        ))
+        session.sendAsync {
+            it.setTeamInfo(TeamInfoResponse.newBuilder()
+                .setResult(RESULT.SUCCESS)
+                .setTeamInfo(NTeamInfo.newBuilder()
+                    .setId(id)
+                    .setLeaderId(leader.dbId)
+                    .addAllMembers(members.map { it.getBasicInfo() })
+            ))
+        }
     }
 
     companion object {
