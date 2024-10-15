@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.character.dbentity
 
-import com.duke.protobuf.data.NQuestInfo.QUEST_STATUS
+import com.duke.protobuf.data.ProtoMessages.NQuestInfo.QUEST_STATUS
 import javax.persistence.*
 
 @Entity

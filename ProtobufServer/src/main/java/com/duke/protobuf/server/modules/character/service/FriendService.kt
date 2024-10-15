@@ -1,7 +1,6 @@
 package com.duke.protobuf.server.modules.character.service
 
-import com.duke.protobuf.data.NCharacterInfo
-import com.duke.protobuf.data.NFriendInfo
+import com.duke.protobuf.data.ProtoMessages.NCharacterInfo
 import com.duke.protobuf.server.modules.character.dbentity.TCharacterFriend
 import com.duke.protobuf.server.modules.character.manager.FriendInfo
 import com.duke.protobuf.server.modules.character.repo.CharacterFriendRepository
@@ -10,7 +9,6 @@ import com.duke.protobuf.server.modules.user.OnlineCharacterManager
 import com.duke.protobuf.structure.DTuple
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import javax.persistence.Tuple
 
 @Service
 class FriendService(

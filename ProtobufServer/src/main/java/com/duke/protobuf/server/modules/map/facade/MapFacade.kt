@@ -1,6 +1,7 @@
 package com.duke.protobuf.server.modules.map.facade
 
-import com.duke.protobuf.data.*
+import com.duke.protobuf.data.ProtoMessages.MapEntitySyncRequest
+import com.duke.protobuf.data.ProtoMessages.MapTeleportRequest
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler

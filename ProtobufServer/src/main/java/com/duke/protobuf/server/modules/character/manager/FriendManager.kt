@@ -1,8 +1,6 @@
 package com.duke.protobuf.server.modules.character.manager
 
-import com.duke.protobuf.data.CHARACTER_CLASS
-import com.duke.protobuf.data.NCharacterInfo
-import com.duke.protobuf.data.NFriendInfo
+import com.duke.protobuf.data.ProtoMessages.*
 import com.duke.protobuf.server.modules.character.service.FriendService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.user.OnlineCharacterManager

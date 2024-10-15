@@ -4,7 +4,8 @@ package com.duke.protobuf.data;
 
 option csharp_namespace = "SkillBridge.Message";
 option cc_enable_arenas = true;
-option java_multiple_files = true;
+option java_multiple_files = false;
+option java_outer_classname = "ProtoMessages";
 
 ////////////////////////////////////////////////////////////////
 //
@@ -155,6 +156,73 @@ message NTeamInfo {
     repeated NCharacterInfo members = 3;
 }
 
+/**** 工会相关 ****/
+/// 工会成员信息
+message NGuildMemberInfo {
+    enum GUILD_TITLE {
+        NONE = 0;
+        PRESIDENT = 1;
+        VICE_PRESIDENT = 2;
+    }
+    // DB ID
+    int32 id = 1;
+    // 成员ID
+    int32 characterId = 2;
+    // 工会头衔
+    GUILD_TITLE title = 3;
+    // 成员具体信息
+    NCharacterInfo info = 4;
+    // 加入时间
+    int64 joinTime = 5;
+    // 上次登录时间
+    int64 lastTime = 6;
+    // 在线状态 0不在线，1在线
+    int32 status = 7;
+}
+
+/// 工会申请信息
+message NGuildApplyInfo {
+    enum APPLY_RESULT {
+        NONE = 0;
+        ACCEPTED = 1;
+        REJECTED = 2;
+    }
+    // 所属工会ID
+    int32 guildId = 1;
+    // 申请人ID
+    int32 characterId = 2;
+    // 申请人角色名
+    string name = 3;
+    // 所属职业
+    int32 clazz = 4;
+    // 等级
+    int32 level = 5;
+    // 审批结果
+    APPLY_RESULT result = 6;
+}
+
+/// 工会信息
+message NGuildInfo {
+    // DB ID
+    int32 id = 1;
+    // 公会名
+    string guildName = 2;
+    // 会长ID
+    int32 leaderId = 3;
+    // 会长名
+    string leaderName = 4;
+    // 公告/宗旨
+    string notice = 5;
+    // 会员数量
+    int32 memberCount = 6;
+    // 会员信息
+    repeated NGuildMemberInfo members = 7;
+    // 申请信息
+    repeated NGuildApplyInfo applies = 8;
+    // 建会时间
+    int64 createTime = 9;
+}
+
 message NCharacterInfo {
     // 数据库ID
     int32 id = 1;
@@ -180,6 +248,7 @@ message NCharacterInfo {
     repeated NQuestInfo quests = 14;
     // 好友信息
     repeated NFriendInfo friends = 15;
+    NGuildInfo guild = 16;
 }
 
 message NVector3
@@ -260,6 +329,13 @@ message NetMessageRequest {
     TeamInviteResponse teamInviteRes = 21;
     TeamInfoRequest teamInfo = 22;
     TeamLeaveRequest teamLeave = 23;
+
+    GuildCreateRequest guildCreate = 24;
+    GuildJoinRequest guildJoinReq = 25;
+    GuildJoinResponse guildJoinRes = 26;
+    GuildInfoRequest guildInfo = 27;
+    GuildLeaveRequest guildLeave = 28;
+    GuildListRequest guildList = 29;
 }
 
 message NetMessageResponse {
@@ -271,10 +347,9 @@ message NetMessageResponse {
 
     MapCharacterEnterResponse mapCharacterEnter = 6;
     MapCharacterLeaveResponse mapCharacterLeave = 7;
-
     MapEntitySyncResponse mapEntitySync = 8;
 
-    BagSaveResponse bagSaveResponse = 9;
+    BagSaveResponse bagSave = 9;
 
     ItemPurchaseResponse itemPurchase = 10;
     ItemEquipResponse itemEquip = 11;
@@ -292,6 +367,13 @@ message NetMessageResponse {
     TeamInviteResponse teamInviteRes = 20;
     TeamInfoResponse teamInfo = 21;
     TeamLeaveResponse teamLeave = 22;
+
+    GuildCreateResponse guildCreate = 23;
+    GuildJoinRequest guildJoinReq = 24;
+    GuildJoinResponse guildJoinRes = 25;
+    GuildInfoResponse guildInfo = 26;
+    GuildLeaveResponse guildLeave = 27;
+    GuildListResponse guildList = 28;
 
     StatusNotify statusNotify = 100;
 }
@@ -518,4 +600,47 @@ message TeamLeaveResponse {
     RESULT result = 1;
     string errormsg = 2;
     int32 characterId = 3;
+}
+
+/// 工会系统
+message GuildCreateRequest {
+    string guildName = 1;
+    string guildNotice = 2;
+}
+message GuildCreateResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NGuildInfo guildInfo = 3;
+}
+
+message GuildJoinRequest {
+    NGuildApplyInfo applyInfo = 1;
+}
+message GuildJoinResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NGuildApplyInfo applyInfo = 3;
+}
+
+message GuildListRequest {
+}
+message GuildListResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    repeated NGuildInfo guilds = 3;
+}
+
+message GuildInfoRequest {
+}
+message GuildInfoResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    NGuildInfo guildInfo = 3;
+}
+
+message GuildLeaveRequest {
+}
+message GuildLeaveResponse {
+    RESULT result = 1;
+    string errormsg = 2;
 }

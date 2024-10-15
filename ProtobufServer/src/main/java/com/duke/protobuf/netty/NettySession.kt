@@ -1,7 +1,7 @@
 package com.duke.protobuf.netty
 
-import com.duke.protobuf.data.NetMessage
-import com.duke.protobuf.data.NetMessageResponse
+import com.duke.protobuf.data.ProtoMessages.NetMessage
+import com.duke.protobuf.data.ProtoMessages.NetMessageResponse
 import io.netty.channel.Channel
 import org.slf4j.LoggerFactory
 import java.util.concurrent.atomic.AtomicInteger

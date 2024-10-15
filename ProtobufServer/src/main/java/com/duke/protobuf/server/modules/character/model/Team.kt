@@ -1,9 +1,6 @@
 package com.duke.protobuf.server.modules.character.model
 
-import com.duke.protobuf.data.NTeamInfo
-import com.duke.protobuf.data.NetMessageResponse
-import com.duke.protobuf.data.RESULT
-import com.duke.protobuf.data.TeamInfoResponse
+import com.duke.protobuf.data.ProtoMessages.*
 import com.duke.protobuf.netty.NettySession
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser

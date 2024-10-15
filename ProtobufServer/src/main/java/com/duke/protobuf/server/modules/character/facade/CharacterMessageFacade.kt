@@ -1,8 +1,6 @@
 package com.duke.protobuf.server.modules.character.facade
 
-import com.duke.protobuf.data.ItemEquipRequest
-import com.duke.protobuf.data.ItemEquipResponse
-import com.duke.protobuf.data.RESULT
+import com.duke.protobuf.data.ProtoMessages.*
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
 import com.duke.protobuf.server.modules.character.service.CharacterService

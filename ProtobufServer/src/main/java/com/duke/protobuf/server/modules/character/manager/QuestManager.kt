@@ -1,7 +1,6 @@
 package com.duke.protobuf.server.modules.character.manager
 
-import com.duke.protobuf.data.NQuestInfo
-import com.duke.protobuf.data.NStatus
+import com.duke.protobuf.data.ProtoMessages.NQuestInfo
 import com.duke.protobuf.server.modules.character.dbentity.TCharacterQuest
 import com.duke.protobuf.server.modules.character.service.CharacterService
 import com.duke.protobuf.server.modules.character.service.QuestService

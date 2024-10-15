@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.character.dbentity
 
-import com.duke.protobuf.data.CHARACTER_CLASS
+import com.duke.protobuf.data.ProtoMessages.CHARACTER_CLASS
 import org.hibernate.Hibernate
 import javax.persistence.*
 

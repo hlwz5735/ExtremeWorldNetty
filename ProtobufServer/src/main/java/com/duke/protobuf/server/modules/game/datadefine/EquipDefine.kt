@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.game.datadefine
 
-import com.duke.protobuf.data.EQUIP_SLOT
+import com.duke.protobuf.data.ProtoMessages.EQUIP_SLOT
 
 data class EquipDefine(
     val id: Int,

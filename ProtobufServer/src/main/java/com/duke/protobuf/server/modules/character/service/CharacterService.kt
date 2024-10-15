@@ -1,13 +1,11 @@
 package com.duke.protobuf.server.modules.character.service
 
-import com.duke.protobuf.data.CHARACTER_CLASS
-import com.duke.protobuf.data.NCharacterInfo
+import com.duke.protobuf.data.ProtoMessages.CHARACTER_CLASS
 import com.duke.protobuf.netty.NettySession
-import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.character.dbentity.TCharacter
-import com.duke.protobuf.server.modules.character.dbentity.TCharacterBag
 import com.duke.protobuf.server.modules.character.repo.CharacterBagRepository
 import com.duke.protobuf.server.modules.character.repo.CharacterRepository
+import com.duke.protobuf.server.modules.game.net.OnlineUser
 import org.hibernate.Hibernate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

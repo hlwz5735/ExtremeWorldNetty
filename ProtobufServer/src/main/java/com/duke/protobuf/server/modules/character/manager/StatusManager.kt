@@ -1,7 +1,7 @@
 package com.duke.protobuf.server.modules.character.manager
 
-import com.duke.protobuf.data.NStatus
-import com.duke.protobuf.data.StatusNotify
+import com.duke.protobuf.data.ProtoMessages.NStatus
+import com.duke.protobuf.data.ProtoMessages.StatusNotify
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 

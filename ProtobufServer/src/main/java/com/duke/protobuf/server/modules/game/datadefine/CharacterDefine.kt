@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.game.datadefine
 
-import com.duke.protobuf.data.CHARACTER_CLASS
+import com.duke.protobuf.data.ProtoMessages.CHARACTER_CLASS
 
 data class CharacterDefine(
     val tid: Int,

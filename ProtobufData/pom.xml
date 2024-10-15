@@ -24,4 +24,33 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.7.1</version> <!-- 确保版本是最新的 -->
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version> <!-- 你可以根据需要选择最新版本 -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <protocExecutable>/Users/limeng/Desktop/Projects/EXW/ExtremeWorldProtobuf/protoc-3.20.1/bin/protoc</protocExecutable>
+                    <!--<protocArtifact>com.google.protobuf:protoc:3.15.6:exe:${os.detected.classifier}</protocArtifact>-->
+                    <!--<pluginArtifact>io.grpc:protoc-gen-grpc-java:1.36.1:exe:${os.detected.classifier}</pluginArtifact>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

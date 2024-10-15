@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.game.entity
 
-import com.duke.protobuf.data.NEntity
+import com.duke.protobuf.data.ProtoMessages.NEntity
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 
 open class GameEntity(

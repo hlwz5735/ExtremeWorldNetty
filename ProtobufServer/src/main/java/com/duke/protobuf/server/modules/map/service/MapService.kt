@@ -1,12 +1,12 @@
 package com.duke.protobuf.server.modules.map.service
 
-import com.duke.protobuf.data.NEntitySync
+import com.duke.protobuf.data.ProtoMessages.NEntitySync
 import com.duke.protobuf.netty.NettySession
-import com.duke.protobuf.server.modules.game.manager.DataDefineManager
-import com.duke.protobuf.server.modules.game.manager.GameEntityManager
 import com.duke.protobuf.server.modules.game.datadefine.TeleporterDefine
 import com.duke.protobuf.server.modules.game.entity.GameEntity
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.modules.game.manager.DataDefineManager
+import com.duke.protobuf.server.modules.game.manager.GameEntityManager
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.map.model.GameMap
 import org.slf4j.LoggerFactory

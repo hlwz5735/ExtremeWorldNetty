@@ -1,7 +1,7 @@
 package com.duke.protobuf.server.modules.game.datadefine
 
-import com.duke.protobuf.data.CHARACTER_CLASS
-import com.duke.protobuf.data.ITEM_TYPE
+import com.duke.protobuf.data.ProtoMessages.CHARACTER_CLASS
+import com.duke.protobuf.data.ProtoMessages.ITEM_TYPE
 
 enum class ItemFunction {
     RecoverHp,

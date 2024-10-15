@@ -1,6 +1,6 @@
 package com.duke.protobuf.server.modules.game.core
 
-import com.duke.protobuf.data.NVector3
+import com.duke.protobuf.data.ProtoMessages.NVector3
 import kotlin.math.sqrt
 
 data class Vector3Int(

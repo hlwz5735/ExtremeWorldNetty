@@ -1,8 +1,6 @@
 package com.duke.protobuf.server.modules.game.entity
 
-import com.duke.protobuf.data.CHARACTER_CLASS
-import com.duke.protobuf.data.CHARACTER_TYPE
-import com.duke.protobuf.data.NCharacterInfo
+import com.duke.protobuf.data.ProtoMessages.*
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.game.datadefine.CharacterDefine
 import com.duke.protobuf.server.modules.game.manager.DataDefineManager

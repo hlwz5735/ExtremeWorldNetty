@@ -1,6 +1,6 @@
 package com.duke.protobuf.client
 
-import com.duke.protobuf.data.NetMessage
+import com.duke.protobuf.data.ProtoMessages.NetMessage
 import com.duke.protobuf.netty.ExtremeWorldLengthFieldAppender
 import com.duke.protobuf.netty.ExtremeWorldProtobufDecoder
 import io.netty.bootstrap.Bootstrap
