@@ -12,14 +12,18 @@ data class TCharacterBag(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+
+    /** 已解锁的格子数 */
+    @Column(nullable = false)
+    var unlockedCellCount: Int = 0,
+
+    @Lob
+    @Column(name = "ITEMS", columnDefinition = "BLOB", nullable = true)
+    var items: ByteArray? = null,
+
     @OneToOne
     @JoinColumn(name = "CHARACTER_ID", referencedColumnName = "ID")
     var owner: TCharacter? = null,
-    /** 已解锁的格子数 */
-    var unlockedCellCount: Int? = null,
-    @Lob
-    @Column(name = "ITEMS", columnDefinition = "BLOB", nullable = true)
-    var items: ByteArray? = null
 ) {
     final override fun equals(other: Any?): Boolean {
         if (this === other) return true

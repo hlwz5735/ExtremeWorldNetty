@@ -10,9 +10,11 @@ data class TPlayer (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+
     @OneToOne
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     var user: TUser? = null,
+
     @OneToMany(mappedBy = "player")
     var characters: MutableList<TCharacter> = ArrayList()
 ) {

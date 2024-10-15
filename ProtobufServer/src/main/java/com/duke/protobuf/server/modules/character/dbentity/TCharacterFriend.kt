@@ -10,9 +10,14 @@ data class TCharacterFriend(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
-    var friendId: Int? = null,
+    @Column(nullable = false)
+    var friendId: Int = 0,
+    @Column(nullable = false)
     var friendName: String = "",
-    var clazz: CHARACTER_CLASS = CHARACTER_CLASS.UNRECOGNIZED,
+    @Column(name = "CLASS", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,
+    @Column(nullable = false)
     var level: Int = 0,
     @ManyToOne
     @JoinColumn(name = "CHARACTER_ID", referencedColumnName = "ID")

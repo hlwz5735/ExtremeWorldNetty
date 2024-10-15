@@ -12,22 +12,26 @@ data class TCharacter(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
     /** 配置表中的ID，其他地方都是configId */
-    var tid: Int? = null,
+    @Column(nullable = false)
+    var tid: Int = 0,
+    @Column(nullable = false)
     var level: Int = 1,
-    var name: String? = null,
+    @Column(nullable = false)
+    var name: String = "",
     /** 经验值 */
-    @Column(name = "EXP_VAL")
+    @Column(name = "EXP_VAL", nullable = false)
     var exp: Long = 0,
-    @Column(name = "CLASS")
+    @Column(name = "CLASS", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     var clazz: CHARACTER_CLASS = CHARACTER_CLASS.NONE,
+    @Column(nullable = false)
     var mapId: Int = 1,
-    @Column(name = "MAP_POS_X")
-    var mapPosX: Int? = null,
-    @Column(name = "MAP_POS_Y")
-    var mapPosY: Int? = null,
-    @Column(name = "MAP_POS_Z")
-    var mapPosZ: Int? = null,
+    @Column(name = "MAP_POS_X", nullable = false)
+    var mapPosX: Int = 0,
+    @Column(name = "MAP_POS_Y", nullable = false)
+    var mapPosY: Int = 0,
+    @Column(name = "MAP_POS_Z", nullable = false)
+    var mapPosZ: Int = 0,
     @Column(name = "CARRIED_MONEY", nullable = false)
     var carriedMoney: Long = 0,
     @ManyToOne

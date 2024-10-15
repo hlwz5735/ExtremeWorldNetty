@@ -12,11 +12,13 @@ data class TCharacterItem(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+    @Column(nullable = false)
+    var itemId: Int = 0,
+    @Column(nullable = false)
+    var itemCount: Int = 0,
     @ManyToOne
     @JoinColumn(name = "CHARACTER_ID", referencedColumnName = "ID")
     var owner: TCharacter? = null,
-    var itemId: Int? = null,
-    var itemCount: Int? = null,
 ) {
     final override fun equals(other: Any?): Boolean {
         if (this === other) return true

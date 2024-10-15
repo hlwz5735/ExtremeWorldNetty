@@ -10,9 +10,13 @@ data class TUser (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
-    var username: String? = null,
-    var password: String? = null,
-    var registerTime: LocalDateTime? = null,
+    @Column(nullable = false)
+    var username: String = "",
+    @Column(nullable = false)
+    var password: String = "",
+    @Column(nullable = false)
+    var registerTime: LocalDateTime = LocalDateTime.now(),
+
     @OneToOne(mappedBy = "user")
     var player: TPlayer? = null
 ) {
