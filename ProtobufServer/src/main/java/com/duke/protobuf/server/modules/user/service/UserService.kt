@@ -29,7 +29,7 @@ class UserService(
      * 登录成功后会创建用户会话
      */
     @Transactional
-    fun userLogin(username: String, password: String, channel: Channel): DTuple<TUser, String> {
+    fun userLogin(username: String, password: String, channel: Channel): DTuple<TUser?, String?> {
         val user = repo.getByUsername(username) ?: return DTuple(null, "用户不存在。")
         if (user.password != password) {
             return DTuple(null, "密码不匹配。")
@@ -44,7 +44,7 @@ class UserService(
         val session = NettySession(channel, onlineUser)
         onlineUser.session = session
         SessionUtil.addSessionToChannel(session)
-        return DTuple(user)
+        return DTuple(user, null)
     }
 
     /**
@@ -67,7 +67,7 @@ class UserService(
         repo.save(newUser)
         playerRepo.save(newPlayer)
 
-        return DTuple(true)
+        return DTuple(true, null)
     }
 
     /**

@@ -23,7 +23,7 @@ class ItemService(
     }
 
     @Transactional
-    fun buyItem(character: PlayerCharacter, shopId: Int, shopItemId: Int): DTuple<Boolean, String> {
+    fun buyItem(character: PlayerCharacter, shopId: Int, shopItemId: Int): DTuple<Boolean, String?> {
         logger.info("用户购买请求：角色{}, 商店{}，道具{}", character.id, shopId, shopItemId)
 
         val shop = dataDefineManager.shopDic[shopId]
@@ -38,7 +38,7 @@ class ItemService(
             // 通知客户端和写库这里是分别做的
             character.statusManager.modifyMoney(-item.price)
             characterRepository.save(character.tableData)
-            return DTuple(true)
+            return DTuple(true, null)
         } else {
             return DTuple(false, "您带的钱不够多呀。")
         }

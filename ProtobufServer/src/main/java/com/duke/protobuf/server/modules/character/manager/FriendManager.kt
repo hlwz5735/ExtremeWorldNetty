@@ -31,9 +31,9 @@ data class FriendInfo(
 
 class FriendManager(
     val owner: PlayerCharacter,
-    private val onlineCharacterManager: OnlineCharacterManager,
 ) {
     private val service = SpringContextUtil.getBean(FriendService::class.java)!!
+    private val onlineCharacterManager = SpringContextUtil.getBean(OnlineCharacterManager::class.java)!!
     private val friendList: MutableList<FriendInfo> = mutableListOf()
     var isDirty = false
 
@@ -65,7 +65,7 @@ class FriendManager(
         val entityTuple = service.createFriendRelationship(owner.dbId, friendId)
 
         // 更新内存数据
-        var entity = entityTuple.first!!
+        var entity = entityTuple.first
         friendList.add(FriendInfo(
             entity.id!!,
             owner.dbId,
@@ -77,7 +77,7 @@ class FriendManager(
         ))
         isDirty = true
         val friend = onlineCharacterManager[friendId]?.character ?: return
-        entity = entityTuple.second!!
+        entity = entityTuple.second
         friend.friendManager.friendList.add(FriendInfo(
             entity.id!!,
             friendId,

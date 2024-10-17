@@ -6,21 +6,20 @@ import com.duke.protobuf.server.modules.character.dbentity.TCharacterItem
 import com.duke.protobuf.server.modules.character.model.Item
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.util.SpringContextUtil
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 
 class ItemManager(
     private val owner: PlayerCharacter,
-    private val itemService: ItemService
 ) {
+    private val itemService = SpringContextUtil.getBean(ItemService::class.java)!!
     private val itemDic: MutableMap<Int, Item> = ConcurrentHashMap()
 
     init {
         for (tCharacterItem in owner.tableData.items) {
-            if (tCharacterItem.itemId != null) {
-                itemDic[tCharacterItem.itemId!!] = Item(tCharacterItem)
-            }
+            itemDic[tCharacterItem.itemId] = Item(tCharacterItem)
         }
     }
 

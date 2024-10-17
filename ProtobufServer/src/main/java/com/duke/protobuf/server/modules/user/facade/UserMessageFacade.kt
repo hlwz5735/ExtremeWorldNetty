@@ -22,9 +22,6 @@ import org.springframework.stereotype.Component
 class UserMessageFacade(
     private val service: UserService,
     private val characterService: CharacterService,
-    private val itemService: ItemService,
-    private val bagService: BagService,
-    private val questService: QuestService,
     private val mapService: MapService,
     private val onlineCharacterManager: OnlineCharacterManager,
 ) {
@@ -141,7 +138,7 @@ class UserMessageFacade(
                 .build()
 
         // 将角色设置成玩家角色并放入在线角色列表
-        val playerCharacter = PlayerCharacter(tCharacter, characterService, itemService, questService, bagService)
+        val playerCharacter = PlayerCharacter(tCharacter)
         playerCharacter.session = session
         session.user.character = playerCharacter
         onlineCharacterManager.add(session.user)

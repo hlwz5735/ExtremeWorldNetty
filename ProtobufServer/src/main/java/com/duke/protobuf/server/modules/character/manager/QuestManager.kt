@@ -12,9 +12,9 @@ import com.duke.protobuf.structure.DTuple
 
 class QuestManager(
     private val owner: PlayerCharacter,
-    private val service: QuestService,
-    private val characterService: CharacterService,
 ) {
+    private val service = SpringContextUtil.getBean(QuestService::class.java)!!
+    private val characterService = SpringContextUtil.getBean(CharacterService::class.java)!!
     private val dataManager = SpringContextUtil.getBean(DataDefineManager::class.java)!!
 
     fun buildQuestInfos(): List<NQuestInfo> {

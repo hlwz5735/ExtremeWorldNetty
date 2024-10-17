@@ -4,14 +4,15 @@ import com.duke.protobuf.data.ProtoMessages.NStatus
 import com.duke.protobuf.data.ProtoMessages.StatusNotify
 import com.duke.protobuf.server.modules.character.service.ItemService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
+import com.duke.protobuf.server.util.SpringContextUtil
 
 /**
  * 角色状态管理器
  */
 class StatusManager(
     private val owner: PlayerCharacter,
-    private val itemService: ItemService,
 ) {
+    private val itemService = SpringContextUtil.getBean(ItemService::class.java)!!
     private val statusList: MutableList<NStatus> = arrayListOf()
 
     fun hasStatus(): Boolean {

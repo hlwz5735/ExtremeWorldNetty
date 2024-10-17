@@ -9,21 +9,15 @@ import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
 import com.duke.protobuf.server.modules.character.model.Team
 import com.duke.protobuf.server.modules.character.service.BagService
-import com.duke.protobuf.server.modules.character.service.CharacterService
-import com.duke.protobuf.server.modules.character.service.ItemService
-import com.duke.protobuf.server.modules.character.service.QuestService
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.game.net.OnlineUser
-import com.duke.protobuf.server.modules.user.OnlineCharacterManager
+import com.duke.protobuf.server.modules.guild.manager.GuildManager
+import com.duke.protobuf.server.modules.guild.model.Guild
 import com.duke.protobuf.server.util.SpringContextUtil
 import com.google.protobuf.ByteString
 
 class PlayerCharacter(
     val tableData: TCharacter,
-    service: CharacterService,
-    itemService: ItemService,
-    questService: QuestService,
-    private val bagService: BagService,
     type: CHARACTER_TYPE = CHARACTER_TYPE.Player
 ) : BaseGameCharacter(
     entityId = 0,
@@ -32,20 +26,34 @@ class PlayerCharacter(
     configId = tableData.clazz.number,
     type,
     tableData.level,
-    tableData.name!!,
+    tableData.name,
     tableData.clazz,
     tableData.mapId,
     pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
     dir = Vector3Int(100, 0, 0)
 ) {
-    val itemManager = ItemManager(this, itemService)
-    val statusManager = StatusManager(this, itemService)
-    val questManager = QuestManager(this, questService, service)
-    val friendManager = FriendManager(this, SpringContextUtil.getBean(OnlineCharacterManager::class.java)!!)
+    private val bagService = SpringContextUtil.getBean(BagService::class.java)!!
+    private val guildManager = SpringContextUtil.getBean(GuildManager::class.java)!!
+
     lateinit var session: NettySession<OnlineUser>
+    val itemManager = ItemManager(this)
+    val statusManager = StatusManager(this)
+    val questManager = QuestManager(this)
+    val friendManager = FriendManager(this)
 
     var team: Team? = null
     private var teamUpdateTs = 0L
+    var guild: Guild? = null
+        set(value) {
+            field = value
+            guildUpdateTs = 0
+        }
+    private var guildUpdateTs = 0L
+
+    init {
+        guild = guildManager.getCharacterGuild(this.dbId)
+        guildUpdateTs = guild?.timestamp ?: 0
+    }
 
     fun postResponseProcess() {
         session.sendAsync {
@@ -56,8 +64,10 @@ class PlayerCharacter(
             }
             // 好友状态
             if (friendManager.isDirty) {
-                it.setFriendList(FriendListResponse.newBuilder()
-                    .addAllFriends(friendManager.nFriendList))
+                it.setFriendList(
+                    FriendListResponse.newBuilder()
+                        .addAllFriends(friendManager.nFriendList)
+                )
                 friendManager.isDirty = false
             }
         }
@@ -68,12 +78,22 @@ class PlayerCharacter(
                 team.postProcess(session)
             }
         }
+        val guild = this.guild
+        if (guild != null) {
+            if (guildUpdateTs < guild.timestamp) {
+                guildUpdateTs = guild.timestamp
+                guild.postProcess(session)
+            }
+        } else {
+            if (guildUpdateTs > 0) {
+                guildUpdateTs = 0
+            }
+        }
     }
 
     override fun toNetCharacterInfo(): NCharacterInfo {
         // 构建道具信息
         val nItems = itemManager.buildItemInfos()
-
         // 构建背包信息
         val tBag = bagService.getByCharacterId(dbId)
         val itemsBs = ByteString.copyFrom(tBag.items ?: byteArrayOf())
@@ -85,6 +105,8 @@ class PlayerCharacter(
         val nQuests = questManager.buildQuestInfos()
         // 构建好友信息
         val nFriends = this.friendManager.nFriendList
+        // 构建工会信息
+        val nGuild = this.guild?.getNGuildInfo(this)
 
         val builder = NCharacterInfo.newBuilder()
             // 本身的ID设为数据库ID
@@ -95,7 +117,7 @@ class PlayerCharacter(
             .setClass_(this.clazz)
             .setLevel(level)
             // .setExp(tableData.exp)
-            .setName(this.name.ifEmpty { tryGetDefine()?.name ?: "Unknown_Char" })
+            .setName(this.name)
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())
             .setBag(nBag)
@@ -104,6 +126,9 @@ class PlayerCharacter(
             .addAllItems(nItems)
             .addAllQuests(nQuests)
             .addAllFriends(nFriends)
+        if (nGuild != null) {
+            builder.setGuild(nGuild)
+        }
         return builder.build()
     }
 
@@ -112,7 +137,7 @@ class PlayerCharacter(
             .setId(dbId)
             .setClass_(this.clazz)
             .setLevel(level)
-            .setName(this.name.ifEmpty { tryGetDefine()?.name ?: "Unknown_Char" })
+            .setName(this.name)
             .build()
     }
 

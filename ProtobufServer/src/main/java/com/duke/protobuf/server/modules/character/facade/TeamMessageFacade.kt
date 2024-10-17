@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @MessageFacade
-class TeamFacade(
+class TeamMessageFacade(
     private val service: TeamService,
     private val onlineCharacterManager: OnlineCharacterManager,
 ) {
@@ -69,6 +69,6 @@ class TeamFacade(
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(TeamFacade::class.java)
+        private val logger = LoggerFactory.getLogger(TeamMessageFacade::class.java)
     }
 }

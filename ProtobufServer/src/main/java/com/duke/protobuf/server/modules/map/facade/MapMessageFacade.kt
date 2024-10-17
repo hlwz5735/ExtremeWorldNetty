@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component
 
 @MessageFacade
 @Component
-class MapFacade(
+class MapMessageFacade(
     private val service: MapService,
 ) {
 
@@ -43,5 +43,5 @@ class MapFacade(
         this.service.teleportCharacter(character, teleportId, session)
     }
 
-    companion object { private val logger = LoggerFactory.getLogger(MapFacade::class.java) }
+    companion object { private val logger = LoggerFactory.getLogger(MapMessageFacade::class.java) }
 }
