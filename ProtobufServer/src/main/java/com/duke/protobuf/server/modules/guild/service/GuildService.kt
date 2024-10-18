@@ -2,7 +2,6 @@ package com.duke.protobuf.server.modules.guild.service
 
 import com.duke.protobuf.data.ProtoMessages.NCharacterInfo
 import com.duke.protobuf.data.ProtoMessages.NGuildApplyInfo
-import com.duke.protobuf.data.ProtoMessages.NGuildInfo
 import com.duke.protobuf.data.ProtoMessages.NGuildMemberInfo
 import com.duke.protobuf.server.modules.character.repo.CharacterRepository
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
@@ -48,6 +47,11 @@ class GuildService(
         )
         memberRepo.save(memberEntity)
         return entity
+    }
+
+    @Transactional
+    fun save(tableData: TGuild) {
+        repo.save(tableData)
     }
 
     @Transactional
@@ -117,6 +121,61 @@ class GuildService(
         return true
     }
 
+    /** 成员晋升 */
+    @Transactional
+    fun grant(tGuild: TGuild, operator: TGuildMember, targetMember: TGuildMember): DTuple<Boolean, String?> {
+        if (operator.title != NGuildMemberInfo.GUILD_TITLE.PRESIDENT) {
+            return DTuple(false, "只有会长可以执行会员晋升！")
+        }
+        if (targetMember.title != NGuildMemberInfo.GUILD_TITLE.NONE) {
+            return DTuple(false, "会长/副会长已经无可晋升了！")
+        }
+        targetMember.title = NGuildMemberInfo.GUILD_TITLE.VICE_PRESIDENT
+        memberRepo.save(targetMember)
+        return DTuple(true, null)
+    }
+
+    /** 解任 */
+    @Transactional
+    fun relive(tGuild: TGuild, operator: TGuildMember, targetMember: TGuildMember): DTuple<Boolean, String?> {
+        if (operator.title != NGuildMemberInfo.GUILD_TITLE.PRESIDENT) {
+            return DTuple(false, "只有会长可以执行解任！")
+        }
+        if (targetMember.title != NGuildMemberInfo.GUILD_TITLE.VICE_PRESIDENT) {
+            return DTuple(false, "只能对副会长执行解任！")
+        }
+        targetMember.title = NGuildMemberInfo.GUILD_TITLE.NONE
+        memberRepo.save(targetMember)
+        return DTuple(true, null)
+    }
+
+    /** 会长转让 */
+    @Transactional
+    fun cede(tGuild: TGuild, operator: TGuildMember, targetMember: TGuildMember): DTuple<Boolean, String?> {
+        if (operator.title != NGuildMemberInfo.GUILD_TITLE.PRESIDENT) {
+            return DTuple(false, "您不是会长，无法转让！")
+        }
+        val newLeaderCharacter = characterRepo.findById(targetMember.characterId).orElse(null)
+            ?: return DTuple(false, "目标用户不存在！")
+        // 更新主表信息
+        tGuild.leaderId = newLeaderCharacter.id!!
+        tGuild.leaderName = newLeaderCharacter.name
+        // 更新职位信息
+        operator.title = NGuildMemberInfo.GUILD_TITLE.NONE
+        targetMember.title = NGuildMemberInfo.GUILD_TITLE.PRESIDENT
+        memberRepo.save(operator)
+        memberRepo.save(targetMember)
+        repo.save(tGuild)
+        return DTuple(true, null)
+    }
+
+    @Transactional
+    fun updateNotice(tableData: TGuild, operator: TGuildMember, newNotice: String): DTuple<Boolean, String?> {
+        tableData.notice = newNotice
+        repo.save(tableData)
+        return DTuple(true, null)
+    }
+
     @Transactional(readOnly = true)
     fun buildMemberInfo(member: TGuildMember): NGuildMemberInfo {
         val result = NGuildMemberInfo.newBuilder()
@@ -173,6 +232,21 @@ class GuildService(
     @Transactional(readOnly = true)
     fun listApplies(guildId: Int): List<TGuildApply> {
         return applyRepo.queryByOwnerId(guildId)
+    }
+
+    /** 踢出成员 */
+    @Transactional
+    fun deport(tGuild: TGuild, operator: TGuildMember, targetMember: TGuildMember): DTuple<Boolean, String?> {
+        if (targetMember.title == NGuildMemberInfo.GUILD_TITLE.PRESIDENT) {
+            return DTuple(false, "不能踢出会长！")
+        }
+        if (operator.title != NGuildMemberInfo.GUILD_TITLE.VICE_PRESIDENT
+            && targetMember.title != NGuildMemberInfo.GUILD_TITLE.VICE_PRESIDENT
+        ) {
+            return DTuple(false, "副会长不能踢出其他副会长！")
+        }
+        memberRepo.delete(targetMember)
+        return DTuple(true, null)
     }
 
     companion object {

@@ -336,6 +336,7 @@ message NetMessageRequest {
     GuildInfoRequest guildInfo = 27;
     GuildLeaveRequest guildLeave = 28;
     GuildListRequest guildList = 29;
+    GuildAdminRequest guildAdmin = 30;
 }
 
 message NetMessageResponse {
@@ -374,6 +375,7 @@ message NetMessageResponse {
     GuildInfoResponse guildInfo = 26;
     GuildLeaveResponse guildLeave = 27;
     GuildListResponse guildList = 28;
+    GuildAdminResponse guildAdmin = 29;
 
     StatusNotify statusNotify = 100;
 }
@@ -643,4 +645,27 @@ message GuildLeaveRequest {
 message GuildLeaveResponse {
     RESULT result = 1;
     string errormsg = 2;
+}
+
+message GuildAdminRequest {
+    enum GUILD_ADMIN_COMMAND {
+        // 踢出
+        DEPORT = 0;
+        // 委任
+        GRANT = 1;
+        // 解任
+        RELIVE = 2;
+        // 转让
+        CEDE = 3;
+        // 更新宣言
+        EDIT_NOTICE = 4;
+    }
+    GUILD_ADMIN_COMMAND command = 1;
+    int32 target = 2;
+    string notice = 3;
+}
+message GuildAdminResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    GuildAdminRequest request = 3;
 }

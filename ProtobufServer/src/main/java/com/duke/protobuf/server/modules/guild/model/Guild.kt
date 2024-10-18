@@ -34,6 +34,7 @@ class Guild(
         val res = service.addApply(info, tableData)
         if (res.first) {
             applies = service.listApplies(id)
+            timestamp = System.currentTimeMillis()
         }
         return res
     }
@@ -44,16 +45,51 @@ class Guild(
         if (res) {
             members = service.listMembers(id)
             applies = service.listApplies(id)
+            timestamp = System.currentTimeMillis()
         }
         return res
     }
 
     fun memberLeave(member: PlayerCharacter): Boolean {
+        if (member.dbId == tableData.leaderId) {
+            return false
+        }
         val res = service.memberLeave(member, this)
         if (res) {
             members = service.listMembers(id)
+            timestamp = System.currentTimeMillis()
         }
         return res
+    }
+
+    /** 执行管理方法 */
+    fun doAdmin(operatorChar: PlayerCharacter, req: GuildAdminRequest): DTuple<Boolean, String?> {
+        val operator = members.find { it.characterId == operatorChar.dbId } ?: return DTuple(false, "您无权操作本公会！")
+        if (operator.title != NGuildMemberInfo.GUILD_TITLE.PRESIDENT
+            && operator.title != NGuildMemberInfo.GUILD_TITLE.VICE_PRESIDENT
+        ) {
+            return DTuple(false, "您无权操作！")
+        }
+
+        val targetMember = members.find { it.characterId == req.target } ?: return DTuple(false, "并未指定目标用户！")
+        if (operator.characterId == targetMember.characterId) {
+            return DTuple(false, "不能对自己操作！")
+        }
+
+        val result: DTuple<Boolean, String?> = when (req.command) {
+            GuildAdminRequest.GUILD_ADMIN_COMMAND.DEPORT -> service.deport(this.tableData, operator, targetMember)
+            GuildAdminRequest.GUILD_ADMIN_COMMAND.GRANT -> service.grant(this.tableData, operator, targetMember)
+            GuildAdminRequest.GUILD_ADMIN_COMMAND.RELIVE -> service.relive(this.tableData, operator, targetMember)
+            GuildAdminRequest.GUILD_ADMIN_COMMAND.CEDE -> service.cede(this.tableData, operator, targetMember)
+            GuildAdminRequest.GUILD_ADMIN_COMMAND.EDIT_NOTICE -> service.updateNotice(this.tableData, operator, req.notice)
+            else -> DTuple(false, "不支持的命令。")
+        }
+        if (result.first) {
+            members = service.listMembers(id)
+            applies = service.listApplies(id)
+            timestamp = System.currentTimeMillis()
+        }
+        return result
     }
 
     fun postProcess(session: NettySession<OnlineUser>) {

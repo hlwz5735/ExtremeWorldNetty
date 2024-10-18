@@ -154,6 +154,17 @@ class GuildMessageFacade(
             .build()
     }
 
+    @MessageHandler(GuildAdminRequest::class)
+    fun onGuildAdmin(req: GuildAdminRequest, sessionChar: PlayerCharacter): GuildAdminResponse? {
+        // 如果工会信息不存在却想管理工会，直接忽略
+        if (sessionChar.guild == null) return null
+        val result = sessionChar.guild!!.doAdmin(sessionChar, req)
+        return GuildAdminResponse.newBuilder()
+            .setResult(if (result.first) RESULT.SUCCESS else RESULT.FAILED)
+            .setErrormsg(result.second ?: "操作成功")
+            .build()
+    }
+
     companion object {
         private val logger = LoggerFactory.getLogger(GuildMessageFacade::class.java)
     }
