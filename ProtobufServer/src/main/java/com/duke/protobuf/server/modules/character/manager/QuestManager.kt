@@ -24,9 +24,9 @@ class QuestManager(
 
     private fun toNQuestNfo(tQuest: TCharacterQuest): NQuestInfo {
         val builder = NQuestInfo.newBuilder()
-            .setQuestId(tQuest.questId!!)
+            .setQuestId(tQuest.questId)
             .setQuestGuid(tQuest.id!!)
-            .setStatus(tQuest.status!!)
+            .setStatus(tQuest.status)
 
         if (tQuest.target1 != null) {
             builder.setTargets(0, tQuest.target1!!)

@@ -28,7 +28,7 @@ class FriendService(
         val char2 = char2o.get()
         val entity1 = TCharacterFriend(
             friendId = char2Id,
-            friendName = char2.name!!,
+            friendName = char2.name,
             clazz = char2.clazz,
             level = char2.level,
             owner = char1
@@ -36,7 +36,7 @@ class FriendService(
         repo.save(entity1)
         val entity2 = TCharacterFriend(
             friendId = char1Id,
-            friendName = char1.name!!,
+            friendName = char1.name,
             clazz = char1.clazz,
             level = char1.level,
             owner = char2
@@ -79,11 +79,11 @@ class FriendService(
     }
 
     private fun convertEntityToModel(entity: TCharacterFriend): FriendInfo {
-        val onlineUser = onlineCharacterManager[entity.friendId!!]
+        val onlineUser = onlineCharacterManager[entity.friendId]
         return FriendInfo(
             entity.id!!,
             entity.owner!!.id!!,
-            entity.friendId!!,
+            entity.friendId,
             entity.friendName,
             onlineUser?.character?.level ?: entity.level,
             entity.clazz,

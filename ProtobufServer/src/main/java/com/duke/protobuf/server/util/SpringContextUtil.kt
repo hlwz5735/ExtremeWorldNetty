@@ -19,11 +19,12 @@ class SpringContextUtil : ApplicationContextAware {
         }
 
         fun <T> getBean(name: String): T? {
-            return applicationContext.getBean(name) as T
+            @Suppress("UNCHECKED_CAST")
+            return applicationContext.getBean(name) as T?
         }
 
         fun <T> getBean(tClass: Class<T>): T? {
-            return applicationContext.getBean(tClass) as T
+            return applicationContext.getBean(tClass) as T?
         }
     }
 }

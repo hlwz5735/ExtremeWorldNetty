@@ -29,7 +29,7 @@ class PlayerCharacter(
     tableData.name,
     tableData.clazz,
     tableData.mapId,
-    pos = Vector3Int(tableData.mapPosX ?: 0, tableData.mapPosY ?: 0, tableData.mapPosZ ?: 0),
+    pos = Vector3Int(tableData.mapPosX, tableData.mapPosY, tableData.mapPosZ),
     dir = Vector3Int(100, 0, 0)
 ) {
     private val bagService = SpringContextUtil.getBean(BagService::class.java)!!
@@ -99,7 +99,7 @@ class PlayerCharacter(
         val itemsBs = ByteString.copyFrom(tBag.items ?: byteArrayOf())
         val equipBs = ByteString.copyFrom(tableData.equips ?: byteArrayOf())
         val nBag = NBagInfo.newBuilder()
-            .setUnlocked(tBag.unlockedCellCount ?: 1)
+            .setUnlocked(tBag.unlockedCellCount)
             .setItems(itemsBs)
         // 构建任务信息
         val nQuests = questManager.buildQuestInfos()
@@ -146,7 +146,7 @@ class PlayerCharacter(
         if (other == null || this.javaClass != other.javaClass) return false
         other as PlayerCharacter
 
-        return id != null && id == other.id
+        return id == other.id
     }
 
     override fun hashCode(): Int = id.hashCode()
