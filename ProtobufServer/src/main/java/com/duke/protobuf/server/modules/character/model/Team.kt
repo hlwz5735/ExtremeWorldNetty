@@ -44,7 +44,7 @@ class Team(
 
     fun postProcess(session: NettySession<OnlineUser>) {
         val leader = this.leader ?: return
-        session.sendAsync {
+        session.sendLazy {
             it.setTeamInfo(TeamInfoResponse.newBuilder()
                 .setResult(RESULT.SUCCESS)
                 .setTeamInfo(NTeamInfo.newBuilder()

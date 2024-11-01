@@ -77,7 +77,7 @@ class GuildMessageFacade(
         val applyRes = guild.joinApply(newApply)
         if (applyRes.first) {
             val leaderChar = onlineCharacterManager[guild.tableData.leaderId]
-            leaderChar?.session?.sendAsync {
+            leaderChar?.session?.sendLazy {
                 it.setGuildJoinReq(GuildJoinRequest.newBuilder()
                     .setApplyInfo(newApply))
             }
@@ -108,14 +108,14 @@ class GuildMessageFacade(
         val requester = onlineCharacterManager[res.applyInfo.characterId] ?: return
         if (approved) {
             requester.character?.guild = guild
-            requester.session.sendAsync {
+            requester.session.sendLazy {
                 it.setGuildJoinRes(GuildJoinResponse.newBuilder()
                     .setResult(RESULT.SUCCESS)
                     .setErrormsg("加入公会成功。")
                 )
             }
         } else {
-            requester.session.sendAsync {
+            requester.session.sendLazy {
                 it.setGuildJoinRes(GuildJoinResponse.newBuilder()
                     .setResult(RESULT.FAILED)
                     .setErrormsg("工会领导拒绝您加入工会。")

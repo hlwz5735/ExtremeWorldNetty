@@ -8,4 +8,8 @@ spring:
     hibernate:
       ddl-auto: update
     database: mysql
-
+com:
+  duke:
+    exw:
+      message-fetch-size: 20
+      message-fetch-period: 300000

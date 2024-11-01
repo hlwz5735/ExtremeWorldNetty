@@ -94,7 +94,7 @@ class Guild(
 
     fun postProcess(session: NettySession<OnlineUser>) {
         // 发送简化版的工会信息
-        session.sendAsync {
+        session.sendLazy {
             it.setGuildInfo(GuildInfoResponse.newBuilder()
                 .setGuildInfo(getNGuildInfo(session.user.character!!))
             )

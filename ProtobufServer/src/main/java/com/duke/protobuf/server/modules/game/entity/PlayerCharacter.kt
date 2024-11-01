@@ -9,6 +9,7 @@ import com.duke.protobuf.server.modules.character.manager.QuestManager
 import com.duke.protobuf.server.modules.character.manager.StatusManager
 import com.duke.protobuf.server.modules.character.model.Team
 import com.duke.protobuf.server.modules.character.service.BagService
+import com.duke.protobuf.server.modules.chat.model.Chat
 import com.duke.protobuf.server.modules.game.core.Vector3Int
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.guild.manager.GuildManager
@@ -49,14 +50,16 @@ class PlayerCharacter(
             guildUpdateTs = 0
         }
     private var guildUpdateTs = 0L
+    private val chat: Chat
 
     init {
         guild = guildManager.getCharacterGuild(this.dbId)
         guildUpdateTs = guild?.timestamp ?: 0
+        chat = Chat(this)
     }
 
     fun postResponseProcess() {
-        session.sendAsync {
+        session.sendLazy {
             // 状态变更
             val statusNotifies = statusManager.collectChangesToResponse()
             if (statusNotifies != null) {
@@ -71,6 +74,9 @@ class PlayerCharacter(
                 friendManager.isDirty = false
             }
         }
+        // 聊天消息
+        chat.postProcess()
+
         val team = this.team
         if (team != null) {
             if (teamUpdateTs < team.timestamp) {

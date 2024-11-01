@@ -287,7 +287,38 @@ message NEntitySync {
     NEntity entity = 3;
 }
 
+////////////////////////////////////////////////////////////////
+//
+//  聊天相关
+//
+////////////////////////////////////////////////////////////////
+message NChatMessage {
+    enum CHAT_CHANNEL {
+        // 全部
+        ALL = 0;
+        // 本地
+        LOCAL = 1;
+        // 世界
+        WORLD = 2;
+        // 系统
+        SYSTEM = 4;
+        // 私聊
+        PRIVATE = 8;
+        // 队伍
+        TEAM = 16;
+        // 工会
+        GUILD = 32;
+    }
 
+    CHAT_CHANNEL channel = 1;
+    int32 id = 2;
+    int32 fromId = 3;
+    string fromName = 4;
+    int32 toId = 5;
+    string toName = 6;
+    string message = 7;
+    int64 time = 8;
+}
 
 ////////////////////////////////////////////////////////////////
 //
@@ -337,6 +368,8 @@ message NetMessageRequest {
     GuildLeaveRequest guildLeave = 28;
     GuildListRequest guildList = 29;
     GuildAdminRequest guildAdmin = 30;
+
+    ChatRequest chat = 31;
 }
 
 message NetMessageResponse {
@@ -376,6 +409,8 @@ message NetMessageResponse {
     GuildLeaveResponse guildLeave = 27;
     GuildListResponse guildList = 28;
     GuildAdminResponse guildAdmin = 29;
+
+    ChatResponse chat = 30;
 
     StatusNotify statusNotify = 100;
 }
@@ -668,4 +703,18 @@ message GuildAdminResponse {
     RESULT result = 1;
     string errormsg = 2;
     GuildAdminRequest request = 3;
+}
+
+message ChatRequest {
+    NChatMessage message = 1;
+}
+message ChatResponse {
+    RESULT result = 1;
+    string errormsg = 2;
+    repeated NChatMessage localMessages = 3;
+    repeated NChatMessage worldMessages = 4;
+    repeated NChatMessage systemMessages = 5;
+    repeated NChatMessage privateChatMessages = 6;
+    repeated NChatMessage teamMessages = 7;
+    repeated NChatMessage guildMessages = 8;
 }

@@ -4,10 +4,7 @@ import com.duke.protobuf.data.ProtoMessages.*
 import com.duke.protobuf.netty.SessionUtil
 import com.duke.protobuf.server.annotation.MessageFacade
 import com.duke.protobuf.server.annotation.MessageHandler
-import com.duke.protobuf.server.modules.character.service.BagService
 import com.duke.protobuf.server.modules.character.service.CharacterService
-import com.duke.protobuf.server.modules.character.service.ItemService
-import com.duke.protobuf.server.modules.character.service.QuestService
 import com.duke.protobuf.server.modules.game.entity.PlayerCharacter
 import com.duke.protobuf.server.modules.game.net.OnlineUser
 import com.duke.protobuf.server.modules.map.service.MapService
@@ -181,7 +178,7 @@ class UserMessageFacade(
                 .build()
         }
 
-        session.sendAsync { it.setGameLeave(UserGameLeaveResponse.newBuilder()
+        session.sendLazy { it.setGameLeave(UserGameLeaveResponse.newBuilder()
             .setResult(RESULT.SUCCESS)
             .setErrormsg("NONE"))}
         service.userLeave(session)

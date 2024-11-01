@@ -48,7 +48,7 @@ class NettySession<T : SessionUser>(
         sendAndFlush()
     }
 
-    fun sendAsync(func: (NetMessageResponse.Builder) -> Unit) {
+    fun sendLazy(func: (NetMessageResponse.Builder) -> Unit) {
         func(getResponseBuilder())
     }
 
