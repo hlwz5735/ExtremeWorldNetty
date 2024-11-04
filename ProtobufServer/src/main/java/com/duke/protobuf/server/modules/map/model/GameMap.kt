@@ -100,15 +100,17 @@ class GameMap(
     /**
      * 更新地图内的实体信息
      */
-    fun updateEntity(gameEntity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
+    fun updateEntity(gameEntity: GameEntity, sync: NEntitySync) {
         val entityId = gameEntity.id
 
         val responseForOther = MapEntitySyncResponse.newBuilder()
             .addEntitySyncs(
                 NEntitySync.newBuilder()
                     .setId(gameEntity.id)
-                    .setEvent(entityEvent)
-                    .setEntity(gameEntity.toNetEntity()))
+                    .setEvent(sync.event)
+                    .setEntity(gameEntity.toNetEntity())
+                    .setParam(sync.param)
+            )
 
         this.characterMap.values.forEach {
             val character = it.character
@@ -116,6 +118,10 @@ class GameMap(
                 character.position = gameEntity.position
                 character.direction = gameEntity.direction
                 character.speed = gameEntity.speed
+                // 如果是坐骑状态事件
+                if (sync.event == NEntitySync.ENTITY_EVENT.MOUNT) {
+                    character.mountId = sync.param
+                }
             } else {
                 it.session.sendSync { builder -> builder.setMapEntitySync(responseForOther) }
             }

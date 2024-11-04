@@ -52,6 +52,8 @@ class PlayerCharacter(
     private var guildUpdateTs = 0L
     private val chat: Chat
 
+    var mountId: Int = 0
+
     init {
         guild = guildManager.getCharacterGuild(this.dbId)
         guildUpdateTs = guild?.timestamp ?: 0
@@ -126,6 +128,8 @@ class PlayerCharacter(
             .setName(this.name)
             .setMapId(this.mapId ?: 0)
             .setEntity(this.toNetEntity())
+            // 坐骑信息
+            .setMountId(mountId)
             .setBag(nBag)
             .setEquips(equipBs)
             .setCarriedMoney(tableData.carriedMoney)

@@ -6,7 +6,7 @@
     "subType": "Normal",
     "pkMode": false,
     "resource": "MainCity",
-    "minimap": "aotelan.png",
+    "minimap": "aotelan",
     "description": "一个平静的小城市。"
   },
   "2": {
@@ -16,7 +16,7 @@
     "subType": "Normal",
     "pkMode": false,
     "resource": "Map01",
-    "minimap": "luorisenlin.png",
+    "minimap": "luorisenlin",
     "description": "野外1"
   },
   "3": {
@@ -26,7 +26,7 @@
     "subType": "Normal",
     "pkMode": false,
     "resource": "Map02",
-    "minimap": "luorisenlin.png",
+    "minimap": "luorisenlin",
     "description": "野外2"
   },
   "4": {
@@ -36,7 +36,7 @@
     "subType": "Normal",
     "pkMode": false,
     "resource": "Map03",
-    "minimap": "luoriyuhui.png",
+    "minimap": "luoriyuhui",
     "description": "魔物出没的地方，很危险。"
   }
 }

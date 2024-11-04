@@ -56,8 +56,8 @@ class MapService(
         this.mapDic[mapId]?.characterLeaveMap(character)
     }
 
-    fun updateEntity(mapId: Int, entity: GameEntity, entityEvent: NEntitySync.ENTITY_EVENT) {
-        this.mapDic[mapId]?.updateEntity(entity, entityEvent)
+    fun updateEntity(mapId: Int, entity: GameEntity, sync: NEntitySync) {
+        this.mapDic[mapId]?.updateEntity(entity, sync)
     }
 
     /**

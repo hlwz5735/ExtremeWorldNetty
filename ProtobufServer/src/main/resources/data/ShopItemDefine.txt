@@ -69,7 +69,6 @@
       "itemId" : 2005,
       "price" : 600,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "12" : {
@@ -83,7 +82,6 @@
       "itemId" : 2006,
       "price" : 700,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "13" : {
@@ -97,7 +95,6 @@
       "itemId" : 2007,
       "price" : 800,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "14" : {
@@ -111,63 +108,60 @@
       "itemId" : 3003,
       "price" : 400,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "15" : {
       "itemId" : 1003,
       "price" : 400,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "26" : {
       "itemId" : 3004,
       "price" : 500,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "16" : {
       "itemId" : 1004,
       "price" : 500,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "27" : {
       "itemId" : 3005,
       "price" : 600,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "17" : {
       "itemId" : 1005,
       "price" : 600,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "28" : {
       "itemId" : 3006,
       "price" : 700,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "18" : {
       "itemId" : 1006,
       "price" : 700,
       "count" : 1,
-      "remark" : "",
+      "status" : 1
+    },
+    "29" : {
+      "itemId" : 3007,
+      "price" : 800,
+      "count" : 1,
       "status" : 1
     },
     "19" : {
       "itemId" : 1007,
       "price" : 800,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "9" : {
@@ -181,7 +175,6 @@
       "itemId" : 2003,
       "price" : 400,
       "count" : 1,
-      "remark" : "",
       "status" : 1
     },
     "10" : {
@@ -195,7 +188,29 @@
       "itemId" : 2004,
       "price" : 500,
       "count" : 1,
-      "remark" : "",
+      "status" : 1
+    }
+  },
+  "3" : {
+    "1" : {
+      "itemId" : 8001,
+      "price" : 1000,
+      "count" : 1,
+      "remark" : "虎坐骑",
+      "status" : 1
+    },
+    "2" : {
+      "itemId" : 8002,
+      "price" : 1000,
+      "count" : 1,
+      "remark" : "虎坐骑",
+      "status" : 1
+    },
+    "3" : {
+      "itemId" : 8003,
+      "price" : 1000,
+      "count" : 1,
+      "remark" : "虎坐骑",
       "status" : 1
     }
   }

@@ -48,6 +48,8 @@ enum ITEM_TYPE {
     TASK = 2;
     // 装备
     EQUIP = 3;
+    // 坐骑
+    MOUNT = 4;
 }
 
 /// 装备槽枚举
@@ -249,6 +251,8 @@ message NCharacterInfo {
     // 好友信息
     repeated NFriendInfo friends = 15;
     NGuildInfo guild = 16;
+    // 坐骑的ID
+    int32 mountId = 17;
 }
 
 message NVector3
@@ -263,8 +267,6 @@ message NVector3
 //  Entities
 //
 ////////////////////////////////////////////////////////////////
-
-
 message NEntity {
     int32 id = 1;
     NVector3 position = 2;
@@ -280,11 +282,13 @@ message NEntitySync {
         MOVE_FWD = 2;
         MOVE_BACK = 3;
         JUMP = 4;
+        MOUNT = 5;
     }
 
     int32 id = 1;
     ENTITY_EVENT event = 2;
     NEntity entity = 3;
+    int32 param = 4;
 }
 
 ////////////////////////////////////////////////////////////////
@@ -325,7 +329,6 @@ message NChatMessage {
 //  Messages
 //
 ////////////////////////////////////////////////////////////////
-
 message NetMessage {
     NetMessageRequest Request = 1;
     NetMessageResponse Response = 2;

@@ -29,7 +29,7 @@ class MapMessageFacade(
 
         // 从网络数据构建游戏实体对象并进行同步
         val entity = GameEntity(sync.entity)
-        this.service.updateEntity(mapId, entity, sync.event)
+        this.service.updateEntity(mapId, entity, sync)
     }
 
     @MessageHandler(MapTeleportRequest::class)

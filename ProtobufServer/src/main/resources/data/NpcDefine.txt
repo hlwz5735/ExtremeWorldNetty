@@ -1,31 +1,41 @@
 {
-  "1": {
-    "id": 1,
-    "name": "莉莉丝",
-    "type": "Task",
-    "description": "任务NPC"
+  "1" : {
+    "param" : 0,
+    "name" : "莉莉丝",
+    "description" : "任务NPC",
+    "id" : 1,
+    "type" : "Task"
   },
-  "2": {
-    "id": 2,
-    "name": "多丽丝",
-    "type": "Functional",
-    "function": "InvokeShop",
-    "param": 1,
-    "description": "杂货商人"
+  "2" : {
+    "param" : 1,
+    "function" : "InvokeShop",
+    "name" : "多丽丝",
+    "description" : "杂货商人",
+    "id" : 2,
+    "type" : "Functional"
   },
-  "3": {
-    "id": 3,
-    "name": "埃布尔",
-    "type": "Functional",
-    "function": "InvokeInstance",
-    "description": "副本NPC"
+  "3" : {
+    "param" : 0,
+    "function" : "InvokeInstance",
+    "name" : "埃布尔",
+    "description" : "副本NPC",
+    "id" : 3,
+    "type" : "Functional"
   },
-  "4": {
-    "id": 4,
-    "name": "奥德里奇",
-    "type": "Functional",
-    "function": "InvokeShop",
-    "param": 2,
-    "description": "装备NPC"
+  "4" : {
+    "param" : 2,
+    "function" : "InvokeShop",
+    "name" : "奥德里奇",
+    "description" : "装备NPC",
+    "id" : 4,
+    "type" : "Functional"
+  },
+  "5" : {
+    "param" : 3,
+    "function" : "InvokeShop",
+    "name" : "薇薇安",
+    "description" : "坐骑NPC",
+    "id" : 5,
+    "type" : "Functional"
   }
 }
